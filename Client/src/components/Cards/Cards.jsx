@@ -1,7 +1,6 @@
-import React from "react";
 import styles from './Cards.module.css';
 
-export default function Cards({ id, name, image, price }) {
+export default function Cards() {
     return (
 
         <div>
