@@ -57,22 +57,6 @@ const handleUserCreate = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
-/* 
-if (!id) return res.status(400).json({ error: 'falta el ID' })
-    const updateProduct = await Products.update({
-      image,
-      name,
-      brand,
-      detail,
-      price,
-      category,
-      stock,
-    }, {
-      where: {
-        id: id
-      }
-    })
-*/
 
 const handleUpdateUser = async (req, res) => {
   const { email, name, password, favorite, direction, cart } = req.body;
@@ -100,9 +84,22 @@ const handleUpdateUser = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+const handleDeleteUser = async (req, res) => {
+  const { UsersId } = req.params
+  try {
+    await Usuario.destroy({
+      where:{email:UsersId}
+    })
+    res.status(200).json({message:"el usuario ha sido eliminado"})
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
 module.exports = {
   handleUsersAll,
   handleUserById,
   handleUserCreate,
   handleUpdateUser,
+  handleDeleteUser
 };
