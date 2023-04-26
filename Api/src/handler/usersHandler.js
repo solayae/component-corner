@@ -6,7 +6,21 @@ const { Usuario } = require('../db');
 
 const handleUsersAll = async (req, res) => {
   const { name } = req.query
- 
+  try {
+    if (!name) {
+      const allUsers = await Usuario.findAll()
+      return res.status(200).json(allUsers)
+    } else {
+      const allUsers = await Usuario.findAll({
+        where: {
+          name: { [Op.substring]: name },
+        }
+      })
+      return res.status(200).json(allUsers)
+    }
+  } catch (error) {
+    res.status(400).json({error: error.message})
+  }
 }
 
 
@@ -14,23 +28,6 @@ const handleUserById = async (req, res) => {
   const { idUser } = req.params;
   
 }
-
-/* 
-{
-      where: {
-        name: name,
-      },
-      defaults: {
-        image,
-        name,
-        brand,
-        detail,
-        price,
-        category,
-        stock
-      }
-    }
-*/
 
 
 const handleUserCreate = async (req, res) => {
