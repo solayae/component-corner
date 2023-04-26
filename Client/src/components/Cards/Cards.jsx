@@ -25,7 +25,6 @@ export default function Cards() {
                 <h4>PRICE: 3463</h4>
             </div>
 
-
         </div >
 
     )
