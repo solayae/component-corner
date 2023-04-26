@@ -1,9 +1,6 @@
 
 const { Usuario } = require('../db');
 
-
-
-
 const handleUsersAll = async (req, res) => {
   const { name } = req.query
   try {
@@ -25,7 +22,14 @@ const handleUsersAll = async (req, res) => {
 
 
 const handleUserById = async (req, res) => {
-  const { idUser } = req.params;
+  const { UsersId } = req.params;
+try {
+  const user = await Usuario.findByPk(UsersId)
+  return res.status(200).json(user)
+  
+} catch (error) {
+  res.status(400).json({error:error.message})
+}
   
 }
 
