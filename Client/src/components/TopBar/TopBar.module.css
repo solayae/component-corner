@@ -1,0 +1,9 @@
+div.container {
+  justify-content: space-around;
+  background-color: #edefff;
+  display: flex;
+}
+div.container div img {
+  max-height: 80px;
+  padding: 20px;
+}
