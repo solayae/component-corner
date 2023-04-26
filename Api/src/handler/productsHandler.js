@@ -29,11 +29,11 @@ async function product() {
   const newProduct = await addProduct();
   console.log(newProduct)
 }
+//addProduct()
 
 // trae todos los productos de la base de datos
 const handleProductsAll = async (req, res) => {
   const { name } = req.query;
-
   if (!name) {
     // trae todos los productos
     const allProduct = await Products.findAll();
