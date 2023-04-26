@@ -1,4 +1,5 @@
-const {motherboards, monitores} = require('../../dbProducts')
+const {articulos} = require('../Utils/Productos')
+//const {motherboards, monitores} = require('../../dbProducts')
 const { Op } = require("sequelize");
 const { Products } = require("../db");
 
@@ -21,21 +22,22 @@ async function addProduct() {
     stock: 0,
     delete: false,
   }); */
-  const addMotherboards = await Products.bulkCreate(motherboards)
-  const addMonitores = await Products.bulkCreate(monitores)
-  return [...addMotherboards, addMonitores];
+  const addArticulos = await Products.bulkCreate(articulos)
+  
+  return addArticulos
 }
 async function product() {
   const newProduct = await addProduct();
-  console.log(newProduct)
+  
 }
-//addProduct()
+
 
 // trae todos los productos de la base de datos
 const handleProductsAll = async (req, res) => {
   const { name } = req.query;
   if (!name) {
     // trae todos los productos
+    addProduct()
     const allProduct = await Products.findAll();
     res.status(200).json(allProduct);
   } else {
@@ -52,6 +54,7 @@ const handleProductsAll = async (req, res) => {
 // trae un producto por id de la base de datos
 const handleProductById = async (req, res) => {
   const { productsId } = req.params;
+
   console.log(productsId)
   try {
     
