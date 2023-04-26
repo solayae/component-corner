@@ -18,7 +18,7 @@
 .column h3 {
   font-size: 1.2rem;
   margin-bottom: 20px;
-  font-family: var(--font-heading)
+  font-family: var(--font-heading);
 }
 
 .column ul {
@@ -52,5 +52,5 @@
   padding: 2.5rem 1rem;
   font-size: 0.8rem;
   font-family: var(--font-heading);
-  width: 100%;
+  max-width: 100%;
 }

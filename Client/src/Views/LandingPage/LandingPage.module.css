@@ -1,0 +1,63 @@
+.landingPage {
+  font-family: var(--font-heading);
+}
+
+/*Banner*/
+div.banner {
+  background-image: url('../../assets/BannerBG.jpg');
+  background-position: center;
+  align-items: center;
+  background-size: 100vw 400px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  color: white;
+  display: flex;
+  padding: auto;
+  min-height: 400px;
+}
+div.banner .banner__TextContainer {
+  margin: 80px 20vw;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+div.banner .banner__TextContainer h1 {
+  max-width: 40vw;
+  font-size: 60px;
+}
+div.banner .banner__TextContainer p {
+  font-size: 30px;
+}
+
+/*Menu bar*/
+div.menuTrigger {
+  background-color: #d9d9d9;
+}
+div.menuTrigger h1 {
+  padding: 20px 20vw;
+  cursor: pointer;
+}
+div.dropdownMenu {
+  display: none;
+  position: absolute;
+  background-color: #d9d9d9;
+  margin: 0 20vw;
+  width: 200px;
+  border-radius: 0 0 20px 20px;
+}
+div.dropdownMenu li {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 20px;
+  margin: 15px;
+}
+div.dropdownMenu li:hover {
+  cursor: pointer;
+  color: blue;
+}
+div.dropdownMenu li img {
+  width: 100px;
+}
+div.menuTrigger:hover div.dropdownMenu {
+  display: block;
+}
