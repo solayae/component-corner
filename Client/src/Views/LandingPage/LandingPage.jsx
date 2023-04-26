@@ -1,4 +1,5 @@
 import TopBar from '../../Components/TopBar/TopBar';
+import Cards from '../../components/Cards/Cards';
 import Style from './LandingPage.module.css';
 const LandingPage = () => {
   return (
@@ -26,6 +27,10 @@ const LandingPage = () => {
             </ul>
           </div>
         </div>
+      </div>
+      <div className={Style.recommendations}>
+        <h1>Recomendaciones:</h1>
+        <Cards />
       </div>
     </div>
   );
