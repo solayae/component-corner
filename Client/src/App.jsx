@@ -1,10 +1,16 @@
 import './App.css';
-import Footer from './components/Footer/Footer';
+import {Routes, Route} from 'react-router-dom';
+import LandingPage from './Views/LandingPage';
+import Footer from './components/Footer/Footer.jsx';
 
 function App() {
   return (
-    <>
-    </>
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+      </Routes>
+      <Footer/>
+    </div>
   );
 }
 
