@@ -1,6 +1,5 @@
-import React from 'react';
 import styles from './Topbar.module.css';
-// import Icon from '@material-ui/core/Icon';
+import Icon from "@mui/material/Icon";
 
 const Topbar = () => {
   return (
@@ -8,30 +7,30 @@ const Topbar = () => {
       <div className={styles.row2}>
         <div className={styles.logo}>
           {/* <img src='logo.png' alt='Logo' /> */}
-          {/* <Icon>devices</Icon> */}
+          <Icon>devices</Icon>
 
         </div>
         <div className={styles.search}>
           <input type='text' placeholder='Buscar productos' />
-          {/* <Icon>search</Icon> */}
+          <Icon>search</Icon>
         </div>
         <div className={styles.icons}>
           <div className={styles.favorite}>
-            {/* <Icon>favorite</Icon> */}
+            <Icon>favorite</Icon>
           </div>
           <div className={styles.cart}>
             <i className='fa fa-shopping-cart' aria-hidden='true'></i>
-            {/* <Icon>shopping_bag</Icon> */}
+            <Icon>shopping_bag</Icon>
           </div>
           <div className={styles.login}>
-            {/* <Icon>login</Icon> */}
+            <Icon>login</Icon>
           </div>
         </div>
       </div>
       <div className={styles.row2}>
-        {/* <a href='#' className={styles.about}>
+        <a href='#' className={styles.about}>
           HOME
-        </a> */}
+        </a>
         <div className={styles.categories}>
           <div className={styles.dropdown}>
             <a className={styles.about}>CATEGORIAS</a>
