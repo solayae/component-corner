@@ -1,9 +1,10 @@
 import './App.css';
-import Footer from './components/Footer/Footer';
+import Topbar from './components/Topbar/Topbar';
 
 function App() {
   return (
     <>
+      <Topbar />
     </>
   );
 }
