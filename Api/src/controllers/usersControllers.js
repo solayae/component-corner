@@ -1,4 +1,4 @@
-
+const {Usuario}=require('../db')
 
 async function findOrCreateUser(email, name, password, favorite, direction, cart) {
     const [newUser, create] = await Usuario.findOrCreate({
@@ -38,9 +38,17 @@ async function deleteUser(UsersId) {
     });
     return "Usuario eliminado"
 }
-
+async function searchUsersByName(name) {
+    const allUsers = await Usuario.findAll({
+        where: {
+          name: { [Op.substring]: name },
+        },
+    });
+    return allUsers
+}
 module.exports = {
     findOrCreateUser,
     updateUsers,
-    deleteUser
+    deleteUser,
+    searchUsersByName
 }
