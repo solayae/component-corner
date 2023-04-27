@@ -16,17 +16,17 @@ export function orderBy(order) {
   return function (dispatch) {
     dispatch({ type: ORDER_BY, payload: order })
   }
-};
+}
 
 export function filterByCategory(category) {
   return function (dispatch) {
     dispatch({ type: FILTER_BY_CATEGORY, payload: category })
   }
-};
+}
 
 export function filterByBrand(brand) {
   return function (dispatch) {
     dispatch({ type: FILTER_BY_BRAND, payload: brand })
   }
-};
+}
 
