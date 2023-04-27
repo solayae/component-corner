@@ -8,6 +8,7 @@ module.exports = (sequelize) => {
       type: DataTypes.UUID,
       defaultValue:DataTypes.UUIDV4,
       primaryKey: true,
+      unique: true,
     },
      image: {
       type: DataTypes.TEXT,

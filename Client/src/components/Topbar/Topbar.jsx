@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Topbar.module.css';
 import favorite from './assets/favorite-icon.png';
 import cart from './assets/cart-icon.png';
@@ -31,9 +30,9 @@ const Topbar = () => {
         </div>
       </div>
       <div className={styles.row2}>
-        {/* <a href='#' className={styles.about}>
+        <a href='#' className={styles.about}>
           HOME
-        </a> */}
+        </a>
         <div className={styles.categories}>
           <div className={styles.dropdown}>
             <a className={styles.about}>CATEGORIAS</a>
