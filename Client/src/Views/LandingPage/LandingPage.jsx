@@ -1,7 +1,18 @@
+import {useSelector, useDispatch} from 'react-redux';
 import TopBar from '../../Components/TopBar/TopBar';
+import {getAllProducts} from '../../redux/actions';
 import Cards from '../../components/Cards/Cards';
 import Style from './LandingPage.module.css';
+import {useEffect} from 'react';
+
 const LandingPage = () => {
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products);
+  console.log(products);
+  useEffect(() => {
+    if (products.length === 0) dispatch(getAllProducts());
+    //eslint-disable-next-line
+  }, [dispatch]);
   return (
     <div className={Style.landingPage}>
       <TopBar />
