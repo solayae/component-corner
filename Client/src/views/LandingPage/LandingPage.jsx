@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 const LandingPage = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
-  console.log(products);
+  console.log(products[0]);
   useEffect(() => {
     if (products.length === 0) dispatch(getAllProducts());
     //eslint-disable-next-line
@@ -27,7 +27,7 @@ const LandingPage = () => {
       <div className={Style.menuContanier}></div>
       <div className={Style.recommendations}>
         <h1>Recomendaciones:</h1>
-        <Cards />
+        <Cards products={products}/>
       </div>
     </div>
   );
