@@ -24,9 +24,8 @@ const {PORT} = process.env;
 const {bulkProducts} = require('./src/functions/bulkProducts.js');
 
 // Syncing all the models at once.
-conn.sync({force: true}).then(() => {
-  server.listen(PORT, async () => {
-    console.log('%s listening at ' + PORT); // eslint-disable-line no-console
-    await bulkProducts(); //delete line if deploy
+conn.sync({ force: false }).then(() => {
+  server.listen(PORT, () => {
+    console.log("%s listening at " + PORT); // eslint-disable-line no-console
   });
 });

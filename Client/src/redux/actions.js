@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { GET_ALL_PRODUCTS, ORDER_BY, FILTER_BY_CATEGORY, FILTER_BY_BRAND } from './variables';
+import {
+  GET_ALL_PRODUCTS,
+  ORDER_BY,
+  FILTER_BY_CATEGORY,
+  FILTER_BY_BRAND,
+} from './variables';
 
 export function getAllProducts() {
   return async function (dispatch) {
@@ -14,19 +19,18 @@ export function getAllProducts() {
 
 export function orderBy(order) {
   return function (dispatch) {
-    dispatch({ type: ORDER_BY, payload: order })
-  }
+    dispatch({ type: ORDER_BY, payload: order });
+  };
 }
 
 export function filterByCategory(category) {
   return function (dispatch) {
-    dispatch({ type: FILTER_BY_CATEGORY, payload: category })
-  }
+    dispatch({ type: FILTER_BY_CATEGORY, payload: category });
+  };
 }
 
 export function filterByBrand(brand) {
   return function (dispatch) {
-    dispatch({ type: FILTER_BY_BRAND, payload: brand })
-  }
+    dispatch({ type: FILTER_BY_BRAND, payload: brand });
+  };
 }
-
