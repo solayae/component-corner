@@ -1,30 +1,32 @@
 import React from 'react';
 import styles from './Topbar.module.css';
-// import Icon from '@material-ui/core/Icon';
+import favorite from './assets/favorite-icon.png';
+import cart from './assets/cart-icon.png';
+import login from './assets/login-icon.png';
+import search from './assets/search-icon.png';
 
 const Topbar = () => {
   return (
     <nav className={styles.topbar}>
       <div className={styles.row2}>
         <div className={styles.logo}>
-          {/* <img src='logo.png' alt='Logo' /> */}
-          {/* <Icon>devices</Icon> */}
-
+          COMPONENT CORNER
         </div>
         <div className={styles.search}>
           <input type='text' placeholder='Buscar productos' />
-          {/* <Icon>search</Icon> */}
+          <img src={search} alt="search-icon" />
         </div>
         <div className={styles.icons}>
           <div className={styles.favorite}>
-            {/* <Icon>favorite</Icon> */}
+            {' '}
+            <img src={favorite} alt='favorite-icon' />
           </div>
           <div className={styles.cart}>
-            <i className='fa fa-shopping-cart' aria-hidden='true'></i>
-            {/* <Icon>shopping_bag</Icon> */}
+            <img src={cart} alt='cart-icon' />
           </div>
           <div className={styles.login}>
-            {/* <Icon>login</Icon> */}
+            {' '}
+            <img src={login} alt='login-icon' />
           </div>
         </div>
       </div>
