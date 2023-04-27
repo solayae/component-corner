@@ -4,40 +4,15 @@ const { Op } = require("sequelize");
 const { Products } = require("../db");
 
 async function addProduct() {
- /*  const addProduct = await Products.create({
-    image:
-      "https://img.pccomponentes.com/articles/1059/10594876/1607-asus-rog-strix-b650e-f-gaming-wifi.jpg",
-    price: 217,
-    brand: "Asus",
-    name: "MOTHER ASUS (AM5) ROG STRIX B650E-E GAMING WFI",
-    detail: [
-      "AMD Socket AM5 for AMD Ryzen 7000 Series Desktop Processors",
-      "Total supports 4 x M.2 slots and 4 x SATA 6Gb/s ports",
-      "ROG SupremeFX 7.1 Surround Sound High Definition Audio CODEC ALC4080",
-      "4x DIMM Slots, DDR5 6400MHz, PCIe Gen 5, 4x SATA 6Gb/s connectors, 4xM.2 Slot, 2.5GB LAN",
-      "Graphics: 1 x DisplayPort* 1 x HDMI® port",
-      "Expansion Slots AMD Ryzen™ 7000 Series Desktop Processors*",
-    ],
-    category: "Motherboard",
-    stock: 0,
-    delete: false,
-  }); */
   const addArticulos = await Products.bulkCreate(articulos)
-  
   return addArticulos
 }
-async function product() {
-  const newProduct = await addProduct();
-  
-}
-
 
 // trae todos los productos de la base de datos
 const handleProductsAll = async (req, res) => {
   const { name } = req.query;
   if (!name) {
     // trae todos los productos
-    addProduct()
     const allProduct = await Products.findAll();
     res.status(200).json(allProduct);
   } else {
@@ -51,10 +26,19 @@ const handleProductsAll = async (req, res) => {
   }
 };
 
+//Trae los productos del archivo y los carga a la base de datos
+const bulkProducts = async(req, res) => {
+  try{
+    addProduct()
+    res.status(200).json({message:"The database has been bulked and updated"})
+  }catch(error){
+    res.status(400).json({error:error.message})
+  }
+}
+
 // trae un producto por id de la base de datos
 const handleProductById = async (req, res) => {
   const { productsId } = req.params;
-
   console.log(productsId)
   try {
     
@@ -66,8 +50,6 @@ const handleProductById = async (req, res) => {
     
   }
 };
-
-
 
 const handleDeleteById = async (req, res) => {
   const { productsId } = req.params
@@ -110,16 +92,6 @@ const updateProduct = async (req, res) => {
   }
 }
 
-/* 
-where: { name: 'Goku' },
-3 defaults: {
-4
-gender: 'M',
-5
-race: 'Saiyan'
-6 }
-*/
-
 const createProduct = async (req, res) => {
   const { image, name, brand, detail, price, category, stock } = req.body
   try {
@@ -153,5 +125,6 @@ module.exports = {
   handleProductById,
   handleDeleteById,
   updateProduct,
-  createProduct
+  createProduct,
+  bulkProducts
 };
