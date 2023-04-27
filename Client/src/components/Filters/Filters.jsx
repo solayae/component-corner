@@ -5,12 +5,10 @@ export default function Filters() {
 
     const dispatch = useDispatch()
 
-
     function handleName(e) {
         e.preventDefault()
         dispatch((e.target.value))
     }
-
 
     function handlePrice(e) {
         e.preventDefault()
@@ -47,6 +45,7 @@ export default function Filters() {
             {/* FILTRAR POR COMPONENTE */}
 
             <select className={styles.filterComponent} onChange={e => { handleComponent(e) }}>
+                <option value='All'>All</option>
                 <option value='Motherboards'>Motherboards</option>
                 <option value='Mouse'>Mouse</option>
                 <option value='Teclados'>Teclados</option>
@@ -54,7 +53,7 @@ export default function Filters() {
             </select>
 
             {/* SORT POR ORDEN ALFABETICO */}
-            
+
             <select className={styles.filterOrder} onChange={e => { handleName(e) }}>
                 <option value='All'>Ordenar ⇅</option>
                 <option value='A-Z'>A - Z</option>
