@@ -37,7 +37,6 @@ const handleProductsAll = async (req, res) => {
   const { name } = req.query;
   if (!name) {
     // trae todos los productos
-    addProduct()
     const allProduct = await Products.findAll();
     res.status(200).json(allProduct);
   } else {
