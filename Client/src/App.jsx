@@ -1,11 +1,16 @@
 import './App.css';
-import Topbar from './components/Topbar/Topbar';
+import {Routes, Route} from 'react-router-dom';
+import LandingPage from './Views/LandingPage/LandingPage';
+import Footer from './components/Footer/Footer.jsx';
 
 function App() {
   return (
-    <>
-      <Topbar />
-    </>
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+      </Routes>
+      <Footer />
+    </div>
   );
 }
 
