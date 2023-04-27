@@ -27,6 +27,6 @@ const {bulkProducts} = require('./src/functions/bulkProducts.js');
 conn.sync({force: true}).then(() => {
   server.listen(PORT, async () => {
     console.log('%s listening at ' + PORT); // eslint-disable-line no-console
-    await bulkProducts();
+    await bulkProducts(); //delete line if deploy
   });
 });
