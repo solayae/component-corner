@@ -1,5 +1,5 @@
 module.exports = {
-  articulos:[
+  articulos: [
     {
       //: 1,
       image:
@@ -378,7 +378,7 @@ module.exports = {
       stock: 9,
       delete: false,
     },
-  
+
     {
       //: 1,
       image:
@@ -772,7 +772,7 @@ module.exports = {
       stock: 5,
       delete: false,
     },
-  
+
 
     {
       //: 1,
@@ -1149,7 +1149,7 @@ module.exports = {
       price: 3999.99,
       category: "Procesadores",
       stock: 2,
-    delete: false   
-  }  
+      delete: false
+    }
   ]
 }
