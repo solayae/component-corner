@@ -13,9 +13,14 @@ const handleProductsAll = async (req, res) => {
   const { name } = req.query;
   if (!name) {
     // trae todos los productos
-    addProduct();
-    const allProduct = await Products.findAll();
-    res.status(200).json(allProduct);
+    let allProduct = await Products.findAll();
+    if (allProduct.length === 0) {
+      addProduct();
+      res.status(200).json(allProduct);
+    } else {
+      res.status(200).json(allProduct);
+    }
+    
   } else {
     // trae los productos que coincidan con el nombre
     const allProductByName = await getProductByName(name);
@@ -109,4 +114,5 @@ module.exports = {
   handleDeleteById,
   updateProduct,
   createProduct,
+  bulkProducts
 };
