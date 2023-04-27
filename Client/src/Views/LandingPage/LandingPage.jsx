@@ -1,4 +1,5 @@
-import TopBar from '../../Components/TopBar/TopBar';
+import TopBar from '../../components/TopBar/TopBar';
+
 import Style from './LandingPage.module.css';
 const LandingPage = () => {
   return (
