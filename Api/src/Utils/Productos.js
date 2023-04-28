@@ -1150,6 +1150,777 @@ module.exports = {
       category: "Procesadores",
       stock: 2,
       delete: false
-    }
+    },
+    {
+      //: 9,
+      image: "https://app.contabilium.com/files/explorer/7026/Productos-Servicios/concepto-10608112.jpg",
+      name: "AMD Ryzen 7 7700",
+      brand: "AMD",
+      detail: [
+        "Núcleos: 64",
+        "Hilos: 128",
+        "Veloc//ad base: 2.9 GHz",
+        "Veloc//ad turbo: 4.3 GHz",
+        "Cache: 288MB",
+        "Socket: sTRX4",
+        "Consumo energético: 280W",
+        "Tecnología de fabricación: 7nm",
+      ],
+      price: 3999.99,
+      category: "Procesadores",
+      stock: 2,
+      delete: false
+    },
+    {
+      //: 10,
+      image: "https://tienda.redcomputer.es/57767-large_default/procesador-amd-ryzen-9-7950x-socket-am5.jpg",
+      name: "AMD Ryzen 9 7900X3D",
+      brand: "AMD",
+      detail: [
+        "Núcleos: 64",
+        "Hilos: 128",
+        "Veloc//ad base: 2.9 GHz",
+        "Veloc//ad turbo: 4.3 GHz",
+        "Cache: 288MB",
+        "Socket: sTRX4",
+        "Consumo energético: 280W",
+        "Tecnología de fabricación: 7nm",
+      ],
+      price: 3999.99,
+      category: "Procesadores",
+      stock: 2,
+      delete: false
+    },
+    {
+      //: 1,
+      image: "https://hard-digital.com.ar/files/Memoria%20Ram%208%20Gb%20Ddr4%202666mhz%20Kingston%20Hyperx%20Fury%20Beast%20Rgb/1.jpg",
+      name: "KINGSTON FURY BEAST RGB 8GB",
+      brand: "Kingston",
+      detail: [
+        "Módulos de memoria: 1 x 8 GB",
+        "Aplicación: Computadoras de escritorio",
+        "Tecnología: DDR4 SDRAM",
+        "Velocidad: 3200 MHz",
+        "Tasa de transferencia: 25600 MB/s",
+        "RGB: Si"
+      ],
+      price: 3999.99,
+      category: "Procesadores",
+      stock: 2,
+      delete: false
+    },
+    {
+      image: "https://www.qloud.com.ar/SITES/IMG/noxie-store-08-2022/274_14-02-2023-01-02-01-memoria-ram-corsair-8gb-vengance-rgb-pro-2.jpg",
+      name: "Corsair Vengeance RGB Pro DDR4 8GB 3200MHz",
+      brand: "Corsair",
+      detail: [
+        "Módulos de memoria: 1 x 8 GB",
+        "Aplicación: Computadoras de escritorio",
+        "Tecnología: DDR4 SDRAM",
+        "Velocidad: 3200 MHz",
+        "Tasa de transferencia: 25600 MB/s",
+        "RGB: Si"
+      ],
+      price: 4499.00,
+      category: "Memorias RAM",
+      stock: 5,
+      delete: false
+    },
+    {
+      image: "https://hard-digital.com.ar/files/Memoria%20Ram%208%20Gb%20Ddr4%202666mhz%20Kingston%20Hyperx%20Fury%20Beast%20Rgb/1.jpg",
+      name: "KINGSTON FURY BEAST RGB 16GB",
+      brand: "Kingston",
+      detail: [
+        "Módulos de memoria: 1 x 16 GB",
+        "Aplicación: Computadoras de escritorio",
+        "Tecnología: DDR4 SDRAM",
+        "Velocidad: 3200 MHz",
+        "Tasa de transferencia: 25600 MB/s",
+        "RGB: Si"
+      ],
+      price: 3799.00,
+      category: "Memorias RAM",
+      stock: 10,
+      delete: false
+    },
+    {
+      image: "https://www.teamgroupinc.com/es/upload/product_color_b/6eab90f11017678e3736046065533eb6-20181018134209.jpg",
+      name: "TeamGroup Delta RGB DDR4 8GB 3200MHz",
+      brand: "TeamGroup",
+      detail: [
+        "Módulos de memoria: 1 x 8 GB",
+        "Aplicación: Computadoras de escritorio",
+        "Tecnología: DDR4 SDRAM",
+        "Velocidad: 3200 MHz",
+        "Tasa de transferencia: 25600 MB/s",
+        "RGB: Si"
+      ],
+      price: 3199.00,
+      category: "Memorias RAM",
+      stock: 8,
+      delete: false
+    },
+    {
+      image: "https://www.teamgroupinc.com/es/upload/product_color_b/6eab90f11017678e3736046065533eb6-20181018134209.jpg",
+      name: "TeamGroup Delta RGB DDR4 16GB 3200MHz",
+      brand: "TeamGroup",
+      detail: [
+        "Módulos de memoria: 1 x 16 GB",
+        "Aplicación: Computadoras de escritorio",
+        "Tecnología: DDR4 SDRAM",
+        "Velocidad: 3200 MHz",
+        "Tasa de transferencia: 25600 MB/s",
+        "RGB: Si"
+      ],
+      price: 3199.00,
+      category: "Memorias RAM",
+      stock: 8,
+      delete: false
+    },
+    {
+      image: "https://www.qloud.com.ar/SITES/IMG/noxie-store-08-2022/274_14-02-2023-01-02-01-memoria-ram-corsair-8gb-vengance-rgb-pro-2.jpg",
+      name: "Corsair Vengeance RGB Pro DDR4 16GB 3200MHz",
+      brand: "Corsair",
+      detail: [
+        "Módulos de memoria: 1 x 16 GB",
+        "Aplicación: Computadoras de escritorio",
+        "Tecnología: DDR4 SDRAM",
+        "Velocidad: 3200 MHz",
+        "Tasa de transferencia: 25600 MB/s",
+        "RGB: Si"
+      ],
+      price: 4499.00,
+      category: "Memorias RAM",
+      stock: 5,
+      delete: false
+    },
+    {
+      image: "https://www.xt-pc.com.ar/img/productos/Pics_Prod/MEM1108.jpg",
+      name: "G.Skill Trident Z RGB 16GB (2x8GB) DDR4 3200MHz C16",
+      brand: "G.Skill",
+      detail: [
+        "Módulos de memoria: 2 x 8 GB",
+        "Aplicación: Computadoras de escritorio",
+        "Tecnología: DDR4 SDRAM",
+        "Velocidad: 3200 MHz",
+        "Tasa de transferencia: 25600 MB/s",
+        "RGB: Si"
+      ],
+      price: 8399.99,
+      category: "Memoria RAM",
+      stock: 3,
+      delete: false
+    },
+    {
+      image: "https://www.fullh4rd.com.ar/img/productos/Pics_Prod/memoria-16gb-2x8-ddr4-3200-gskill-trident-z-rgb-neo-1.jpg",
+      name: "G.Skill Trident Z RGB 8GB DDR4 3200MHz C16",
+      brand: "G.Skill",
+      detail: [
+        "Módulos de memoria: 1 x 8 GB",
+        "Aplicación: Computadoras de escritorio",
+        "Tecnología: DDR4 SDRAM",
+        "Velocidad: 3200 MHz",
+        "Tasa de transferencia: 25600 MB/s",
+        "RGB: Si"
+      ],
+      price: 8399.99,
+      category: "Memoria RAM",
+      stock: 3,
+      delete: false
+    },
+    {
+      image: "https://www.fullh4rd.com.ar/img/productos/Pics_Prod/memoria-16gb-2x8-ddr4-3200-gskill-trident-z-rgb-neo-1.jpg",
+      name: "G.Skill Trident Z RGB 16GB DDR4 3200MHz C16",
+      brand: "G.Skill",
+      detail: [
+        "Módulos de memoria: 1 x 16 GB",
+        "Aplicación: Computadoras de escritorio",
+        "Tecnología: DDR4 SDRAM",
+        "Velocidad: 3200 MHz",
+        "Tasa de transferencia: 25600 MB/s",
+        "RGB: Si"
+      ],
+      price: 8399.99,
+      category: "Memoria RAM",
+      stock: 3,
+      delete: false
+    },
+    {
+      image: "https://thumb.pccomponentes.com/w-300-300/articles/60/601312/1605-patriot-viper-steel-rgb-ddr4-3600mhz-16gb-cl19.jpg",
+      name: "Patriot Viper Steel RGB DDR4 16GB 3200MHz",
+      brand: "Patriot",
+      detail: [
+        "Módulos de memoria: 1 x 16 GB",
+        "Aplicación: Computadoras de escritorio",
+        "Tecnología: DDR4 SDRAM",
+        "Velocidad: 3200 MHz",
+        "Tasa de transferencia: 25600 MB/s",
+        "RGB: Si"
+      ],
+      price: 7899.99,
+      category: "Memoria RAM",
+      stock: 7,
+      delete: false
+    },
+    {
+      image: "https://thumb.pccomponentes.com/w-300-300/articles/60/601312/1605-patriot-viper-steel-rgb-ddr4-3600mhz-16gb-cl19.jpg",
+      name: "Patriot Viper Steel RGB DDR4 8GB 3200MHz",
+      brand: "Patriot",
+      detail: [
+        "Módulos de memoria: 1 x 8 GB",
+        "Aplicación: Computadoras de escritorio",
+        "Tecnología: DDR4 SDRAM",
+        "Velocidad: 3200 MHz",
+        "Tasa de transferencia: 25600 MB/s",
+        "RGB: Si"
+      ],
+      price: 7899.99,
+      category: "Memoria RAM",
+      stock: 7,
+      delete: false
+    },
+    {
+      //1
+      image: "https://www.fullh4rd.com.ar/img/productos/Pics_Prod/gabinete-corsair-icue-4000x-rgb-vidrio-templado-midtower-at-0.jpg",
+      name: "PC GAMER AMD RYZEN 7 5800X 3080 32GB SSD 512 750W 4000X",
+      brand: "PC GAMER",
+      detail: [
+        "1 | PROCESADOR AMD RYZEN 7 5800X",
+        "1 | WATER COOLER 240MM ARGB COOLERMASTER",
+        "1 | DDR4 CORSAIR RGB 32GB (16GBX2) 3200MHZ",
+        "1 | MOTHER GAMER B550",
+        "1 | PLACA DE VIDEO RTX 3080",
+        "1 | DISCO SSD 512 GB",
+        "1 | GABINETE CORSAIR 4000X ICUE",
+        "1 | FUENTE AEROCOOL 750W GOLD FULL MODULAR"
+      ],
+      price: 7899.99,
+      category: "Equipos armados",
+      stock: 7,
+      delete: false
+    },
+    {
+      image: "https://www.innovartech.com.ar/storage/2022/10/Gabinete-Gamer-Noga-NG09.jpg",
+      name: "PC GAMER AMD RYZEN 7 3700X GTX 3070 16GB SSD 512 750W",
+      brand: "PC GAMER",
+      detail: [
+        "1 | PROCESADOR AMD RYZEN 7 3700X",
+        "1 | WATER COOLER 120MM RGB COOLERMASTER",
+        "1 | DDR4 CORSAIR RGB 16GB (8GBX2) 3200MHZ",
+        "1 | MOTHER GAMER B450",
+        "1 | PLACA DE VIDEO GTX 3070",
+        "1 | DISCO SSD 512 GB",
+        "1 | GABINETE THERMALTAKE V200 RGB"
+      ],
+      price: 4799.99,
+      category: "Equipos armados",
+      stock: 3,
+      delete: false
+    },
+    {
+      image: "https://www.soscomputacion.com.ar/17385/gabinete-pc-gamer-sentey-x10-rgb-acrilico-gaming-usb-30-sin-fuente.jpg",
+      name: "PC GAMER AMD RYZEN 5 5600X GTX 1660 SUPER 16GB SSD 512 600W",
+      brand: "PC GAMER",
+      detail: [
+        "1 | PROCESADOR AMD RYZEN 5 5600X",
+        "1 | WATER COOLER 120MM RGB COOLERMASTER",
+        "1 | DDR4 CORSAIR RGB 16GB (8GBX2) 3200MHZ",
+        "1 | MOTHER GAMER B550",
+        "1 | PLACA DE VIDEO GTX 1660 SUPER",
+        "1 | DISCO SSD 512 GB",
+        "1 | GABINETE THERMALTAKE H200"
+      ],
+      price: 3799.99,
+      category: "Equipos armados",
+      stock: 5,
+      delete: false
+    },
+    {
+      image: "https://smarts.com.ar/media/catalog/product/cache/e2fffb2b85fe85187f9dedbb6434d061/7/4/7493_1.jpg",
+      name: "PC GAMER MSI SEKHMET RYZEN 5 5600X 3060 16GB SSD 500 600W",
+      brand: "MSI",
+      detail: [
+      "1 | PROCESADOR AMD RYZEN 5 5600X",
+      "1 | WATER COOLER 120MM ARGB MSI",
+      "1 | DDR4 AORUS RGB 16GB (8GBX2) 3200MHZ",
+      "1 | MOTHER GAMER B550",
+      "1 | PLACA DE VIDEO RTX 3060",
+      "1 | DISCO SSD 500 GB",
+      "1 | GABINETE MSI SEKHMET ARGB"
+      ],
+      price: 4999.99,
+      category: "Equipos armados",
+      stock: 10,
+      delete: false
+      },
+      {
+        image: "https://www.megatecnologia.com.ar/images/1665606353766.jpg",
+        name: "PC GAMER INTEL CORE I7 10700F 3060 16GB SSD 512 600W 465X",
+        brand: "PC GAMER",
+        detail: [
+        "1 | PROCESADOR INTEL CORE I7 10700F",
+        "1 | WATER COOLER 240MM COOLERMASTER",
+        "1 | DDR4 CORSAIR RGB 16GB (8GBX2) 3200MHZ",
+        "1 | MOTHER GAMER B460",
+        "1 | PLACA DE VIDEO RTX 3060",
+        "1 | DISCO SSD 512 GB",
+        "1 | GABINETE CORSAIR 465X ICUE"
+        ],
+        price: 5999.99,
+        category: "Equipos armados",
+        stock: 5,
+        delete: false
+        },
+        {
+          image: "https://pcrentstore.com.mx/uploads/_/GABYEY080.jpg",
+          name: "PC GAMER AMD RYZEN 5 5600X 3070 16GB SSD 512 750W CV27Q",
+          brand: "PC GAMER",
+          detail: [
+          "1 | PROCESADOR AMD RYZEN 5 5600X",
+          "1 | WATER COOLER 240MM ARGB AORUS",
+          "1 | DDR4 CORSAIR RGB 16GB (8GBX2) 3200MHZ",
+          "1 | MOTHER GAMER B550",
+          "1 | PLACA DE VIDEO RTX 3070",
+          "1 | DISCO SSD 512 GB",
+          "1 | GABINETE AORUS CV27Q ARGB"
+          ],
+          price: 6799.99,
+          category: "Equipos armados",
+          stock: 8,
+          delete: false
+          },
+          {
+            image: "https://d2r9epyceweg5n.cloudfront.net/stores/001/120/045/products/1151-8c0825a8ead191875915988811001898-640-0.jpg",
+            name: "PC GAMER WOLFPACK HURRICANE I9-11900KF/RTX 3080TI/32GB/1TB SSD",
+            brand: "PC GAMER",
+            detail: [
+              "Procesador: Intel Core i9-11900KF",
+              "Refrigeración: Liquida",
+              "Memoria RAM: 32 GB DDR4",
+              "Placa Base: ASUS Z590",
+              "Tarjeta gráfica: NVIDIA GeForce RTX 3080TI",
+              "Almacenamiento: SSD 1 TB",
+              "Caja: Lian-Li PC-O11 Dynamic Blanco",
+            ],
+            price: 4499.00,
+            category: "Equipos armados",
+            stock: 4,
+            delete: false
+          },
+          {
+            image: "https://www.qloud.com.ar/SITES/IMG/noxie-store-08-2022/274_27-12-2022-03-12-05-gabinete-aureox-volans.jpg",
+            name: "PC GAMER MSI MAG INFINITE S3 11TK-618EU INTEL CORE I7-11700F/32GB/1TB SSD/RTX 3060TI",
+            brand: "PC GAMER",
+            detail: [
+              "Procesador: Intel Core i7-11700F",
+              "Refrigeración: Aire",
+              "Memoria RAM: 32 GB DDR4",
+              "Placa Base: MSI B560M",
+              "Tarjeta gráfica: NVIDIA GeForce RTX 3060TI",
+              "Almacenamiento: SSD 1 TB",
+              "Caja: MSI MAG VAMPIRIC 010M",
+            ],
+            price: 1999.00,
+            category: "Equipos armados",
+            stock: 10,
+            delete: false
+          },
+          {
+            image: "https://www.tecnoxd.com.ar/images/1665525906174.jpg",
+            name: "PC GAMER EVOLUTION GAMING RYZEN 9 5950X/RTX 3090/64GB/1TB NVME SSD",
+            brand: "PC GAMER",
+            detail: [
+              "Procesador: AMD Ryzen 9 5950X",
+              "Refrigeración: Liquida",
+              "Memoria RAM: 64 GB DDR4",
+              "Placa Base: ASUS TUF GAMING X570",
+              "Tarjeta gráfica: NVIDIA GeForce RTX 3090",
+              "Almacenamiento: SSD 1 TB",
+              "Caja: Lian-Li PC-O11 Dynamic Negro",
+            ],
+            price: 7299.00,
+            category: "Equipos armados",
+            stock: 2,
+            delete: false
+          },
+          {
+            image: "https://mla-s1-p.mlstatic.com/993762-MLA53563874824_022023-F.jpg",
+            name: "PC Gamer WDC i5-10400F/16GB/1TB SSD/RTX 3060Ti 8GB",
+            brand: "PC GAMER",
+            detail: [
+            "Procesador Intel Core i5-10400F (6 núcleos, 12 MB de caché, 2.9 GHz hasta 4.3 GHz)",
+            "16 GB RAM DDR4",
+            "1 TB SSD",
+            "Tarjeta gráfica NVIDIA GeForce RTX 3060Ti 8GB GDDR6",
+            "Conectividad: Ethernet LAN 10/100/1000, Wi-Fi 802.11ac, Bluetooth 5.0",
+            "Caja ATX Corsair 275R Airflow",
+            "Fuente de alimentación 750W 80 Plus Gold"
+            ],
+            price: 1529.00,
+            category: "Equipos armados",
+            stock: 3,
+            delete: false
+          },
+          {
+            image: "https://mla-s1-p.mlstatic.com/618653-MLA52353077603_112022-F.jpg",
+            name: "PC Gaming Megaport Ryzen 5 3500X 6x 4.10GHz",
+            brand: "PC GAMER",
+            detail: [
+            "Procesador AMD Ryzen 5 3500X (6 núcleos, 12 hilos, 4.1 GHz)",
+            "16 GB RAM DDR4",
+            "512 GB SSD",
+            "Tarjeta gráfica NVIDIA GeForce GTX 1650 4GB GDDR5",
+            "Conectividad: Ethernet LAN 10/100/1000, Wi-Fi 802.11ac, Bluetooth 5.0",
+            "Caja Gaming RGB con vidrio templado",
+            "Fuente de alimentación 500W"
+            ],
+            price: 969.00,
+            category: "Equipos armados",
+            stock: 5,
+            delete: false
+          },
+          {
+            // 1
+            image: "https://www.comeros.com.ar/wp-content/uploads/2022/09/Untitled.jpg",
+            name: "NOTEBOOK GIGABYTE 15.6 I7 12700H 16GB 1TB RTX3070TI W10H",
+            brand: "Intel",
+            detail: [
+            "Procesador: Core I7 12700H",
+            "Tarjeta de video: GeForce RTX 3070 TI 8Gb GDDR6",
+            "Frecuencia: 4.70 GHz",
+            "Memoria ram: 16GB (2X8GB)",
+            "Almacenamiento: 1TB",
+            "Resolución: 2560x1440 165HZ",
+            "Tamaño: 15.6"
+            ],
+            price: 969.00,
+            category: "Notebooks",
+            stock: 5,
+            delete: false
+          },
+          {
+            image: "https://backupcomputacion.com/imagenes/articulos/notebooks/notebook_dell_alienware_m15_r6_gaming_core_i7_11800h_256gb_ssd_8gb_15_6_165hz__rtx_3050_ti_k94f301.jpg",
+            name: "Notebook Dell Alienware m15 R6",
+            brand: "Dell",
+            detail: [
+              "Procesador: Intel Core i7-11800H",
+              "Tarjeta de video: NVIDIA GeForce RTX 3070 8GB GDDR6",
+              "Frecuencia: 4.6 GHz",
+              "Memoria ram: 16GB DDR4 3200MHz",
+              "Almacenamiento: 512GB SSD PCIe M.2",
+              "Resolución: 1920x1080 300Hz",
+              "Tamaño: 15.6"
+            ],
+            price: 1999.99,
+            category: "Notebooks",
+            stock: 3,
+            delete: false
+          },
+          {
+            image: "https://m.media-amazon.com/images/I/71zNU5UBINL._AC_SL1500_.jpg",
+            name: "Notebook ASUS ROG Zephyrus G14 GA401QM",
+            brand: "ASUS",
+            detail: [
+              "Procesador: AMD Ryzen 9 5900HS",
+              "Tarjeta de video: NVIDIA GeForce RTX 3060 6GB GDDR6",
+              "Frecuencia: 4.6 GHz",
+              "Memoria ram: 16GB DDR4 3200MHz",
+              "Almacenamiento: 1TB SSD PCIe M.2",
+              "Resolución: 2560x1440 120Hz",
+              "Tamaño: 14"
+            ],
+            price: 1499.99,
+            category: "Notebooks",
+            stock: 2,
+            delete: false
+          },
+          {
+            image: "https://m.media-amazon.com/images/I/71FeUtw+TPL._SL1500_.jpg",
+            name: "Notebook HP Pavilion Gaming 15-EC1023AX",
+            brand: "HP",
+            detail: [
+              "Procesador: AMD Ryzen 5 5600H",
+              "Tarjeta de video: NVIDIA GeForce GTX 1650 4GB GDDR6",
+              "Frecuencia: 4.2 GHz",
+              "Memoria ram: 8GB DDR4 3200MHz",
+              "Almacenamiento: 512GB SSD PCIe NVMe M.2",
+              "Resolución: 1920x1080 144Hz",
+              "Tamaño: 15.6"
+            ],
+            price: 799.99,
+            category: "Notebooks",
+            stock: 7,
+            delete: false
+          },
+          {
+            image: "https://1.bp.blogspot.com/-95hjJBc_W5Y/XrrXos2lwRI/AAAAAAAABNA/lDf0tWAG7C43JmXFu7SShnwk0AAQLwEFgCLcBGAsYHQ/s1600/MSI%2BGL75%2BLeopard%2B10SEK-040XES.jpg",
+            name: "MSI GL65 9SD-266XES",
+            brand: "MSI",
+            detail: [
+              "Procesador: Intel Core i7-9750H",
+              "Tarjeta de video: NVIDIA GeForce GTX 1660 Ti 6GB",
+              "Frecuencia: 2.6 GHz (hasta 4.5 GHz)",
+              "Memoria ram: 16GB DDR4 (2666 MHz)",
+              "Almacenamiento: SSD 512GB",
+              "Resolución: Full HD 1920x1080 (120 Hz)",
+              "Tamaño: 15.6"
+            ],
+            price: 1299.00,
+            category: "Notebooks",
+            stock: 8,
+            delete: false
+          },
+          {
+            image: "https://m.media-amazon.com/images/I/41WDa2IOiYL._AC_.jpg",
+            name: "NOTEBOOK LENOVO IDEAPAD 3 I3 10MA GEN 8GB 512GB SSD 15.6 W10H",
+            brand: "Lenovo",
+            detail: [
+              "Procesador: Intel Core i3-10110U",
+              "Tarjeta de video: Intel UHD Graphics",
+              "Frecuencia: 2.1 GHz (hasta 4.1 GHz)",
+              "Memoria ram: 8GB DDR4 (2666 MHz)",
+              "Almacenamiento: SSD 512GB",
+              "Resolución: Full HD 1920x1080",
+              "Tamaño: 15.6"
+            ],
+            price: 559.00,
+            category: "Notebooks",
+            stock: 10,
+            delete: false
+          },
+          {
+            image: "https://m.media-amazon.com/images/I/61+CtxUGH7L._AC_SL1000_.jpg",
+            name: "NOTEBOOK ASUS TUF GAMING FX505DY-AL117T",
+            brand: "Asus",
+            detail: [
+              "Procesador: AMD Ryzen 5 3550H",
+              "Tarjeta de video: AMD Radeon RX 560X 4GB",
+              "Frecuencia: 2.1 GHz (hasta 3.7 GHz)",
+              "Memoria ram: 8GB DDR4 (2400 MHz)",
+              "Almacenamiento: HDD 1TB",
+              "Resolución: Full HD 1920x1080 (120 Hz)",
+              "Tamaño: 15.6"
+            ],
+            price: 849.00,
+            category: "Notebooks",
+            stock: 6,
+            delete: false
+          },
+          {
+            image: "https://m.media-amazon.com/images/I/81KyhfcoB4L.jpg",
+            name: "HP Pavilion Gaming Laptop",
+            brand: "HP",
+            detail: [
+              "Procesador: AMD Ryzen 5 5600H",
+              "Tarjeta de video: NVIDIA GeForce GTX 1650 4GB GDDR6",
+              "Frecuencia: 3.3 GHz",
+              "Memoria ram: 8GB DDR4-3200 SDRAM",
+              "Almacenamiento: 512 GB PCIe NVMe SSD",
+              "Resolución: 1920 x 1080",
+              "Tamaño: 15.6"
+            ],
+            price: 799.99,
+            category: "Notebooks",
+            stock: 10,
+            delete: false
+          },
+          {
+            image: "https://m.media-amazon.com/images/I/71cZbipx6wS._AC_SX466_.jpg",
+            name: "Microsoft Surface Laptop 4",
+            brand: "Microsoft",
+            detail: [
+              "Procesador: Intel Core i5-1135G7",
+              "Tarjeta de video: Intel Iris Xe Graphics",
+              "Frecuencia: 4.2 GHz",
+              "Memoria ram: 8GB LPDDR4x",
+              "Almacenamiento: 256GB SSD",
+              "Resolución: 2256 x 1504",
+              "Tamaño: 13.5"
+            ],
+            price: 1299.99,
+            category: "Notebooks",
+            stock: 8,
+            delete: false
+          },
+          {
+            image: "https://m.media-amazon.com/images/I/71UHz5MDgQL._AC_SL1500_.jpg",
+            name: "ASUS ROG Zephyrus G14",
+            brand: "ASUS",
+            detail: [
+              "Procesador: AMD Ryzen 9 5900HS",
+              "Tarjeta de video: NVIDIA GeForce RTX 3060 Max-Q 6GB GDDR6",
+              "Frecuencia: 3.3 GHz",
+              "Memoria ram: 16GB DDR4-3200 SDRAM",
+              "Almacenamiento: 1TB PCIe NVMe M.2 SSD",
+              "Resolución: 2560 x 1440",
+              "Tamaño: 14"
+            ],
+            price: 1999.99,
+            category: "Notebooks",
+            stock: 3,
+            delete: false
+          },
+          {
+            //1
+            image: "https://m.media-amazon.com/images/I/81v9NoiRjBL.jpg",
+            name: "PLACA DE VIDEO RTX 2060 EVGA SC GAMING 6GB",
+            brand: "Nvidia",
+            detail: [
+              "Memoria: 6144 MB, 192 bit GDDR6, 14000 MHz ",
+              "Interfaz: PCIe 3.0 16x, DVI-D, HDMI, DisplayPort",
+              "Soporte de Sistema Operativo: Windows 10 64bit, Windows 7 64bit",
+              "Max Digital : 7680x4320",
+              "1755 MHz Boost Clock"
+            ],
+            price: 1999.99,
+            category: "Placas de video",
+            stock: 3,
+            delete: false
+          },
+          {
+            image: "https://m.media-amazon.com/images/I/719dUNo9gDS._AC_SX522_.jpg",
+            name: "ASUS TUF Gaming NVIDIA GeForce RTX 3060",
+            brand: "Nvidia",
+            detail: [
+              "Memoria: 12 GB, 192 bit GDDR6, 15000 MHz ",
+              "Interfaz: PCIe 4.0 16x, HDMI, DisplayPort",
+              "Soporte de Sistema Operativo: Windows 10 64bit, Linux 64bit",
+              "Max Digital : 7680x4320",
+              "Boost Clock: 1777 MHz"
+            ],
+            price: 2799.99,
+            category: "Placas de video",
+            stock: 5,
+            delete: false
+          },
+          {
+            image: "https://app.contabilium.com/files/explorer/16752/Productos-Servicios/concepto-6449140.jpg",
+            name: "Gigabyte Radeon RX 6600 XT GAMING OC 8GB",
+            brand: "AMD",
+            detail: [
+              "Memoria: 8 GB, 128 bit GDDR6, 16000 MHz",
+              "Interfaz: PCIe 4.0 16x, HDMI 2.1, DisplayPort 1.4a",
+              "Soporte de Sistema Operativo: Windows 10 64bit, Linux 64bit",
+              "Max Digital : 7680x4320",
+              "Boost Clock: 2589 MHz"
+            ],
+            price: 2399.99,
+            category: "Placas de video",
+            stock: 2,
+            delete: false
+          },
+          {
+            image: "https://m.media-amazon.com/images/I/51PoGBuf0nL._AC_.jpg",
+            name: "Sapphire Radeon RX 6900 XT Nitro+",
+            brand: "AMD",
+            detail: [
+              "Memoria: 16 GB, 256 bit GDDR6, 16000 MHz",
+              "Interfaz: PCIe 4.0 16x, HDMI 2.1, DisplayPort 1.4",
+              "Soporte de Sistema Operativo: Windows 10 64bit, Linux 64bit",
+              "Max Digital: 7680x4320",
+              "Boost Clock: 2365 MHz"
+            ],
+            price: 3999.99,
+            category: "Placas de video",
+            stock: 1,
+            delete: false
+          },
+          {
+            image: "https://app.contabilium.com/files/explorer/7026/Productos-Servicios/concepto-5400681.jpg",
+            name: "ASUS ROG Strix NVIDIA GeForce RTX 3090",
+            brand: "Nvidia",
+            detail: [
+              "Memoria: 24 GB, 384 bit GDDR6X, 19500 MHz",
+              "Interfaz: PCIe 4.0 16x, HDMI 2.1, DisplayPort 1.4a",
+              "Soporte de Sistema Operativo: Windows 10 64bit, Linux 64bit",
+              "Max Digital: 7680x4320",
+              "Boost Clock: 1860 MHz"
+            ],
+            price: 5999.99,
+            category: "Placas de video",
+            stock: 2,
+            delete: false
+          },
+          {
+            image: "https://m.media-amazon.com/images/I/81gN7myaekL._AC_SX450_.jpg",
+            name: "MSI Gaming GeForce GTX 1660 Super",
+            brand: "Nvidia",
+            detail: [
+              "Memoria: 6 GB, 192 bit GDDR6, 14000 MHz",
+              "Interfaz: PCIe 3.0 16x, HDMI, DisplayPort, DVI-D",
+              "Soporte de Sistema Operativo: Windows 10 64bit, Windows 7 64bit",
+              "Max Digital: 7680x4320",
+              "Boost Clock: 1830 MHz"
+            ],
+            price: 1499.99,
+            category: "Placas de video",
+            stock: 3,
+            delete: false
+          },
+          {
+            image: "https://www.jib.co.th/img_master/product/original/20180717145208_25354_72_1.jpg",
+            name: "Gigabyte AORUS GeForce GTX 1080 Ti Xtreme Edition 11GB",
+            brand: "Nvidia",
+            detail: [
+              "Memoria: 11 GB, 352 bit GDDR5X, 11010 MHz",
+              "Interfaz: PCIe 3.0 16x, HDMI, DisplayPort, DVI-D",
+              "Soporte de Sistema Operativo: Windows 10 64bit, Windows 7 64bit",
+              "Max Digital: 7680x4320",
+              "Boost Clock: 1746 MHz"
+            ],
+            price: 2999.99,
+            category: "Placas de video",
+            stock: 1,
+            delete: false
+          },
+          {
+            image: "https://clonesyperifericos.com/wp-content/uploads/asus-rtx-3060-ti-oc-dual-fan-dual-rtx3060ti-o8gd6x-tarjeta-de-video-caja.jpg",
+            name: "ASUS TUF Gaming NVIDIA GeForce RTX 3060 Ti",
+            brand: "Nvidia",
+            detail: [
+              "Memoria: 8 GB, 256 bit GDDR6, 14000 MHz",
+              "Interfaz: PCIe 4.0 16x, HDMI 2.1, DisplayPort 1.4a",
+              "Soporte de Sistema Operativo: Windows 10 64bit, Linux 64bit",
+              "Max Digital: 7680x4320",
+              "Boost Clock: 1665 MHz"
+            ],
+            price: 2499.99,
+            category: "Placas de video",
+            stock: 2,
+            delete: false
+          },
+          {
+            image: "https://mexx-img-2019.s3.amazonaws.com/40847_1.jpeg",
+            name: "Gigabyte GeForce GT 1030",
+            brand: "Nvidia",
+            detail: [
+              "Memoria: 2 GB, 64 bit GDDR5, 6008 MHz",
+              "Interfaz: PCIe 3.0 16x, HDMI 2.0b, DisplayPort 1.4",
+              "Soporte de Sistema Operativo: Windows 10 64bit, Windows 7 64bit",
+              "Max Digital: 4096x2160",
+              "Boost Clock: 1518 MHz"
+            ],
+            price: 599.99,
+            category: "Placas de video",
+            stock: 3,
+            delete: false
+          },
+          {
+            image: "https://images-na.ssl-images-amazon.com/images/I/51veSCNgo7L._AC_SX569_.jpg",
+            name: "Gigabyte Radeon RX 6600 XT GAMING OC 8GB",
+            brand: "AMD",
+            detail: [
+              "Memoria: 8 GB, 192 bit GDDR5, 8002 MHz",
+              "Interfaz: PCIe 3.0 16x, HDMI, DisplayPort, DVI-D",
+              "Soporte de Sistema Operativo: Windows 10 64bit, Windows 7 64bit",
+              "Max Digital: 7680x4320",
+              "Boost Clock: 1830 MHz"
+            ],
+            price: 1599.99,
+            category: "Placas de video",
+            stock: 4,
+            delete: false
+          },
+        
   ]
 }
