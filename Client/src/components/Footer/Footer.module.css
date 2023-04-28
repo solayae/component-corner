@@ -3,16 +3,16 @@
 .footer {
   align-items: center;
   display: flex;
-  justify-content: space-around;
+  justify-content: end;
   flex-wrap: wrap;
   background-color: #252525;
   color: #fff;
-  padding: 50px 20px 0;
+  padding: 1.5rem;
 }
 
 .column {
   width: calc(100% / 3 - 40px);
-  margin-bottom: 40px;
+  padding: 1rem;
 }
 
 .column h3 {
@@ -25,13 +25,13 @@
   display: flex;
   list-style: none;
   gap: 1.5rem;
-  padding-top: 2rem;
+  padding: 0;
+  padding-top: 1rem;
   margin: 0;
   flex-direction: column;
 }
 
 .column li {
-  margin-bottom: 10px;
   font-family: var(--font-body);
 }
 
@@ -46,11 +46,16 @@
 }
 
 .bottomBar {
-  background-color: #d7f136;
+  background-color: var(--four-color);
   text-align: center;
-  color: #000000;
-  padding: 2.5rem 1rem;
-  font-size: 0.8rem;
   font-family: var(--font-heading);
-  max-width: 100%;
+  max-width: 100vw;
+  max-height: max-content;
+}
+
+.bottomBar h3{ 
+  font-size: 0.8rem;
+  color: black;
+  padding: 1rem;
+
 }
