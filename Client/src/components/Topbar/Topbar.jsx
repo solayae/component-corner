@@ -3,8 +3,13 @@ import favorite from './assets/favorite-icon.png';
 import cart from './assets/cart-icon.png';
 import login from './assets/login-icon.png';
 import search from './assets/search-icon.png';
+import PopUp from '../PopUp/PopUp';
+import { useState } from 'react';
 
 const Topbar = () => {
+
+  const [triggerPopUp, setTriggerPopUp] = useState(false);
+
   return (
     <nav className={styles.topbar}>
       <div className={styles.row2}>
@@ -24,8 +29,8 @@ const Topbar = () => {
             <img src={cart} alt='cart-icon' />
           </div>
           <div className={styles.login}>
-            {' '}
-            <img src={login} alt='login-icon' />
+            <PopUp trigger={triggerPopUp} setTrigger={setTriggerPopUp} />
+            <img src={login} onClick={() => setTriggerPopUp(true)} alt='login-icon' />
           </div>
         </div>
       </div>
