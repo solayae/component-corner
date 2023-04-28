@@ -53,9 +53,9 @@
   max-height: max-content;
 }
 
-.bottomBar h3{ 
+.bottomBar h3 {
   font-size: 0.8rem;
   color: black;
   padding: 1rem;
-
+  margin-bottom: 0px;
 }
