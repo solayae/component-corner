@@ -1,13 +1,23 @@
-/* eslint-disable react/jsx-key */
-import { useThemeProps } from '@mui/material';
-import styles from './Cards.module.css';
-
+import PropTypes from 'prop-types';
+import Card from './Card';
+import Styles from './Cards.module.css';
 export default function Cards(props) {
-    const products = props.products
-    console.log(products)
-    return (
-        <div>
-            {products.map((e)=>(<h1>{e.name}</h1>))}
-        </div>
-    )
+  const products = props.products;
+
+  return (
+    <div className={Styles.cards__container}>
+      {products.map((e) => (
+        <Card product={e} key={e.id} />
+      ))}
+    </div>
+  );
 }
+Cards.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      image: PropTypes.string,
+      id: PropTypes.string,
+    })
+  ).isRequired,
+};
