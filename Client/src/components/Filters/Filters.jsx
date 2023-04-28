@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from './Filters.module.css';
 import { filterByBrand, filterByCategory, getAllProducts, orderBy } from "../../redux/actions";
+import { useEffect } from "react";
 
 export default function Filters() {
 

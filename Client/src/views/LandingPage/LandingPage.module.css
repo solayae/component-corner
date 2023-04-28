@@ -1,5 +1,6 @@
 .landingPage {
   font-family: var(--font-heading);
+  background-color: #d9d9d9;
 }
 
 /*Banner*/
@@ -28,36 +29,7 @@ div.banner .banner__TextContainer p {
   font-size: 30px;
 }
 
-/*Menu bar*/
-div.menuTrigger {
-  background-color: #d9d9d9;
-}
-div.menuTrigger h1 {
-  padding: 20px 20vw;
-  cursor: pointer;
-}
-div.dropdownMenu {
-  display: none;
-  position: absolute;
-  background-color: #d9d9d9;
-  margin: 0 20vw;
-  width: 200px;
-  border-radius: 0 0 20px 20px;
-}
-div.dropdownMenu li {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  font-size: 20px;
-  margin: 15px;
-}
-div.dropdownMenu li:hover {
-  cursor: pointer;
-  color: blue;
-}
-div.dropdownMenu li img {
-  width: 100px;
-}
-div.menuTrigger:hover div.dropdownMenu {
-  display: block;
+/*Recomendations*/
+div.recommendations {
+  padding: 40px 15vw;
 }

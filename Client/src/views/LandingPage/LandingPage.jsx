@@ -1,35 +1,59 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { getAllProducts } from '../../redux/actions';
-import Cards from '../../components/Cards/Cards';
 import Topbar from '../../components/Topbar/Topbar';
+import {getAllProducts} from '../../redux/actions';
+import Cards from '../../components/Cards/Cards';
 import Style from './LandingPage.module.css';
-import { useEffect } from 'react';
+import {useEffect, useState} from 'react';
+import {connect} from 'react-redux';
 
-const LandingPage = () => {
-  const dispatch = useDispatch();
-  const products = useSelector((state) => state.products);
-  console.log(products[0]);
+function mapStateToProps(state) {
+  return {
+    products: state.products,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    getAllProducts: function () {
+      return dispatch(getAllProducts());
+    },
+  };
+}
+
+const LandingPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(function LandingPage(props) {
+  const [recommendedProducts, setRecommended] = useState([]);
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
-    if (products.length === 0) dispatch(getAllProducts());
+    const productsToState = async () => {
+      try {
+        if (!props.products.length) await props.getAllProducts();
+        setRecommended([...props.products.slice(0, 5)]);
+        setMounted(true);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    productsToState();
     //eslint-disable-next-line
-  }, [dispatch]);
+  }, [mounted]);
   return (
     <div className={Style.landingPage}>
       <Topbar />
       <div className={Style.banner}>
         <div className={Style.banner__TextContainer}>
           <h1>¡Bienvenido a Component Corner!</h1>
-          <p>
-            Todo tipo de componentes y periféricos de calidad a su disposición.
-          </p>
+          <p>Todo tipo de componentes y periféricos de calidad a su disposición.</p>
         </div>
       </div>
       <div className={Style.menuContanier}></div>
       <div className={Style.recommendations}>
         <h1>Recomendaciones:</h1>
-        <Cards products={products}/>
+        <Cards products={recommendedProducts} />
       </div>
     </div>
   );
-};
+});
+
 export default LandingPage;

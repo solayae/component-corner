@@ -31,7 +31,8 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.TEXT,
-      allowNull:false
+      allowNull: false,
+      unique:true
     },
     stock: {
       type: DataTypes.INTEGER
