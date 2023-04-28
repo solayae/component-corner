@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center;
     cursor: default;
+    z-index: 1;
     
 }
 
@@ -20,7 +21,6 @@
     background-color: #118AB2;
     border-radius: 10px;
     box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.15);
-
 }
 
 .popUpInner form h2 {
