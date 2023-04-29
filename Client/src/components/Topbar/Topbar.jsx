@@ -36,10 +36,8 @@ const Topbar = () => {
         </div>
       </div>
       <div className={styles.row2}>
-        <Link to={"/"}>
-        <a href='#' className={styles.about}>
+        <Link to={"/"}className={styles.about}>
           HOME
-        </a>
         </Link>
         <div className={styles.categories}>
           <div className={styles.dropdown}>
