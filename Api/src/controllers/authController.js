@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const { Role, Usuario } = require('../db')
 const confing = require('../config/authConfig')
-const { Op } = require('sequeize')
+const { Op } = require('sequelize')
 const rolDefault = 1
 
 exports.sinup = (req, res) =>{
@@ -76,8 +76,7 @@ exports.singin = (req, res)=>{
     })
     .catch(err =>{
         res.status(500).send({
-            message: err.message
-        })
+            message: err.message })
     })
 }
 
