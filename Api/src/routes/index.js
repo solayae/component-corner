@@ -6,7 +6,7 @@ const usersRouter = require('./usersRouter')
 const router = Router()
 
 router.use(Express.json())
-router.use(morgan('dev'))
+//router.use(morgan('dev'))
 
 router.use('/products',productsRouter)
 router.use('/users', usersRouter)
