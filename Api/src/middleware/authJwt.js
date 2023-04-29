@@ -81,3 +81,13 @@ verifyToken = (req, res, next)=>{
    } 
 
 }
+
+
+const authJwt = {
+    verifyToken : verifyToken,
+    isAdmin: isAdmin,
+    isModerator: isModerator,
+    isModeratorOrAdmin: isModeratorOrAdmin
+}
+
+module.exports = authJwt
