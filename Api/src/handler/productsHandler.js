@@ -99,7 +99,7 @@ const createProductHandler = async (req, res) => {
             propFaltantes.push(prop);
         }
     });
-    if(propFaltantes.lenght > 0){
+    if(propFaltantes.length > 0){
       const faltantes = `Campos faltantes: ${propFaltantes.join(', ')}`;
         res.status(400).json({ error: faltantes });
     }
