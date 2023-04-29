@@ -2,8 +2,7 @@ module.exports = {
   articulos: [
     {
       //: 1,
-      image:
-        "https://img.pccomponentes.com/articles/1059/10594876/1607-asus-rog-strix-b650e-f-gaming-wifi.jpg",
+      image:"https://img.pccomponentes.com/articles/1059/10594876/1607-asus-rog-strix-b650e-f-gaming-wifi.jpg",
       name: "MOTHER ASUS (AM5) ROG STRIX B650E-E GAMING WFI",
       brand: "Asus",
       detail: [
@@ -1921,6 +1920,352 @@ module.exports = {
             stock: 4,
             delete: false
           },
-        
+          {
+            image: "https://timerelojes.com/wp-content/uploads/2022/10/gaming-shop-canada-246057_1024x-min.png",
+            name: "PLAYSTATION PS5",
+            brand: "Sony",
+            detail: [
+              "Accesorios incluidos: 1 soporte vertical,1 cable de alimentación AC,1 cable USB,1 cable HDMI,1 manual",
+              "Edición: Standard",
+              "Altura: 104 mm",
+              "Profundidad: 260 mm",
+              "Resolución máxima de salida de video: 7680 px x 4320 px",
+              "Velocidad del procesador: 3.5 GHz"
+            ],
+            price: 1599.99,
+            category: "Consolas",
+            stock: 4,
+            delete: false
+          },
+          {
+            image: "https://http2.mlstatic.com/D_NQ_NP_963862-MLA45041918050_032021-O.jpg",
+            name: "Xbox Series X",
+            brand: "Microsoft",
+            detail: [
+              "Accesorios incluidos: 1 control inalámbrico Xbox Series X,1 cable de alimentación AC,1 cable HDMI de alta velocidad,1 manual",
+              "Edición: Standard",
+              "Altura: 151 mm",
+              "Profundidad: 151 mm",
+              "Resolución máxima de salida de video: 8K",
+              "Velocidad del procesador: 3.8 GHz"
+            ],
+            price: 1499.99,
+            category: "Consolas",
+            stock: 5,
+            delete: false
+          },
+          {
+            image: "https://m.media-amazon.com/images/I/71qccaRKQVL.jpg",
+            name: "Nintendo Switch",
+            brand: "Nintendo",
+            detail: [
+              "Accesorios incluidos: 1 base de Nintendo Switch,1 control Joy-Con izquierdo,1 control Joy-Con derecho,1 par de agarres para control Joy-Con,1 soporte Joy-Con,1 cable HDMI,1 adaptador de corriente AC",
+              "Edición: Standard",
+              "Altura: 102 mm",
+              "Profundidad: 239 mm",
+              "Resolución máxima de salida de video: 1920 px x 1080 px",
+              "Velocidad del procesador: 1.02 GHz"
+            ],
+            price: 399.99,
+            category: "Consolas",
+            stock: 10,
+            delete: false
+          },
+          {
+            image: "https://upload.wikimedia.org/wikipedia/commons/2/28/Sega_Genesis_Mini_02.jpg",
+            name: "Sega Genesis Mini",
+            brand: "Sega",
+            detail: [
+              "Accesorios incluidos: 2 controles con cable,1 cable de alimentación AC,1 cable HDMI",
+              "Edición: Standard",
+              "Altura: 45 mm",
+              "Profundidad: 133 mm",
+              "Resolución máxima de salida de video: 720 px x 480 px",
+              "Velocidad del procesador: 533 MHz"
+            ],
+            price: 79.99,
+            category: "Consolas",
+            stock: 3,
+            delete: false
+          },
+          {
+            image: "https://sm.ign.com/ign_es/screenshot/default/playstation-one-original_f2b2.jpg",
+            name: "PlayStation 1",
+            brand: "Sony",
+            detail: [
+              "Accesorios incluidos: 1 control DualShock, cable de alimentación, cable AV",
+              "Altura: 77 mm",
+              "Ancho: 260 mm",
+              "Profundidad: 185 mm",
+              "Resolución máxima de salida de video: 480i",
+              "Velocidad del procesador: 33.8 MHz"
+            ],
+            price: 99.99,
+            category: "Consolas",
+            stock: 2,
+            delete: false
+          },
+          {
+            image: "https://i5.walmartimages.com/asr/dbaccc62-1405-45c3-a9e0-82eee8b1039d_1.ccbb04536b1daeab75e8248b0a1ac1e6.jpeg",
+            name: "PlayStation 2",
+            brand: "Sony",
+            detail: [
+              "Accesorios incluidos: 1 control DualShock 2, cable de alimentación, cable AV",
+              "Altura: 79 mm",
+              "Ancho: 301 mm",
+              "Profundidad: 182 mm",
+              "Resolución máxima de salida de video: 1080i",
+              "Velocidad del procesador: 294.9 MHz"
+            ],
+            price: 149.99,
+            category: "Consolas",
+            stock: 4,
+            delete: false
+          },
+          {
+            image: "https://m.media-amazon.com/images/I/71v+76MkqiL._SL1500_.jpg",
+            name: "Xbox 360",
+            brand: "Microsoft",
+            detail: [
+              "Accesorios incluidos: 1 control inalámbrico Xbox 360, cable de alimentación, cable AV",
+              "Altura: 83 mm",
+              "Ancho: 309 mm",
+              "Profundidad: 258 mm",
+              "Resolución máxima de salida de video: 1080p",
+              "Velocidad del procesador: 3.2 GHz"
+            ],
+            price: 199.99,
+            category: "Consolas",
+            stock: 6,
+            delete: false
+          },
+          {
+            image: "https://cloudfront-us-east-1.images.arcpublishing.com/copesa/RUQO33I3ZVHRBIHS7V5HMHLYL4.jpg",
+            name: "Nintendo Wii",
+            brand: "Nintendo",
+            detail: [
+              "Accesorios incluidos: 1 control Wii Remote, 1 nunchuck, cable de alimentación, cable AV",
+              "Altura: 44 mm",
+              "Ancho: 215.4 mm",
+              "Profundidad: 157 mm",
+              "Resolución máxima de salida de video: 480p",
+              "Velocidad del procesador: 729 MHz"
+            ],
+            price: 129.99,
+            category: "Consolas",
+            stock: 3,
+            delete: false
+          },
+          {
+            image: "https://simg.nicepng.com/png/small/147-1478452_playstation-3-ps3-slim.png",
+            name: "PlayStation 3",
+            brand: "Sony",
+            detail: [
+              "Accesorios incluidos: 1 control DualShock 3, cable de alimentación, cable HDMI",
+              "Altura: 98 mm",
+              "Ancho: 290 mm",
+              "Profundidad: 290 mm",
+              "Resolución máxima de salida de video: 1080p",
+              "Velocidad del procesador: 3.2 GHz"
+            ],
+            price: 249.99,
+            category: "Consolas",
+            stock: 5,
+            delete: false
+          },
+          {
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Microsoft-Xbox-One-S-Console-wController-L.jpg/1280px-Microsoft-Xbox-One-S-Console-wController-L.jpg",
+            name: "Xbox One",
+            brand: "Microsoft",
+            detail: [
+              "Accesorios incluidos: 1 control inalámbrico Xbox One, cable de alimentación, cable HDMI",
+              "Altura: 79 mm",
+              "Ancho: 333 mm",
+              "Profundidad: 276 mm",
+              "Resolución máxima de salida de video: 1080p",
+              "Velocidad del procesador: 1.75 GHz"
+            ],
+            price: 299.99,
+            category: "Consolas",
+            stock: 2,
+            delete: false
+          },
+          {
+            image: "https://productimages.hepsiburada.net/s/26/375/10164813037618.jpg",
+            name: "FUENTE AEROCOOL DORADO 650W 80 PLUS GOLD",
+            brand: "Aerocool",
+            detail: [
+              "Certificación 80Plus Gold para hasta un 92% + de eficiencia",
+              "Compatible con tarjetas madre RGB direccionables a través de conector ARGB",
+              "El ventilador de alta presión de 12 cm con velocidad optimizada permite un ruido del ventilador casi inaudible y un funcionamiento silencioso de la fuente de alimentación",
+              "Con un diseño elegante con ventilador ARGB de 12 cm",
+              "Tamaño: 140 mm (W) x 150 mm (L) x 86 mm (H)"
+            ],
+            price: 299.99,
+            category: "Fuentes",
+            stock: 2,
+            delete: false
+          },
+          {
+            image: "https://m.media-amazon.com/images/I/41CeZQLDl-S._AC_.jpg",
+            name: "Corsair CX550M",
+            brand: "Corsair",
+            detail: [
+              "Certificación 80 Plus Bronze para hasta un 88% de eficiencia",
+              "Ventilador de 120 mm con control térmico que ajusta automáticamente la velocidad del ventilador para reducir el ruido",
+              "Compatibilidad total con los sistemas de PC modernos",
+              "Dimensiones: 140 mm (An) x 150 mm (L) x 86 mm (Al)",
+              "Cables completamente modulares para una fácil instalación y una apariencia ordenada"
+            ],
+            price: 79.99,
+            category: "Fuentes",
+            stock: 8,
+            delete: false
+          },
+          {
+            image: "https://www.venex.com.ar/products_images/1581704574_600br.jpg",
+            name: "EVGA 600 BR",
+            brand: "EVGA",
+            detail: [
+              "Certificación 80 Plus Bronze para hasta un 85% de eficiencia",
+              "Ventilador de 120 mm de alta calidad para un enfriamiento eficiente y un bajo nivel de ruido",
+              "Protecciones completas para mayor seguridad y fiabilidad",
+              "Dimensiones: 85 mm (An) x 140 mm (L) x 150 mm (Al)",
+              "Cables fijos para una instalación sencilla"
+            ],
+            price: 64.99,
+            category: "Fuentes",
+            stock: 12,
+            delete: false
+          },
+          {
+            image: "https://www.computershopping.com.ar/Images/Productos/Grandes/SPD-0500P_Foto0g.jpg",
+            name: "Thermaltake Smart 500W",
+            brand: "Thermaltake",
+            detail: [
+              "Certificación 80 Plus White para hasta un 80% de eficiencia",
+              "Ventilador de 120 mm con control térmico para un enfriamiento eficiente y un bajo nivel de ruido",
+              "Diseño de cable plano para un manejo sencillo de los cables y una mejor circulación de aire",
+              "Dimensiones: 150 mm (An) x 86 mm (L) x 140 mm (Al)",
+              "Cables fijos para una fácil instalación"
+            ],
+            price: 54.99,
+            category: "Fuentes",
+            stock: 20,
+            delete: false
+          },
+          {
+            image: "https://fullh4rd.com.ar/img/productos/Pics_Prod/fuente-650w-corsair-cx650m-80-plus-bronze-semi-modular-0.jpg",
+            name: "Corsair CX650M",
+            brand: "Corsair",
+            detail: [
+              "Certificación 80 Plus Bronze para hasta un 88% de eficiencia",
+              "Ventilador de 120 mm con control térmico que ajusta automáticamente la velocidad del ventilador para reducir el ruido",
+              "Compatibilidad total con los sistemas de PC modernos",
+              "Dimensiones: 140 mm (An) x 150 mm (L) x 86 mm (Al)",
+              "Cables completamente modulares para una fácil instalación y una apariencia ordenada"
+            ],
+            price: 79.99,
+            category: "Fuentes",
+            stock: 8,
+            delete: false
+          },
+          {
+            image: "https://m.media-amazon.com/images/I/61z1DxTOVaL.jpg",
+            name: "Cooler Master MWE 650 White V2",
+            brand: "Cooler Master",
+            detail: [
+              "Certificación 80 Plus White para una eficiencia energética del 80%",
+              "Ventilador de 120 mm con control de velocidad inteligente",
+              "Totalmente modular, con cables planos para una gestión de cables fácil y ordenada",
+              "Iluminación RGB direccionable en el ventilador y en el logotipo de Cooler Master",
+              "Dimensiones: 150 mm (An) x 140 mm (L) x 86 mm (Al)"
+            ],
+            price: 89.99,
+            category: "Fuentes",
+            stock: 6,
+            delete: false
+          },
+          {
+            image: "https://m.media-amazon.com/images/I/51To6QUlUwL._AC_.jpg",
+            name: "EVGA SuperNOVA 850 G5",
+            brand: "EVGA",
+            detail: [
+              "Certificación 80 Plus Gold para una eficiencia energética del 90%",
+              "Ventilador de 135 mm con control de velocidad inteligente",
+              "Totalmente modular, con cables planos para una gestión de cables fácil y ordenada",
+              "Iluminación RGB en la carcasa de la fuente",
+              "Dimensiones: 150 mm (An) x 150 mm (L) x 86 mm (Al)"
+            ],
+            price: 159.99,
+            category: "Fuentes",
+            stock: 4,
+            delete: false
+          },
+          {
+            image: "https://xtremegames.com.ar/wp-content/uploads/2022/11/1019-producto-fuente-seasonic-focus-750w-gold-80-plus-2-3244-600x544.jpg",
+            name: "Seasonic FOCUS GX-750",
+            brand: "Seasonic",
+            detail: [
+              "Certificación 80 Plus Gold para una eficiencia energética del 90%",
+              "Ventilador de 120 mm con control de velocidad inteligente",
+              "Totalmente modular, con cables planos para una gestión de cables fácil y ordenada",
+              "Iluminación RGB direccionable en el ventilador",
+              "Dimensiones: 140 mm (An) x 150 mm (L) x 86 mm (Al)"
+            ],
+            price: 129.99,
+            category: "Fuentes",
+            stock: 5,
+            delete: false
+          },
+          {
+            image: "https://www.antarti.com/system/products/images/images/000/032/174/original/438fd795cbae58c9b6c9f10ed6570ec2.jpg",
+            name: "Aerocool mirage RGB 850W",
+            brand: "Aerocool",
+            detail: [
+              "Certificación 80 Plus Gold para hasta un 90% de eficiencia",
+              "Ventilador RGB de 120 mm con control térmico que ajusta automáticamente la velocidad del ventilador para reducir el ruido",
+              "Completamente modular para una fácil instalación y una apariencia ordenada",
+              "Capacitores japoneses de alta calidad para una entrega de energía confiable y estable",
+              "Dimensiones: 140 mm (An) x 150 mm (L) x 86 mm (Al)"
+            ],
+            price: 129.99,
+            category: "Fuentes",
+            stock: 5,
+            delete: false
+          },
+          {
+            image: "https://m.media-amazon.com/images/I/71B-dP3uO8L._AC_SX679_.jpg",
+            name: "Thermaltake Toughpower GF1 850W",
+            brand: "Thermaltake",
+            detail: [
+              "Certificación 80 Plus Gold para hasta un 90% de eficiencia",
+              "Ventilador RGB de 140 mm con control térmico que ajusta automáticamente la velocidad del ventilador para reducir el ruido",
+              "Completamente modular para una fácil instalación y una apariencia ordenada",
+              "Capacitores japoneses de alta calidad para una entrega de energía confiable y estable",
+              "Dimensiones: 150 mm (An) x 160 mm (L) x 86 mm (Al)"
+            ],
+            price: 149.99,
+            category: "Fuentes",
+            stock: 3,
+            delete: false
+          }
+          
+          
+
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
   ]
 }

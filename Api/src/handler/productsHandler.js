@@ -1,76 +1,87 @@
 //const { articulos } = require('../Utils/Productos')
 const {
-  addProduct,
   getProductByName,
+  getAllProducts,
+  productById,
+  deleteLogicProduct,
+  createProduct,
   deleteProduct,
   updateProducts
 } = require("../controllers/productsControllers");
 const { Op } = require("sequelize");
-const { Products } = require("../db");
 
-// trae todos los productos de la base de datos
+
+// trae los productos por nombre en caso de recibir uno sino trae todos los productos
 const handleProductsAll = async (req, res) => {
   const { name } = req.query;
-  if (!name) {
-    // trae todos los productos
-    let allProduct = await Products.findAll();
-    if (allProduct.length === 0) {
-      addProduct();
-      res.status(200).json(allProduct);
-    } else {
-      res.status(200).json(allProduct);
+  try {
+    if(name){
+        const productsByName = await getProductByName(name)
+        productsByName.length? res.status(200).json(productsByName) : res.status(400).json({message: `No se encontro ${name}`})      
+    }   
+    else {
+        const allProducts = await getAllProducts()
+        res.status(200).json(allProducts)
     }
-    
-  } else {
-    // trae los productos que coincidan con el nombre
-    const allProductByName = await getProductByName(name);
-
-    res.status(200).json(allProductByName);
+  } catch (error) {
+    res.status(400).json({error:error.message});
   }
 };
 
-//Trae los productos del archivo y los carga a la base de datos
-const bulkProducts = async(req, res) => {
-  try{
-    addProduct()
-    res.status(200).json({message:"The database has been bulked and updated"})
-  }catch(error){
-    res.status(400).json({error:error.message})
-  }
-}
 
 // trae un producto por id de la base de datos
 const handleProductById = async (req, res) => {
   const { productsId } = req.params;
   try {
-    const oneProduct = await Products.findByPk(productsId);
-    if (!oneProduct) return res.status(400).json({ error: error.message });
-    res.status(200).json(oneProduct);
+    const product = await productById(productsId);
+    if (product) return res.status(200).json(product);
+    else res.status(400).json(`No se encontro producto con id ${productsId}`);
+    
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-const handleDeleteById = async (req, res) => {
-  const { productsId } = req.params;
-  console.log("ruta de put");
+//deshabilita o habilita un producto para el borrado logico
+const handleDeleteLogicById = async (req, res) => {
+  const { productsId } = req.body;
+  console.log("ruta de patch");
   try {
-    const updateProduct = deleteProduct(productsId);
-    return updateProduct[0] > 0
-      ? res.status(200).json({ message: "El producto se elimino con éxito!" })
-      : res.status(400).json({ message: "no se elimino ningun producto" });
+    const updateProduct = await deleteLogicProduct(productsId);
+      updateProduct.delete
+      ? res.status(201).json("El producto se ha deshabilitado" )
+      : res.status(201).json("El producto se ha habilitado con éxito!" );
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
+//borra un producto de la base de datos
+const deleteHandler =  async (req, res) => {
+  const { id } = req.params
+  const validUuid = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
+  try {
+    if (!validUuid.test(id) || !id) {
+      return res.status(400).json(`El id ${id} no es un UUID válido`);
+    }
+    else {
+        await deleteProduct(id);
+        return res.status(200).json({message:"El producto se ha eliminado satisfactoriamente"})
+    }
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+
+  }
+}
+
+//modifica el valor de las propiedades de un producto
 const updateProduct = async (req, res) => {
   const { id, image, name, brand, detail, price, category, stock } = req.body;
   try {
-    if (!id) return res.status(400).json({ error: "falta el ID" });
-    const updateProduct = updateProducts(image, name, brand, detail, price, category, stock, id)
-    
+    if (!id) return res.status(400).json({ message: "Falta el ID" });
 
+    const updateProduct = await  updateProducts(image, name, brand, detail, price, category, stock, id)
+  
     return updateProduct[0] > 0
       ? res.status(200).json({ message: "El producto se actualizo con éxito!" })
       : res.status(400).json({ message: "El producto no se actualizo" });
@@ -79,40 +90,35 @@ const updateProduct = async (req, res) => {
   }
 };
 
-
-const createProduct = async (req, res) => {
-  const { image, name, brand, detail, price, category, stock } = req.body;
-  try {
-    const [newProduct, create] = await Products.findOrCreate({
-      where: {
-        name: name,
-      },
-      defaults: {
-        image,
-        name,
-        brand,
-        detail,
-        price,
-        category,
-        stock,
-      },
+//crea un nuevo producto en la base de datos, si no lo encuentra
+const createProductHandler = async (req, res) => {
+    const propNecesarias = ['image', 'name', 'brand', 'detail', 'price', 'category', "stock"];
+    const propFaltantes = [];
+    propNecesarias.forEach(prop => {
+        if (!req.body[prop]) {
+            propFaltantes.push(prop);
+        }
     });
-
-    if (!create)
-      return res.status(200).json({ message: `el producto ya existe` });
-    return res
-      .status(201)
-      .json({ message: `el producto ${name} ha sido creado con éxito` });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
+    if(propFaltantes.lenght > 0){
+      const faltantes = `Campos faltantes: ${propFaltantes.join(', ')}`;
+        res.status(400).json({ error: faltantes });
+    }
+    else{
+      const {image, name, brand, detail, price, category, stock} = req.body;
+      try {
+        const [newProduct, created] = await createProduct(image, name, brand, detail, price, category, stock)
+        created? res.status(200).json(`El producto ${name} se ha creado exitosamente`) : res.status(200).json(`El producto ${name} ya existe`)
+      } catch (error) {
+        res.status(400).json({ error: error.message });
+      }
+    }
 };
 
 module.exports = {
   handleProductsAll,
   handleProductById,
-  handleDeleteById,
+  deleteHandler,
+  handleDeleteLogicById,
   updateProduct,
-  createProduct,
-  bulkProducts
+  createProductHandler,
 };

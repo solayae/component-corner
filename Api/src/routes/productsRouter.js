@@ -1,13 +1,13 @@
 const { Router } = require('express');
 const productsRouter = Router();
-const { handleProductsAll, handleProductById,handleDeleteById, updateProduct,createProduct, bulkProducts } = require('../handler/productsHandler')
+const { handleProductsAll, handleProductById,handleDeleteLogicById, updateProduct,createProductHandler,deleteHandler } = require('../handler/productsHandler')
 
 
 productsRouter.get('/', handleProductsAll)
 productsRouter.get('/:productsId', handleProductById)
-productsRouter.delete('/:productsId', handleDeleteById)
+productsRouter.patch('/', handleDeleteLogicById)
+productsRouter.delete('/:id', deleteHandler)
 productsRouter.put('/', updateProduct)
-productsRouter.post('/',createProduct)
-productsRouter.post('/bulk', bulkProducts)
+productsRouter.post('/',createProductHandler)
 
 module.exports = productsRouter
