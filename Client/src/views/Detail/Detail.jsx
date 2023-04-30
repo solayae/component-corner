@@ -77,7 +77,7 @@ function Detail(props) {
           <Rating
             name='no-value'
             value={null}
-            size='large'
+            size=''
             onChange={(event, newValue) => {
               setValue(newValue);
             }}
