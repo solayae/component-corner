@@ -1,4 +1,4 @@
- const { Usuario, Role } = requere('../db.js')
+ const { Usuario, Role } = require('../db.js')
 
  ckeckDuplicateEmail = (req, res, next)=>{
     Usuario.findOne({

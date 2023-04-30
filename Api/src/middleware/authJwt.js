@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const config = requiere('../config/authConfig') 
+const config = require('../config/authConfig') 
 const { Usuario } = require('../db')
 const ADMIN = 'admin'
 const MODERATOR = 'moderator'
@@ -25,7 +25,7 @@ verifyToken = (req, res, next)=>{
         next()
     })
 
-
+}
     isAdmin = (req, res, next)=>{
         Usuario.findByPk(req.id)
         .then(user=>{
@@ -80,14 +80,14 @@ verifyToken = (req, res, next)=>{
         })
    } 
 
-}
+
 
 
 const authJwt = {
     verifyToken : verifyToken,
     isAdmin: isAdmin,
     isModerator: isModerator,
-    isModeratorOrAdmin: isModeratorOrAdmin
+    isAdminOrModerator: isAdminOrModerator
 }
 
 module.exports = authJwt

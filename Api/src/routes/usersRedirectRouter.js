@@ -1,19 +1,15 @@
 const { authJwt } = require('../middleware')
+const { Router } = require('express')
 const { allAccess, adminBoard, moderatorBoard, userBoard } = require('../controllers/panelController')
 
-module.exports = (app)=>{
-    app.use((req, res, next)=>{
-        res.header(
-            'Access-Control-All-Headers',
-            'x-access-token, Origin, Context-Type, Accept'
-        )
-        next()
-    })
-    
-    app.get('/api/test/all', allAccess)
-    app.get('/api/test/user', [authJwt.verifyToken], userBoard)
-    app.get('/api/test/mod', [authJwt.verifyToken, authJwt.isModerator],
+
+    const usersRedirectRouter = Router()
+
+    usersRedirectRouter.get('/all', allAccess)
+    usersRedirectRouter.get('/user', [authJwt.verifyToken], userBoard)
+    usersRedirectRouter.get('/mod', [authJwt.verifyToken, authJwt.isModerator],
     moderatorBoard
     )
-    app.get('/api/test/admin', [authJwt.verifyToken, authJwt.isModeratorOrAdmin], adminBoard)
-}
+    usersRedirectRouter.get('/admin', [authJwt.verifyToken, authJwt.isAdminOrModerator], adminBoard)
+
+    module.exports = usersRedirectRouter

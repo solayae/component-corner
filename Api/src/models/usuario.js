@@ -24,17 +24,15 @@ module.exports = (sequelize) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [8,12],
-      }
+      
     },
     favorite: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      
     },
     direction: {
       type: DataTypes.TEXT,
-      allowNull:false
+      
     },
     cart: {
       type: DataTypes.TEXT,
