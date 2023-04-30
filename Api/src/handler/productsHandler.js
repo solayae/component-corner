@@ -2,6 +2,7 @@
 const {
   getProductByName,
   getAllProducts,
+  getProductFiltered,
   productById,
   deleteLogicProduct,
   createProduct,
@@ -11,14 +12,22 @@ const {
 const { Op } = require("sequelize");
 
 
-// trae los productos por nombre en caso de recibir uno sino trae todos los productos
+// trae los productos por nombre o categoria en caso de recibir uno, sino trae todos los productos
 const handleProductsAll = async (req, res) => {
-  const { name } = req.query;
+  const { name, brand, category } = req.query;
   try {
     if(name){
         const productsByName = await getProductByName(name)
         productsByName.length? res.status(200).json(productsByName) : res.status(400).json({message: `No se encontro ${name}`})      
-    }   
+      } 
+      else if (category && brand){
+        const productsByBrandCategory = await getProductFiltered(category, brand)
+        productsByBrandCategory.length? res.status(200).json(productsByBrandCategory) : res.status(400).json({message: `No se encontro ${category} de la marca ${brand}`})
+      }  
+      else if(category){
+        const productsByCategory = await getProductFiltered(category);
+        productsByCategory.length? res.status(200).json(productsByCategory) : res.status(400).json({message: `No se encontro productos de ${category}`})
+      }
     else {
         const allProducts = await getAllProducts()
         res.status(200).json(allProducts)
