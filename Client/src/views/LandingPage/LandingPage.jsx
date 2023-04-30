@@ -29,13 +29,13 @@ const LandingPage = connect(
     const productsToState = async () => {
       try {
         if (!props.products.length) await props.getAllProducts();
-        setRecommended([...props.products.slice(0, 5)]);
         setMounted(true);
       } catch (error) {
         console.log(error);
       }
     };
     productsToState();
+    setRecommended([...props.products.slice(0, 5)]);
     //eslint-disable-next-line
   }, [mounted]);
   return (

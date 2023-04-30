@@ -11,10 +11,7 @@ const bodyParser = require('body-parser')
 const router = Router()
 
 router.use(Express.json())
-router.use(morgan('dev'))
-router.use(cors(corsOptions))
-router.use(bodyParser.json())
-router.use(bodyParser.urlencoded({ extended: true }) )
+//router.use(morgan('dev'))
 
 router.use('/products',productsRouter)
 router.use('/users', usersRouter)

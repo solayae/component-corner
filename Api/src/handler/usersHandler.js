@@ -33,23 +33,25 @@ const handleUserById = async (req, res) => {
 
 
 const handleUserCreate = async (req, res) => {
-  const { email, name, password, favorite, direction, cart } = req.body;
-  try {
-    if (!email || !password)
-      return res
-        .status(400)
-        .json({ error: "faltas ingresar email y/o password" });
-
-    findOrCreateUser(email, name, password, favorite, direction, cart);
-
-    if (!create)
-      return res.status(200).json({ message: "Ya existe el usuario" });
-    
-    return res.status(201).json({ message: "El usuario se ha creado con éxito!" });
-  
-  } catch (error) {
-  
+  const propNecesarias = ["email", "name", "password", "direction"]
+  const propFaltantes = [];
+  propNecesarias.forEach(prop => {
+    if(!req.body[prop]){
+      propFaltantes.push(prop);
+    }
+  });
+  if(propFaltantes.length > 0){
+    const faltantes = `Campos obligatorios: ${propFaltantes.join(", ")}`;
+    res.status(400).json({error: faltantes})
+  }
+  else {
+   const { email, name, password, favorite, direction, cart } = req.body;
+   try {
+    const [newProduct, created] = await findOrCreateUser(email, name, password, favorite, direction, cart);
+    created? res.status(200).json({message:`El usuario ${email} se ha creado exitosamente`}) : res.status(200).json({message: `Ya existe usuario con ${email}`})
+   } catch (error) {
     res.status(400).json({ error: error.message });
+   }
   }
 };
 
