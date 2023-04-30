@@ -17,11 +17,10 @@ function Detail() {
     // alert("Entré")
     dispatch(getDetail(id));
     return () => {
-      dispatch(cleanDetail())
+      dispatch(cleanDetail());
       // alert("Salí")
-    }
+    };
   }, [dispatch, id]);
-
 
   const [quantity, setQuantity] = useState(1);
 
@@ -66,7 +65,9 @@ function Detail() {
               +{' '}
             </button>
           </div>
-          <p className={styles.extra_p}>Stock disponible: {detailProduct.stock}</p>
+          <p className={styles.extra_p}>
+            Stock disponible: {detailProduct.stock}
+          </p>
           <button className={styles.addToCartBtn} onClick={handleAddToCart}>
             AGREGAR AL CARRITO
           </button>
@@ -75,15 +76,7 @@ function Detail() {
 
       <div className={styles.details}>
         <p>Caracteristicas:</p>
-        <ul>
-          <li>AMD Ryzen AM4 socket</li>
-          <li>Dual Channel DDR4, 4 DIMMs</li>
-          <li>PCIe Gen3 M.2 NVMe with thermal guard</li>
-          <li>PCIe Gen3 M.2 NVMe with thermal guard</li>
-
-          <li>RGB Fusion supports RGB LED strips in 7 colors</li>
-          <li>Smart Fan 5 with Fan Stop for silent cooling</li>
-        </ul>
+        {detailProduct.detail}
       </div>
 
       <h3 className={styles.rating_comments}>Comentarios</h3>

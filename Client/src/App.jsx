@@ -10,7 +10,6 @@ function App() {
   return (
     <div className='App'>
       <Topbar />
-
       <Routes>
         <Route exact path='/' element={<LandingPage />} />
         <Route path='/products/:id' element={<Detail />} />
