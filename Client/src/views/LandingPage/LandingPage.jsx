@@ -4,6 +4,8 @@ import Cards from '../../components/Cards/Cards';
 import Style from './LandingPage.module.css';
 import {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
+import Detail from '../Detail/Detail';
+
 
 function mapStateToProps(state) {
   return {
@@ -41,6 +43,7 @@ const LandingPage = connect(
   return (
     <div className={Style.landingPage}>
       <Topbar />
+      <Detail />
       <div className={Style.banner}>
         <div className={Style.banner__TextContainer}>
           <h1>¡Bienvenido a Component Corner!</h1>
