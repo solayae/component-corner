@@ -1,19 +1,20 @@
 const {Usuario}=require('../db')
 
 async function findOrCreateUser(email, name, password, favorite, direction, cart) {
-    const [newUser, create] = await Usuario.findOrCreate({
+    const [newUser, created] = await Usuario.findOrCreate({
         where: {
           email: email,
         },
         defaults: {
           name,
+          email,
           password,
           favorite,
           direction,
           cart,
         },
     });
-    return newUser, create 
+    return [newUser, created]
 }
 
 async function updateUsers(name, password, favorite, direction, cart, email) {

@@ -5,6 +5,7 @@ import login from './assets/login-icon.png';
 import search from './assets/search-icon.png';
 import PopUp from '../PopUp/PopUp';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Topbar = () => {
 
@@ -35,9 +36,9 @@ const Topbar = () => {
         </div>
       </div>
       <div className={styles.row2}>
-        <a href='#' className={styles.about}>
+        <Link to={"/"}className={styles.about}>
           HOME
-        </a>
+        </Link>
         <div className={styles.categories}>
           <div className={styles.dropdown}>
             <a className={styles.about}>CATEGORIAS</a>
