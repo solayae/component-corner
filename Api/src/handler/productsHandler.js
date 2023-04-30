@@ -3,6 +3,7 @@ const {
   getProductByName,
   getAllProducts,
   getProductFiltered,
+  getProductByBrand,
   productById,
   deleteLogicProduct,
   createProduct,
@@ -27,6 +28,10 @@ const handleProductsAll = async (req, res) => {
       else if(category){
         const productsByCategory = await getProductFiltered(category);
         productsByCategory.length? res.status(200).json(productsByCategory) : res.status(400).json({message: `No se encontro productos de ${category}`})
+      }
+      else if(brand){
+        const productByBrand = await getProductByBrand(brand);
+        productByBrand.length? res.status(200).json(productByBrand) : res.status(400).json({message:`No se encontro producto de la marca ${brand}`})
       }
     else {
         const allProducts = await getAllProducts()

@@ -42,6 +42,14 @@ const getProductFiltered = async (category, brand) => {
   return products;
 };
 
+const getProductByBrand = async (brand) => {
+    const productByBrand = await Products.findAll({
+      where: {brand: brand}
+    })
+
+    return productByBrand
+}
+
 
 const productById =  async (productsId) => {
   const product = await Products.findByPk(productsId)
@@ -123,5 +131,6 @@ module.exports = {
   productById,
   deleteProduct,
   createProduct,
-  getProductFiltered
+  getProductFiltered,
+  getProductByBrand
 };
