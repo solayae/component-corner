@@ -1,11 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDetail, cleanDetail } from '../../redux/actions';
+import { useParams } from 'react-router-dom';
+
 import styles from './Detail.module.css';
 import Rating from '@mui/material/Rating';
+import PropTypes from 'prop-types';
 
-function Detail(props) {
-  // const { id, image, price } = props.product;
+function Detail() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const detailProduct = useSelector((state) => state.detail);
+
+  useEffect(() => {
+    // alert("Entré")
+    dispatch(getDetail(id));
+    return () => {
+      dispatch(cleanDetail())
+      // alert("Salí")
+    }
+  }, [dispatch, id]);
+
+
   const [quantity, setQuantity] = useState(1);
-  const [showDetails, setShowDetails] = useState(false);
 
   const handleAddToCart = () => {
     // lógica para agregar al carrito
@@ -27,16 +45,16 @@ function Detail(props) {
         <div className={styles.container_image}>
           <img
             className={styles.image}
-            src='https://http2.mlstatic.com/D_NQ_NP_902606-MLA43542876076_092020-O.jpg'
-            alt='IMG'
+            src={detailProduct.image}
+            alt={detailProduct.name}
           />
         </div>
 
         <div className={styles.info}>
-          <p className={styles.extra_p}>ID producto: 123</p>
-          <p className={styles.title}>Motherboard + Gigabyte B450M DS3H</p>
+          <p className={styles.extra_p}>ID: {detailProduct.id}</p>
+          <p className={styles.title}>{detailProduct.name}</p>
           <p className={styles.extra_p}>Sin puntuación</p>
-          <p className={styles.price}>US $73</p>
+          <p className={styles.price}>US ${detailProduct.price}</p>
           <div className={styles.quantity}>
             <button onClick={handleDecrement} className={styles.bottone5}>
               {' '}
@@ -48,7 +66,7 @@ function Detail(props) {
               +{' '}
             </button>
           </div>
-          <p className={styles.extra_p}>Stock disponible: 200</p>
+          <p className={styles.extra_p}>Stock disponible: {detailProduct.stock}</p>
           <button className={styles.addToCartBtn} onClick={handleAddToCart}>
             AGREGAR AL CARRITO
           </button>
@@ -90,9 +108,8 @@ function Detail(props) {
             placeholder='Escribe aquí tu comentario'
           ></textarea>
         </div>
-        <div className={styles.container_button}> 
-        <button className={styles.rating_button}>AGREGAR COMENTARIO</button>
-
+        <div className={styles.container_button}>
+          <button className={styles.rating_button}>AGREGAR COMENTARIO</button>
         </div>
       </div>
     </div>

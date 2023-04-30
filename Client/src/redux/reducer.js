@@ -1,5 +1,7 @@
 import {
   GET_ALL_PRODUCTS,
+  GET_DETAIL,
+  CLEAN_DETAIL,
   ORDER_BY,
   FILTER_BY_CATEGORY,
   FILTER_BY_BRAND,
@@ -8,6 +10,8 @@ import {
 const initialState = {
   products: [],
   filtered: [],
+  detail: [],
+
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -16,6 +20,19 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+      };
+
+    case GET_DETAIL: {
+      return {
+        ...state,
+        detail: action.payload,
+      };
+    }
+
+    case CLEAN_DETAIL:
+      return {
+        ...state,
+        detail: [],
       };
 
     case ORDER_BY:

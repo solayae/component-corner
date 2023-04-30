@@ -158,8 +158,11 @@
   flex-direction: column;
   background-color: #f7f7f7;
   padding: 1rem;
+  margin-top: 1rem;
+
 }
-.rating_comments{
+
+.rating_comments {
   margin-top: 2rem;
   font-size: 1.5rem;
 }
@@ -182,10 +185,12 @@
   display: flex;
   justify-content: center;
 }
+
 .rating_button {
   width: 20rem;
   height: 3rem;
   font-size: 0.8rem;
+  font-family: var(--font-heading);
   background-color: #333;
   color: azure;
 }

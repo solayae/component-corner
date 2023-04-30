@@ -11,6 +11,7 @@
 
 .logo {
   cursor: pointer;
+  font-family: var(--font-heading);
 }
 
 
