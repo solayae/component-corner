@@ -24,7 +24,7 @@
 
 
 .details {
-  margin-top: 1rem;
+  margin-top: 5rem;
   padding: 1rem;
   border: 1px solid #ccc;
   background-color: #f7f7f7;
@@ -55,6 +55,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 1rem 2rem 0 2rem;
+  margin-left: 5rem;
   background-color: white;
   width: 55%;
 
