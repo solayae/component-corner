@@ -1,8 +1,16 @@
-import {GET_ALL_PRODUCTS, ORDER_BY, FILTER_BY_CATEGORY, FILTER_BY_BRAND} from './variables';
+import {
+  GET_ALL_PRODUCTS,
+  GET_DETAIL,
+  CLEAN_DETAIL,
+  ORDER_BY,
+  FILTER_BY_CATEGORY,
+  FILTER_BY_BRAND,
+} from './variables';
 
 const initialState = {
   products: [],
   filtered: [],
+  detail: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -12,6 +20,20 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         products: action.payload,
       };
+
+    case GET_DETAIL: {
+      return {
+        ...state,
+        detail: action.payload,
+      };
+    }
+
+    case CLEAN_DETAIL:
+      return {
+        ...state,
+        detail: [],
+      };
+
     case ORDER_BY: {
       const orderType = {
         'A-Z': {
@@ -32,11 +54,15 @@ const rootReducer = (state = initialState, action) => {
         },
         des: {
           ...state,
-          products: [...state.products].sort((prev, next) => prev.price - next.price),
+          products: [...state.products].sort(
+            (prev, next) => prev.price - next.price
+          ),
         },
         asc: {
           ...state,
-          products: [...state.products].sort((prev, next) => next.price - prev.price),
+          products: [...state.products].sort(
+            (prev, next) => next.price - prev.price
+          ),
         },
       };
       return orderType[action.payload];
@@ -45,7 +71,9 @@ const rootReducer = (state = initialState, action) => {
       const categoryFilter =
         action.payload === 'All'
           ? state.products
-          : state.products.filter((el) => el.category.map((el) => el).includes(action.payload));
+          : state.products.filter((el) =>
+              el.category.map((el) => el).includes(action.payload)
+            );
       return {
         ...state,
         filtered: categoryFilter.length ? categoryFilter : state.products,
@@ -53,14 +81,16 @@ const rootReducer = (state = initialState, action) => {
     }
     case FILTER_BY_BRAND: {
       const brandFilter =
-        action.payload === 'All' ? state.products : state.products.filter((el) => el.brand.includes(action.payload));
+        action.payload === 'All'
+          ? state.products
+          : state.products.filter((el) => el.brand.includes(action.payload));
       return {
         ...state,
         filtered: brandFilter.length ? brandFilter : state.products,
       };
     }
     default:
-      return {...state};
+      return { ...state };
   }
 };
 

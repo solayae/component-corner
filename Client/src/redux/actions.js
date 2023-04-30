@@ -1,6 +1,8 @@
 import axios from 'axios';
 import {
   GET_ALL_PRODUCTS,
+  GET_DETAIL,
+  CLEAN_DETAIL,
   ORDER_BY,
   FILTER_BY_CATEGORY,
   FILTER_BY_BRAND,
@@ -14,6 +16,23 @@ export function getAllProducts() {
       type: GET_ALL_PRODUCTS,
       payload: allProducts,
     });
+  };
+}
+
+export function getDetail(id) {
+  return async function (dispatch) {
+    const response = await axios.get(`http://localhost:3001/products/${id}`);
+    const productId = response.data;
+    return dispatch({
+      type: GET_DETAIL,
+      payload: productId,
+    });
+  };
+}
+
+export function cleanDetail() {
+  return {
+    type: CLEAN_DETAIL,
   };
 }
 

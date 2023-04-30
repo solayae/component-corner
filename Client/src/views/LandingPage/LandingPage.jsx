@@ -1,9 +1,9 @@
-import Topbar from '../../components/Topbar/Topbar';
 import {getAllProducts} from '../../redux/actions';
 import Cards from '../../components/Cards/Cards';
 import Style from './LandingPage.module.css';
 import {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
+
 
 function mapStateToProps(state) {
   return {
@@ -40,7 +40,6 @@ const LandingPage = connect(
   }, [mounted]);
   return (
     <div className={Style.landingPage}>
-      <Topbar />
       <div className={Style.banner}>
         <div className={Style.banner__TextContainer}>
           <h1>¡Bienvenido a Component Corner!</h1>
