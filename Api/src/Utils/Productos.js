@@ -1906,7 +1906,7 @@ module.exports = {
           },
           {
             image: "https://images-na.ssl-images-amazon.com/images/I/51veSCNgo7L._AC_SX569_.jpg",
-            name: "Gigabyte Radeon RX 6600 XT GAMING OC 8GB",
+            name: "MSI Radeon RX 6600 XT GAMING OC 8GB",
             brand: "AMD",
             detail: [
               "Memoria: 8 GB, 192 bit GDDR5, 8002 MHz",
