@@ -788,7 +788,7 @@ module.exports = {
         "Alcance máximo: 2.1 m",
       ],
       price: 109.99,
-      category: "Teclados",
+      category: "Mouses",
       stock: 5,
       delete: false,
     },
@@ -1204,7 +1204,7 @@ module.exports = {
         "RGB: Si"
       ],
       price: 3999.99,
-      category: "Procesadores",
+      category: "Memorias RAM",
       stock: 2,
       delete: false
     },
@@ -1306,7 +1306,7 @@ module.exports = {
         "RGB: Si"
       ],
       price: 8399.99,
-      category: "Memoria RAM",
+      category: "Memorias RAM",
       stock: 3,
       delete: false
     },
@@ -1323,7 +1323,7 @@ module.exports = {
         "RGB: Si"
       ],
       price: 8399.99,
-      category: "Memoria RAM",
+      category: "Memorias RAM",
       stock: 3,
       delete: false
     },
@@ -1340,7 +1340,7 @@ module.exports = {
         "RGB: Si"
       ],
       price: 8399.99,
-      category: "Memoria RAM",
+      category: "Memorias RAM",
       stock: 3,
       delete: false
     },
@@ -1357,7 +1357,7 @@ module.exports = {
         "RGB: Si"
       ],
       price: 7899.99,
-      category: "Memoria RAM",
+      category: "Memorias RAM",
       stock: 7,
       delete: false
     },
@@ -1374,7 +1374,7 @@ module.exports = {
         "RGB: Si"
       ],
       price: 7899.99,
-      category: "Memoria RAM",
+      category: "Memorias RAM",
       stock: 7,
       delete: false
     },
