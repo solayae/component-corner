@@ -31,12 +31,14 @@
   overflow-y: scroll;
   z-index: 1;
   box-shadow: 0 0 8px #ddd;
+  text-decoration: none;
 }
 .searchResults::-webkit-scrollbar {
   width: 12px;
 }
 .searchResults .results {
   border-bottom: 2px solid #234c7a;
+  color: black;
   padding: 20px;
   display: flex;
   align-items: center;
