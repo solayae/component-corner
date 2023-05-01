@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import styles from './SignInPage.module.css';
-import Topbar from '../../components/Topbar/Topbar';
 import PopUp from '../../components/PopUp/PopUp';
+import axios from 'axios';
 
 export default function SignInPage() {
   const [email, setEmail] = useState('');
@@ -9,13 +9,14 @@ export default function SignInPage() {
   const [errorList, setErrorList] = useState({});
   const [secondPassword, setSecondPassword] = useState('');
   const [triggerPopUp, setTriggerPopUp] = useState(false);
+  const [message, setMessage] = useState('');
 
   const validate = (value) => {
-    const regex = /[A-Za-z0-9._-]+@[A-Za-z0-9._-]+\.[a-zA-Z]{2,4}/;
+    const regex = /[A-Za-z0-9._-]+@[A-Za-z0-9._-]+\.[a-zA-Z]/;
     const errors = {};
     if (!value.userEmail || !regex.test(value.userEmail)) errors.userEmail = 'Debe introducir un email válido.';
     if (value.userPassword.length < 8 || value.userPassword > 16)
-      errors.userPassword = 'Debe introducir una contraseña de entre 8 y 16 caracteres.';
+      errors.userPassword = 'Debe introducir una contraseña de entre 8 y 12 caracteres.';
     if (!value.userSecondPassword) errors.userSecondPassword = 'Debe introducir una contraseña';
     if (value.userSecondPassword !== value.userPassword) errors.userSecondPassword = 'Las contraseñas no coinciden.';
     return errors;
@@ -33,11 +34,23 @@ export default function SignInPage() {
       return;
     }
     setErrorList({});
+    try {
+      const response = await axios.post('http://localhost:3001/users/', {
+        name: email,
+        email,
+        password,
+        direction: 'unknown',
+      });
+      const messageResponse = response.data.message;
+      console.log(messageResponse);
+      setMessage(messageResponse);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
   return (
     <div className={styles.register}>
       <PopUp trigger={triggerPopUp} setTrigger={setTriggerPopUp} />
-      <Topbar />
       <div className={styles.registerInner}>
         <form onSubmit={(e) => handleSubmit(e)}>
           <h2>Regístrate</h2>
@@ -82,6 +95,7 @@ export default function SignInPage() {
               {errorList.userSecondPassword && <p>{errorList.userSecondPassword}</p>}
             </div>
           </div>
+          {message && <h4>{message}</h4>}
           <div className={styles.formElement}>
             <button>Registrarse</button>
             <p>¿Ya tienes una cuenta?</p>

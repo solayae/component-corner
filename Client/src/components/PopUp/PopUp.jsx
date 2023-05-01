@@ -65,7 +65,7 @@ export default function PopUp(props) {
             <button>Iniciar Sesión</button>
             <p>¿No tienes una cuenta?</p>
             <Link to={'/registrarse'}>
-              <button>Registrarse</button>
+              <button onClick={() => props.setTrigger(false)}>Registrarse</button>
             </Link>
           </div>
         </form>
