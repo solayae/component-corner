@@ -1,43 +1,16 @@
-import {getAllProducts} from '../../redux/actions';
 import Cards from '../../components/Cards/Cards';
 import Style from './LandingPage.module.css';
 import {useEffect, useState} from 'react';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 
-
-function mapStateToProps(state) {
-  return {
-    products: state.products,
-  };
-}
-function mapDispatchToProps(dispatch) {
-  return {
-    getAllProducts: function () {
-      return dispatch(getAllProducts());
-    },
-  };
-}
-
-const LandingPage = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(function LandingPage(props) {
+function LandingPage() {
   const [recommendedProducts, setRecommended] = useState([]);
-  const [mounted, setMounted] = useState(false);
+  const products = useSelector((state) => state.products);
 
   useEffect(() => {
-    const productsToState = async () => {
-      try {
-        if (!props.products.length) await props.getAllProducts();
-        setMounted(true);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    productsToState();
-    setRecommended([...props.products.slice(0, 5)]);
-    //eslint-disable-next-line
-  }, [mounted]);
+    setRecommended([...products.slice(0, 5)]);
+  }, [products]);
+
   return (
     <div className={Style.landingPage}>
       <div className={Style.banner}>
@@ -53,6 +26,6 @@ const LandingPage = connect(
       </div>
     </div>
   );
-});
+}
 
 export default LandingPage;
