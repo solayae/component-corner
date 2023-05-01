@@ -9,7 +9,7 @@ export default function SearchResults({results, setResults}) {
         {results.map((e) => (
           <Link
             key={e.id}
-            to={`/product/${e.id}`}
+            to={`/products/${e.id}`}
             onClick={() => {
               setResults([]);
             }}>
