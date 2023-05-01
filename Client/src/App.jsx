@@ -5,12 +5,14 @@ import Footer from './components/Footer/Footer.jsx';
 import Topbar from './components/Topbar/Topbar.jsx';
 import Detail from './views/Detail/Detail';
 import SignInPage from './views/SignInPage/SignInPage';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {getAllProducts} from './redux/actions';
 import {useEffect, useState} from 'react';
+import Home from './views/Home/Home';
 
 function App() {
   const [mounted, setMounted] = useState(false);
+  const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const getProducts = async () => {
     return dispatch(getAllProducts());
@@ -18,7 +20,7 @@ function App() {
   useEffect(() => {
     const productsToState = async () => {
       try {
-        await getProducts();
+        if (!products.length) await getProducts();
         setMounted(true);
       } catch (error) {
         console.log(error);
@@ -34,6 +36,7 @@ function App() {
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/products/:id" element={<Detail />} />
         <Route path="/registrarse" element={<SignInPage />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
       <Footer />
     </div>
