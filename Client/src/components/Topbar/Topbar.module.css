@@ -31,6 +31,8 @@
   overflow-y: scroll;
   z-index: 1;
   box-shadow: 0 0 8px #ddd;
+}
+.searchResults * {
   text-decoration: none;
 }
 .searchResults::-webkit-scrollbar {
