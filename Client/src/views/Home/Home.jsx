@@ -6,12 +6,13 @@ import {useEffect, useState} from 'react';
 import useLocalStorage from '../../components/useLocalStorage';
 import {getProductsByName} from '../../redux/actions';
 
+
 export default function Home() {
   const [products, setProducts] = useState([]);
   const [sort, setSort] = useLocalStorage('sort_cards-Home', 'A-Z');
   const [page, setPage] = useLocalStorage('page', 0);
   const [input, setInput] = useLocalStorage('input-Home', '');
-  const [filters, setFilters] = useLocalStorage('filter_cards-Home', []);
+  const [filters, setFilters] = useLocalStorage("filter_cards-Home", [])
   const productState = useSelector((state) => state.products);
   const productsFiltered = useSelector((state) => state.filtered);
   const allProducts = [...productState];
@@ -41,6 +42,7 @@ export default function Home() {
     setFilters(newFilterArray);
     setPage(0);
   };
+
   const handleInput = (e) => {
     dispatch(getProductsByName(e.target.value));
     setInput(e.target.value);

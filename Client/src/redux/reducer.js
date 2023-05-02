@@ -12,6 +12,7 @@ const initialState = {
   products: [],
   filtered: [],
   detail: [],
+  filters: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -33,6 +34,7 @@ const rootReducer = (state = initialState, action) => {
         detail: action.payload,
       };
     }
+    
 
     case CLEAN_DETAIL:
       return {
