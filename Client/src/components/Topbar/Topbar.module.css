@@ -170,6 +170,17 @@
   display: flex;
   min-width: max-content;
 }
+.dropdown:hover .dropdownContent .column button {
+  border: 0;
+  background-color: #f1f1f1;
+  font-size: 17px;
+  padding: 10px;
+  margin: 0;
+  font-family: var(--font-heading);
+}
+.dropdown:hover .dropdownContent .column button:hover {
+  color: var(--primary-color);
+}
 
 .column {
   display: flex;
