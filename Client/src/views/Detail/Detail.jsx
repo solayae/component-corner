@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom';
 
 import styles from './Detail.module.css';
 import Rating from '@mui/material/Rating';
-import PropTypes from 'prop-types';
 
 function Detail() {
   const { id } = useParams();
@@ -76,7 +75,8 @@ function Detail() {
 
       <div className={styles.details}>
         <p>Caracteristicas:</p>
-        {detailProduct.detail}
+        {detailProduct.detail?.map((spec, index) => <li key={index}>{spec}</li>)}
+
       </div>
 
       <h3 className={styles.rating_comments}>Comentarios</h3>
