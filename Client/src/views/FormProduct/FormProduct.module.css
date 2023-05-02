@@ -28,7 +28,7 @@
   margin: 0;
 }
 .formContainer form input {
-  border-style: none;
+  border-style: solid;
   border-radius: 5px;
   width: 400px;
   padding: 5px;
@@ -51,7 +51,7 @@
   margin: 0;
 }
 .formContainer form input[type='number'] {
-  text-align: center;
+  /* text-align: center; */
   appearance: none;
   -moz-appearance: textfield;
 }
