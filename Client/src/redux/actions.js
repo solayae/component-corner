@@ -6,6 +6,7 @@ import {
   ORDER_BY,
   FILTER_BY_CATEGORY,
   FILTER_BY_BRAND,
+  GET_PRODUCTS_BY_NAME,
 } from './variables';
 
 export function getAllProducts() {
@@ -16,6 +17,24 @@ export function getAllProducts() {
       type: GET_ALL_PRODUCTS,
       payload: allProducts,
     });
+  };
+}
+export function getProductsByName(name) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`http://localhost:3001/products/?name=${name}`);
+      const filteredProduct = response.data;
+      return dispatch({
+        type: GET_PRODUCTS_BY_NAME,
+        payload: filteredProduct,
+      });
+    } catch (error) {
+      console.log(error.message);
+      return dispatch({
+        type: GET_PRODUCTS_BY_NAME,
+        payload: [],
+      });
+    }
   };
 }
 
@@ -38,18 +57,18 @@ export function cleanDetail() {
 
 export function orderBy(order) {
   return function (dispatch) {
-    dispatch({ type: ORDER_BY, payload: order });
+    dispatch({type: ORDER_BY, payload: order});
   };
 }
 
 export function filterByCategory(category) {
   return function (dispatch) {
-    dispatch({ type: FILTER_BY_CATEGORY, payload: category });
+    dispatch({type: FILTER_BY_CATEGORY, payload: category});
   };
 }
 
 export function filterByBrand(brand) {
   return function (dispatch) {
-    dispatch({ type: FILTER_BY_BRAND, payload: brand });
+    dispatch({type: FILTER_BY_BRAND, payload: brand});
   };
 }

@@ -15,7 +15,9 @@ const Topbar = () => {
   return (
     <nav className={styles.topbar}>
       <div className={styles.row2}>
-        <div className={styles.logo}>COMPONENT CORNER</div>
+        <Link to={'/'}>
+          <div className={styles.logo}>COMPONENT CORNER</div>
+        </Link>
         <div className={styles.searchContainer}>
           <SearchBar setResults={setResults} />
           <SearchResults results={results} setResults={setResults} />
@@ -35,7 +37,7 @@ const Topbar = () => {
         </div>
       </div>
       <div className={styles.row2}>
-        <Link to={'/'} className={styles.about}>
+        <Link to={'/home'} className={styles.about}>
           HOME
         </Link>
         <div className={styles.categories}>
