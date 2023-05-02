@@ -8,13 +8,7 @@
   --four-color: #ffd166;
   --five-color: #ef476f;
 }
-#root {
-  display: flex;
-  max-width: 100vw;
-}
-
 * {
   margin: 0;
   padding: 0;
 }
-

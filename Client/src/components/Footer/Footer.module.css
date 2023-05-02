@@ -1,5 +1,9 @@
 /* styles.module.css */
 
+.footer_container {
+  margin-top: auto;
+  align-items: center;
+}
 .footer {
   align-items: center;
   display: flex;

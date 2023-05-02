@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getAllProducts} from './redux/actions';
 import {useEffect, useState} from 'react';
 import Home from './views/Home/Home';
+import FormProduct from './views/FormProduct/FormProduct';
 
 function App() {
   const [mounted, setMounted] = useState(false);
@@ -37,6 +38,7 @@ function App() {
         <Route path="/products/:id" element={<Detail />} />
         <Route path="/registrarse" element={<SignInPage />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/publicar" element={<FormProduct />} />
       </Routes>
       <Footer />
     </div>
