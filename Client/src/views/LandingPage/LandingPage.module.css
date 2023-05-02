@@ -2,6 +2,15 @@
   font-family: var(--font-heading);
   background-color: #d9d9d9;
 }
+.landingPage button {
+  border: 0;
+  padding: 20px;
+  background-color: var(--four-color);
+  margin: 20px;
+}
+.landingPage button:hover {
+  background-color: var(--third-color);
+}
 
 /*Banner*/
 div.banner {
@@ -28,7 +37,6 @@ div.banner .banner__TextContainer h1 {
 div.banner .banner__TextContainer p {
   font-size: 30px;
 }
-
 /*Recomendations*/
 div.recommendations {
   padding: 40px 10%;

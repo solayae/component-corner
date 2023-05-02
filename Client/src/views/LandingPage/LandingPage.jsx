@@ -2,6 +2,7 @@ import Cards from '../../components/Cards/Cards';
 import Style from './LandingPage.module.css';
 import {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 function LandingPage() {
   const [recommendedProducts, setRecommended] = useState([]);
@@ -23,6 +24,13 @@ function LandingPage() {
       <div className={Style.recommendations}>
         <h1>Recomendaciones:</h1>
         <Cards products={recommendedProducts} />
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '40px'}}>
+          <h2>¡Publica tus productos con nosotros!</h2>
+          <Link to={'/publicar'}>
+            <button>HAZ CLICK AQUI</button>
+          </Link>
+          <p>Comisiones del 11% por cada venta</p>
+        </div>
       </div>
     </div>
   );
