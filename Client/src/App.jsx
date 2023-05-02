@@ -10,9 +10,11 @@ import {getAllProducts} from './redux/actions';
 import {useEffect, useState} from 'react';
 import Home from './views/Home/Home';
 import FormProduct from './views/FormProduct/FormProduct';
+import useLocalStorage from './components/useLocalStorage';
 
 function App() {
   const [mounted, setMounted] = useState(false);
+  const [filters, setFilters] = useLocalStorage('filter_cards-Home', []);
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const getProducts = async () => {
@@ -32,12 +34,12 @@ function App() {
   }, [mounted]);
   return (
     <div className="App">
-      <Topbar />
+      <Topbar setFilters={setFilters} />
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/products/:id" element={<Detail />} />
         <Route path="/registrarse" element={<SignInPage />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<Home filters={filters} setFilters={setFilters} />} />
         <Route path="/publicar" element={<FormProduct />} />
       </Routes>
       <Footer />
