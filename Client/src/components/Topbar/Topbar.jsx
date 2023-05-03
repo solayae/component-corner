@@ -43,7 +43,7 @@ const Topbar = ({setFilters, setPage}) => {
         </Link>
         <div className={styles.searchContainer}>
           <SearchBar setResults={setResults} input={input} setInput={setInput} />
-          <SearchResults results={results} setResults={setResults} setInput={setInput} />
+          <SearchResults results={results} setResults={setResults} setInput={setInput} input={input} />
         </div>
         <div className={styles.icons}>
           <div className={styles.favorite}>
