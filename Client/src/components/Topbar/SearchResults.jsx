@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 import style from './Topbar.module.css';
 import PropTypes from 'prop-types';
 
-export default function SearchResults({results, setResults}) {
+export default function SearchResults({results, setResults, setInput}) {
   if (results.length)
     return (
       <div className={style.searchResults}>
@@ -12,6 +12,7 @@ export default function SearchResults({results, setResults}) {
             to={`/products/${e.id}`}
             onClick={() => {
               setResults([]);
+              setInput('');
             }}>
             <div key={e.id} className={style.results}>
               <p>{e.name}</p>
@@ -25,4 +26,5 @@ export default function SearchResults({results, setResults}) {
 SearchResults.propTypes = {
   results: PropTypes.array,
   setResults: PropTypes.func,
+  setInput: PropTypes.func,
 };
