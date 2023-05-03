@@ -11,7 +11,7 @@ import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Topbar = ({setFilters}) => {
+const Topbar = ({setFilters, setPage}) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
@@ -26,6 +26,7 @@ const Topbar = ({setFilters}) => {
   let length = categories.length;
   const handleClick = (e) => {
     setFilters([e]);
+    setPage(0);
     navigate('/home');
   };
 
@@ -104,5 +105,6 @@ const Topbar = ({setFilters}) => {
 };
 Topbar.propTypes = {
   setFilters: PropTypes.func,
+  setPage: PropTypes.func,
 };
 export default Topbar;
