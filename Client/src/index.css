@@ -2,13 +2,12 @@
   --font-heading: 'Montserrat', sans-serif;
   --font-body: 'Roboto', sans-serif;
 
-  --primary-color: #118AB2;
-  --secondary-color: #073B4C;
-  --third-color: #06D6A0;
-  --four-color: #FFD166;
-  --five-color: #EF476F;
+  --primary-color: #118ab2;
+  --secondary-color: #073b4c;
+  --third-color: #06d6a0;
+  --four-color: #ffd166;
+  --five-color: #ef476f;
 }
-
 * {
   margin: 0;
   padding: 0;

@@ -1,7 +1,7 @@
 import { useState, useEffect  } from 'react'
 import userServices from '../../services/userService'
-import LandingPage from '../../views/LandingPage/LandingPage'
-const Home = ()=>{
+import Home from '../../views/Home/Home'
+const InitControl = ()=>{
   const [content, setContent ] = useState('')
 
   useEffect(()=>{
@@ -20,7 +20,7 @@ const Home = ()=>{
   }, [])
 
   return (
-    content === 'Home' ? <LandingPage/> : <div className="container">
+    content === 'Home' ? <Home/> : <div className="container">
     <header className="jumbotron">
       <h3>{content}</h3>
     </header>
@@ -29,4 +29,4 @@ const Home = ()=>{
 
 }
 
-export default Home
+export default InitControl

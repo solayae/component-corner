@@ -3,6 +3,17 @@
   background-color: #d9d9d9;
 }
 
+.landingPage button {
+  border: 0;
+  padding: 20px;
+  background-color: var(--four-color);
+  margin: 20px;
+}
+
+.landingPage button:hover {
+  background-color: var(--third-color);
+}
+
 /*Banner*/
 div.banner {
   background-image: url('https://i.imgur.com/zrd8Ga5.jpg');
@@ -17,19 +28,28 @@ div.banner {
   padding: auto;
   min-height: 400px;
 }
+
 div.banner .banner__TextContainer {
   margin: 80px 20vw;
   text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
+
 div.banner .banner__TextContainer h1 {
   max-width: 40vw;
   font-size: 60px;
 }
+
 div.banner .banner__TextContainer p {
   font-size: 30px;
 }
 
 /*Recomendations*/
 div.recommendations {
-  padding: 40px 10%;
+  padding: 4rem 1rem;
+
+}
+
+.recommendationsTitle {
+  font-size: 1.7rem;
+  padding-left: 4rem;
 }

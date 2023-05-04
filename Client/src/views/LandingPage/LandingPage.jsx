@@ -1,46 +1,19 @@
-import Topbar from '../../components/Topbar/Topbar';
-import {getAllProducts} from '../../redux/actions';
 import Cards from '../../components/Cards/Cards';
 import Style from './LandingPage.module.css';
 import {useEffect, useState} from 'react';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
 
-function mapStateToProps(state) {
-  return {
-    products: state.products,
-  };
-}
-function mapDispatchToProps(dispatch) {
-  return {
-    getAllProducts: function () {
-      return dispatch(getAllProducts());
-    },
-  };
-}
-
-const LandingPage = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(function LandingPage(props) {
+function LandingPage() {
   const [recommendedProducts, setRecommended] = useState([]);
-  const [mounted, setMounted] = useState(false);
+  const products = useSelector((state) => state.products);
 
   useEffect(() => {
-    const productsToState = async () => {
-      try {
-        if (!props.products.length) await props.getAllProducts();
-        setMounted(true);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    productsToState();
-    setRecommended([...props.products.slice(0, 5)]);
-    //eslint-disable-next-line
-  }, [mounted]);
+    setRecommended([...products.slice(0, 5)]);
+  }, [products]);
+
   return (
     <div className={Style.landingPage}>
-      <Topbar />
       <div className={Style.banner}>
         <div className={Style.banner__TextContainer}>
           <h1>¡Bienvenido a Component Corner!</h1>
@@ -49,11 +22,18 @@ const LandingPage = connect(
       </div>
       <div className={Style.menuContanier}></div>
       <div className={Style.recommendations}>
-        <h1>Recomendaciones:</h1>
+        <h1 className={Style.recommendationsTitle}>Recomendaciones:</h1>
         <Cards products={recommendedProducts} />
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '40px'}}>
+          <h2>¡Publica tus productos con nosotros!</h2>
+          <Link to={'/publicar'}>
+            <button >HAZ CLICK AQUI</button>
+          </Link>
+          <p>Comisiones del 11% por cada venta</p>
+        </div>
       </div>
     </div>
   );
-});
+}
 
 export default LandingPage;

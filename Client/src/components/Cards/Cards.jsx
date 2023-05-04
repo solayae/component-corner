@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import Card from './Card';
 import Styles from './Cards.module.css';
+
 export default function Cards(props) {
   const products = props.products;
 

@@ -26,12 +26,12 @@ const NavBar = () => {
   const logOut = useCallback(() => {
     dispatch(logout());
   }, [dispatch]);
-
+  
 
   useEffect(() => {
     if (currentUser) {
-      setShowModeratorBoard(currentUser.roles.includes("ROLE_MODERATOR"));
-      setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));
+      setShowModeratorBoard(currentUser?.roles.includes("ROLE_MODERATOR"));
+      setShowAdminBoard(currentUser?.roles.includes("ROLE_ADMIN"));
     } else {
       setShowModeratorBoard(false);
       setShowAdminBoard(false);
@@ -55,7 +55,7 @@ const NavBar = () => {
             </Link>
             <div className="navbar-nav mr-auto">
             <li className="nav-item">
-                <Link to={"/"} className="nav-link">
+                <Link to={"/user"} className="nav-link">
                 Inicio
                 </Link>
             </li>
@@ -93,7 +93,7 @@ const NavBar = () => {
                 </Link>
                 </li>
                 <li className="nav-item">
-                <a href="/" className="nav-link" onClick={logOut}>
+                <a href="/home" className="nav-link" onClick={logOut}>
                     Cerrar Sesión
                 </a>
                 </li>
@@ -101,13 +101,13 @@ const NavBar = () => {
             ) : (
             <div className="navbar-nav ml-auto">
                 <li className="nav-item">
-                <Link to={"/"} className="nav-link">
+                <Link to={"/home"} className="nav-link">
                     Login
                 </Link>
                 </li>
 
                 <li className="nav-item">
-                <Link to={"/"} className="nav-link">
+                <Link to={"/home"} className="nav-link">
                     Sign Up
                 </Link>
                 </li>

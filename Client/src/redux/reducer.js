@@ -1,14 +1,30 @@
-import {GET_ALL_PRODUCTS, ORDER_BY, FILTER_BY_CATEGORY, FILTER_BY_BRAND,SET_MESSAGE, CLEAR_MESSAGE, REGISTER_SUCCESS,
-  REGISTER_FAIL,
-  LOGIN_SUCCESS,
+import {
+  GET_ALL_PRODUCTS,
+  GET_DETAIL,
+  CLEAN_DETAIL,
+  ORDER_BY,
+  FILTER_BY_CATEGORY,
+  FILTER_BY_BRAND,
+  GET_PRODUCTS_BY_NAME,
+  LOGOUT,
+  SET_MESSAGE,
   LOGIN_FAIL,
-  LOGOUT } from './variables';
+  LOGIN_SUCCESS,
+  CLEAR_MESSAGE,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL
 
-  const user = JSON.parse(localStorage.getItem("user"));
+
+
+} from './variables';
+
+const user = localStorage.getItem('user');
 
 const initialState = {
   products: [],
   filtered: [],
+  detail: [],
+  filters: [],
   message: [],
   user: user ? { isLoggedIn: true, user } : { isLoggedIn: false, user: null }
 };
@@ -19,7 +35,27 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+        filtered: action.payload,
       };
+    case GET_PRODUCTS_BY_NAME:
+      return {
+        ...state,
+        filtered: action.payload,
+      };
+    case GET_DETAIL: {
+      return {
+        ...state,
+        detail: action.payload,
+      };
+    }
+    
+
+    case CLEAN_DETAIL:
+      return {
+        ...state,
+        detail: [],
+      };
+
     case ORDER_BY: {
       const orderType = {
         'A-Z': {
