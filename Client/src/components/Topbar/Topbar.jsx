@@ -4,12 +4,17 @@ import cart from './assets/cart-icon.png';
 import login from './assets/login-icon.png';
 import search from './assets/search-icon.png';
 import PopUp from '../PopUp/PopUp';
+import SignUp from '../SignUp/SignUp'
+import Login from '../Login/Login'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AiOutlineForm } from "react-icons/ai";
+
 
 const Topbar = () => {
 
   const [triggerPopUp, setTriggerPopUp] = useState(false);
+  const [triggerPopUpSignUp, setTriggerPopUpSignUp] = useState(false);
 
   return (
     <nav className={styles.topbar}>
@@ -30,9 +35,16 @@ const Topbar = () => {
             <img src={cart} alt='cart-icon' />
           </div>
           <div className={styles.login}>
-            <PopUp trigger={triggerPopUp} setTrigger={setTriggerPopUp} />
+            <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} />
             <img src={login} onClick={() => setTriggerPopUp(true)} alt='login-icon' />
           </div>
+          
+          <div className={styles.login}>
+            <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} />
+            <AiOutlineForm  style={{fontSize:'1.3em'}} onClick={() => setTriggerPopUpSignUp(true)} />
+            
+          </div>
+          
         </div>
       </div>
       <div className={styles.row2}>

@@ -9,7 +9,7 @@ import {
   CLEAR_MESSAGE,
   REGISTER_SUCCESS,
   REGISTER_ALL,
-  RESGITER_FAIL,
+  REGISTER_FAIL,
   LOGIN_FAIL,
   LOGOUT,
   LOGIN_SUCCESS
@@ -62,17 +62,23 @@ export const register = (name, email, password)=>(dispatch)=>{
                       dispatch({
                         type: REGISTER_SUCCESS
                       })
+
+                      dispatch({
+                        type: SET_MESSAGE,
+                        payload: response.data.message,
+                      });
+                      
                       return Promise.resolve()
                     }, 
                     (error)=>{
                       const message = (
-                        error.reponse &&
-                        error.reponse.data &&
+                        error.response &&
+                        error.response.data &&
                         error.response.data.message) ||
                         error.message || 
                         error.toString()
                         dispatch({
-                          type: RESGITER_FAIL
+                          type: REGISTER_FAIL
                         })
 
                         dispatch({
@@ -107,6 +113,11 @@ export const login = (email, password)=>(dispatch)=>{
             dispatch({
               type: LOGIN_FAIL
             })
+
+            dispatch({
+              type: SET_MESSAGE,
+              payload: message,
+            });
             return Promise.reject()
           }
           

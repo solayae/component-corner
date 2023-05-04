@@ -22,13 +22,13 @@ exports.signup = (req, res) =>{
         })
         .then(roles=>{
             usuario.setRoles(roles).then(()=>{
-                res.send({message: '¡Usuario registrado con exito!'})
+                res.send({message: '¡Registro exitoso!'})
             })
         })
        } else {
         usuario.setRoles([1])
           .then(()=>{
-            res.send({message:'¡Usuario resgistrado con exito!'})
+            res.send({message:'¡Registro exitoso!'})
           })
        }
     })
@@ -47,7 +47,7 @@ exports.signin = (req, res)=>{
     })
     .then(usuario=>{
         if(!usuario){
-            return res.status(404).send({message:'usuario no exite'})
+            return res.status(404).send({message:' :Usuario no existe'})
         }
         const passwordValidate = bcrypt.compareSync(
             req.body.password,
@@ -56,7 +56,7 @@ exports.signin = (req, res)=>{
         if(!passwordValidate){
             return res.status(401).send({
                 accessToken:null,
-                message:'password es invalido'
+                message:' :La contraseña no es invalida'
             })
         }
 
@@ -73,7 +73,7 @@ exports.signin = (req, res)=>{
                 id : usuario.id,
                 name: usuario.name,
                 roles:authorities,
-                accessToke:token
+                accessToken:token
             })
             
             })
