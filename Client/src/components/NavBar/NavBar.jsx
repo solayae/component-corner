@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import {  Link, useLocation } from "react-router-dom";
 
 
 import { logout } from "../../redux/actions";
