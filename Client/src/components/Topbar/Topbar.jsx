@@ -3,15 +3,15 @@ import favorite from './assets/favorite-icon.png';
 import cart from './assets/cart-icon.png';
 import login from './assets/login-icon.png';
 import PopUp from '../PopUp/PopUp';
-import {useState} from 'react';
-import {Link} from 'react-router-dom';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
-import {useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Topbar = ({setFilters}) => {
+const Topbar = ({ setFilters }) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
@@ -47,9 +47,11 @@ const Topbar = ({setFilters}) => {
           <div className={styles.favorite}>
             {' '}
             <img src={favorite} alt="favorite-icon" />
+            <div className={styles.badge}>0</div>
           </div>
           <div className={styles.cart}>
             <img src={cart} alt="cart-icon" />
+            <div className={styles.badge}>0</div>
           </div>
           <div className={styles.login}>
             <PopUp trigger={triggerPopUp} setTrigger={setTriggerPopUp} />
