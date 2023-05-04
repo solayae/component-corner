@@ -2,17 +2,24 @@ import styles from './Topbar.module.css';
 import favorite from './assets/favorite-icon.png';
 import cart from './assets/cart-icon.png';
 import login from './assets/login-icon.png';
-import PopUp from '../PopUp/PopUp';
-import {useState} from 'react';
-import {Link} from 'react-router-dom';
+
+import SignUp from '../SignUp/SignUp'
+import Login from '../Login/Login'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { AiOutlineForm } from "react-icons/ai";
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
 import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+
+
+
 const Topbar = ({setFilters, setPage}) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
+  const [triggerPopUpSignUp, setTriggerPopUpSignUp] = useState(false);
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
   const [input, setInput] = useState('');
@@ -54,9 +61,16 @@ const Topbar = ({setFilters, setPage}) => {
             <img src={cart} alt="cart-icon" />
           </div>
           <div className={styles.login}>
-            <PopUp trigger={triggerPopUp} setTrigger={setTriggerPopUp} />
-            <img src={login} onClick={() => setTriggerPopUp(true)} alt="login-icon" />
+            <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} />
+            <img src={login} onClick={() => setTriggerPopUp(true)} alt='login-icon' />
           </div>
+          
+          <div className={styles.login}>
+            <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} />
+            <AiOutlineForm  style={{fontSize:'1.3em'}} onClick={() => setTriggerPopUpSignUp(true)} />
+            
+          </div>
+          
         </div>
       </div>
       <div className={styles.row2}>
@@ -104,6 +118,7 @@ const Topbar = ({setFilters, setPage}) => {
     </nav>
   );
 };
+
 Topbar.propTypes = {
   setFilters: PropTypes.func,
   setPage: PropTypes.func,
