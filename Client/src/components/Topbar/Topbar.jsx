@@ -11,10 +11,11 @@ import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Topbar = ({setFilters}) => {
+const Topbar = ({setFilters, setPage}) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
+  const [input, setInput] = useState('');
 
   const productState = useSelector((state) => state.products);
   const allProducts = [...productState];
@@ -26,6 +27,7 @@ const Topbar = ({setFilters}) => {
   let length = categories.length;
   const handleClick = (e) => {
     setFilters([e]);
+    setPage(0);
     navigate('/home');
   };
 
@@ -40,8 +42,8 @@ const Topbar = ({setFilters}) => {
           <div className={styles.logo}>COMPONENT CORNER</div>
         </Link>
         <div className={styles.searchContainer}>
-          <SearchBar setResults={setResults} />
-          <SearchResults results={results} setResults={setResults} />
+          <SearchBar setResults={setResults} input={input} setInput={setInput} />
+          <SearchResults results={results} setResults={setResults} setInput={setInput} input={input} />
         </div>
         <div className={styles.icons}>
           <div className={styles.favorite}>
@@ -104,5 +106,6 @@ const Topbar = ({setFilters}) => {
 };
 Topbar.propTypes = {
   setFilters: PropTypes.func,
+  setPage: PropTypes.func,
 };
 export default Topbar;

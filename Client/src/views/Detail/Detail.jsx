@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getDetail, cleanDetail } from '../../redux/actions';
-import { useParams } from 'react-router-dom';
+import {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {getDetail, cleanDetail} from '../../redux/actions';
+import {useParams} from 'react-router-dom';
 
 import styles from './Detail.module.css';
 import Rating from '@mui/material/Rating';
 
 function Detail() {
-  const { id } = useParams();
+  const {id} = useParams();
   const dispatch = useDispatch();
   const detailProduct = useSelector((state) => state.detail);
 
@@ -21,7 +20,7 @@ function Detail() {
     };
   }, [dispatch, id]);
 
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(0);
 
   const handleAddToCart = () => {
     // lógica para agregar al carrito
@@ -34,18 +33,14 @@ function Detail() {
   };
 
   const handleIncrement = () => {
-    setQuantity(quantity + 1);
+    if (quantity < detailProduct.stock) setQuantity(quantity + 1);
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.container_image_details}>
         <div className={styles.container_image}>
-          <img
-            className={styles.image}
-            src={detailProduct.image}
-            alt={detailProduct.name}
-          />
+          <img className={styles.image} src={detailProduct.image} alt={detailProduct.name} />
         </div>
 
         <div className={styles.info}>
@@ -64,9 +59,7 @@ function Detail() {
               +{' '}
             </button>
           </div>
-          <p className={styles.extra_p}>
-            Stock disponible: {detailProduct.stock}
-          </p>
+          <p className={styles.extra_p}>Stock disponible: {detailProduct.stock}</p>
           <button className={styles.addToCartBtn} onClick={handleAddToCart}>
             AGREGAR AL CARRITO
           </button>
@@ -75,8 +68,9 @@ function Detail() {
 
       <div className={styles.details}>
         <p>Caracteristicas:</p>
-        {detailProduct.detail?.map((spec, index) => <li key={index}>{spec}</li>)}
-
+        {detailProduct.detail?.map((spec, index) => (
+          <li key={index}>{spec}</li>
+        ))}
       </div>
 
       <h3 className={styles.rating_comments}>Comentarios</h3>
@@ -85,21 +79,10 @@ function Detail() {
         {/* <p>Cantidad de comentarios: 0</p> */}
         <div className={styles.rating_stars}>
           <p>Valoración de tu compra :</p>
-          <Rating
-            name='no-value'
-            value={null}
-            size=''
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          />
+          <Rating name="no-value" value={null} size="" />
         </div>
         <div className={styles.commentInput}>
-          <textarea
-            id='comment'
-            name='comment'
-            placeholder='Escribe aquí tu comentario'
-          ></textarea>
+          <textarea id="comment" name="comment" placeholder="Escribe aquí tu comentario"></textarea>
         </div>
         <div className={styles.container_button}>
           <button className={styles.rating_button}>AGREGAR COMENTARIO</button>
