@@ -43,12 +43,13 @@ function App() {
   
   return (
     <div className="App">
-    <Routes>
+    {/* <Routes>
     <Route path="/user" element={<BoardUser/>} />
-    </Routes>
+    </Routes> */}
     
     <Topbar setFilters={setFilters} setPage={setPage} />
     <Routes>
+    <Route path="/user" element={<BoardUser/>} />
       <Route exact path="/" element={<LandingPage />} />
       <Route path="/products/:id" element={<Detail />} />
       {/* <Route path="/registrarse" element={<SignInPage />} /> */}
