@@ -1,154 +1,138 @@
-const {motherboards, monitores} = require('../../dbProducts')
+//const { articulos } = require('../Utils/Productos')
+const {
+  getProductByName,
+  getAllProducts,
+  getProductFiltered,
+  getProductByBrand,
+  productById,
+  deleteLogicProduct,
+  createProduct,
+  deleteProduct,
+  updateProducts
+} = require("../controllers/productsControllers");
 const { Op } = require("sequelize");
-const { Products } = require("../db");
 
-async function addProduct() {
- /*  const addProduct = await Products.create({
-    image:
-      "https://img.pccomponentes.com/articles/1059/10594876/1607-asus-rog-strix-b650e-f-gaming-wifi.jpg",
-    price: 217,
-    brand: "Asus",
-    name: "MOTHER ASUS (AM5) ROG STRIX B650E-E GAMING WFI",
-    detail: [
-      "AMD Socket AM5 for AMD Ryzen 7000 Series Desktop Processors",
-      "Total supports 4 x M.2 slots and 4 x SATA 6Gb/s ports",
-      "ROG SupremeFX 7.1 Surround Sound High Definition Audio CODEC ALC4080",
-      "4x DIMM Slots, DDR5 6400MHz, PCIe Gen 5, 4x SATA 6Gb/s connectors, 4xM.2 Slot, 2.5GB LAN",
-      "Graphics: 1 x DisplayPort* 1 x HDMI® port",
-      "Expansion Slots AMD Ryzen™ 7000 Series Desktop Processors*",
-    ],
-    category: "Motherboard",
-    stock: 0,
-    delete: false,
-  }); */
-  const addMotherboards = await Products.bulkCreate(motherboards)
-  const addMonitores = await Products.bulkCreate(monitores)
-  return [...addMotherboards, addMonitores];
-}
-async function product() {
-  const newProduct = await addProduct();
-  console.log(newProduct)
-}
 
-// trae todos los productos de la base de datos
+// trae los productos por nombre o categoria en caso de recibir uno, sino trae todos los productos
 const handleProductsAll = async (req, res) => {
-  const { name } = req.query;
-
-  if (!name) {
-    // trae todos los productos
-    const allProduct = await Products.findAll();
-    res.status(200).json(allProduct);
-  } else {
-    // trae los productos que coincidan con el nombre
-    const allProduct = await Products.findAll({
-      where: {
-        name: { [Op.substring]: name },
-      },
-    });
-    res.status(200).json(allProduct);
+  const { name, brand, category } = req.query;
+  try {
+    if(name){
+        const productsByName = await getProductByName(name)
+        productsByName.length? res.status(200).json(productsByName) : res.status(400).json({message: `No se encontro ${name}`})      
+      } 
+      else if (category && brand){
+        const productsByBrandCategory = await getProductFiltered(category, brand)
+        productsByBrandCategory.length? res.status(200).json(productsByBrandCategory) : res.status(400).json({message: `No se encontro ${category} de la marca ${brand}`})
+      }  
+      else if(category){
+        const productsByCategory = await getProductFiltered(category);
+        productsByCategory.length? res.status(200).json(productsByCategory) : res.status(400).json({message: `No se encontro productos de ${category}`})
+      }
+      else if(brand){
+        const productByBrand = await getProductByBrand(brand);
+        productByBrand.length? res.status(200).json(productByBrand) : res.status(400).json({message:`No se encontro producto de la marca ${brand}`})
+      }
+    else {
+        const allProducts = await getAllProducts()
+        res.status(200).json(allProducts)
+    }
+  } catch (error) {
+    res.status(400).json({error:error.message});
   }
 };
+
 
 // trae un producto por id de la base de datos
 const handleProductById = async (req, res) => {
   const { productsId } = req.params;
-  console.log(productsId)
   try {
+    const product = await productById(productsId);
+    if (product) return res.status(200).json(product);
+    else res.status(400).json(`No se encontro producto con id ${productsId}`);
     
-    const oneProduct = await Products.findByPk(productsId)    
-    if (!oneProduct) return res.status(400).json({error: error.message})
-    res.status(200).json(oneProduct)
   } catch (error) {
     res.status(400).json({ error: error.message });
-    
   }
 };
 
-
-
-const handleDeleteById = async (req, res) => {
-  const { productsId } = req.params
-  console.log('ruta de put')
+//deshabilita o habilita un producto para el borrado logico
+const handleDeleteLogicById = async (req, res) => {
+  const { productsId } = req.body;
+  console.log("ruta de patch");
   try {
-   
-    const updateProduct= await Products.update({ delete: true }, {
-      where: {
-        id: productsId
-      }
-    })
-    return updateProduct[0]>0 ?  res.status(200).json({message: 'El producto se elimino con éxito!'}) : res.status(400).json({message: 'no se elimino ningun producto'})
-    
+    const updateProduct = await deleteLogicProduct(productsId);
+      updateProduct.delete
+      ? res.status(201).json("El producto se ha deshabilitado" )
+      : res.status(201).json("El producto se ha habilitado con éxito!" );
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
+};
+
+//borra un producto de la base de datos
+const deleteHandler =  async (req, res) => {
+  const { id } = req.params
+  const validUuid = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
+  try {
+    if (!validUuid.test(id) || !id) {
+      return res.status(400).json(`El id ${id} no es un UUID válido`);
+    }
+    else {
+        await deleteProduct(id);
+        return res.status(200).json({message:"El producto se ha eliminado satisfactoriamente"})
+    }
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+
+  }
 }
 
+//modifica el valor de las propiedades de un producto
 const updateProduct = async (req, res) => {
-  const { id, image, name, brand, detail, price, category, stock } = req.body
+  const { id, image, name, brand, detail, price, category, stock } = req.body;
   try {
-    if (!id) return res.status(400).json({ error: 'falta el ID' })
-    const updateProduct = await Products.update({
-      image,
-      name,
-      brand,
-      detail,
-      price,
-      category,
-      stock,
-    }, {
-      where: {
-        id: id
-      }
-    })
-    
-    return updateProduct[0]>0 ?  res.status(200).json({message: 'El producto se actualizo con éxito!'}) : res.status(400).json({message: 'El producto no se actualizo'})
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-}
+    if (!id) return res.status(400).json({ message: "Falta el ID" });
 
-/* 
-where: { name: 'Goku' },
-3 defaults: {
-4
-gender: 'M',
-5
-race: 'Saiyan'
-6 }
-*/
-
-const createProduct = async (req, res) => {
-  const { image, name, brand, detail, price, category, stock } = req.body
-  try {
-
-    const [newProduct, create] = await Products.findOrCreate({
-      where: {
-        name: name,
-      },
-      defaults: {
-        image,
-        name,
-        brand,
-        detail,
-        price,
-        category,
-        stock
-      }
-    })
-
+    const updateProduct = await  updateProducts(image, name, brand, detail, price, category, stock, id)
   
-    if (!create) return res.status(200).json({ message: `el producto ya existe` })
-    return res.status(201).json({message: `el producto ${name} ha sido creado con éxito`})
+    return updateProduct[0] > 0
+      ? res.status(200).json({ message: "El producto se actualizo con éxito!" })
+      : res.status(400).json({ message: "El producto no se actualizo" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-}
+};
 
+//crea un nuevo producto en la base de datos, si no lo encuentra
+const createProductHandler = async (req, res) => {
+    const propNecesarias = ['image', 'name', 'brand', 'detail', 'price', 'category', "stock"];
+    const propFaltantes = [];
+    propNecesarias.forEach(prop => {
+        if (!req.body[prop]) {
+            propFaltantes.push(prop);
+        }
+    });
+    if(propFaltantes.length > 0){
+      const faltantes = `Campos faltantes: ${propFaltantes.join(', ')}`;
+        res.status(400).json({ error: faltantes });
+    }
+    else{
+      const {image, name, brand, detail, price, category, stock} = req.body;
+      try {
+        const [newProduct, created] = await createProduct(image, name, brand, detail, price, category, stock)
+        created? res.status(200).json(`El producto ${name} se ha creado exitosamente`) : res.status(200).json(`El producto ${name} ya existe`)
+      } catch (error) {
+        res.status(400).json({ error: error.message });
+      }
+    }
+};
 
 module.exports = {
   handleProductsAll,
   handleProductById,
-  handleDeleteById,
+  deleteHandler,
+  handleDeleteLogicById,
   updateProduct,
-  createProduct
+  createProductHandler,
 };

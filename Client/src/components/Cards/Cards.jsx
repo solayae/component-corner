@@ -1,31 +1,24 @@
-import styles from './Cards.module.css';
+import PropTypes from 'prop-types';
+import Card from './Card';
+import Styles from './Cards.module.css';
 
-export default function Cards() {
-    return (
+export default function Cards(props) {
+  const products = props.products;
 
-        <div>
-            <div className={styles.card}>
-
-                <h2>MOTHERBOARD RANDOM</h2>
-
-                <h4>PRICE: 3422</h4>
-            </div>
-
-            <div className={styles.card}>
-
-                <h2>MOUSE RANDOM</h2>
-
-                <h4>PRICE: 23452</h4>
-            </div>
-
-            <div className={styles.card}>
-
-                <h2>MONITOR RANDOM</h2>
-
-                <h4>PRICE: 3463</h4>
-            </div>
-
-        </div >
-
-    )
+  return (
+    <div className={Styles.cards__container}>
+      {products.map((e) => (
+        <Card product={e} key={e.id} />
+      ))}
+    </div>
+  );
 }
+Cards.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      image: PropTypes.string,
+      id: PropTypes.string,
+    })
+  ).isRequired,
+};

@@ -1,8 +1,13 @@
 :root {
   --font-heading: 'Montserrat', sans-serif;
   --font-body: 'Roboto', sans-serif;
-}
 
+  --primary-color: #118ab2;
+  --secondary-color: #073b4c;
+  --third-color: #06d6a0;
+  --four-color: #ffd166;
+  --five-color: #ef476f;
+}
 * {
   margin: 0;
   padding: 0;

@@ -8,6 +8,7 @@ module.exports = (sequelize) => {
       type: DataTypes.UUID,
       defaultValue:DataTypes.UUIDV4,
       primaryKey: true,
+      unique: true,
     },
      image: {
       type: DataTypes.TEXT,
@@ -30,11 +31,10 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.TEXT,
-      allowNull:false
+      allowNull: false,
     },
     stock: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      type: DataTypes.INTEGER
     },
     delete: {
       type: DataTypes.BOOLEAN,
