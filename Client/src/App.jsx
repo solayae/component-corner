@@ -16,6 +16,7 @@ import Cart from './views/Cart/Cart';
 function App() {
   const [mounted, setMounted] = useState(false);
   const [filters, setFilters] = useLocalStorage('filter_cards-Home', []);
+  const [page, setPage] = useLocalStorage('page', 0);
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const getProducts = async () => {
@@ -35,12 +36,15 @@ function App() {
   }, [mounted]);
   return (
     <div className="App">
-      <Topbar setFilters={setFilters} />
+      <Topbar setFilters={setFilters} setPage={setPage} />
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/products/:id" element={<Detail />} />
         <Route path="/registrarse" element={<SignInPage />} />
-        <Route path="/home" element={<Home filters={filters} setFilters={setFilters} />} />
+        <Route
+          path="/home"
+          element={<Home filters={filters} setFilters={setFilters} page={page} setPage={setPage} />}
+        />
         <Route path="/publicar" element={<FormProduct />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>

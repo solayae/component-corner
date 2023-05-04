@@ -7,10 +7,9 @@ import useLocalStorage from '../../components/useLocalStorage';
 import {getProductsByName} from '../../redux/actions';
 import PropTypes from 'prop-types';
 
-export default function Home({filters, setFilters}) {
+export default function Home({filters, setFilters, page, setPage}) {
   const [products, setProducts] = useState([]);
   const [sort, setSort] = useLocalStorage('sort_cards-Home', 'A-Z');
-  const [page, setPage] = useLocalStorage('page', 0);
   const [input, setInput] = useLocalStorage('input-Home', '');
   const productState = useSelector((state) => state.products);
   const productsFiltered = useSelector((state) => state.filtered);
@@ -102,6 +101,8 @@ export default function Home({filters, setFilters}) {
   );
 }
 Home.propTypes = {
-  filters: PropTypes.any,
+  filters: PropTypes.array,
   setFilters: PropTypes.func,
+  page: PropTypes.number,
+  setPage: PropTypes.func,
 };

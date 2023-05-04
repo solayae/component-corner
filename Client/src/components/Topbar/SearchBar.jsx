@@ -1,12 +1,9 @@
 import styles from './Topbar.module.css';
 import search from './assets/search-icon.png';
-import {useState} from 'react';
 import axios from 'axios';
 import PropType from 'prop-types';
 
-function SearchBar({setResults}) {
-  const [input, setInput] = useState('');
-
+function SearchBar({setResults, input, setInput}) {
   const getData = async (value) => {
     try {
       let results = [];
@@ -34,4 +31,6 @@ function SearchBar({setResults}) {
 export default SearchBar;
 SearchBar.propTypes = {
   setResults: PropType.func,
+  input: PropType.string,
+  setInput: PropType.func,
 };
