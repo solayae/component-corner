@@ -13,7 +13,7 @@ import SearchResults from './SearchResults';
 import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import PropTypes from 'prop-types';
-
+import { useEffect } from 'react'
 
 
 
@@ -29,6 +29,13 @@ const Topbar = ({setFilters, setPage}) => {
 
   let categories = allProducts.map((e) => e.category);
   categories = [...new Set(categories)];
+
+
+  useEffect(()=>{
+      console.log('render')
+  }, [])
+
+
 
   // Obtén la longitud del array original
   let length = categories.length;
