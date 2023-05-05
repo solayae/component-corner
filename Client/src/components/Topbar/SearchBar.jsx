@@ -3,7 +3,8 @@ import search from './assets/search-icon.png';
 import axios from 'axios';
 import PropType from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 
 function SearchBar({setResults, results, setSelect, input, setInput}) {
   const navigate = useNavigate()
