@@ -3,9 +3,33 @@ import search from './assets/search-icon.png';
 import {useState} from 'react';
 import axios from 'axios';
 import PropType from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
-function SearchBar({setResults}) {
+function SearchBar({setResults, results, setSelect}) {
+  const navigate = useNavigate()
   const [input, setInput] = useState('');
+  const [activeIndex, setActiveIndex] = useState(-1);
+
+  const handleKeyDown = (e) => {
+    console.log(e)
+    const resultsLength = results.length;
+    if (e.key === 'ArrowUp') {
+      setActiveIndex(activeIndex === 0 ? resultsLength - 1 : activeIndex - 1);
+    } else if (e.key === 'ArrowDown') {
+      setActiveIndex(activeIndex === resultsLength - 1 ? 0 : activeIndex + 1);
+    } else if (e.key === 'Enter') {
+      navigate(`/products/${results[activeIndex].id}`);
+      setResults([])
+      setInput("")
+      setActiveIndex(-1)
+    }
+  };
+
+  useEffect(()=>{
+    setSelect(activeIndex)
+ },[activeIndex])
+
 
   const getData = async (value) => {
     try {
@@ -22,10 +46,17 @@ function SearchBar({setResults}) {
   const handleChange = (value) => {
     setInput(value);
     getData(value);
+    setActiveIndex(-1)
   };
+  
+ 
   return (
     <div className={styles.search}>
-      <input type="text" placeholder="Buscar productos" value={input} onChange={(e) => handleChange(e.target.value)} />
+      <input type="search" placeholder="Buscar productos"  
+      value={input} 
+      onChange={(e) => handleChange(e.target.value)} 
+      onKeyDown={handleKeyDown}
+       />
       <img src={search} alt="search-icon" />
     </div>
   );

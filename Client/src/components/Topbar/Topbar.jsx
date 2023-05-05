@@ -15,6 +15,7 @@ const Topbar = ({setFilters}) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
+  const [select, setSelect] = useState("")
 
   const productState = useSelector((state) => state.products);
   const allProducts = [...productState];
@@ -40,8 +41,10 @@ const Topbar = ({setFilters}) => {
           <div className={styles.logo}>COMPONENT CORNER</div>
         </Link>
         <div className={styles.searchContainer}>
-          <SearchBar setResults={setResults} />
-          <SearchResults results={results} setResults={setResults} />
+          <SearchBar setResults={setResults}
+          results={results}
+          setSelect={setSelect} />
+          <SearchResults results={results} setResults={setResults} select={select} />
         </div>
         <div className={styles.icons}>
           <div className={styles.favorite}>
