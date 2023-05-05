@@ -12,7 +12,7 @@ import LandingPage from './views/LandingPage/LandingPage';
 import FormProduct from './views/FormProduct/FormProduct';
 import useLocalStorage from './components/useLocalStorage';
 import BoardUser   from './components/BoardUser/BoardUser';
-
+import Cart from './views/Cart/Cart';
 
 
 
@@ -20,6 +20,7 @@ function App() {
   const [mounted, setMounted] = useState(false);
   const [filters, setFilters] = useLocalStorage('filter_cards-Home', []);
   const [page, setPage] = useLocalStorage('page', 0);
+  const [cart, setCart] = useLocalStorage('cart', []);
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const getProducts = async () => {
@@ -40,24 +41,25 @@ function App() {
 
 
 
-  
+
   return (
     <div className="App">
     {/* <Routes>
     <Route path="/user" element={<BoardUser/>} />
     </Routes> */}
     
-    <Topbar setFilters={setFilters} setPage={setPage} />
+    <Topbar setFilters={setFilters} setPage={setPage} cart={cart} />
     <Routes>
     <Route path="/user" element={<BoardUser/>} />
       <Route exact path="/" element={<LandingPage />} />
-      <Route path="/products/:id" element={<Detail />} />
+      <Route path="/products/:id" element={<Detail cart={cart} setCart={setCart} />} />
       {/* <Route path="/registrarse" element={<SignInPage />} /> */}
       <Route
         path="/home"
         element={<Home filters={filters} setFilters={setFilters} page={page} setPage={setPage} />}
       />
       <Route path="/publicar" element={<FormProduct />} />
+      <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
     </Routes>
     <Footer />
   </div>
