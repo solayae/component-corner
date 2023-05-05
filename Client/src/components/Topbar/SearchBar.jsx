@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 
 function SearchBar({setResults, results, setSelect, input, setInput}) {
   const navigate = useNavigate()
-  const [input, setInput] = useState('');
+ // const [input, setInput] = useState('');
   const [activeIndex, setActiveIndex] = useState(-1);
 
   const handleKeyDown = (e) => {

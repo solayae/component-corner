@@ -57,10 +57,9 @@ const Topbar = ({ setFilters }) => {
           <div className={styles.logo}>COMPONENT CORNER</div>
         </Link>
         <div className={styles.searchContainer}>
-          <SearchBar setResults={setResults}
-          results={results}
-          setSelect={setSelect} input={input} setInput={setInput} />
-          <SearchResults results={results} setResults={setResults} select={select} setInput={setInput} input={input} />
+          <SearchBar setResults={setResults} input={input} setInput={setInput}  results={results}
+          setSelect={setSelect}/>
+          <SearchResults results={results} setResults={setResults} setInput={setInput} input={input} select={select} />
         </div>
         <div className={styles.icons}>
           <div className={styles.favorite}>

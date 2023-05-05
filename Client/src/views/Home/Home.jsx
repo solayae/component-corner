@@ -115,11 +115,7 @@ export default function Home({filters, setFilters, page, setPage}) {
         </div>
       </div>
     </div>
-  :<div>
-        {content}
-  </div>
-    
-  );
+  )
   // :<div>
   //       {content}
   // </div>
