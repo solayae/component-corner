@@ -1,12 +1,11 @@
 import styles from './Topbar.module.css';
 import search from './assets/search-icon.png';
-import {useState} from 'react';
 import axios from 'axios';
 import PropType from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-function SearchBar({setResults, results, setSelect}) {
+function SearchBar({setResults, results, setSelect, input, setInput}) {
   const navigate = useNavigate()
   const [input, setInput] = useState('');
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -34,7 +33,8 @@ function SearchBar({setResults, results, setSelect}) {
   const getData = async (value) => {
     try {
       let results = [];
-      const response = await axios.get(`http://localhost:3001/products/?name=${value}`);
+      // const response = await axios.get(`http://localhost:3001/products/?name=${value}`);
+      const response = await axios.get(`/products/?name=${value}`);
       if (value) results = response.data;
       setResults(results);
     } catch (error) {
@@ -65,4 +65,6 @@ function SearchBar({setResults, results, setSelect}) {
 export default SearchBar;
 SearchBar.propTypes = {
   setResults: PropType.func,
+  input: PropType.string,
+  setInput: PropType.func,
 };

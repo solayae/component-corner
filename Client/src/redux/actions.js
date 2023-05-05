@@ -7,18 +7,20 @@ import {
   ORDER_BY,
   FILTER_BY_CATEGORY,
   FILTER_BY_BRAND,
-  GET_PRODUCTS_BY_NAME, REGISTER_FAIL,
+  GET_PRODUCTS_BY_NAME,
+  REGISTER_FAIL,
   SET_MESSAGE,
   CLEAR_MESSAGE,
   REGISTER_SUCCESS,
-  LOGIN_SUCCESS,LOGIN_FAIL,
-  LOGOUT
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT,
 } from './variables';
 
 
 export function getAllProducts() {
   return async function (dispatch) {
-    const response = await axios.get('http://localhost:3001/products/');
+    const response = await axios.get('/products/');
     const allProducts = response.data;
     return dispatch({
       type: GET_ALL_PRODUCTS,
@@ -29,7 +31,7 @@ export function getAllProducts() {
 export function getProductsByName(name) {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`http://localhost:3001/products/?name=${name}`);
+      const response = await axios.get(`/products/?name=${name}`);
       const filteredProduct = response.data;
       return dispatch({
         type: GET_PRODUCTS_BY_NAME,
@@ -47,7 +49,7 @@ export function getProductsByName(name) {
 
 export function getDetail(id) {
   return async function (dispatch) {
-    const response = await axios.get(`http://localhost:3001/products/${id}`);
+    const response = await axios.get(`/products/${id}`);
     const productId = response.data;
     return dispatch({
       type: GET_DETAIL,
@@ -64,104 +66,99 @@ export function cleanDetail() {
 
 export function orderBy(order) {
   return function (dispatch) {
-    dispatch({type: ORDER_BY, payload: order});
+    dispatch({ type: ORDER_BY, payload: order });
   };
 }
 
 export function filterByCategory(category) {
   return function (dispatch) {
-    dispatch({type: FILTER_BY_CATEGORY, payload: category});
+    dispatch({ type: FILTER_BY_CATEGORY, payload: category });
   };
 }
 
 export function filterByBrand(brand) {
   return function (dispatch) {
-    dispatch({type: FILTER_BY_BRAND, payload: brand});
+    dispatch({ type: FILTER_BY_BRAND, payload: brand });
   };
 }
 
-
-export const setMessage = (message)=>({
+export const setMessage = (message) => ({
   type: SET_MESSAGE,
-  paload:message
-})
+  paload: message,
+});
 
-export const clearMessage = ()=>({
-  type: CLEAR_MESSAGE
-})
+export const clearMessage = () => ({
+  type: CLEAR_MESSAGE,
+});
 
-export const register = (name, email, password)=>(dispatch)=>{
-  return authService.register(name, email, password)
-                    .then((response)=>{
-                      dispatch({
-                        type: REGISTER_SUCCESS
-                      })
+export const register = (name, email, password) => (dispatch) => {
+  return authService.register(name, email, password).then(
+    (response) => {
+      dispatch({
+        type: REGISTER_SUCCESS,
+      });
 
-                      dispatch({
-                        type: SET_MESSAGE,
-                        payload: response.data.message,
-                      });
-                      
-                      return Promise.resolve()
-                    }, 
-                    (error)=>{
-                      const message = (
-                        error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                        error.message || 
-                        error.toString()
-                        dispatch({
-                          type: REGISTER_FAIL
-                        })
+      dispatch({
+        type: SET_MESSAGE,
+        payload: response.data.message,
+      });
 
-                        dispatch({
-                          type : SET_MESSAGE,
-                          payload : message
-                        })
-                         
-                        return Promise.reject()
-                     }
-                    )
-}
+      return Promise.resolve();
+    },
+    (error) => {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      dispatch({
+        type: REGISTER_FAIL,
+      });
 
+      dispatch({
+        type: SET_MESSAGE,
+        payload: message,
+      });
 
-export const login = (email, password)=>(dispatch)=>{
-  return authService.login(email, password)
-          .then((data)=>{
-            dispatch({
-              type: LOGIN_SUCCESS,
-              payload : { user : data}
-            })
-            return Promise.resolve()
-          }, 
-          (error)=>{
-            const message =
-            (
-              error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-              error.message ||
-              error.toString()
+      return Promise.reject();
+    }
+  );
+};
 
-            dispatch({
-              type: LOGIN_FAIL
-            })
+export const login = (email, password) => (dispatch) => {
+  return authService.login(email, password).then(
+    (data) => {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: { user: data },
+      });
+      return Promise.resolve();
+    },
+    (error) => {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
 
-            dispatch({
-              type: SET_MESSAGE,
-              payload: message,
-            });
-            return Promise.reject()
-          }
-          
-      )
-}
+      dispatch({
+        type: LOGIN_FAIL,
+      });
 
+      dispatch({
+        type: SET_MESSAGE,
+        payload: message,
+      });
+      return Promise.reject();
+    }
+  );
+};
 
-export const logout = ()=>dispatch=>{
-  authService.logout()
+export const logout = () => (dispatch) => {
+  authService.logout();
   dispatch({
-    type: LOGOUT
-  })
-}
+    type: LOGOUT,
+  });
+};

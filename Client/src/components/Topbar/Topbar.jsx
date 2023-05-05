@@ -59,8 +59,8 @@ const Topbar = ({ setFilters }) => {
         <div className={styles.searchContainer}>
           <SearchBar setResults={setResults}
           results={results}
-          setSelect={setSelect} />
-          <SearchResults results={results} setResults={setResults} select={select} />
+          setSelect={setSelect} input={input} setInput={setInput} />
+          <SearchResults results={results} setResults={setResults} select={select} setInput={setInput} input={input} />
         </div>
         <div className={styles.icons}>
           <div className={styles.favorite}>
