@@ -27,9 +27,11 @@ const NavBar = () => {
     dispatch(logout());
   }, [dispatch]);
   
+ 
 
+console.log(currentUser)
   useEffect(() => {
-    if (currentUser) {
+    if (currentUser.roles) {
       setShowModeratorBoard(currentUser?.roles.includes("ROLE_MODERATOR"));
       setShowAdminBoard(currentUser?.roles.includes("ROLE_ADMIN"));
     } else {
