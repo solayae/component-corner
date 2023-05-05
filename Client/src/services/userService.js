@@ -1,7 +1,8 @@
 import axios from 'axios'
 import authHeader from './authHeader'
 
-const API_URL = 'http://localhost:3001/api/'
+// const API_URL = 'http://localhost:3001/api/'
+const API_URL = 'https://component-corner-production.up.railway.app/products/api/'
 const PUBLIC = 'all'
 const USER = 'user'
 const MOD = 'mod'

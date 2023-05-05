@@ -42,7 +42,8 @@ export default function FormProduct() {
     }
     setErrorList({});
     try {
-      const response = await axios.post('http://localhost:3001/products/', {...product, detail: [product.detail]});
+      // const response = await axios.post('http://localhost:3001/products/', {...product, detail: [product.detail]});
+      const response = await axios.post('https://component-corner-production.up.railway.app/products/products/', {...product, detail: [product.detail]});
       const message = response.data;
       setServerResponse(message);
     } catch (error) {

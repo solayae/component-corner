@@ -7,7 +7,8 @@ function SearchBar({setResults, input, setInput}) {
   const getData = async (value) => {
     try {
       let results = [];
-      const response = await axios.get(`http://localhost:3001/products/?name=${value}`);
+      // const response = await axios.get(`http://localhost:3001/products/?name=${value}`);
+      const response = await axios.get(`https://component-corner-production.up.railway.app/products/products/?name=${value}`);
       if (value) results = response.data;
       setResults(results);
     } catch (error) {
