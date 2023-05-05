@@ -9,6 +9,8 @@
 .container_image_details {
   display: flex;
   align-items: center;
+  background-color: white;
+
 }
 
 .container_image {
@@ -24,7 +26,7 @@
 
 
 .details {
-  margin-top: 5rem;
+  margin-top: 3rem;
   padding: 1rem;
   border: 1px solid #ccc;
   background-color: #f7f7f7;
@@ -138,6 +140,7 @@
   font-size: 1rem;
   cursor: pointer;
   width: max-content;
+  text-decoration: none;
 }
 
 .addToCartBtn:hover {

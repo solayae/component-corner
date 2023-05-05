@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 import style from './Topbar.module.css';
 import PropTypes from 'prop-types';
 
-export default function SearchResults({results, setResults, select}) {
+export default function SearchResults({results, setResults, setInput, input, select}) {
 
   
   if (results.length)
@@ -14,6 +14,7 @@ export default function SearchResults({results, setResults, select}) {
             to={`/products/${e.id}`}
             onClick={() => {
               setResults([]);
+              setInput('');
             }}>
             <div key={e.id} className={`${style.results} ${index === select ? style.activeOption : ''} `}>
               <p>{e.name}</p>
@@ -23,8 +24,18 @@ export default function SearchResults({results, setResults, select}) {
         ))}
       </div>
     );
+  if (input)
+    return (
+      <div className={style.searchResults}>
+        <div className={style.noResults}>
+          <p>{`No se encontró el producto "${input.length > 10 ? input.slice(0, 10) + '...' : input}"`}</p>
+        </div>
+      </div>
+    );
 }
 SearchResults.propTypes = {
   results: PropTypes.array,
   setResults: PropTypes.func,
+  setInput: PropTypes.func,
+  input: PropTypes.string,
 };

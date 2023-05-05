@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {useState} from 'react';
+import { useState } from 'react';
 import style from './FormProduct.module.css';
 
 export default function FormProduct() {
@@ -16,10 +16,10 @@ export default function FormProduct() {
   const [serverResponse, setServerResponse] = useState('');
   const handleChange = (e, type) => {
     const value = e.target.value;
-    if (type !== 'price' && type !== 'stock') return setProduct({...product, [type]: value});
-    if (value > 9999) return setProduct({...product, [type]: 9999});
-    if (value < 0) return setProduct({...product, [type]: 0});
-    return setProduct({...product, [type]: value});
+    if (type !== 'price' && type !== 'stock') return setProduct({ ...product, [type]: value });
+    if (value > 9999) return setProduct({ ...product, [type]: 9999 });
+    if (value < 0) return setProduct({ ...product, [type]: 0 });
+    return setProduct({ ...product, [type]: value });
   };
   const validate = (p) => {
     const regexURL = /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/;
@@ -42,7 +42,7 @@ export default function FormProduct() {
     }
     setErrorList({});
     try {
-      const response = await axios.post('http://localhost:3001/products/', {...product, detail: [product.detail]});
+      const response = await axios.post('http://localhost:3001/products/', { ...product, detail: [product.detail] });
       const message = response.data;
       setServerResponse(message);
     } catch (error) {
@@ -70,7 +70,13 @@ export default function FormProduct() {
         {errorList.brand && <p>{errorList.brand}</p>}
         <div>
           <label htmlFor="detail">Detalles del producto:</label>
-          <input type="text" value={product.detail} onChange={(e) => handleChange(e, 'detail')} />
+          <textarea
+            type="text"
+            value={product.detail}
+            onChange={(e) => handleChange(e, 'detail')}
+            cols="45"
+            rows="15"
+          />
         </div>
         {errorList.detail && <p>{errorList.detail}</p>}
         <div>
