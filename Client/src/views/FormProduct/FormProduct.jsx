@@ -42,7 +42,8 @@ export default function FormProduct() {
     }
     setErrorList({});
     try {
-      const response = await axios.post('http://localhost:3001/products/', {...product, detail: [product.detail]});
+      // const response = await axios.post('http://localhost:3001/products/', {...product, detail: [product.detail]});
+      const response = await axios.post('/products/', {...product, detail: [product.detail]});
       const message = response.data;
       setServerResponse(message);
     } catch (error) {
@@ -70,7 +71,13 @@ export default function FormProduct() {
         {errorList.brand && <p>{errorList.brand}</p>}
         <div>
           <label htmlFor="detail">Detalles del producto:</label>
-          <input type="text" value={product.detail} onChange={(e) => handleChange(e, 'detail')} />
+          <textarea
+            type="text"
+            value={product.detail}
+            onChange={(e) => handleChange(e, 'detail')}
+            cols="45"
+            rows="15"
+          />
         </div>
         {errorList.detail && <p>{errorList.detail}</p>}
         <div>

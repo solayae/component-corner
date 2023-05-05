@@ -3,7 +3,7 @@ exports.allAccess = (req,  res)=>{
 }
 
 exports.userBoard = (req, res)=>{
-    res.status(200).send('Usuarios registrados')
+    res.status(200).send('Contenido del usuario.')
 }
 
 exports.adminBoard = (res, req)=>{
