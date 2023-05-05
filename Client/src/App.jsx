@@ -1,20 +1,20 @@
 import './App.css';
-import {Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer/Footer.jsx';
 import Topbar from './components/Topbar/Topbar.jsx';
 import Detail from './views/Detail/Detail';
 //import SignInPage from './views/SignInPage/SignInPage';
-import {useDispatch, useSelector} from 'react-redux';
-import {getAllProducts} from './redux/actions';
-import {useEffect, useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllProducts } from './redux/actions';
+import { useEffect, useState } from 'react';
 import Home from './views/Home/Home';
 import LandingPage from './views/LandingPage/LandingPage';
 import FormProduct from './views/FormProduct/FormProduct';
 import useLocalStorage from './components/useLocalStorage';
-import BoardUser   from './components/BoardUser/BoardUser';
+import BoardUser from './components/BoardUser/BoardUser';
 
-
-
+import axios from 'axios';
+axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/'
 
 function App() {
   const [mounted, setMounted] = useState(false);
@@ -38,29 +38,33 @@ function App() {
     //eslint-disable-next-line
   }, [mounted]);
 
-
-
-  
   return (
-    <div className="App">
-    {/* <Routes>
+    <div className='App'>
+      {/* <Routes>
     <Route path="/user" element={<BoardUser/>} />
     </Routes> */}
-    
-    <Topbar setFilters={setFilters} setPage={setPage} />
-    <Routes>
-    <Route path="/user" element={<BoardUser/>} />
-      <Route exact path="/" element={<LandingPage />} />
-      <Route path="/products/:id" element={<Detail />} />
-      {/* <Route path="/registrarse" element={<SignInPage />} /> */}
-      <Route
-        path="/home"
-        element={<Home filters={filters} setFilters={setFilters} page={page} setPage={setPage} />}
-      />
-      <Route path="/publicar" element={<FormProduct />} />
-    </Routes>
-    <Footer />
-  </div>
+
+      <Topbar setFilters={setFilters} setPage={setPage} />
+      <Routes>
+        <Route path='/user' element={<BoardUser />} />
+        <Route exact path='/' element={<LandingPage />} />
+        <Route path='/products/:id' element={<Detail />} />
+        {/* <Route path="/registrarse" element={<SignInPage />} /> */}
+        <Route
+          path='/home'
+          element={
+            <Home
+              filters={filters}
+              setFilters={setFilters}
+              page={page}
+              setPage={setPage}
+            />
+          }
+        />
+        <Route path='/publicar' element={<FormProduct />} />
+      </Routes>
+      <Footer />
+    </div>
   );
 }
 
