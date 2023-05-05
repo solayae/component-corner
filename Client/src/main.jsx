@@ -10,10 +10,10 @@ import store from './redux/store.js';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <React.StrictMode>
+    <React.Fragment>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </React.StrictMode>
+    </React.Fragment>
   </Provider>
 );
