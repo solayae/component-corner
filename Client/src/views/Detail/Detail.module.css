@@ -140,6 +140,7 @@
   font-size: 1rem;
   cursor: pointer;
   width: max-content;
+  text-decoration: none;
 }
 
 .addToCartBtn:hover {

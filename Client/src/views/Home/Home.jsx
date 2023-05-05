@@ -6,8 +6,7 @@ import {useEffect, useState} from 'react';
 import useLocalStorage from '../../components/useLocalStorage';
 import {getProductsByName} from '../../redux/actions';
 import PropTypes from 'prop-types';
-import userServices from  '../../services/userService';
-
+// import userServices from  '../../services/userService';
 
 export default function Home({filters, setFilters, page, setPage}) {
   const [products, setProducts] = useState([]);
@@ -18,7 +17,7 @@ export default function Home({filters, setFilters, page, setPage}) {
   const allProducts = [...productState];
   const allProductsFiltered = [...productsFiltered];
   const dispatch = useDispatch();
-  const [content, setContent ] = useState('')
+  // const [content, setContent ] = useState('')
   let categories = allProducts.map((e) => e.category);
   categories = [...new Set(categories)];
 
@@ -77,24 +76,24 @@ export default function Home({filters, setFilters, page, setPage}) {
     //eslint-disable-next-line
   }, [productState, sort, filters, productsFiltered]);
 
-
-  useEffect(()=>{
-    userServices.getPublicContent().then(
-      (response)=>{
-        setContent(response.data)
-      },
-      (error) =>{
-        const _content =
-        (error.response && error.response.data) ||
-        error.message ||
-        error.toString();
-        setContent(_content)
-      }
-    )
-  }, [])
+  // useEffect(()=>{
+  //   userServices.getPublicContent().then(
+  //     (response)=>{
+  //       setContent(response.data)
+  //     },
+  //     (error) =>{
+  //       const _content =
+  //       (error.response && error.response.data) ||
+  //       error.message ||
+  //       error.toString();
+  //       setContent(_content)
+  //     }
+  //   )
+  // }, [])
 
   return (
-   content == 'Home' ? <div className={style.homePage}>
+    //  content == 'Home' ?
+    <div className={style.homePage}>
       <FilterContainer
         categories={categories}
         handleSort={handleSort}
@@ -116,11 +115,10 @@ export default function Home({filters, setFilters, page, setPage}) {
         </div>
       </div>
     </div>
-  :<div>
-        {content}
-  </div>
-    
   );
+  // :<div>
+  //       {content}
+  // </div>
 }
 Home.propTypes = {
   filters: PropTypes.array,
