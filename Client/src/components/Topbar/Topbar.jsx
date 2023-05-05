@@ -1,6 +1,6 @@
 import styles from './Topbar.module.css';
 import favorite from './assets/favorite-icon.png';
-import cart from './assets/cart-icon.png';
+import cartImg from './assets/cart-icon.png';
 import login from './assets/login-icon.png';
 
 import SignUp from '../SignUp/SignUp'
@@ -15,9 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react'
 
-
-
-const Topbar = ({ setFilters }) => {
+const Topbar = ({ setFilters, cart }) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
   const [triggerPopUpSignUp, setTriggerPopUpSignUp] = useState(false);
   const [results, setResults] = useState([]);
@@ -30,9 +28,12 @@ const Topbar = ({ setFilters }) => {
   let categories = allProducts.map((e) => e.category);
   categories = [...new Set(categories)];
 
+  // let cartAmount = cart[3].stock;
+  // console.log(cartAmount)
 
-  useEffect(()=>{
-      console.log('render')
+
+  useEffect(() => {
+    console.log('render')
   }, [])
 
 
@@ -66,20 +67,20 @@ const Topbar = ({ setFilters }) => {
             <div className={styles.badge}>0</div>
           </div>
           <div className={styles.cart}>
-            <img src={cart} alt="cart-icon" />
+            <Link to='/cart'> <img src={cartImg} alt="cart-icon" /></Link>
             <div className={styles.badge}>0</div>
           </div>
           <div className={styles.login}>
             <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} />
             <img src={login} onClick={() => setTriggerPopUp(true)} alt='login-icon' />
           </div>
-          
+
           <div className={styles.login}>
             <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} />
-            <AiOutlineForm  style={{fontSize:'1.3em'}} onClick={() => setTriggerPopUpSignUp(true)} />
-            
+            <AiOutlineForm style={{ fontSize: '1.3em' }} onClick={() => setTriggerPopUpSignUp(true)} />
+
           </div>
-          
+
         </div>
       </div>
       <div className={styles.row2}>
