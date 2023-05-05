@@ -4,6 +4,14 @@ const { allAccess, adminBoard, moderatorBoard, userBoard } = require('../control
 
 
     const usersRedirectRouter = Router()
+    usersRedirectRouter.use(function(req, res, next) {
+        res.header(
+          "Access-Control-Allow-Headers",
+          "x-access-token, Origin, Content-Type, Accept"
+        );
+        next();
+      });
+
 
     usersRedirectRouter.get('/all', allAccess)
     usersRedirectRouter.get('/user', [authJwt.verifyToken], userBoard)

@@ -8,7 +8,7 @@ const bulkProductsAndRoles = async () => {
     await Role.bulkCreate(roles)
     console.log('Database is ready');
   } catch (error) {
-    console.log('DB has an error');
+    console.log('DB has an error..');
   }
 };
 
