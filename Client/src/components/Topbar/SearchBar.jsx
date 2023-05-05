@@ -8,7 +8,7 @@ function SearchBar({setResults, input, setInput}) {
     try {
       let results = [];
       // const response = await axios.get(`http://localhost:3001/products/?name=${value}`);
-      const response = await axios.get(`/products/products/?name=${value}`);
+      const response = await axios.get(`/products/?name=${value}`);
       if (value) results = response.data;
       setResults(results);
     } catch (error) {
