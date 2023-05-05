@@ -2,7 +2,7 @@ import axios from 'axios'
 import authHeader from './authHeader'
 
 // const API_URL = 'http://localhost:3001/api/'
-const API_URL = '/products/api/'
+const API_URL = '/api/'
 const PUBLIC = 'all'
 const USER = 'user'
 const MOD = 'mod'
