@@ -12,7 +12,7 @@ import LandingPage from './views/LandingPage/LandingPage';
 import FormProduct from './views/FormProduct/FormProduct';
 import useLocalStorage from './components/useLocalStorage';
 import BoardUser   from './components/BoardUser/BoardUser';
-import LoginTwo from './components/LoginTwo/LoginTwo';
+
 
 
 
@@ -20,6 +20,7 @@ function App() {
   const [mounted, setMounted] = useState(false);
   const [filters, setFilters] = useLocalStorage('filter_cards-Home', []);
   const [page, setPage] = useLocalStorage('page', 0);
+  const [cart, setCart] = useLocalStorage('cart', []);
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const getProducts = async () => {
@@ -39,17 +40,14 @@ function App() {
   }, [mounted]);
 
 
-
-  
   return (
     <div className="App">
-    {/* <Routes>
+      {/* <Routes>
     <Route path="/user" element={<BoardUser/>} />
     </Routes> */}
     
     <Topbar setFilters={setFilters} setPage={setPage} />
     <Routes>
-      <Route path="/logintwo" element={<LoginTwo/> }/>
     <Route path="/user" element={<BoardUser/>} />
       <Route exact path="/" element={<LandingPage />} />
       <Route path="/products/:id" element={<Detail />} />

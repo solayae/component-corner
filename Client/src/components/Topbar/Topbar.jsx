@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { AiOutlineForm } from "react-icons/ai";
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react'
@@ -18,7 +18,6 @@ import { clearMessage } from '../../redux/actions';
 
 
 const Topbar = ({setFilters, setPage}) => {
-  const [triggerPopUpL, setTriggerPopUpL] = useState(false);
   const [triggerPopUp, setTriggerPopUp] = useState(false);
   const [triggerPopUpSignUp, setTriggerPopUpSignUp] = useState(false);
   const [results, setResults] = useState([]);
@@ -70,9 +69,11 @@ const effSignUp = ()=>{
           <div className={styles.favorite}>
             {' '}
             <img src={favorite} alt="favorite-icon" />
+            <div className={styles.badge}>0</div>
           </div>
           <div className={styles.cart}>
             <img src={cart} alt="cart-icon" />
+            <div className={styles.badge}>0</div>
           </div>
           {/* <div className={styles.login}>
             <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} />
