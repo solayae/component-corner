@@ -27,7 +27,11 @@ function Detail({ cart, setCart }) {
 
     let product = {
       id: detailProduct.id,
-      stock: quantity
+      name: detailProduct.name,
+      image: detailProduct.image,
+      price: detailProduct.price,
+      stock: detailProduct.stock,
+      quantity: quantity
     }
 
     const newArray = []
@@ -80,7 +84,7 @@ function Detail({ cart, setCart }) {
           </div>
           <p className={styles.extra_p}>Stock disponible: {detailProduct.stock}</p>
           <button className={styles.addToCartBtn} onClick={handleAddToCart} >
-            {/* <Link to='/cart' className={styles.addToCartBtn}>AGREGAR AL CARRITO</Link> */}
+            <Link to='/cart' className={styles.addToCartBtn}>AGREGAR AL CARRITO</Link>
           </button>
         </div>
       </div>
