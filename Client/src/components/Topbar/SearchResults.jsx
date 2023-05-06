@@ -18,7 +18,7 @@ export default function SearchResults({results, setResults, setInput, input, sel
             }}>
             <div key={e.id} className={`${style.results} ${index === select ? style.activeOption : ''} `}>
               <p>{e.name}</p>
-              <img src={e.image} alt={e.name} />
+              <img src={e.image} alt={e.name} /> 
             </div>
           </Link>
         ))}
