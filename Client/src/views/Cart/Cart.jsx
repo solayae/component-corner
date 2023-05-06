@@ -1,23 +1,38 @@
-import React, { useState } from 'react';
-import useLocalStorage from '../../components/useLocalStorage';
 import styles from './Cart.module.css';
 
 function Cart({ cart, setCart }) {
 
-    const [quantity, setQuantity] = useState(0);
+    const handleIncrement = (id) => {
+        setCart((product) => {
+            return product.map((item) => {
+                if (item.id === id) {
+                    return { ...item, quantity: item.quantity + 1 }
+                } else {
+                    return item;
+                }
+            })
+        })
+    };
 
-    const handleDecrement = () => {
-        if (quantity > 1) {
-          setQuantity(quantity - 1);
-        }
-      };
-    
-      const handleIncrement = () => {
-        if (quantity < product.stock) setQuantity(quantity + 1);
-      };
+
+    const handleDecrement = (id) => {
+        setCart((currItem) => {
+            if (currItem.find((item) => item.id === id)?.quantity === 1) {
+                return currItem.filter((item) => item.id !== id)
+            } else {
+                return currItem.map((item) => {
+                    if (item.id === id) {
+                        return { ...item, quantity: item.quantity - 1 }
+                    } else {
+                        return item;
+                    }
+                })
+            }
+        })
+    }
 
     return (
-        cart.map((product) => {
+        cart?.map((product) => {
             return <div className={styles.cartContent} key={product.id}>
 
                 <img src={product.image}></img>
@@ -35,11 +50,11 @@ function Cart({ cart, setCart }) {
                 </div>
 
                 <div className={styles.cartCounter}>
-                    <button className={styles.cartButton} onClick={handleIncrement}>+</button>
+                    <button className={styles.cartButton} onClick={() => handleIncrement(product.id)}>+</button>
                     <div className={styles.productQuantity}>
                         {product.quantity}
                     </div>
-                    <button className={styles.cartButton} onClick={handleDecrement}>-</button>
+                    <button className={styles.cartButton} onClick={() => handleDecrement(product.id)}>-</button>
                 </div>
 
             </div >

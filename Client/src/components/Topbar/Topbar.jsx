@@ -2,7 +2,6 @@ import styles from './Topbar.module.css';
 import favorite from './assets/favorite-icon.png';
 import cartImg from './assets/cart-icon.png';
 import login from './assets/login-icon.png';
-
 import SignUp from '../SignUp/SignUp'
 import Login from '../Login/Login'
 import { useState } from 'react';
@@ -28,9 +27,9 @@ const Topbar = ({ setFilters, cart }) => {
   let categories = allProducts.map((e) => e.category);
   categories = [...new Set(categories)];
 
-  // let cartAmount = cart[3].stock;
-  // console.log(cartAmount)
-
+  const cartQuantity = cart.reduce((acc, el) => {
+    return acc + el.quantity;
+  }, 0);
 
   useEffect(() => {
     console.log('render')
@@ -68,7 +67,7 @@ const Topbar = ({ setFilters, cart }) => {
           </div>
           <div className={styles.cart}>
             <Link to='/cart'> <img src={cartImg} alt="cart-icon" /></Link>
-            <div className={styles.badge}>0</div>
+            <div className={styles.badge}>{cartQuantity > 9 ? "+9" : cartQuantity}</div>
           </div>
           <div className={styles.login}>
             <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} />
