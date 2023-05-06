@@ -17,6 +17,7 @@ import {
   LOGOUT,
 } from './variables';
 
+
 export function getAllProducts() {
   return async function (dispatch) {
     const response = await axios.get('/products/');

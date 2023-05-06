@@ -20,6 +20,7 @@ const Topbar = ({ setFilters, cart }) => {
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
   const [input, setInput] = useState('');
+  const [select, setSelect] = useState("")
 
   const productState = useSelector((state) => state.products);
   const allProducts = [...productState];
@@ -56,8 +57,9 @@ const Topbar = ({ setFilters, cart }) => {
           <div className={styles.logo}>COMPONENT CORNER</div>
         </Link>
         <div className={styles.searchContainer}>
-          <SearchBar setResults={setResults} input={input} setInput={setInput} />
-          <SearchResults results={results} setResults={setResults} setInput={setInput} input={input} />
+          <SearchBar setResults={setResults} input={input} setInput={setInput}  results={results}
+          setSelect={setSelect}/>
+          <SearchResults results={results} setResults={setResults} setInput={setInput} input={input} select={select} />
         </div>
         <div className={styles.icons}>
           <div className={styles.favorite}>
