@@ -1,13 +1,14 @@
-import {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {getDetail, cleanDetail} from '../../redux/actions';
-import {useParams} from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDetail, cleanDetail } from '../../redux/actions';
+import { Link, useParams } from 'react-router-dom';
+import useLocalStorage from '../../components/useLocalStorage';
 
 import styles from './Detail.module.css';
 import Rating from '@mui/material/Rating';
 
-function Detail() {
-  const {id} = useParams();
+function Detail({ cart, setCart }) {
+  const { id } = useParams();
   const dispatch = useDispatch();
   const detailProduct = useSelector((state) => state.detail);
 
@@ -23,7 +24,25 @@ function Detail() {
   const [quantity, setQuantity] = useState(0);
 
   const handleAddToCart = () => {
-    // lógica para agregar al carrito
+
+    let product = {
+      id: detailProduct.id,
+      stock: quantity
+    }
+
+    const newArray = []
+    let duplicated = false
+    cart.forEach((e) => {
+      if (e.id === product.id) {
+        newArray.push(product)
+        duplicated = true
+      } else {
+        newArray.push(e)
+      }
+    })
+    if (duplicated === true) setCart(newArray)
+    else setCart([...cart, product])
+
   };
 
   const handleDecrement = () => {
@@ -60,8 +79,8 @@ function Detail() {
             </button>
           </div>
           <p className={styles.extra_p}>Stock disponible: {detailProduct.stock}</p>
-          <button className={styles.addToCartBtn} onClick={handleAddToCart}>
-            AGREGAR AL CARRITO
+          <button className={styles.addToCartBtn} onClick={handleAddToCart} >
+            {/* <Link to='/cart' className={styles.addToCartBtn}>AGREGAR AL CARRITO</Link> */}
           </button>
         </div>
       </div>

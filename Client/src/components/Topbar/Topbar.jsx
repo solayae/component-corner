@@ -3,19 +3,17 @@ import favorite from './assets/favorite-icon.png';
 import cart from './assets/cart-icon.png';
 import login from './assets/login-icon.png';
 
-import SignUp from '../SignUp/SignUp'
-import Login from '../Login/Login'
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { AiOutlineForm } from "react-icons/ai";
+import SignUp from '../SignUp/SignUp';
+import Login from '../Login/Login';
+import {useState} from 'react';
+import {Link} from 'react-router-dom';
+import {AiOutlineForm} from 'react-icons/ai';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
 import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { useEffect } from 'react'
-
-
+import {useEffect} from 'react';
 
 const Topbar = ({setFilters, setPage}) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
@@ -30,12 +28,9 @@ const Topbar = ({setFilters, setPage}) => {
   let categories = allProducts.map((e) => e.category);
   categories = [...new Set(categories)];
 
-
-  useEffect(()=>{
-      console.log('render')
-  }, [])
-
-
+  useEffect(() => {
+    console.log('render');
+  }, []);
 
   // Obtén la longitud del array original
   let length = categories.length;
@@ -63,21 +58,21 @@ const Topbar = ({setFilters, setPage}) => {
           <div className={styles.favorite}>
             {' '}
             <img src={favorite} alt="favorite-icon" />
+            <div className={styles.badge}>0</div>
           </div>
           <div className={styles.cart}>
             <img src={cart} alt="cart-icon" />
+            <div className={styles.badge}>0</div>
           </div>
           <div className={styles.login}>
             <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} />
-            <img src={login} onClick={() => setTriggerPopUp(true)} alt='login-icon' />
+            <img src={login} onClick={() => setTriggerPopUp(true)} alt="login-icon" />
           </div>
-          
+
           <div className={styles.login}>
             <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} />
-            <AiOutlineForm  style={{fontSize:'1.3em'}} onClick={() => setTriggerPopUpSignUp(true)} />
-            
+            <AiOutlineForm style={{fontSize: '1.3em'}} onClick={() => setTriggerPopUpSignUp(true)} />
           </div>
-          
         </div>
       </div>
       <div className={styles.row2}>

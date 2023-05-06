@@ -1971,7 +1971,7 @@ module.exports = {
             delete: false
           },
           {
-            image: "https://upload.wikimedia.org/wikipedia/commons/2/28/Sega_Genesis_Mini_02.jpg",
+            image: "https://res.cloudinary.com/dezvujzed/image/upload/v1683252873/SEGA-Mega-Drive-Mini-2_jeiar8.jpg",
             name: "Sega Genesis Mini",
             brand: "Sega",
             detail: [
