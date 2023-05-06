@@ -52,16 +52,21 @@ const validatePassword = (value) => {
   }
 };
 
-const SignUp = (props) => {
-  const form = useRef();
-  const checkBtn = useRef();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const dispatch = useDispatch();
-  const message = useSelector((state) => state.message);
 
-  const onChangeName = (e) => {
+
+const SignUp = (props )=> { 
+    const form = useRef()
+  const checkBtn = useRef()
+  const [ name , setName ] = useState('')
+  const [ email, setEmail] = useState('')
+  const [ password, setPassword ] = useState('')
+  const [ successful, setSuccessful  ] = useState(false)
+  const dispatch = useDispatch()
+  const  message = useSelector(state=> state.message)
+  const [triggerPopUp, setTriggerPopUp] = useState(false);
+  const [loading, setLoading] = useState(false);
+  
+   const onChangeName = (e) => {
     const name = e.target.value;
     setName(name);
   };
