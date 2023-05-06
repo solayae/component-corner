@@ -6,7 +6,7 @@ function Cart({ cart, setCart }) {
         setCart((product) => {
             return product.map((item) => {
                 if (item.id === id) {
-                    return { ...item, quantity: item.quantity + 1 }
+                    return { ...item, quantity: item.quantity === item.stock ? item.quantity : item.quantity + 1 }
                 } else {
                     return item;
                 }
