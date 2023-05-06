@@ -93,7 +93,7 @@ export const clearMessage = ()=>({
 export const register = (name, email, password)=>(dispatch)=>{
   return authService.register(name, email, password)
                     .then((response)=>{
-                      dispatch({
+                       dispatch({
                         type: REGISTER_SUCCESS
                       })
 
@@ -104,18 +104,18 @@ export const register = (name, email, password)=>(dispatch)=>{
                       
                       return Promise.resolve()
                     }, 
-                    (error)=>{
+                     (error)=>{
                       const message = (
                         error.response &&
                         error.response.data &&
-                        error.response.data.message) ||
+                        error.response. data.message) ||
                         error.message || 
                         error.toString()
-                        dispatch({
+                         dispatch({
                           type: REGISTER_FAIL
                         })
 
-                        dispatch({
+                         dispatch({
                           type : SET_MESSAGE,
                           payload : message
                         })

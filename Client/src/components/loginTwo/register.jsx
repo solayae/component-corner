@@ -1,4 +1,4 @@
-import styles from '../Login/PopUp.module.css';
+import styles from './PopUp.module.css';
 import { useState, useRef,  } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate, Link  } from 'react-router-dom';
@@ -18,7 +18,7 @@ import { register, clearMessage } from '../../redux/actions'
 const required = (value) => {
   if (!value) {
     return (
-      <div className="alert alert-danger" role="alert">
+        <div style={{color: 'red'}}>
         Este campo es obligatorio
       </div>
     );
@@ -27,7 +27,7 @@ const required = (value) => {
 const validateEmail = (value)=>{
   if(!isEmail(value)){
     return (
-      <div className="alert alert-danger" role="alert">
+        <div style={{color: 'red'}}>
         Este email no es valido
     </div>
     )
@@ -37,7 +37,7 @@ const validateEmail = (value)=>{
 const validateName = (value)=>{
   if(value.length < 3 || value.length > 12){
       return (
-        <div className="alert alert-danger" role="alert">
+        <div style={{color: 'red'}}>
      El nombre debe ser entre 3 a 12 caracteres.
     </div>
       )
@@ -47,7 +47,7 @@ const validateName = (value)=>{
 const validatePassword = (value)=>{
   if (value.length < 8 || value.length > 40) {
     return (
-      <div className="alert alert-danger" role="alert">
+        <div style={{color: 'red'}}>
         El password entre 8 y 40 characteres.
       </div>
     );
@@ -56,17 +56,16 @@ const validatePassword = (value)=>{
 
 
 
-const SignUp = (props )=> { 
+const Register = ({cleanFieldLogin} )=> { 
   const form = useRef()
   const checkBtn = useRef()
   const [ name , setName ] = useState('')
   const [ email, setEmail] = useState('')
   const [ password, setPassword ] = useState('')
   const [ successful, setSuccessful  ] = useState(false)
+  const [ loading, setLoading ] = useState(false)
   const dispatch = useDispatch()
   const  message = useSelector(state=> state.message)
-  const [triggerPopUp, setTriggerPopUp] = useState(false);
-  const [loading, setLoading] = useState(false);
   
    const onChangeName = (e) => {
     const name = e.target.value;
@@ -82,54 +81,59 @@ const SignUp = (props )=> {
     const password = e.target.value;
     setPassword(password);
   };
+  
 
   const handleRegister = (e) => {
     e.preventDefault();
     setSuccessful(false);
+    
     form.current.validateAll();
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(register(name, email, password))
         .then(() => {
-          setSuccessful(true);
-          tigger()
-          MySwal.fire({
-            title: <strong>¡Registro exitoso!</strong>,
-            html: <i>¡Ya puedes ingresar y encontrar lo buscabas!</i>,
-            icon: 'success'
-          })
+          
+          
+            MySwal.fire({
+                title: <strong>¡Registro exitoso!</strong>,
+                html: <i>¡Ya puedes ingresar y encontrar lo buscabas!</i>,
+                icon: 'success'
+              })
+              
+              cleanFieldLogin()
+            setLoading(false)
+             setSuccessful(true);
+             
+             
+             
         })
         .catch(() => {
-          
-          
-          MySwal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: message || '¡Se ha presenta un error en tu registro intentalo nuevamente!'
-            
-          })
           setSuccessful(false);
-        });
+          setLoading(false)
+        })
+        
+
     }
+
+    
   };
 
-  const tigger =()=>{
-    props.setTrigger(false)
-    dispatch(clearMessage())
-    setEmail('');
-    setPassword('')
-    setName('')
   
-   }
 
- return props.trigger ? (
-    <div className={styles.popUp}>
-    <div className={styles.popUpInner}>
-      <button className={styles.closeBtn} onClick={tigger}>
-        X
-      </button>
+   
+
+
+
+
+ return  (
+    
+      <>
+      
+    
+      { !successful &&  <div style={{color: 'red'}}>{message}</div> 
+            
+         }
       <Form onSubmit={handleRegister} ref={form}>
-        <h2>Registrate</h2>
-        <div className={styles.formElement}>
+         <div className={styles.formElement}>
           <label htmlFor="name">Nombre</label>
           <Input
             type="text"
@@ -194,16 +198,12 @@ const SignUp = (props )=> {
 
 
       </Form>
-    </div>
-  </div>
-
+      
+   </>
+        
     
-  ):('')
-  
-}
-export default SignUp
-
-SignUp.propTypes = {
-  trigger: PropTypes.bool,
-  setTrigger: PropTypes.func,
-};
+  )
+   
+    
+} 
+export default Register

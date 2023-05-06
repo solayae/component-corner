@@ -12,7 +12,7 @@ import LandingPage from './views/LandingPage/LandingPage';
 import FormProduct from './views/FormProduct/FormProduct';
 import useLocalStorage from './components/useLocalStorage';
 import BoardUser   from './components/BoardUser/BoardUser';
-
+import LoginTwo from './components/LoginTwo/LoginTwo';
 
 
 
@@ -49,6 +49,7 @@ function App() {
     
     <Topbar setFilters={setFilters} setPage={setPage} />
     <Routes>
+      <Route path="/logintwo" element={<LoginTwo/> }/>
     <Route path="/user" element={<BoardUser/>} />
       <Route exact path="/" element={<LandingPage />} />
       <Route path="/products/:id" element={<Detail />} />

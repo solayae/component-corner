@@ -2,7 +2,7 @@ import styles from './Topbar.module.css';
 import favorite from './assets/favorite-icon.png';
 import cart from './assets/cart-icon.png';
 import login from './assets/login-icon.png';
-
+import LoginTwo from '../loginTwo/loginTwo'
 import SignUp from '../SignUp/SignUp'
 import Login from '../Login/Login'
 import { useState } from 'react';
@@ -10,14 +10,15 @@ import { Link } from 'react-router-dom';
 import { AiOutlineForm } from "react-icons/ai";
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react'
-
+import { clearMessage } from '../../redux/actions';
 
 
 const Topbar = ({setFilters, setPage}) => {
+  const [triggerPopUpL, setTriggerPopUpL] = useState(false);
   const [triggerPopUp, setTriggerPopUp] = useState(false);
   const [triggerPopUpSignUp, setTriggerPopUpSignUp] = useState(false);
   const [results, setResults] = useState([]);
@@ -26,9 +27,15 @@ const Topbar = ({setFilters, setPage}) => {
 
   const productState = useSelector((state) => state.products);
   const allProducts = [...productState];
-
+  const dispatch = useDispatch()
   let categories = allProducts.map((e) => e.category);
   categories = [...new Set(categories)];
+
+const effSignUp = ()=>{
+  dispatch(clearMessage())
+  setTriggerPopUpL(true)
+}
+
 
 
   useEffect(()=>{
@@ -67,7 +74,7 @@ const Topbar = ({setFilters, setPage}) => {
           <div className={styles.cart}>
             <img src={cart} alt="cart-icon" />
           </div>
-          <div className={styles.login}>
+          {/* <div className={styles.login}>
             <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} />
             <img src={login} onClick={() => setTriggerPopUp(true)} alt='login-icon' />
           </div>
@@ -76,6 +83,11 @@ const Topbar = ({setFilters, setPage}) => {
             <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} />
             <AiOutlineForm  style={{fontSize:'1.3em'}} onClick={() => setTriggerPopUpSignUp(true)} />
             
+          </div> */}
+
+          <div className={styles.login}>
+            <LoginTwo trigger={triggerPopUpL} setTrigger={setTriggerPopUpL} />
+            <AiOutlineForm  style={{fontSize:'1.3em'}} onClick={effSignUp} />
           </div>
           
         </div>
