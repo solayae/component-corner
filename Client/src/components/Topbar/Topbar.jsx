@@ -6,7 +6,6 @@ import SignUp from '../SignUp/SignUp';
 import Login from '../Login/Login';
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
-import {AiOutlineForm} from 'react-icons/ai';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
 import {useSelector} from 'react-redux';
@@ -78,13 +77,12 @@ const Topbar = ({setFilters, cart, setPage}) => {
             <div className={styles.badge}>{cartQuantity > 9 ? '+9' : cartQuantity}</div>
           </div>
           <div className={styles.login}>
-            <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} />
+            <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} setTriggerSignUp={setTriggerPopUpSignUp} />
             <img src={login} onClick={() => setTriggerPopUp(true)} alt="login-icon" />
           </div>
 
           <div className={styles.login}>
-            <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} />
-            <AiOutlineForm style={{fontSize: '1.3em'}} onClick={() => setTriggerPopUpSignUp(true)} />
+            <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} setLoginTrigger={setTriggerPopUp} />
           </div>
         </div>
       </div>

@@ -152,9 +152,16 @@ export default function Login(props) {
 
           <div className={styles.formElement}>
             <p>¿No tienes una cuenta?</p>
-            <Link to={'#'}>
-              <button>¡Resgistrate!</button>
-            </Link>
+
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                tigger();
+                props.setTriggerSignUp(true);
+              }}>
+              ¡Resgistrate!
+            </button>
+
             <Link to={'#'}>
               <p>¿Olvidaste tú contraseña?</p>
             </Link>
@@ -170,4 +177,5 @@ export default function Login(props) {
 Login.propTypes = {
   trigger: PropTypes.bool,
   setTrigger: PropTypes.func,
+  setTriggerSignUp: PropTypes.func,
 };
