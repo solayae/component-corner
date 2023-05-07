@@ -169,9 +169,14 @@ const SignUp = (props) => {
           </div>
           <div className={styles.formElement}>
             <p>¿Ya cuentas con una cuenta?</p>
-            <Link to={'#'}>
-              <button>¡Inicia sesion!</button>
-            </Link>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                tigger();
+                props.setLoginTrigger(true);
+              }}>
+              ¡Inicia sesion!
+            </button>
             <Link to={'#'}>
               <p>¿Olvidaste tú contraseña?</p>
             </Link>
@@ -190,4 +195,5 @@ export default SignUp;
 SignUp.propTypes = {
   trigger: PropTypes.bool,
   setTrigger: PropTypes.func,
+  setLoginTrigger: PropTypes.func,
 };

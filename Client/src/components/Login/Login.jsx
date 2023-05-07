@@ -1,7 +1,7 @@
 import styles from './PopUp.module.css';
 import {useState, useRef} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Navigate, useNavigate, Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {Link, useNavigate} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
@@ -49,59 +49,41 @@ export default function Login(props) {
   const form = useRef();
   const checkBtn = useRef();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [user, setUser] = useState({email: '', password: ''});
   const [loading, setLoading] = useState(false);
-
-  const {isLoggedIn} = useSelector((state) => state.user);
-  const {message} = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
-  const onChangeEmail = (e) => {
-    const email = e.target.value;
-    setEmail(email);
-  };
+  const onChangeUser = (e, type) => setUser({...user, [type]: e.target.value});
 
-  const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
-  };
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-
-    setLoading(true);
-
-    form.current.validateAll();
-
-    if (checkBtn.current.context._errors.length === 0) {
-      dispatch(login(email, password))
-        .then(() => {
-          navigate('/user');
-        })
-        .catch(() => {
-          setLoading(false);
-          MySwal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: '¡Por favor verifica tú usuario y contraseña!' + message,
-          });
-        });
-    } else {
+  const loginFunc = async (email, password) => {
+    try {
+      const response = await dispatch(login(email, password));
+      if (response.status !== 200) throw Error('No se encontró el usuario');
+      tigger();
+      navigate('/user');
       setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      MySwal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error || '¡Algo salió mal! ',
+      });
     }
   };
-
-  if (isLoggedIn) {
-    return <Navigate to="/user" />;
-  }
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    form.current.validateAll();
+    if (checkBtn.current.context._errors.length === 0) loginFunc(user.email, user.password);
+    else setLoading(false);
+  };
 
   const tigger = () => {
     props.setTrigger(false);
     dispatch(clearMessage());
-    setEmail('');
-    setPassword('');
+    setUser({email: '', password: ''});
   };
   return props.trigger ? (
     <div className={styles.popUp}>
@@ -117,8 +99,8 @@ export default function Login(props) {
               type="text"
               name="email"
               placeholder="Introduce tu email"
-              value={email}
-              onChange={onChangeEmail}
+              value={user.email}
+              onChange={(e) => onChangeUser(e, 'email')}
               validations={[required, validateEmail]}
             />
           </div>
@@ -128,8 +110,8 @@ export default function Login(props) {
               type="password"
               name="password"
               placeholder="Introduce tu contraseña"
-              value={password}
-              onChange={onChangePassword}
+              value={user.password}
+              onChange={(e) => onChangeUser(e, 'password')}
               validations={[required, validatePassword]}
             />
           </div>
@@ -144,7 +126,7 @@ export default function Login(props) {
             <GoogleLogin
               onSuccess={(res) => {
                 let userObject = jwt_decode(res.credential);
-                dispatch(login(userObject.email, userObject.aud.slice(0, 12)));
+                loginFunc(userObject.email, userObject.aud.slice(0, 12));
               }}
             />
           </div>
@@ -152,9 +134,16 @@ export default function Login(props) {
 
           <div className={styles.formElement}>
             <p>¿No tienes una cuenta?</p>
-            <Link to={'#'}>
-              <button>¡Resgistrate!</button>
-            </Link>
+
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                tigger();
+                props.setTriggerSignUp(true);
+              }}>
+              ¡Resgistrate!
+            </button>
+
             <Link to={'#'}>
               <p>¿Olvidaste tú contraseña?</p>
             </Link>
@@ -170,4 +159,5 @@ export default function Login(props) {
 Login.propTypes = {
   trigger: PropTypes.bool,
   setTrigger: PropTypes.func,
+  setTriggerSignUp: PropTypes.func,
 };
