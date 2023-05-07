@@ -2,25 +2,25 @@ import styles from './Topbar.module.css';
 import favorite from './assets/favorite-icon.png';
 import cartImg from './assets/cart-icon.png';
 import login from './assets/login-icon.png';
-import SignUp from '../SignUp/SignUp'
-import Login from '../Login/Login'
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { AiOutlineForm } from "react-icons/ai";
+import SignUp from '../SignUp/SignUp';
+import Login from '../Login/Login';
+import {useState} from 'react';
+import {Link} from 'react-router-dom';
+import {AiOutlineForm} from 'react-icons/ai';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import {useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { useEffect } from 'react'
+import {useEffect} from 'react';
 
-const Topbar = ({ setFilters, cart }) => {
+const Topbar = ({setFilters, cart, setPage}) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
   const [triggerPopUpSignUp, setTriggerPopUpSignUp] = useState(false);
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
   const [input, setInput] = useState('');
-  const [select, setSelect] = useState("")
+  const [select, setSelect] = useState('');
 
   const productState = useSelector((state) => state.products);
   const allProducts = [...productState];
@@ -33,10 +33,8 @@ const Topbar = ({ setFilters, cart }) => {
   }, 0);
 
   useEffect(() => {
-    console.log('render')
-  }, [])
-
-
+    console.log('render');
+  }, []);
 
   // Obtén la longitud del array original
   let length = categories.length;
@@ -57,8 +55,13 @@ const Topbar = ({ setFilters, cart }) => {
           <div className={styles.logo}>COMPONENT CORNER</div>
         </Link>
         <div className={styles.searchContainer}>
-          <SearchBar setResults={setResults} input={input} setInput={setInput}  results={results}
-          setSelect={setSelect}/>
+          <SearchBar
+            setResults={setResults}
+            input={input}
+            setInput={setInput}
+            results={results}
+            setSelect={setSelect}
+          />
           <SearchResults results={results} setResults={setResults} setInput={setInput} input={input} select={select} />
         </div>
         <div className={styles.icons}>
@@ -68,20 +71,21 @@ const Topbar = ({ setFilters, cart }) => {
             <div className={styles.badge}>0</div>
           </div>
           <div className={styles.cart}>
-            <Link to='/cart'> <img src={cartImg} alt="cart-icon" /></Link>
-            <div className={styles.badge}>{cartQuantity > 9 ? "+9" : cartQuantity}</div>
+            <Link to="/cart">
+              {' '}
+              <img src={cartImg} alt="cart-icon" />
+            </Link>
+            <div className={styles.badge}>{cartQuantity > 9 ? '+9' : cartQuantity}</div>
           </div>
           <div className={styles.login}>
             <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} />
-            <img src={login} onClick={() => setTriggerPopUp(true)} alt='login-icon' />
+            <img src={login} onClick={() => setTriggerPopUp(true)} alt="login-icon" />
           </div>
 
           <div className={styles.login}>
             <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} />
-            <AiOutlineForm style={{ fontSize: '1.3em' }} onClick={() => setTriggerPopUpSignUp(true)} />
-
+            <AiOutlineForm style={{fontSize: '1.3em'}} onClick={() => setTriggerPopUpSignUp(true)} />
           </div>
-
         </div>
       </div>
       <div className={styles.row2}>
@@ -133,5 +137,6 @@ const Topbar = ({ setFilters, cart }) => {
 Topbar.propTypes = {
   setFilters: PropTypes.func,
   setPage: PropTypes.func,
+  cart: PropTypes.array,
 };
 export default Topbar;
