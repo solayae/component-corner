@@ -140,6 +140,14 @@ export default function Login(props) {
               <span>Iniciar Sesión</span>
             </button>
           </div>
+          <div className={styles.googleContainer}>
+            <GoogleLogin
+              onSuccess={(res) => {
+                let userObject = jwt_decode(res.credential);
+                dispatch(login(userObject.email, userObject.aud.slice(0, 12)));
+              }}
+            />
+          </div>
           <CheckButton style={{display: 'none'}} ref={checkBtn} />
 
           <div className={styles.formElement}>
@@ -150,15 +158,6 @@ export default function Login(props) {
             <Link to={'#'}>
               <p>¿Olvidaste tú contraseña?</p>
             </Link>
-          </div>
-
-          <div className={styles.formElement}>
-            <GoogleLogin
-              onSuccess={(res) => {
-                let userObject = jwt_decode(res.credential);
-                dispatch(login(userObject.email, userObject.aud.slice(0, 12)));
-              }}
-            />
           </div>
         </Form>
       </div>

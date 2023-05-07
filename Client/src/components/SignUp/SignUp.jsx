@@ -163,6 +163,8 @@ const SignUp = (props) => {
             <button className="btn btn-primary btn-block" disabled={false}>
               <span>Aceptar</span>
             </button>
+          </div>
+          <div className={styles.googleContainer}>
             <GoogleLogin onSuccess={(response) => registerFromGoogle(response)} />
           </div>
           <div className={styles.formElement}>
