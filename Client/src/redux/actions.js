@@ -10,11 +10,8 @@ import {
   GET_PRODUCTS_BY_NAME,
   SET_MESSAGE,
   CLEAR_MESSAGE,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
   LOGOUT,
 } from './variables';
-
 
 export function getAllProducts() {
   return async function (dispatch) {
@@ -100,31 +97,17 @@ export function register(name, email, password) {
   };
 }
 
-export const login = (email, password) => (dispatch) => {
-  return authService.login(email, password).then(
-    (data) => {
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: {user: data},
-      });
-      return Promise.resolve();
-    },
-    (error) => {
-      const message =
-        (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-
-      dispatch({
-        type: LOGIN_FAIL,
-      });
-
-      dispatch({
-        type: SET_MESSAGE,
-        payload: message,
-      });
-      return Promise.reject();
+export function login(email, password) {
+  return async function () {
+    try {
+      const response = await axios.post('/api/auth/signin', {email, password});
+      localStorage.setItem('user', JSON.stringify(response.data));
+      return response;
+    } catch (error) {
+      return error;
     }
-  );
-};
+  };
+}
 
 export const logout = () => (dispatch) => {
   authService.logout();
