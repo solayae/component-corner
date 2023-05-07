@@ -20,6 +20,7 @@ const Topbar = ({setFilters, cart, setPage}) => {
   const navigate = useNavigate();
   const [input, setInput] = useState('');
   const [select, setSelect] = useState('');
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const productState = useSelector((state) => state.products);
   const allProducts = [...productState];
@@ -78,7 +79,13 @@ const Topbar = ({setFilters, cart, setPage}) => {
           </div>
           <div className={styles.login}>
             <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} setTriggerSignUp={setTriggerPopUpSignUp} />
-            <img src={login} onClick={() => setTriggerPopUp(true)} alt="login-icon" />
+            <img
+              src={login}
+              onClick={() => {
+                user ? navigate('/user') : setTriggerPopUp(true);
+              }}
+              alt="login-icon"
+            />
           </div>
 
           <div className={styles.login}>
