@@ -1,6 +1,6 @@
 import styles from '../Login/PopUp.module.css';
 import {useState, useRef} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Form from 'react-validation/build/form';
@@ -9,6 +9,8 @@ import CheckButton from 'react-validation/build/button';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 const MySwal = withReactContent(Swal);
+import jwt_decode from 'jwt-decode';
+import {GoogleLogin} from '@react-oauth/google';
 
 import {isEmail} from 'validator';
 import {register, clearMessage} from '../../redux/actions';
@@ -59,7 +61,6 @@ const SignUp = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const message = useSelector((state) => state.message);
 
   const onChangeName = (e) => {
     const name = e.target.value;
@@ -76,26 +77,31 @@ const SignUp = (props) => {
     setPassword(password);
   };
 
+  const registerUser = async (name, email, password) => {
+    const response = await dispatch(register(name, email, password));
+    if (response.status === 200) {
+      MySwal.fire({
+        title: <strong>¡Registro exitoso!</strong>,
+        html: <i>¡Ya puedes ingresar y encontrar lo buscabas!</i>,
+        icon: 'success',
+      });
+      props.setTrigger(false);
+      return;
+    }
+    if (response.status === 400) {
+      MySwal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: response.data.message || '¡Se ha presenta un error en tu registro intentalo nuevamente!',
+      });
+    }
+  };
+
   const handleRegister = (e) => {
     e.preventDefault();
     form.current.validateAll();
     if (checkBtn.current.context._errors.length === 0) {
-      dispatch(register(name, email, password))
-        .then(() => {
-          tigger();
-          MySwal.fire({
-            title: <strong>¡Registro exitoso!</strong>,
-            html: <i>¡Ya puedes ingresar y encontrar lo buscabas!</i>,
-            icon: 'success',
-          });
-        })
-        .catch(() => {
-          MySwal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: message || '¡Se ha presenta un error en tu registro intentalo nuevamente!',
-          });
-        });
+      registerUser(name, email, password);
     }
   };
 
@@ -105,6 +111,10 @@ const SignUp = (props) => {
     setEmail('');
     setPassword('');
     setName('');
+  };
+  const registerFromGoogle = async (res) => {
+    let userObject = jwt_decode(res.credential);
+    registerUser(userObject.given_name, userObject.email, userObject.aud.slice(0, 12));
   };
 
   return props.trigger ? (
@@ -153,8 +163,8 @@ const SignUp = (props) => {
             <button className="btn btn-primary btn-block" disabled={false}>
               <span>Aceptar</span>
             </button>
+            <GoogleLogin onSuccess={(response) => registerFromGoogle(response)} />
           </div>
-
           <div className={styles.formElement}>
             <p>¿Ya cuentas con una cuenta?</p>
             <Link to={'#'}>

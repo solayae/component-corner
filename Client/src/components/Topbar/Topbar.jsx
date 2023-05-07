@@ -1,8 +1,7 @@
 import styles from './Topbar.module.css';
 import favorite from './assets/favorite-icon.png';
-import cart from './assets/cart-icon.png';
+import cartImg from './assets/cart-icon.png';
 import login from './assets/login-icon.png';
-
 import SignUp from '../SignUp/SignUp';
 import Login from '../Login/Login';
 import {useState} from 'react';
@@ -15,18 +14,23 @@ import {useNavigate} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {useEffect} from 'react';
 
-const Topbar = ({setFilters, setPage}) => {
+const Topbar = ({setFilters, cart, setPage}) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
   const [triggerPopUpSignUp, setTriggerPopUpSignUp] = useState(false);
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
   const [input, setInput] = useState('');
+  const [select, setSelect] = useState('');
 
   const productState = useSelector((state) => state.products);
   const allProducts = [...productState];
 
   let categories = allProducts.map((e) => e.category);
   categories = [...new Set(categories)];
+
+  const cartQuantity = cart.reduce((acc, el) => {
+    return acc + el.quantity;
+  }, 0);
 
   useEffect(() => {
     console.log('render');
@@ -51,8 +55,14 @@ const Topbar = ({setFilters, setPage}) => {
           <div className={styles.logo}>COMPONENT CORNER</div>
         </Link>
         <div className={styles.searchContainer}>
-          <SearchBar setResults={setResults} input={input} setInput={setInput} />
-          <SearchResults results={results} setResults={setResults} setInput={setInput} input={input} />
+          <SearchBar
+            setResults={setResults}
+            input={input}
+            setInput={setInput}
+            results={results}
+            setSelect={setSelect}
+          />
+          <SearchResults results={results} setResults={setResults} setInput={setInput} input={input} select={select} />
         </div>
         <div className={styles.icons}>
           <div className={styles.favorite}>
@@ -61,8 +71,11 @@ const Topbar = ({setFilters, setPage}) => {
             <div className={styles.badge}>0</div>
           </div>
           <div className={styles.cart}>
-            <img src={cart} alt="cart-icon" />
-            <div className={styles.badge}>0</div>
+            <Link to="/cart">
+              {' '}
+              <img src={cartImg} alt="cart-icon" />
+            </Link>
+            <div className={styles.badge}>{cartQuantity > 9 ? '+9' : cartQuantity}</div>
           </div>
           <div className={styles.login}>
             <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} />
@@ -124,5 +137,6 @@ const Topbar = ({setFilters, setPage}) => {
 Topbar.propTypes = {
   setFilters: PropTypes.func,
   setPage: PropTypes.func,
+  cart: PropTypes.array,
 };
 export default Topbar;

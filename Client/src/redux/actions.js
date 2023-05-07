@@ -8,14 +8,13 @@ import {
   FILTER_BY_CATEGORY,
   FILTER_BY_BRAND,
   GET_PRODUCTS_BY_NAME,
-  REGISTER_FAIL,
   SET_MESSAGE,
   CLEAR_MESSAGE,
-  REGISTER_SUCCESS,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
 } from './variables';
+
 
 export function getAllProducts() {
   return async function (dispatch) {
@@ -65,19 +64,19 @@ export function cleanDetail() {
 
 export function orderBy(order) {
   return function (dispatch) {
-    dispatch({ type: ORDER_BY, payload: order });
+    dispatch({type: ORDER_BY, payload: order});
   };
 }
 
 export function filterByCategory(category) {
   return function (dispatch) {
-    dispatch({ type: FILTER_BY_CATEGORY, payload: category });
+    dispatch({type: FILTER_BY_CATEGORY, payload: category});
   };
 }
 
 export function filterByBrand(brand) {
   return function (dispatch) {
-    dispatch({ type: FILTER_BY_BRAND, payload: brand });
+    dispatch({type: FILTER_BY_BRAND, payload: brand});
   };
 }
 
@@ -90,57 +89,29 @@ export const clearMessage = () => ({
   type: CLEAR_MESSAGE,
 });
 
-export const register = (name, email, password) => (dispatch) => {
-  return authService.register(name, email, password).then(
-    (response) => {
-      dispatch({
-        type: REGISTER_SUCCESS,
-      });
-
-      dispatch({
-        type: SET_MESSAGE,
-        payload: response.data.message,
-      });
-
-      return Promise.resolve();
-    },
-    (error) => {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      dispatch({
-        type: REGISTER_FAIL,
-      });
-
-      dispatch({
-        type: SET_MESSAGE,
-        payload: message,
-      });
-
-      return Promise.reject();
+export function register(name, email, password) {
+  return async function () {
+    try {
+      const response = await axios.post('/api/auth/signup', {name, email, password});
+      return response;
+    } catch (error) {
+      return error.response;
     }
-  );
-};
+  };
+}
 
 export const login = (email, password) => (dispatch) => {
   return authService.login(email, password).then(
     (data) => {
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: { user: data },
+        payload: {user: data},
       });
       return Promise.resolve();
     },
     (error) => {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+        (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
 
       dispatch({
         type: LOGIN_FAIL,

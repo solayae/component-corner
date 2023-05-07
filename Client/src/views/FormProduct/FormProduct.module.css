@@ -1,57 +1,72 @@
 .formContainer {
+  margin-top: 10px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.formContainer form {
-  display: flex;
-  background-color: white;
-  padding: 40px;
-  margin: 40px;
-  border-radius: 20px;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center;  
 }
-.formContainer form div {
+
+.containerImageDetail{
   display: flex;
-  width: 600px;
-  align-items: center;
-  justify-content: space-between;
+  width: 750px;
+  height: 280px;
+  border-radius: 20px;
+  border: 1px solid  rgba(105, 100, 100, 0.781);
 }
-.formContainer form p {
-  color: red;
+.divImageProduct{
+  margin-top: 10px;
+  margin-left: 10px;
+  flex-direction: column;
+  width: 250px;
+  height: 250px;
+  border-radius: 20px;
+  border: 1px solid rgba(105, 100, 100, 0.781);
 }
-.formContainer form label {
-  font-size: 17px;
-  margin: 0;
+.imageProduct{
+  display: flex;
+  margin: 7px;
+  width: 230px;
+  height: 200px;
+  border-radius: 20px;
+  border: 1px solid rgba(105, 100, 100, 0.781);
 }
-.formContainer form input {
-  border-style: solid;
-  border-radius: 5px;
-  width: 400px;
-  padding: 5px;
-  margin: 5px;
+.detailProduct{
+  margin-bottom: 10px;
 }
-.formContainer form button {
-  border: 0px;
-  border-radius: 4px;
-  padding: 20px;
-  font-size: 20px;
-  margin: 20px;
-  background-color: var(--four-color);
+.divDetailProduct{
+  display: flex;
+  flex-direction: column;
 }
-.formContainer form button:hover {
-  background-color: var(--third-color);
+.divButton{
+  display: flex;
+  height: 30px;
+  justify-content:space-around;
+  
 }
-.formContainer form input::-webkit-outer-spin-button,
-.formContainer form input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.imageButton{
+  width: 110px;
+  border-radius: 20px;
+  background-color:var(--four-color);
 }
-.formContainer form input[type='number'] {
-  /* text-align: center; */
-  appearance: none;
-  -moz-appearance: textfield;
+.descriptionProduct{
+  display: flex;
+  margin: 10px;
+  flex-direction: column;
+  align-items:flex-end;
+  justify-content:space-evenly;
+  
+}
+
+.subDetail{
+    display: flex;
+    justify-content: stretch;
+    gap: 1vh;
+    margin-top: 1vh;
+    margin-left: 1vw;
+    margin-right: 1vh;
+    height: 3vh;
+    width: 33vw;
+}
+.textarea {
+  border-radius: 20px;
 }
