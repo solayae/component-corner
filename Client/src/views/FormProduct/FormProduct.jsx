@@ -41,7 +41,7 @@ export default function FormProduct() {
     }
     setErrorList({});
     try {
-      // const response = await axios.post('http://localhost:3001/products/', {...product, detail: [product.detail]});
+      // const response = await axios.post('/products/', {...product, detail: [product.detail]});
       const response = await axios.post('/products/', {
         ...product,
         detail: [product.detail],
@@ -60,7 +60,8 @@ export default function FormProduct() {
   const [images, setImages] = useState({});
   const [imageToRemove, setImageToRemove] = useState('');
 
-  function handleRemoveImg(imgObj) {
+  function handleRemoveImg(imgObj, e) {
+    e.preventDefault();
     setImageToRemove(imgObj);
     axios.delete(`/${imageToRemove}`).then(() => {
       setImages({});
@@ -68,7 +69,8 @@ export default function FormProduct() {
     });
   }
 
-  function handleOpenWidget() {
+  function handleOpenWidget(e) {
+    e.preventDefault();
     setImages([]);
     let myWidget = window.cloudinary.createUploadWidget(
       {
@@ -103,11 +105,11 @@ export default function FormProduct() {
               value={product.image}
             />
             <div className={style.divButton}>
-              <button className={style.imageButton} id="upload-widget" onClick={() => handleOpenWidget()}>
+              <button className={style.imageButton} id="upload-widget" onClick={(e) => handleOpenWidget(e)}>
                 Imagen
               </button>
 
-              <button className={style.imageButton} onClick={() => handleRemoveImg(images.public_id)}>
+              <button className={style.imageButton} onClick={(e) => handleRemoveImg(images.public_id, e)}>
                 Eliminar
               </button>
             </div>
@@ -163,3 +165,4 @@ export default function FormProduct() {
     </div>
   );
 }
+
