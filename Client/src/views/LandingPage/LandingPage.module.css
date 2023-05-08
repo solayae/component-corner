@@ -16,7 +16,7 @@
 
 /*Banner*/
 div.banner {
-  background-image: url('https://res.cloudinary.com/dezvujzed/image/upload/v1683253729/zrd8Ga5_ju0sie.jpg');
+  background-image: url("https://res.cloudinary.com/dezvujzed/image/upload/v1683253729/zrd8Ga5_ju0sie.jpg");
   background-position: center;
   align-items: center;
   background-size: 100vw 400px;
@@ -46,10 +46,66 @@ div.banner .banner__TextContainer p {
 /*Recomendations*/
 div.recommendations {
   padding: 4rem 1rem;
-
 }
 
 .recommendationsTitle {
   font-size: 1.7rem;
   padding-left: 4rem;
+}
+
+/*MODO RESPONSIVE */
+@media screen and (max-width: 480px) {
+.landingPage{
+  width: 100vw;
+  height: 40vh;
+  /* border: 3px solid blue; */
+}
+}
+
+@media screen and (max-width: 480px) {
+  div.banner {
+    display: none;
+    background-size: 100vw 25vh;
+    height: 60vw;
+    border: 3px solid green;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  div.banner .banner__TextContainer {
+    display: none;
+    flex-direction: column;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    /* border: 3px solid green; */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  div.banner .banner__TextContainer h1 {
+    display: none;
+    justify-content: left;
+    max-width: 100%;
+    font-size: 20px;
+    height: 25vh;
+    /* border: 3px solid salmon; */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  div.banner .banner__TextContainer p {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .recommendations{   
+    border: 3px solid blue;
+  }
+  .recommendationsTitle {
+    padding: 0;
+    font-size: 16px;
+    border: 3px solid salmon;
+  }
 }

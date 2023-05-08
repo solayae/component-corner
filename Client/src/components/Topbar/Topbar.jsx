@@ -118,10 +118,10 @@ const Topbar = ({ setFilters }) => {
           </div>
         </div>
         <a href="#" className={styles.about}>
-          SOBRE COMPONENT CORNER
+          SOBRE NOSOTROS
         </a>
         <a href="#" className={styles.about}>
-          VER ESTADO DE PEDIDO
+          PEDIDO
         </a>
       </div>
     </nav>

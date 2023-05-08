@@ -7,7 +7,7 @@ const cors = require("cors");
 require('./db.js');
 
 const server = express();
-
+server.use(cors({origin:[ 'https://component-corner.vercel.app/' ]}))
 server.name = 'API';
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
