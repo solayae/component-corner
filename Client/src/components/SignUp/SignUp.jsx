@@ -18,7 +18,7 @@ import {register, clearMessage} from '../../redux/actions';
 const required = (value) => {
   if (!value) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div style={{color:'red'}}>
         Este campo es obligatorio
       </div>
     );
@@ -27,7 +27,7 @@ const required = (value) => {
 const validateEmail = (value) => {
   if (!isEmail(value)) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div style={{color:'red'}}>
         Este email no es valido
       </div>
     );
@@ -37,7 +37,7 @@ const validateEmail = (value) => {
 const validateName = (value) => {
   if (value.length < 3 || value.length > 12) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div style={{color:'red'}}>
         El nombre debe ser entre 3 a 12 caracteres.
       </div>
     );
@@ -47,7 +47,7 @@ const validateName = (value) => {
 const validatePassword = (value) => {
   if (value.length < 8 || value.length > 40) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div style={{color:'red'}}>
         El password entre 8 y 40 characteres.
       </div>
     );
