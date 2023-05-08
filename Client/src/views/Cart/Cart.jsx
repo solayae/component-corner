@@ -63,6 +63,7 @@ function Cart({ cart, setCart }) {
 
         <div>
           <button
+            className={styles.cartPay}
             onClick={() =>
               axios
                 .post("/payment", product)
