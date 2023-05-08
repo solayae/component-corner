@@ -17,7 +17,7 @@
   padding: 32px;
   width: 100%;
   max-width: 550px;
-  background-color: #118ab2;
+  background-color: white ;
   border-radius: 10px;
   box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.15);
 }
@@ -25,7 +25,7 @@
 .popUpInner form h2 {
   text-align: center;
   margin: 10px 0px 20px;
-  color: #f5f5f5;
+  color: #4154fd;
 }
 
 .popUpInner form .formElement {
@@ -37,14 +37,14 @@
   justify-content: center;
 }
 .popUpInner form .formElement p {
-  color: #f5f5f5;
+  color: #4154fd;
   margin-top: 15px;
   text-align: center;
 }
 
 .popUpInner form .formElement label {
   font-size: 14px;
-  color: #f5f5f5;
+  color: #4154fd;
 }
 
 .popUpInner form .formElement input[type='text'],
@@ -64,17 +64,17 @@
   border: none;
   outline: none;
   font-size: 15px;
-  background-color: #06d6a0;
+  background-color: #051df8b6;;
   color: #f5f5f5;
   border-radius: 10px;
 }
 
 .popUpInner .closeBtn {
-  background-color: #ef476f;
+  background-color:  #4154fd;
   border: 0;
   color: #eee;
   position: absolute;
-  top: 16px;
+  top: 30px;
   right: 16px;
   width: 20px;
   height: 20px;
