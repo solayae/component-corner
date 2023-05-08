@@ -219,3 +219,8 @@
   display: table;
   clear: both;
 }
+
+.activeOption {
+  background-color: #eee;
+  font-weight: bold;
+} 
