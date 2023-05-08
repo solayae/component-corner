@@ -14,6 +14,12 @@ export default function FormProduct() {
   });
   const [errorList, setErrorList] = useState({});
   const [serverResponse, setServerResponse] = useState('');
+  // / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / //
+  // codigo para subir y  eliminar una foto al servicio de cloudinary  //
+  //                                                                 //
+  const [images, setImages] = useState({});
+  const [imageToRemove, setImageToRemove] = useState('');
+
   const handleChange = (e, type) => {
     const value = e.target.value;
     if (type !== 'price' && type !== 'stock') return setProduct({...product, [type]: value});
@@ -45,6 +51,7 @@ export default function FormProduct() {
       const response = await axios.post('/products/', {
         ...product,
         detail: [product.detail],
+        image: images.url
       });
       const message = response.data;
       setServerResponse(message);
@@ -53,12 +60,6 @@ export default function FormProduct() {
     }
   };
 
-  // / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / //
-  // codigo para subir y  eliminar una foto al servicio de cloudinary  //
-  //                                                                 //
-
-  const [images, setImages] = useState({});
-  const [imageToRemove, setImageToRemove] = useState('');
 
   function handleRemoveImg(imgObj, e) {
     e.preventDefault();
