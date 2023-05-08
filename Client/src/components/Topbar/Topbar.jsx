@@ -95,7 +95,7 @@ const Topbar = ({setFilters, cart, setPage}) => {
       </div>
       <div className={styles.row2}>
         <Link to={'/home'} className={styles.about}>
-          HOME
+          PRODUCTOS
         </Link>
         <div className={styles.categories}>
           <div className={styles.dropdown}>
