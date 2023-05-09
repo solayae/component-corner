@@ -16,30 +16,18 @@ import jwt_decode from 'jwt-decode';
 
 const required = (value) => {
   if (!value) {
-    return (
-      <div style={{color:'red'}}>
-        Este campo es obligatorio!
-      </div>
-    );
+    return <div style={{color: 'red'}}>Este campo es obligatorio!</div>;
   }
 };
 const validatePassword = (value) => {
   if (value.length < 8 || value.length > 40) {
-    return (
-      <div style={{color:'red'}}>
-        El password entre 8 y 40 characteres.
-      </div>
-    );
+    return <div style={{color: 'red'}}>El password entre 8 y 40 characteres.</div>;
   }
 };
 
 const validateEmail = (value) => {
   if (!isEmail(value)) {
-    return (
-      <div style={{color:'red'}}>
-        Este email no es valido
-      </div>
-    );
+    return <div style={{color: 'red'}}>Este email no es valido</div>;
   }
 };
 
@@ -92,7 +80,7 @@ export default function Login(props) {
         <button className={styles.closeBtn} onClick={tigger}>
           X
         </button>
-        <Form className='form-outline mb-4'   onSubmit={handleLogin} ref={form}>
+        <Form className="form-outline mb-4" onSubmit={handleLogin} ref={form}>
           <h2>Inicia sesión</h2>
           <div className={styles.formElement}>
             <label htmlFor="email">Email</label>

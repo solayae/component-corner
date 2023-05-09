@@ -63,9 +63,10 @@ function Cart({ cart, setCart }) {
 
         <div>
           <button
+            className={styles.cartPay}
             onClick={() =>
               axios
-                .post("http://localhost:3001/payment", product)
+                .post("/payment", product)
                 .then(
                   (res) =>
                     (window.location.href = res.data.response.body.init_point)
