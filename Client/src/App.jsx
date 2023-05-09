@@ -12,6 +12,7 @@ import LandingPage from './views/LandingPage/LandingPage';
 import FormProduct from './views/FormProduct/FormProduct';
 import useLocalStorage from './components/useLocalStorage';
 import BoardUser from './components/BoardUser/BoardUser';
+import Profile from './components/Profile/Profile';
 import Cart from './views/Cart/Cart';
 
 import axios from 'axios';
@@ -49,6 +50,7 @@ function App() {
       <Topbar setFilters={setFilters} setPage={setPage} cart={cart} />
       <Routes>
         <Route path="/user" element={<BoardUser />} />
+        <Route path="/profile" element={<Profile/> }/>
         <Route exact path="/" element={<LandingPage />} />
         <Route path="/products/:id" element={<Detail cart={cart} setCart={setCart} />} />
         {/* <Route path="/registrarse" element={<SignInPage />} /> */}

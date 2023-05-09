@@ -4,15 +4,19 @@ import cartImg from './assets/cart-icon.png';
 import login from './assets/login-icon.png';
 import SignUp from '../SignUp/SignUp';
 import Login from '../Login/Login';
-import {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {useState, useCallback} from 'react';
+import {Link, useLocation } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch } from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {useEffect} from 'react';
-
+import { clearMessage, logout } from '../../redux/actions'
+import EventBus from "../../common/EventBus";
+import { BsPersonCheck } from 'react-icons/bs'
+import { MdAssessment } from 'react-icons/md'
+import { IoLogOutOutline } from 'react-icons/io5'
 const Topbar = ({setFilters, cart, setPage}) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
   const [triggerPopUpSignUp, setTriggerPopUpSignUp] = useState(false);
@@ -21,9 +25,11 @@ const Topbar = ({setFilters, cart, setPage}) => {
   const [input, setInput] = useState('');
   const [select, setSelect] = useState('');
   const user = JSON.parse(localStorage.getItem('user'));
-
+  const location = useLocation()
   const productState = useSelector((state) => state.products);
   const allProducts = [...productState];
+  const [showModeratorBoard, setShowModeratorBoard] = useState(false);
+  const [showAdminBoard, setShowAdminBoard] = useState(false);
 
   let categories = allProducts.map((e) => e.category);
   categories = [...new Set(categories)];
@@ -31,10 +37,13 @@ const Topbar = ({setFilters, cart, setPage}) => {
   const cartQuantity = cart.reduce((acc, el) => {
     return acc + el.quantity;
   }, 0);
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log('render');
-  }, []);
+    if (["/", "/home"].includes(location.pathname)) {
+      dispatch(clearMessage()); // clear message when changing location
+    }
+  }, [dispatch, location]);
 
   // Obtén la longitud del array original
   let length = categories.length;
@@ -43,6 +52,30 @@ const Topbar = ({setFilters, cart, setPage}) => {
     setPage(0);
     navigate('/home');
   };
+
+  const logOut = useCallback(() => {
+    dispatch(logout());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (user?.roles) {
+      setShowModeratorBoard(user?.roles.includes("ROLE_MODERATOR"));
+      setShowAdminBoard(user?.roles.includes("ROLE_ADMIN"));
+    } else {
+      setShowModeratorBoard(false);
+      setShowAdminBoard(false);
+    }
+
+    EventBus.on("logout", () => {
+      logOut();
+    });
+
+    return () => {
+      EventBus.remove("logout");
+    };
+  }, [user, logOut]);
+
+
 
   // Divide el array en dos partes iguales
   let firstColumn = categories.slice(0, length / 2);
@@ -77,7 +110,31 @@ const Topbar = ({setFilters, cart, setPage}) => {
             </Link>
             <div className={styles.badge}>{cartQuantity > 9 ? '+9' : cartQuantity}</div>
           </div>
-          <div className={styles.login}>
+          
+
+          {user ? (<> 
+            <div className={styles.login}>
+              <Link to={"/profile"} className="nav-link">
+                    <BsPersonCheck style={{fontSize:'30px'}}/>
+              </Link>
+            </div>
+            <div className={styles.login}>
+              <Link to={"/user"} className="nav-link">
+                    <MdAssessment style={{fontSize:'30px'}}/>
+              </Link>
+            </div>
+            <div className={styles.login}>
+              <Link to={"/home"} className="nav-link">
+                    <IoLogOutOutline style={{fontSize:'30px'}} onClick={logOut}/>
+              </Link>
+            </div>
+            </>
+          ):(
+            <>
+            <div className={styles.login}>
+            <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} setLoginTrigger={setTriggerPopUp} />
+          </div>
+            <div className={styles.login}>
             <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} setTriggerSignUp={setTriggerPopUpSignUp} />
             <img
               src={login}
@@ -87,10 +144,12 @@ const Topbar = ({setFilters, cart, setPage}) => {
               alt="login-icon"
             />
           </div>
+            </>
+           
+          ) 
+        }
 
-          <div className={styles.login}>
-            <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} setLoginTrigger={setTriggerPopUp} />
-          </div>
+          
         </div>
       </div>
       <div className={styles.row2}>
