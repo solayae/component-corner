@@ -4,7 +4,7 @@ import Footer from "./components/Footer/Footer.jsx";
 import Topbar from "./components/Topbar/Topbar.jsx";
 import Detail from "./views/Detail/Detail";
 //import SignInPage from './views/SignInPage/SignInPage';
-<<<<<<< HEAD
+
 import {useDispatch, useSelector} from 'react-redux';
 import {getAllProducts} from './redux/actions';
 import {useEffect, useState} from 'react';
@@ -15,21 +15,16 @@ import useLocalStorage from './components/useLocalStorage';
 import BoardUser from './components/BoardUser/BoardUser';
 import Profile from './components/Profile/Profile';
 import Cart from './views/Cart/Cart';
-=======
-import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "./redux/actions";
-import { useEffect, useState } from "react";
-import Home from "./views/Home/Home";
-import LandingPage from "./views/LandingPage/LandingPage";
-import FormProduct from "./views/FormProduct/FormProduct";
-import useLocalStorage from "./components/useLocalStorage";
-import BoardUser from "./components/BoardUser/BoardUser";
-import Cart from "./views/Cart/Cart";
->>>>>>> 4827aa5a03443d463fefe8713dc5a3d64dadfa81
+
+
+
+
+
 
 import axios from "axios";
-axios.defaults.baseURL = "https://component-corner-production.up.railway.app/";
-//axios.defaults.baseURL = "http://localhost:3001/";
+axios.defaults.baseURL =  "https://component-corner-production.up.railway.app/";
+
+//axios.defaults.baseURL = "http://localhost:3001/"
 
 function App() {
   const [mounted, setMounted] = useState(false);
