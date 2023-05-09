@@ -15,8 +15,8 @@ import BoardUser from "./components/BoardUser/BoardUser";
 import Cart from "./views/Cart/Cart";
 
 import axios from "axios";
-axios.defaults.baseURL = "https://component-corner-production.up.railway.app/";
-//axios.defaults.baseURL = "http://localhost:3001/";
+//axios.defaults.baseURL = "https://component-corner-production.up.railway.app/";
+axios.defaults.baseURL = "http://localhost:3001/";
 
 function App() {
   const [mounted, setMounted] = useState(false);
