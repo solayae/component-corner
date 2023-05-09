@@ -17,6 +17,7 @@ import EventBus from "../../common/EventBus";
 import { BsPersonCheck } from 'react-icons/bs'
 import { MdAssessment } from 'react-icons/md'
 import { IoLogOutOutline } from 'react-icons/io5'
+import { GrUserAdmin } from 'react-icons/gr'
 const Topbar = ({setFilters, cart, setPage}) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
   const [triggerPopUpSignUp, setTriggerPopUpSignUp] = useState(false);
@@ -28,7 +29,7 @@ const Topbar = ({setFilters, cart, setPage}) => {
   const location = useLocation()
   const productState = useSelector((state) => state.products);
   const allProducts = [...productState];
-  const [showModeratorBoard, setShowModeratorBoard] = useState(false);
+  const [showUser, setshowUserBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
 
   let categories = allProducts.map((e) => e.category);
@@ -59,10 +60,10 @@ const Topbar = ({setFilters, cart, setPage}) => {
 
   useEffect(() => {
     if (user?.roles) {
-      setShowModeratorBoard(user?.roles.includes("ROLE_MODERATOR"));
+      setshowUserBoard(user?.roles.includes("RoleUSER"));
       setShowAdminBoard(user?.roles.includes("ROLE_ADMIN"));
     } else {
-      setShowModeratorBoard(false);
+      setshowUserBoard(false);
       setShowAdminBoard(false);
     }
 
@@ -111,26 +112,31 @@ const Topbar = ({setFilters, cart, setPage}) => {
             <div className={styles.badge}>{cartQuantity > 9 ? '+9' : cartQuantity}</div>
           </div>
           
-
-          {user ? (<> 
-            <div className={styles.login}>
+       {user && (
+          <div className={styles.login}>
               <Link to={"/profile"} className="nav-link">
                     <BsPersonCheck style={{fontSize:'30px'}}/>
               </Link>
             </div>
-            <div className={styles.login}>
+        )}
+
+        {showUser && (
+          <div className={styles.login}>
               <Link to={"/user"} className="nav-link">
                     <MdAssessment style={{fontSize:'30px'}}/>
               </Link>
             </div>
-            <div className={styles.login}>
-              <Link to={"/home"} className="nav-link">
-                    <IoLogOutOutline style={{fontSize:'30px'}} onClick={logOut}/>
+        )}
+        {showAdminBoard && (
+          <div className={styles.login}>
+              <Link to={"/admin"} className="nav-link">
+                    <GrUserAdmin style={{fontSize:'30px'}}/>
               </Link>
             </div>
-            </>
-          ):(
-            <>
+        )}
+
+        {!showUser && !showAdminBoard ? (
+          <>
             <div className={styles.login}>
             <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} setLoginTrigger={setTriggerPopUp} />
           </div>
@@ -139,16 +145,27 @@ const Topbar = ({setFilters, cart, setPage}) => {
             <img
               src={login}
               onClick={() => {
-                user ? navigate('/user') : setTriggerPopUp(true);
+                setTriggerPopUp(true);
               }}
               alt="login-icon"
             />
           </div>
             </>
-           
-          ) 
+        ):('')
         }
 
+        { showUser || showAdminBoard ? (
+          <>
+          <div className={styles.login}>
+              <Link to={"/home"} className="nav-link">
+                    <IoLogOutOutline style={{fontSize:'30px'}} onClick={logOut}/>
+              </Link>
+            </div>
+            </>
+        ):('')
+        }
+
+        
           
         </div>
       </div>
