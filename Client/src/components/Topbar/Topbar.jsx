@@ -4,16 +4,20 @@ import cartImg from './assets/cart-icon.png';
 import login from './assets/login-icon.png';
 import SignUp from '../SignUp/SignUp';
 import Login from '../Login/Login';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import {useState, useCallback} from 'react';
+import {Link, useLocation } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import {useSelector, useDispatch } from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
-
-const Topbar = ({ setFilters, cart, setPage }) => {
+import EventBus from "../../common/EventBus";
+import { BsPersonCheck } from 'react-icons/bs'
+import { MdAssessment } from 'react-icons/md'
+import { IoLogOutOutline } from 'react-icons/io5'
+import { GrUserAdmin } from 'react-icons/gr'
+const Topbar = ({ setFilters, cart, setPage, setCart }) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
   const [triggerPopUpSignUp, setTriggerPopUpSignUp] = useState(false);
   const [results, setResults] = useState([]);
@@ -21,8 +25,12 @@ const Topbar = ({ setFilters, cart, setPage }) => {
   const [input, setInput] = useState('');
   const [select, setSelect] = useState('');
 
+  const user = JSON.parse(localStorage.getItem('user'));
+  const location = useLocation()
   const productState = useSelector((state) => state.products);
   const allProducts = [...productState];
+  const [showUser, setshowUserBoard] = useState(false);
+  const [showAdminBoard, setShowAdminBoard] = useState(false);
 
   let categories = allProducts.map((e) => e.category);
   categories = [...new Set(categories)];
@@ -31,9 +39,13 @@ const Topbar = ({ setFilters, cart, setPage }) => {
     return acc + el.quantity;
   }, 0);
 
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    console.log('render');
-  }, []);
+    if (["/", "/home"].includes(location.pathname)) {
+      dispatch(clearMessage()); // clear message when changing location
+    }
+  }, [dispatch, location]);
 
   // Obtén la longitud del array original
   let length = categories.length;
@@ -42,6 +54,33 @@ const Topbar = ({ setFilters, cart, setPage }) => {
     setPage(0);
     navigate('/home');
   };
+
+  const logOut = useCallback(() => {
+    dispatch(logout());
+    localStorage.removeItem("cart")
+    setCart([])
+    //eslint-disable-next-line
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (user?.roles) {
+      setshowUserBoard(user?.roles.includes("RoleUSER"));
+      setShowAdminBoard(user?.roles.includes("RoleADMIN"));
+    } else {
+      setshowUserBoard(false);
+      setShowAdminBoard(false);
+    }
+
+    EventBus.on("logout", () => {
+      logOut();
+    });
+
+    return () => {
+      EventBus.remove("logout");
+    };
+  }, [user, logOut]);
+
+
 
   // Divide el array en dos partes iguales
   let firstColumn = categories.slice(0, length / 2);
@@ -68,6 +107,7 @@ const Topbar = ({ setFilters, cart, setPage }) => {
             input={input}
             select={select}
           />
+
         </div>
         <div className={styles.icons}>
           <Link to='/favorites'>
@@ -78,38 +118,74 @@ const Topbar = ({ setFilters, cart, setPage }) => {
           </Link>
 
           <div className={styles.cart}>
-            <Link to='/cart'>
-              <img src={cartImg} alt='cart-icon' />
+
+            <Link to="/cart">
+              {' '}
+              <img src={cartImg} alt="cart-icon" />
             </Link>
-            <div className={styles.badge}>
-              {cartQuantity > 9 ? '+9' : cartQuantity}
-            </div>
+            <div className={styles.badge}>{cartQuantity > 9 ? '+9' : cartQuantity}</div>
           </div>
+          
+       {user && (
           <div className={styles.login}>
-            <Login
-              trigger={triggerPopUp}
-              setTrigger={setTriggerPopUp}
-              setTriggerSignUp={setTriggerPopUpSignUp}
-            />
+              <Link to={"/profile"} className="nav-link">
+                    <BsPersonCheck style={{fontSize:'30px'}}/>
+              </Link>
+            </div>
+        )}
+
+        {showUser && (
+          <div className={styles.login}>
+              <Link to={"/user"} className="nav-link">
+                    <MdAssessment style={{fontSize:'30px'}}/>
+              </Link>
+            </div>
+        )}
+        {showAdminBoard && (
+          <div className={styles.login}>
+              <Link to={"/admin"} className="nav-link">
+                    <GrUserAdmin style={{fontSize:'30px'}}/>
+              </Link>
+            </div>
+        )}
+
+          {(!showUser && !showAdminBoard) && (
+          <>
+            <div className={styles.login}>
+            <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} setLoginTrigger={setTriggerPopUp} />
+          </div>
+            <div className={styles.login}>
+            <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} setTriggerSignUp={setTriggerPopUpSignUp} />
             <img
               src={login}
-              onClick={() => setTriggerPopUp(true)}
-              alt='login-icon'
+              onClick={() => {
+                setTriggerPopUp(true);
+              }}
+              alt="login-icon"
             />
           </div>
+            </>
+          )
+        }
 
-          <div className={styles.login}>
-            <SignUp
-              trigger={triggerPopUpSignUp}
-              setTrigger={setTriggerPopUpSignUp}
-              setLoginTrigger={setTriggerPopUp}
-            />
-          </div>
+          {(showUser || showAdminBoard) && (
+            <>
+              <div className={styles.login}>
+                <Link to={"/home"} className="nav-link">
+                  <IoLogOutOutline style={{ fontSize: '30px' }} onClick={logOut} />
+                </Link>
+              </div>
+            </>
+          )
+          }
+
+        
+          
         </div>
       </div>
       <div className={styles.row2}>
         <Link to={'/home'} className={styles.about}>
-          HOME
+          PRODUCTOS
         </Link>
         <div className={styles.categories}>
           <div className={styles.dropdown}>
@@ -159,5 +235,6 @@ Topbar.propTypes = {
   setFilters: PropTypes.func,
   setPage: PropTypes.func,
   cart: PropTypes.array,
+  setCart: PropTypes.func
 };
 export default Topbar;

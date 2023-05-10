@@ -7,6 +7,7 @@ import { Heart } from 'iconoir-react';
 
 import styles from './Detail.module.css';
 import Rating from '@mui/material/Rating';
+import PropTypes from "prop-types"
 
 function Detail({ cart, setCart }) {
   const { id } = useParams();
@@ -23,13 +24,17 @@ function Detail({ cart, setCart }) {
     };
   }, [dispatch, id]);
 
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
     let product = {
       id: detailProduct.id,
-      stock: quantity,
-    };
+      name: detailProduct.name,
+      image: detailProduct.image,
+      price: detailProduct.price,
+      stock: detailProduct.stock,
+      quantity: quantity
+    }
 
     const newArray = [];
     let duplicated = false;
@@ -100,12 +105,9 @@ function Detail({ cart, setCart }) {
               +{' '}
             </button>
           </div>
-          <p className={styles.extra_p}>
-            Stock disponible: {detailProduct.stock}
-          </p>
-          <button className={styles.addToCartBtn} onClick={handleAddToCart}>
-            {/* <Link to='/cart' className={styles.addToCartBtn}>AGREGAR AL CARRITO</Link> */}
-            AGREGAR AL CARRITO
+          <p className={styles.extra_p}>Stock disponible: {detailProduct.stock}</p>
+          <button className={styles.addToCartBtn} onClick={handleAddToCart} >
+            <Link to='/cart' className={styles.addToCartBtn}>AGREGAR AL CARRITO</Link>
           </button>
         </div>
       </div>
@@ -138,6 +140,11 @@ function Detail({ cart, setCart }) {
       </div>
     </div>
   );
+}
+
+Detail.propTypes = {
+  cart: PropTypes.array,
+  setCart: PropTypes.func
 }
 
 export default Detail;

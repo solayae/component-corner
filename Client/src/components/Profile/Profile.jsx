@@ -1,24 +1,21 @@
 
 import { Navigate } from 'react-router-dom';
-import { useSelector } from "react-redux";
-import NavBar from '../NavBar/NavBar';
 const Profile = () => {
-  const { user } = useSelector((state) => state.user);
-
-  localStorage.setItem('user' , JSON.stringify(user))
+  
+  const user =  localStorage.getItem('user')
 
   if (!user) {
     return <Navigate to="/" />;
   }
-  console.log(user)
+  
   return (
     <>
-      <NavBar/>
+     
     
     <div className="container">
        <header className="jumbotron">
         <h3>
-          <strong>{user.name}</strong> test -  Profile 
+          <strong>{user?.name}</strong> test -  Profile 
         </h3>
       </header>
 
@@ -33,7 +30,7 @@ const Profile = () => {
       </p>
       <strong>Authorities:</strong>
       <ul>
-        {user.roles &&
+        {user?.roles &&
           user.roles.map((role, index) => <li key={index}>{role}</li>)}
       </ul>
     </div>

@@ -63,7 +63,7 @@ export default function Home({filters, setFilters, page, setPage}) {
         return 0;
       }),
     ],
-    Ascendete: [...allProductsFiltered.sort((prev, next) => prev.price - next.price)],
+    Ascendente: [...allProductsFiltered.sort((prev, next) => prev.price - next.price)],
     Descendente: [...allProductsFiltered.sort((prev, next) => next.price - prev.price)],
   };
 
@@ -115,7 +115,7 @@ export default function Home({filters, setFilters, page, setPage}) {
         </div>
       </div>
     </div>
-  );
+  )
   // :<div>
   //       {content}
   // </div>

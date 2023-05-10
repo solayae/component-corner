@@ -1,6 +1,6 @@
 import styles from '../Login/PopUp.module.css';
 import {useState, useRef} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Form from 'react-validation/build/form';
@@ -9,6 +9,8 @@ import CheckButton from 'react-validation/build/button';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 const MySwal = withReactContent(Swal);
+import jwt_decode from 'jwt-decode';
+import {GoogleLogin} from '@react-oauth/google';
 
 import {isEmail} from 'validator';
 import {register, clearMessage} from '../../redux/actions';
@@ -16,7 +18,7 @@ import {register, clearMessage} from '../../redux/actions';
 const required = (value) => {
   if (!value) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div style={{color:'red'}}>
         Este campo es obligatorio
       </div>
     );
@@ -25,7 +27,7 @@ const required = (value) => {
 const validateEmail = (value) => {
   if (!isEmail(value)) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div style={{color:'red'}}>
         Este email no es valido
       </div>
     );
@@ -35,7 +37,7 @@ const validateEmail = (value) => {
 const validateName = (value) => {
   if (value.length < 3 || value.length > 12) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div style={{color:'red'}}>
         El nombre debe ser entre 3 a 12 caracteres.
       </div>
     );
@@ -45,7 +47,7 @@ const validateName = (value) => {
 const validatePassword = (value) => {
   if (value.length < 8 || value.length > 40) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div style={{color:'red'}}>
         El password entre 8 y 40 characteres.
       </div>
     );
@@ -59,7 +61,6 @@ const SignUp = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const message = useSelector((state) => state.message);
 
   const onChangeName = (e) => {
     const name = e.target.value;
@@ -76,26 +77,31 @@ const SignUp = (props) => {
     setPassword(password);
   };
 
+  const registerUser = async (name, email, password) => {
+    const response = await dispatch(register(name, email, password));
+    if (response.status === 200) {
+      MySwal.fire({
+        title: <strong>¡Registro exitoso!</strong>,
+        html: <i>¡Ya puedes ingresar y encontrar lo buscabas!</i>,
+        icon: 'success',
+      });
+      props.setTrigger(false);
+      return;
+    }
+    if (response.status === 400) {
+      MySwal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: response.data.message || '¡Se ha presenta un error en tu registro intentalo nuevamente!',
+      });
+    }
+  };
+
   const handleRegister = (e) => {
     e.preventDefault();
     form.current.validateAll();
     if (checkBtn.current.context._errors.length === 0) {
-      dispatch(register(name, email, password))
-        .then(() => {
-          tigger();
-          MySwal.fire({
-            title: <strong>¡Registro exitoso!</strong>,
-            html: <i>¡Ya puedes ingresar y encontrar lo buscabas!</i>,
-            icon: 'success',
-          });
-        })
-        .catch(() => {
-          MySwal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: message || '¡Se ha presenta un error en tu registro intentalo nuevamente!',
-          });
-        });
+      registerUser(name, email, password);
     }
   };
 
@@ -105,6 +111,10 @@ const SignUp = (props) => {
     setEmail('');
     setPassword('');
     setName('');
+  };
+  const registerFromGoogle = async (res) => {
+    let userObject = jwt_decode(res.credential);
+    registerUser(userObject.given_name, userObject.email, userObject.aud.slice(0, 12));
   };
 
   return props.trigger ? (
@@ -154,12 +164,19 @@ const SignUp = (props) => {
               <span>Aceptar</span>
             </button>
           </div>
-
+          <div className={styles.googleContainer}>
+            <GoogleLogin onSuccess={(response) => registerFromGoogle(response)} />
+          </div>
           <div className={styles.formElement}>
             <p>¿Ya cuentas con una cuenta?</p>
-            <Link to={'#'}>
-              <button>¡Inicia sesion!</button>
-            </Link>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                tigger();
+                props.setLoginTrigger(true);
+              }}>
+              ¡Inicia sesion!
+            </button>
             <Link to={'#'}>
               <p>¿Olvidaste tú contraseña?</p>
             </Link>
@@ -178,4 +195,5 @@ export default SignUp;
 SignUp.propTypes = {
   trigger: PropTypes.bool,
   setTrigger: PropTypes.func,
+  setLoginTrigger: PropTypes.func,
 };

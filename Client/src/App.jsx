@@ -12,17 +12,20 @@ import LandingPage from './views/LandingPage/LandingPage';
 import FormProduct from './views/FormProduct/FormProduct';
 import useLocalStorage from './components/useLocalStorage';
 import BoardUser from './components/BoardUser/BoardUser';
+import BoardAdmi from './components/BoardAdmin/BoardAdmin'
+import Profile from './components/Profile/Profile';
 import Cart from './views/Cart/Cart';
 import Favorites from './views/Favorites/Favorites';
+import axios from "axios";
+axios.defaults.baseURL =  "https://component-corner-production.up.railway.app/";
 
-import axios from 'axios';
-axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/';
+axios.defaults.baseURL = "http://localhost:3001/"
 
 function App() {
   const [mounted, setMounted] = useState(false);
-  const [filters, setFilters] = useLocalStorage('filter_cards-Home', []);
-  const [page, setPage] = useLocalStorage('page', 0);
-  const [cart, setCart] = useLocalStorage('cart', []);
+  const [filters, setFilters] = useLocalStorage("filter_cards-Home", []);
+  const [page, setPage] = useLocalStorage("page", 0);
+  const [cart, setCart] = useLocalStorage("cart", []);
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const getProducts = async () => {
@@ -47,12 +50,14 @@ function App() {
     <Route path="/user" element={<BoardUser/>} />
     </Routes> */}
 
-      <Topbar setFilters={setFilters} setPage={setPage} cart={cart} />
+      <Topbar setFilters={setFilters} setPage={setPage} cart={cart} setCart={setCart} />
       <Routes>
         <Route path='/user' element={<BoardUser />} />
         <Route exact path='/' element={<LandingPage />} />
-        <Route
-          path='/products/:id'
+        <Route path='/products/:id'
+        <Route path="/profile" element={<Profile/> }/>
+        <Route path='/admin' element={<BoardAdmi/>}/>
+      
           element={<Detail cart={cart} setCart={setCart} />}
         />
         {/* <Route path="/registrarse" element={<SignInPage />} /> */}
