@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./Cart.module.css";
 import axios from "axios";
 
@@ -33,10 +34,17 @@ function Cart({ cart, setCart }) {
       }
     });
   };
-
+// "NO HAY NADA" 
   return (
 
-    cart.length < 1 ? "NO HAY NADA" :
+    cart.length < 1 ? 
+    <div className={styles.cartVacio}>
+      <h2>Tu carrito está vacio</h2>
+      <p>¿No sabés qué comprar? ¡Miles de productos te esperan!</p>
+      <Link to="/home"><button className={styles.addToCartBtn}>Descubrir ofertas</button></Link>
+    </div>
+    
+    :
 
       cart?.map((product) => {
         return (
