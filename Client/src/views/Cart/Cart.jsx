@@ -34,7 +34,11 @@ function Cart({ cart, setCart }) {
       }
     });
   };
-// "NO HAY NADA" 
+
+  const handleRemove = (id) => {
+   setCart((currItem) => { 
+    return currItem.filter((item) => item.id !== id)})
+  }
   return (
 
     cart.length < 1 ? 
@@ -86,6 +90,9 @@ function Cart({ cart, setCart }) {
               >
                 Comprar
               </button>
+            </div>
+            <div>
+            <button className={styles.DelToCartBtn} onClick={() => handleRemove(product.id)}>Quitar</button>
             </div>
           </div>
         )
