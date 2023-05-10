@@ -1,9 +1,8 @@
-import React from 'react';
 import styles from './Footer.module.css';
 
 const Footer = () => {
   return (
-    <>
+    <div>
       <footer className={styles.footer}>
         <div className={styles.column}>
           <h3>SOPORTE</h3>
@@ -45,7 +44,7 @@ const Footer = () => {
       <div className={styles.bottomBar}>
         <h3>© TODOS LOS DERECHOS RESERVADOS | COMPONENTCORNER.COM</h3>
       </div>
-    </>
+    </div>
   );
 };
 
