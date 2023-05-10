@@ -1,6 +1,5 @@
 .cartContainer {
   display: grid;
-  background-color: red;
   grid-template-columns: 5fr 2fr;
 }
 
@@ -13,6 +12,7 @@
   margin: 20px 10px;
   padding: 10px;
   height: 120px;
+  box-shadow: 1px 1px 3px #202020;
 }
 
 
@@ -23,13 +23,16 @@
 }
 
 .cartContent .productPrice {
-  font-size: 23px;
-  font-weight: 500;
+  font-size: 22px;
+  font-family: var(--font-heading);
+  font-weight: 400;
   color: #202020;
 }
 
 .cartContent .productStock {
   margin-left: 15px;
+  color:#6c757d;
+  font-size: 15px;
   width: fit-content;
 }
 
@@ -37,6 +40,7 @@
   width: 80px;
   display: flex;
   justify-content: space-between;
+  font-family: var(--font-heading);
   align-items: center;
 }
 
@@ -53,10 +57,10 @@
   color: #202020;
   cursor: pointer;
   border: none;
-  padding-bottom: 5px;
+  padding-bottom: 2px;
 }
 
-.cartContent .cartPay {
+.cartContent .DelToCartBtn {
   padding: 0.7rem;
   border: none;
   border-radius: 0.5rem;
@@ -66,27 +70,69 @@
   cursor: pointer;
   width: max-content;
   text-decoration: none;
+  transition: 0.222s;
 }
 
-.cartContent .cartPay:hover {
-  background-color: var(--third-color);
+.cartContent .DelToCartBtn:hover {
+  background-color: var(--five-color);
 }
 
 .cartContainer .cartTotal {
   border-radius: 5px;
   background-color: white;
-  justify-content: right;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
   margin: 20px 10px;
-  padding: 10px;
+  padding: 15px;
+  max-height: 270px;
+  box-shadow: 1px 1px 3px #202020;
+}
+
+.cartTotal .orderNumber {
+  color:#6c757d;
+  font-size: 12px;
+}
+
+.cartTotal .cartPay {
+  padding: 0.7rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--four-color);
+  color: #333;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  width: 100%;
+  text-decoration: none;
+  transition: 0.162s;
+}
+
+.cartTotal .cartPay:hover {
+  background-color: var(--four-color);
+  transform: scale(1.012);
+}
+
+.cartTotal .totalPrice {
+  font-family: var(--font-heading);
+  font-size: 23px;
+}
+
+.cartTotal .userName {
+  font-family: var(--font-heading);
 }
 
 .cartVacio{
   display: flex;
   flex-direction: column;
   text-align: center;
+  justify-content: center;
 }
 
-.DelToCartBtn {
+.cartVacio .offersBtn {
+  display: flex;
   margin-bottom: 1rem;
   padding: 0.7rem;
   border: none;
@@ -95,27 +141,12 @@
   color: #333;
   font-size: 1rem;
   cursor: pointer;
-  width: max-content;
+  width: 300px;
   text-decoration: none;
+  align-items: center;
+  justify-content: center;
 }
 
-.DelToCartBtn:hover {
-  background-color: #ff6b6b;
-}
-
-.addToCartBtn {
-  margin-bottom: 1rem;
-  padding: 0.7rem;
-  border: none;
-  border-radius: 0.5rem;
-  background-color: var(--four-color);
-  color: #333;
-  font-size: 1rem;
-  cursor: pointer;
-  width: max-content;
-  text-decoration: none;
-}
-
-.addToCartBtn:hover {
+.offersBtn:hover {
   background-color: var(--third-color);
 }
