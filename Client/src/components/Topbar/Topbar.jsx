@@ -11,8 +11,7 @@ import SearchResults from './SearchResults';
 import {useSelector, useDispatch } from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {useEffect} from 'react';
-import { clearMessage, logout } from '../../redux/actions'
+import { useEffect } from 'react';
 import EventBus from "../../common/EventBus";
 import { BsPersonCheck } from 'react-icons/bs'
 import { MdAssessment } from 'react-icons/md'
@@ -25,6 +24,7 @@ const Topbar = ({ setFilters, cart, setPage, setCart }) => {
   const navigate = useNavigate();
   const [input, setInput] = useState('');
   const [select, setSelect] = useState('');
+
   const user = JSON.parse(localStorage.getItem('user'));
   const location = useLocation()
   const productState = useSelector((state) => state.products);
@@ -38,6 +38,7 @@ const Topbar = ({ setFilters, cart, setPage, setCart }) => {
   const cartQuantity = cart.reduce((acc, el) => {
     return acc + el.quantity;
   }, 0);
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -99,15 +100,25 @@ const Topbar = ({ setFilters, cart, setPage, setCart }) => {
             results={results}
             setSelect={setSelect}
           />
-          <SearchResults results={results} setResults={setResults} setInput={setInput} input={input} select={select} />
+          <SearchResults
+            results={results}
+            setResults={setResults}
+            setInput={setInput}
+            input={input}
+            select={select}
+          />
+
         </div>
         <div className={styles.icons}>
+          <Link to='/favorites'>
           <div className={styles.favorite}>
-            {' '}
-            <img src={favorite} alt="favorite-icon" />
+            <img src={favorite} alt='favorite-icon' />
             <div className={styles.badge}>0</div>
           </div>
+          </Link>
+
           <div className={styles.cart}>
+
             <Link to="/cart">
               {' '}
               <img src={cartImg} alt="cart-icon" />
@@ -186,8 +197,9 @@ const Topbar = ({ setFilters, cart, setPage, setCart }) => {
                     onClick={() => {
                       handleClick(e);
                     }}
-                    href="#"
-                    key={e}>
+                    href='#'
+                    key={e}
+                  >
                     {e}
                   </button>
                 ))}
@@ -198,8 +210,9 @@ const Topbar = ({ setFilters, cart, setPage, setCart }) => {
                     onClick={() => {
                       handleClick(e);
                     }}
-                    href="#"
-                    key={e}>
+                    href='#'
+                    key={e}
+                  >
                     {e}
                   </button>
                 ))}
@@ -207,10 +220,10 @@ const Topbar = ({ setFilters, cart, setPage, setCart }) => {
             </div>
           </div>
         </div>
-        <a href="#" className={styles.about}>
+        <a href='#' className={styles.about}>
           SOBRE COMPONENT CORNER
         </a>
-        <a href="#" className={styles.about}>
+        <a href='#' className={styles.about}>
           VER ESTADO DE PEDIDO
         </a>
       </div>

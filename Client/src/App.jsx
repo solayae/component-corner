@@ -1,13 +1,12 @@
-import "./App.css";
-import { Routes, Route } from "react-router-dom";
-import Footer from "./components/Footer/Footer.jsx";
-import Topbar from "./components/Topbar/Topbar.jsx";
-import Detail from "./views/Detail/Detail";
+import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Footer from './components/Footer/Footer.jsx';
+import Topbar from './components/Topbar/Topbar.jsx';
+import Detail from './views/Detail/Detail';
 //import SignInPage from './views/SignInPage/SignInPage';
-
-import {useDispatch, useSelector} from 'react-redux';
-import {getAllProducts} from './redux/actions';
-import {useEffect, useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllProducts } from './redux/actions';
+import { useEffect, useState } from 'react';
 import Home from './views/Home/Home';
 import LandingPage from './views/LandingPage/LandingPage';
 import FormProduct from './views/FormProduct/FormProduct';
@@ -16,12 +15,7 @@ import BoardUser from './components/BoardUser/BoardUser';
 import BoardAdmi from './components/BoardAdmin/BoardAdmin'
 import Profile from './components/Profile/Profile';
 import Cart from './views/Cart/Cart';
-
-
-
-
-
-
+import Favorites from './views/Favorites/Favorites';
 import axios from "axios";
 axios.defaults.baseURL =  "https://component-corner-production.up.railway.app/";
 
@@ -51,24 +45,24 @@ function App() {
   }, [mounted]);
 
   return (
-    <div className="App">
+    <div className='App'>
       {/* <Routes>
     <Route path="/user" element={<BoardUser/>} />
     </Routes> */}
 
       <Topbar setFilters={setFilters} setPage={setPage} cart={cart} setCart={setCart} />
       <Routes>
-        <Route path="/user" element={<BoardUser />} />
+        <Route path='/user' element={<BoardUser />} />
+        <Route exact path='/' element={<LandingPage />} />
+        <Route path='/products/:id'
         <Route path="/profile" element={<Profile/> }/>
         <Route path='/admin' element={<BoardAdmi/>}/>
-        <Route exact path="/" element={<LandingPage />} />
-        <Route
-          path="/products/:id"
+      
           element={<Detail cart={cart} setCart={setCart} />}
         />
         {/* <Route path="/registrarse" element={<SignInPage />} /> */}
         <Route
-          path="/home"
+          path='/home'
           element={
             <Home
               filters={filters}
@@ -78,8 +72,9 @@ function App() {
             />
           }
         />
-        <Route path="/publicar" element={<FormProduct />} />
-        <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
+        <Route path='/publicar' element={<FormProduct />} />
+        <Route path='/cart' element={<Cart cart={cart} setCart={setCart} />} />
+        <Route path='/favorites' element={<Favorites />} />
       </Routes>
       <Footer />
     </div>

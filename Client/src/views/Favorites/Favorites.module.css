@@ -1,0 +1,33 @@
+.favorites_container {
+  padding: 2rem;
+}
+
+.favorites_title {
+  margin: 3rem 0 0 3rem;
+}
+
+section {
+  display: flex;
+}
+
+figure {
+  padding: 1rem;
+}
+
+.favorites_info button {
+  margin: 0.5rem 0 0 0 ;
+  border: none;
+  background-color: transparent;  
+  color: dodgerblue;
+}
+.favorites_info {
+  padding: 1rem;
+}
+
+.favorites_info h3 {
+  font-size: 1.5rem;
+}
+
+.favorites_info h4 {
+  font-size: 1rem;
+}

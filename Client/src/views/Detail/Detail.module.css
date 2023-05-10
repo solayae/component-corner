@@ -14,10 +14,14 @@
 }
 
 .container_image {
+  position: relative;
   width: 90%;
   height: 90%;
   margin-right: 1rem;
 }
+
+
+
 
 .image {
   width: 100%;
@@ -63,6 +67,37 @@
 
 }
 
+.name_container {
+  /* border: solid 1px black; */
+  display: flex;
+}
+
+.button_fav {
+  display: flex;
+  justify-content: center;
+
+  background-color: transparent;
+  margin-top: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.button_favorite svg {
+  fill: black;
+}
+
+.button_nofavorite svg {
+  fill: transparent;
+}
+
+.button_nofavorite svg:hover {
+  fill: black;
+  transition: background-color 0.5s ease-in-out;
+
+}
+
+
 .extra_p {
   font-size: 0.9rem;
   color: rgb(95, 95, 95);
@@ -77,8 +112,11 @@
 }
 
 .title {
+  font-family: var(--font-heading);
   margin: 0;
   font-size: 1.75rem;
+  margin-right: 1rem;
+
 }
 
 .price {
@@ -223,3 +261,4 @@
   min-height: 250px;
 
 }
+
