@@ -6,16 +6,6 @@ function Cart({ cart, setCart }) {
 
   const totalPrice = cart.reduce((acc, el) => acc + el.quantity * el.price, 0);
 
-  const showProductName = cart.map((el) => {
-    return (
-      <div key={el.id}>
-        <div >Nombre: {el.name}</div>
-
-        <div >Stock: {el.stock}</div>
-      </div>
-    )
-  })
-
   const handleIncrement = (id) => {
     setCart((product) => {
       return product.map((item) => {
@@ -48,6 +38,11 @@ function Cart({ cart, setCart }) {
     });
   };
 
+  const handleRemove = (id) => {
+    setCart((currItem) => {
+      return currItem.filter((item) => item.id !== id)
+    })
+  }
   return (
 
     cart.length < 1 ?
@@ -89,6 +84,10 @@ function Cart({ cart, setCart }) {
                   </div>
 
                   <div>
+                    <button className={styles.DelToCartBtn} onClick={() => handleRemove(product.id)}>Quitar</button>
+                  </div>
+
+                  <div>
                     <button className={styles.cartPay}
                       onClick={() =>
                         axios
@@ -98,9 +97,7 @@ function Cart({ cart, setCart }) {
                               (window.location.href = res.data.response.body.init_point)
                           )
                       }
-                    >
-                      Comprar
-                    </button>
+                    > Comprar </button>
                   </div>
                 </div>
               )
@@ -132,5 +129,4 @@ function Cart({ cart, setCart }) {
       </div>
   );
 }
-
 export default Cart;

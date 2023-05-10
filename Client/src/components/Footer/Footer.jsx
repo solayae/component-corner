@@ -1,4 +1,5 @@
 import styles from './Footer.module.css';
+import { BsTelephone } from "react-icons/bs";
 
 const Footer = () => {
   return (

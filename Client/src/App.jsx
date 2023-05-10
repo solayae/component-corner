@@ -22,9 +22,9 @@ import Cart from './views/Cart/Cart';
 
 
 import axios from "axios";
-axios.defaults.baseURL =  "https://component-corner-production.up.railway.app/";
+//axios.defaults.baseURL =  "https://component-corner-production.up.railway.app/";
 
-//axios.defaults.baseURL = "http://localhost:3001/"
+axios.defaults.baseURL = "http://localhost:3001/"
 
 function App() {
   const [mounted, setMounted] = useState(false);
@@ -55,7 +55,7 @@ function App() {
     <Route path="/user" element={<BoardUser/>} />
     </Routes> */}
 
-      <Topbar setFilters={setFilters} setPage={setPage} cart={cart} />
+      <Topbar setFilters={setFilters} setPage={setPage} cart={cart} setCart={setCart} />
       <Routes>
         <Route path="/user" element={<BoardUser />} />
         <Route path="/profile" element={<Profile/> }/>
