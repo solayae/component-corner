@@ -1,6 +1,21 @@
-const {Products,  Role} = require('../db');
+const {Products,  Role, Usuario} = require('../db');
 const {articulos} = require('../Utils/Productos');
 const { roles } = require('../Utils/Roles')
+const bcrypt = require("bcryptjs")
+
+const roleAdmin = async ()=>{
+  await Usuario.create({
+    name: 'admin',
+    email: 'corner@component.com',
+    password: bcrypt.hashSync('123456789', 12),
+  })
+  .then((admin)=>{
+    admin.setRoles([2]).then(() => {
+      console.log('admin create. ')
+  })
+  }).catch((error)=>console.log('error admin' + error))
+}
+
 
 const bulkProductsAndRoles = async () => {
   try {
@@ -12,4 +27,4 @@ const bulkProductsAndRoles = async () => {
   }
 };
 
-module.exports = {bulkProductsAndRoles};
+module.exports = {bulkProductsAndRoles, roleAdmin};

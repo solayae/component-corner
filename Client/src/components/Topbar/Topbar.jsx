@@ -61,7 +61,7 @@ const Topbar = ({setFilters, cart, setPage}) => {
   useEffect(() => {
     if (user?.roles) {
       setshowUserBoard(user?.roles.includes("RoleUSER"));
-      setShowAdminBoard(user?.roles.includes("ROLE_ADMIN"));
+      setShowAdminBoard(user?.roles.includes("RoleADMIN"));
     } else {
       setshowUserBoard(false);
       setShowAdminBoard(false);
