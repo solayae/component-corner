@@ -48,16 +48,16 @@ function Cart({ cart, setCart }) {
         <div className={styles.cartCounter}>
           <button
             className={styles.cartButton}
-            onClick={() => handleIncrement(product.id)}
+            onClick={() => handleDecrement(product.id)}
           >
-            +
+            -
           </button>
           <div className={styles.productQuantity}>{product.quantity}</div>
           <button
             className={styles.cartButton}
-            onClick={() => handleDecrement(product.id)}
+            onClick={() => handleIncrement(product.id)}
           >
-            -
+            +
           </button>
         </div>
 

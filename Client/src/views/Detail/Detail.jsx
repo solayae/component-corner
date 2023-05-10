@@ -21,7 +21,7 @@ function Detail({ cart, setCart }) {
     };
   }, [dispatch, id]);
 
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
 
