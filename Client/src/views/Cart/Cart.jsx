@@ -41,16 +41,14 @@ function Cart({ cart, setCart }) {
   }
   return (
 
-    cart.length < 1 ? 
-    <div className={styles.cartVacio}>
+    cart.length < 1 
+    ? <div className={styles.cartVacio}>
       <h2>Tu carrito está vacio</h2>
       <p>¿No sabés qué comprar? ¡Miles de productos te esperan!</p>
       <Link to="/home"><button className={styles.addToCartBtn}>Descubrir ofertas</button></Link>
     </div>
     
-    :
-
-      cart?.map((product) => {
+    : <div><div>{cart?.map((product) => {
         return (
           <div className={styles.cartContent} key={product.id}>
             <img src={product.image}></img>
@@ -96,8 +94,11 @@ function Cart({ cart, setCart }) {
             </div>
           </div>
         )
-      })
+      } )}
+    </div>
+    <div className={styles.btnCompra} ><button className={styles.addToCartBtn}>Continuar compra</button></div>
+    </div>
+    
   );
 }
-
 export default Cart;
