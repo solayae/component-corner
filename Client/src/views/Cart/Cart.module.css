@@ -3,7 +3,8 @@
   background-color: white;
   display: grid;
   grid-template-columns: repeat(7, 200px);
-  max-width: 90%;
+  max-width: 100%;
+  justify-content: center;
   align-items: center;
   margin: 20px 10px;
   padding: 10px;
@@ -100,4 +101,11 @@
 
 .DelToCartBtn:hover {
   background-color: #ff6b6b;
+}
+
+.btnCompra{
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
