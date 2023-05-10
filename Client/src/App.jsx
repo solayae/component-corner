@@ -55,7 +55,7 @@ function App() {
     <Route path="/user" element={<BoardUser/>} />
     </Routes> */}
 
-      <Topbar setFilters={setFilters} setPage={setPage} cart={cart} />
+      <Topbar setFilters={setFilters} setPage={setPage} cart={cart} setCart={setCart} />
       <Routes>
         <Route path="/user" element={<BoardUser />} />
         <Route path="/profile" element={<Profile/> }/>

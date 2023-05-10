@@ -18,7 +18,7 @@ import { BsPersonCheck } from 'react-icons/bs'
 import { MdAssessment } from 'react-icons/md'
 import { IoLogOutOutline } from 'react-icons/io5'
 import { GrUserAdmin } from 'react-icons/gr'
-const Topbar = ({setFilters, cart, setPage}) => {
+const Topbar = ({ setFilters, cart, setPage, setCart }) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
   const [triggerPopUpSignUp, setTriggerPopUpSignUp] = useState(false);
   const [results, setResults] = useState([]);
@@ -56,6 +56,9 @@ const Topbar = ({setFilters, cart, setPage}) => {
 
   const logOut = useCallback(() => {
     dispatch(logout());
+    localStorage.removeItem("cart")
+    setCart([])
+    //eslint-disable-next-line
   }, [dispatch]);
 
   useEffect(() => {
@@ -135,7 +138,7 @@ const Topbar = ({setFilters, cart, setPage}) => {
             </div>
         )}
 
-        {!showUser && !showAdminBoard ? (
+          {(!showUser && !showAdminBoard) && (
           <>
             <div className={styles.login}>
             <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} setLoginTrigger={setTriggerPopUp} />
@@ -151,19 +154,19 @@ const Topbar = ({setFilters, cart, setPage}) => {
             />
           </div>
             </>
-        ):('')
+          )
         }
 
-        { showUser || showAdminBoard ? (
-          <>
-          <div className={styles.login}>
-              <Link to={"/home"} className="nav-link">
-                    <IoLogOutOutline style={{fontSize:'30px'}} onClick={logOut}/>
-              </Link>
-            </div>
+          {(showUser || showAdminBoard) && (
+            <>
+              <div className={styles.login}>
+                <Link to={"/home"} className="nav-link">
+                  <IoLogOutOutline style={{ fontSize: '30px' }} onClick={logOut} />
+                </Link>
+              </div>
             </>
-        ):('')
-        }
+          )
+          }
 
         
           
@@ -219,5 +222,6 @@ Topbar.propTypes = {
   setFilters: PropTypes.func,
   setPage: PropTypes.func,
   cart: PropTypes.array,
+  setCart: PropTypes.func
 };
 export default Topbar;
