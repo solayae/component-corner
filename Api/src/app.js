@@ -46,7 +46,7 @@ server.post("/payment", (req, res) => {
       },
     ],
     back_urls: {
-      success: "https://component-corner.vercel.app", //"http://localhost:3001", //cambiar url deploy
+      success: "https://component-corner.vercel.app", //"http://localhost:3001", //"http://localhost:3001", //cambiar url deploy
       failure: "",
       pending: "",
     },

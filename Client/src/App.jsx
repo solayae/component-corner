@@ -13,6 +13,7 @@ import LandingPage from './views/LandingPage/LandingPage';
 import FormProduct from './views/FormProduct/FormProduct';
 import useLocalStorage from './components/useLocalStorage';
 import BoardUser from './components/BoardUser/BoardUser';
+import BoardAdmi from './components/BoardAdmin/BoardAdmin'
 import Profile from './components/Profile/Profile';
 import Cart from './views/Cart/Cart';
 
@@ -22,7 +23,7 @@ import Cart from './views/Cart/Cart';
 
 
 import axios from "axios";
-//axios.defaults.baseURL =  "https://component-corner-production.up.railway.app/";
+axios.defaults.baseURL =  "https://component-corner-production.up.railway.app/";
 
 axios.defaults.baseURL = "http://localhost:3001/"
 
@@ -59,6 +60,7 @@ function App() {
       <Routes>
         <Route path="/user" element={<BoardUser />} />
         <Route path="/profile" element={<Profile/> }/>
+        <Route path='/admin' element={<BoardAdmi/>}/>
         <Route exact path="/" element={<LandingPage />} />
         <Route
           path="/products/:id"

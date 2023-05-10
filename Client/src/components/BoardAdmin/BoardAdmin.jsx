@@ -1,7 +1,7 @@
 const BoardAdmin = () => {
   return (
     <div>
-      admin
+      <h1>Board the admin</h1>
     </div>
   );
 }
