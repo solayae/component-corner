@@ -1,36 +1,46 @@
-.cartContent {
+.cartContainer {
+  display: grid;
+  background-color: red;
+  grid-template-columns: 5fr 2fr;
+}
+
+.cartContainer .cartContent {
   border-radius: 5px;
   background-color: white;
   display: grid;
-  grid-template-columns: repeat(7, 200px);
-  max-width: 100%;
-  justify-content: center;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
   align-items: center;
   margin: 20px 10px;
   padding: 10px;
   height: 120px;
 }
 
+
 .cartContent img {
   height: 100px;
   max-height: 90%;
-  width: 35%;
+  width: 100px;
 }
 
-.productPrice {
+.cartContent .productPrice {
   font-size: 23px;
   font-weight: 500;
   color: #202020;
 }
 
-.cartCounter {
-  width: 35%;
+.cartContent .productStock {
+  margin-left: 15px;
+  width: fit-content;
+}
+
+.cartContent .cartCounter {
+  width: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.cartButton {
+.cartContent .cartButton {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -46,8 +56,7 @@
   padding-bottom: 5px;
 }
 
-.cartPay {
-  margin-bottom: 1rem;
+.cartContent .cartPay {
   padding: 0.7rem;
   border: none;
   border-radius: 0.5rem;
@@ -59,25 +68,16 @@
   text-decoration: none;
 }
 
-.cartPay:hover {
+.cartContent .cartPay:hover {
   background-color: var(--third-color);
 }
 
-.addToCartBtn {
-  margin-bottom: 1rem;
-  padding: 0.7rem;
-  border: none;
-  border-radius: 0.5rem;
-  background-color: var(--four-color);
-  color: #333;
-  font-size: 1rem;
-  cursor: pointer;
-  width: max-content;
-  text-decoration: none;
-}
-
-.addToCartBtn:hover {
-  background-color: var(--third-color);
+.cartContainer .cartTotal {
+  border-radius: 5px;
+  background-color: white;
+  justify-content: right;
+  margin: 20px 10px;
+  padding: 10px;
 }
 
 .cartVacio{
@@ -103,9 +103,19 @@
   background-color: #ff6b6b;
 }
 
-.btnCompra{
-  display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
+.addToCartBtn {
+  margin-bottom: 1rem;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--four-color);
+  color: #333;
+  font-size: 1rem;
+  cursor: pointer;
+  width: max-content;
+  text-decoration: none;
+}
+
+.addToCartBtn:hover {
+  background-color: var(--third-color);
 }
