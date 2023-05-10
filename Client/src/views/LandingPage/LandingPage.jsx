@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+
 function LandingPage() {
   const [recommendedProducts, setRecommended] = useState([]);
   const products = useSelector((state) => state.products);
@@ -24,9 +25,9 @@ function LandingPage() {
       </div>
       {/* <div className={Style.menuContanier}></div> */}
       <div className={Style.recommendations}>
-        <h1 className={Style.recommendationsTitle}>Recomendaciones:</h1>
+        <h1 className={Style.recommendationsTitle}>Recomendaciones</h1>
         <Cards products={recommendedProducts} />
-        <div
+        {/* <div
           style={{
             display: "flex",
             flexDirection: "column",
@@ -39,7 +40,7 @@ function LandingPage() {
             <button>HAZ CLICK AQUI</button>
           </Link>
           <p>Comisiones del 11% por cada venta</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

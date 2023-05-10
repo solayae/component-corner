@@ -1,21 +1,21 @@
-import React from 'react';
-import styles from './Footer.module.css';
+import React from "react";
+import styles from "./Footer.module.css";
 
 const Footer = () => {
   return (
     <>
-      <footer className={styles.footer}>
+      <footer className={`${styles.footer} ${styles.footerMobile}`}>
         <div className={styles.column}>
           <h3>SOPORTE</h3>
           <ul>
             <li>
-              <a href='#'>Preguntas frecuentes</a>
+              <a href="#">Preguntas frecuentes</a>
             </li>
             <li>
-              <a href='#'>Política de cambios</a>
+              <a href="#">Política de cambios</a>
             </li>
             <li>
-              <a href='#'>Política de devoluciones</a>
+              <a href="#">Política de devoluciones</a>
             </li>
           </ul>
         </div>
@@ -25,7 +25,7 @@ const Footer = () => {
             <li>Envío gratis</li>
             <li>Pago a través de Mercado Pago</li>
             <li>
-              <a href='#'>Verificación de Estado de Pedido</a>
+              <a href="#">Verificación de Estado de Pedido</a>
             </li>
           </ul>
         </div>
@@ -33,13 +33,14 @@ const Footer = () => {
           <h3>CONTACTO</h3>
           <ul>
             <li>
-              <a href='#'>+54 123 456 789</a>
+              <a href="#">+54 123 456 789</a>
             </li>
             <li>
-              <a href='#'>contacto@componentcorner.com</a>
+              <a href="#">contacto@componentcorner.com</a>
             </li>
             <li>Argentina | Colombia | Perú</li>
           </ul>
+          <a href="https://www.flaticon.es/iconos-gratis/filtrar" title="filtrar iconos">Filtrar iconos creados por joalfa - Flaticon</a>
         </div>
       </footer>
       <div className={styles.bottomBar}>

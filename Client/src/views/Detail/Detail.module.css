@@ -10,7 +10,6 @@
   display: flex;
   align-items: center;
   background-color: white;
-
 }
 
 .container_image {
@@ -24,14 +23,12 @@
   height: 100%;
 }
 
-
 .details {
   margin-top: 3rem;
   padding: 1rem;
   border: 1px solid #ccc;
   background-color: #f7f7f7;
 }
-
 
 .details p {
   margin-top: 0;
@@ -60,14 +57,12 @@
   margin-left: 5rem;
   background-color: white;
   width: 55%;
-
 }
 
 .extra_p {
   font-size: 0.9rem;
   color: rgb(95, 95, 95);
 }
-
 
 .brand {
   font-size: 1.5rem;
@@ -117,7 +112,6 @@
   background-color: var(--third-color);
 }
 
-
 .quantity label {
   margin-right: 1rem;
   font-size: 1.2rem;
@@ -163,7 +157,7 @@
   background-color: #f7f7f7;
   padding: 1rem;
   margin-top: 1rem;
-
+  border: 3px solid blue
 }
 
 .rating_comments {
@@ -175,7 +169,6 @@
   display: flex;
   align-items: center;
   gap: 5px;
-
 }
 
 .rating_container p {
@@ -184,10 +177,11 @@
 }
 
 .container_button {
-  margin: 2rem;
+  margin: rem;
   width: 100%;
   display: flex;
   justify-content: center;
+  border: 3px solid green;
 }
 
 .rating_button {
@@ -207,19 +201,58 @@
   display: flex;
   flex-direction: column;
   min-height: 250px;
-
-
 }
-
 
 .commentInput textarea {
   margin-top: 1rem;
   padding: 1rem;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   font-family: var(--font-body);
   border-radius: 5px;
   border: none;
   font-size: 16px;
   min-height: 250px;
-
 }
+
+/*     RESPONSIVE     */
+/*  / / / / / / / / / */
+
+@media only screen and (max-width: 480px) {
+
+  .container {
+  margin: 1rem;
+  padding: 1rem;
+  }
+  
+  .container_image {
+  width: 100%;
+  height: auto;
+  margin-right: 0;
+  }
+  
+  .info {
+  margin: 1rem 0 0 0;
+  padding: 1rem;
+  width: 100%;
+  }
+  
+  .quantity {
+  margin-bottom: 0.5rem;
+  }
+  
+  .quantity input {
+  width: 40px;
+  height: 25px;
+  font-size: 1rem;
+  }
+  
+  .rating_button {
+  width: 100%;
+  font-size: 1rem;
+  }
+  
+  .commentInput textarea {
+  min-height: 150px;
+  }
+  
+  }

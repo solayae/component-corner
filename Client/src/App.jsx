@@ -15,14 +15,18 @@ import BoardUser from './components/BoardUser/BoardUser';
 import Cart from './views/Cart/Cart';
 
 import axios from 'axios';
-axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/';
-//axios.defaults.baseURL = 'http://localhost:3001';
+//axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/';
+axios.defaults.baseURL = 'http://localhost:3001/';
 function App() {
   const [mounted, setMounted] = useState(false);
   const [filters, setFilters] = useLocalStorage('filter_cards-Home', []);
   const [page, setPage] = useLocalStorage('page', 0);
   const [cart, setCart] = useLocalStorage('cart', []);
   const products = useSelector((state) => state.products);
+  const [filterDisplay, setFilterDisplay] = useState({
+    display:'none'
+  })
+
   const dispatch = useDispatch();
   const getProducts = async () => {
     return dispatch(getAllProducts());
@@ -46,7 +50,7 @@ function App() {
     <Route path="/user" element={<BoardUser/>} />
     </Routes> */}
 
-      <Topbar setFilters={setFilters} setPage={setPage} cart={cart} />
+      <Topbar setFilters={setFilters} setPage={setPage} cart={cart} filterDisplay={filterDisplay} setFilterDisplay={setFilterDisplay} />
       <Routes>
         <Route path="/user" element={<BoardUser />} />
         <Route exact path="/" element={<LandingPage />} />
@@ -54,7 +58,7 @@ function App() {
         {/* <Route path="/registrarse" element={<SignInPage />} /> */}
         <Route
           path="/home"
-          element={<Home filters={filters} setFilters={setFilters} page={page} setPage={setPage} />}
+          element={<Home filters={filters} setFilters={setFilters} filterDisplay={filterDisplay} page={page} setPage={setPage} />}
         />
         <Route path="/publicar" element={<FormProduct />} />
         <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />

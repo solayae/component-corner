@@ -1,6 +1,7 @@
 .landingPage {
   font-family: var(--font-heading);
   background-color: #d9d9d9;
+ 
 }
 
 .landingPage button {
@@ -27,6 +28,7 @@ div.banner {
   display: flex;
   padding: auto;
   min-height: 400px;
+
 }
 
 div.banner .banner__TextContainer {
@@ -55,11 +57,9 @@ div.recommendations {
 
 /*MODO RESPONSIVE */
 @media screen and (max-width: 480px) {
-.landingPage{
-  width: 100vw;
-  height: 40vh;
-  /* border: 3px solid blue; */
-}
+  .landingPage {
+    width: 100vw;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -67,7 +67,6 @@ div.recommendations {
     display: none;
     background-size: 100vw 25vh;
     height: 60vw;
-    border: 3px solid green;
   }
 }
 
@@ -78,7 +77,6 @@ div.recommendations {
     margin: 0;
     width: 100vw;
     height: 100vh;
-    /* border: 3px solid green; */
   }
 }
 
@@ -89,7 +87,6 @@ div.recommendations {
     max-width: 100%;
     font-size: 20px;
     height: 25vh;
-    /* border: 3px solid salmon; */
   }
 }
 
@@ -100,12 +97,12 @@ div.recommendations {
 }
 
 @media screen and (max-width: 480px) {
-  .recommendations{   
-    border: 3px solid blue;
-  }
+ 
   .recommendationsTitle {
     padding: 0;
-    font-size: 16px;
-    border: 3px solid salmon;
+    display: flex;
+    font-size: 2em;
+    align-items: center;
+    justify-content: center;
   }
 }
