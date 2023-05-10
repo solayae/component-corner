@@ -6,6 +6,10 @@ function Cart({ cart, setCart }) {
 
   const totalPrice = cart.reduce((acc, el) => acc + el.quantity * el.price, 0);
 
+  const cartQuantity = cart.reduce((acc, el) => {
+    return acc + el.quantity;
+  }, 0);
+
   const handleIncrement = (id) => {
     setCart((product) => {
       return product.map((item) => {
@@ -49,7 +53,9 @@ function Cart({ cart, setCart }) {
       <div className={styles.cartVacio}>
         <h2>Tu carrito está vacio</h2>
         <p>¿No sabés qué comprar? ¡Miles de productos te esperan!</p>
-        <Link to="/home"><button className={styles.addToCartBtn}>Descubrir ofertas</button></Link>
+        <button onClick={() => location.href = "/home"} className={styles.offersBtn}>
+          Descubrir ofertas
+        </button>
       </div> :
 
       <div className={styles.cartContainer}>
@@ -61,7 +67,7 @@ function Cart({ cart, setCart }) {
                 <div className={styles.cartContent} key={product.id}>
                   <img src={product.image}></img>
 
-                  <div className={styles.productName}>Nombre: {product.name}</div>
+                  <div className={styles.productName}>{product.name}</div>
 
                   <div className={styles.productStock}>Stock: {product.stock}</div>
 
@@ -87,18 +93,6 @@ function Cart({ cart, setCart }) {
                     <button className={styles.DelToCartBtn} onClick={() => handleRemove(product.id)}>Quitar</button>
                   </div>
 
-                  <div>
-                    <button className={styles.cartPay}
-                      onClick={() =>
-                        axios
-                          .post("/payment", product)
-                          .then(
-                            (res) =>
-                              (window.location.href = res.data.response.body.init_point)
-                          )
-                      }
-                    > Comprar </button>
-                  </div>
                 </div>
               )
             })
@@ -109,22 +103,41 @@ function Cart({ cart, setCart }) {
 
         <div className={styles.cartTotal}>
           <div>
-            Articulos: {cart.map((el) => {
+            <span className={styles.orderNumber}>NRO DE ORDEN: PONER ORDER NUMBER </span>
+
+            <h2 className={styles.userName}>userName</h2>
+
+            <p> Articulos: {cartQuantity}</p>
+            {/* {cart.map((el) => {
               return (
                 <div key={el.id}>
-                  <div >{el.name.length > 35 ? el.name.slice(0, 35) + '...' : el.name}</div>
-
-                  <div >Cantidad: {el.quantity}</div>
+                  <div >
+                    {el.name.length > 32 ? el.name.slice(0, 32) + '...' + ` (${el.quantity})` : el.name + ` (${el.quantity})`}</div>
                 </div>
               )
             })
-            }
+            } */}
+            <p>Envio: <span>Gratis!</span></p>
           </div>
 
           <div className={styles.totalPrice}>
-            PRECIO TOTAL: ${totalPrice}</div>
-        </div>
+            <span>PRECIO TOTAL: ${totalPrice}</span>
+          </div>
 
+          <div>
+            <button className={styles.cartPay}
+              onClick={() =>
+                axios
+                  .post("/payment", cart)
+                  .then(
+                    (res) =>
+                      (window.location.href = res.data.response.body.init_point)
+                  )
+              }
+            > COMPRAR </button>
+          </div>
+
+        </div>
 
       </div>
   );
