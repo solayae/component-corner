@@ -17,7 +17,7 @@ server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
 server.use(morgan("dev"));
-server.use(cors({origin:[ 'https://component-corner.vercel.app' ]}));
+
 server.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Credentials", "true");
@@ -46,7 +46,7 @@ server.post("/payment", (req, res) => {
       },
     ],
     back_urls: {
-      success: "https://component-corner.vercel.app", //cambiar url deploy
+      success: "https://component-corner.vercel.app", //"http://localhost:3001", //cambiar url deploy
       failure: "",
       pending: "",
     },

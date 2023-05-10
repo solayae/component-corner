@@ -9,9 +9,11 @@ import EventBus from '../../common/EventBus';
 const NavBar = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
+  //const { user: currentUser } = useSelector((state) => state.user);
   const {user: currentUser} = useSelector((state) => state.user);
   const dispatch = useDispatch();
   let location = useLocation();
+  const user = localStorage.getItem('user')
   useEffect(() => {
     if (['/home', '/register'].includes(location.pathname)) {
       dispatch(clearMessage()); // clear message when changing location
@@ -23,9 +25,9 @@ const NavBar = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (currentUser?.roles) {
-      setShowModeratorBoard(currentUser?.roles.includes('ROLE_MODERATOR'));
-      setShowAdminBoard(currentUser?.roles.includes('ROLE_ADMIN'));
+    if (user.roles) {
+      setShowModeratorBoard(user?.roles.includes("ROLE_MODERATOR"));
+      setShowAdminBoard(user?.roles.includes("ROLE_ADMIN"));
     } else {
       setShowModeratorBoard(false);
       setShowAdminBoard(false);
@@ -38,7 +40,7 @@ const NavBar = () => {
     return () => {
       EventBus.remove('logout');
     };
-  }, [currentUser, logOut]);
+  }, [user, logOut]);
 
   return (
     <div>

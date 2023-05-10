@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 
 import UserService from "../../services/userService"
 import EventBus from "../../common/EventBus";
-import NavBar from "../NavBar/NavBar";
 const BoardUser = () => {
   const [content, setContent] = useState("");
 
@@ -30,7 +29,7 @@ const BoardUser = () => {
 
   return (
     <>
-    <NavBar/>
+   
      <div className="container">
       <header className="jumbotron">
         <h3>{content} - Test</h3>

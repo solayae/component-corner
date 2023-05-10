@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDetail, cleanDetail } from '../../redux/actions';
 import { Link, useParams } from 'react-router-dom';
-import useLocalStorage from '../../components/useLocalStorage';
 
 import styles from './Detail.module.css';
 import Rating from '@mui/material/Rating';
+import PropTypes from "prop-types"
 
 function Detail({ cart, setCart }) {
   const { id } = useParams();
@@ -21,7 +21,7 @@ function Detail({ cart, setCart }) {
     };
   }, [dispatch, id]);
 
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
 
@@ -113,6 +113,11 @@ function Detail({ cart, setCart }) {
       </div>
     </div>
   );
+}
+
+Detail.propTypes = {
+  cart: PropTypes.array,
+  setCart: PropTypes.func
 }
 
 export default Detail;
