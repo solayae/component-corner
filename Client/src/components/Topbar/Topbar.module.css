@@ -8,9 +8,7 @@
   padding: 0 20px;
   width: 100%;
 }
-.ocultarFiltros {
-  display: none;
-}
+
 .logo {
   cursor: pointer;
   font-family: var(--font-heading);
@@ -274,7 +272,7 @@
 
   .searchContainer {
     padding: 0;
-    width: 57vw;
+    width: 48vw;
   }
   .search {
     width: inherit;
@@ -307,13 +305,6 @@
     z-index: 1;
     box-shadow: 0 0 8px #ddd;
     font-size: 0.6rem;
-  }
-  .ocultarFiltros,
-  .verFiltros {
-    display: flex;
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
   }
 }
 .activeOption {
