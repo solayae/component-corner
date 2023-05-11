@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define("Ventas", {
+  sequelize.define("Venta", {
     
     id:{
       type:DataTypes.INTEGER,
@@ -15,14 +15,14 @@ module.exports = (sequelize) => {
       allowNull: false,
         validate: {
          isDate:true
-      },
+      }
     },
     nroPedido: {
       type: DataTypes.INTEGER,
       allowNull:false,
     },
-    id_cliente: {
-      type: DataTypes.UUIDV4,
+    id_usuario: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       
     }    

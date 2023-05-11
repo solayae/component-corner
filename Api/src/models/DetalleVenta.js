@@ -11,11 +11,10 @@ module.exports = (sequelize) => {
     },
     id_venta: {
       type: DataTypes.INTEGER,
-      autoIncrement: true,
       allowNull: false,
     },
-    id_articulo: {
-      type: DataTypes.UUIDV4,
+    id_products: {
+      type: DataTypes.UUID,
       allowNull: false,
     },
     cantidad: {
