@@ -231,7 +231,7 @@ const Topbar = ({ setFilters, filterDisplay, setFilterDisplay,cart, setPage, set
           </div>
         </div>
         <a href='#' className={styles.about}>
-          SOBRE NOSOTOS
+          SOBRE NOSOTROS
         </a>
         <a href='#' className={styles.about}>
           PEDIDO
