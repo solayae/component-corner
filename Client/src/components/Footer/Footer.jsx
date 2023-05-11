@@ -47,7 +47,7 @@ const Footer = () => {
             </li>
             <li>Argentina | Colombia | Perú</li>
           </ul>
-          <a href="https://www.flaticon.es/iconos-gratis/filtrar" title="filtrar iconos">Filtrar iconos creados por joalfa - Flaticon</a>
+          {/* <a href="https://www.flaticon.es/iconos-gratis/filtrar" title="filtrar iconos">Filtrar iconos creados por joalfa - Flaticon</a> */}
         </div>
       </footer>
       <div className={styles.bottomBar}>
