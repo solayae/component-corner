@@ -65,7 +65,7 @@ const Topbar = ({ setFilters, filterDisplay, setFilterDisplay,cart, setPage, set
   };
 
   const logOut = useCallback(() => {
-    dispatch(logout());
+    localStorage.removeItem("user")
     localStorage.removeItem("cart")
     setCart([])
     //eslint-disable-next-line
