@@ -20,7 +20,6 @@ import { BsPersonCheck } from 'react-icons/bs'
 import { MdAssessment } from 'react-icons/md'
 import { IoLogOutOutline } from 'react-icons/io5'
 import { GrUserAdmin } from 'react-icons/gr'
-
 import {clearMessage} from '../../redux/actions';
 
 const Topbar = ({ setFilters, filterDisplay, setFilterDisplay,cart, setPage, setCart  }) => {
