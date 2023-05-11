@@ -64,3 +64,54 @@
   justify-content: space-between;
   margin: 10px;
 }
+
+
+/* Estilos base */
+  @media only screen and (max-width: 480px) {
+  .homePage {
+    flex-direction: column;
+  }
+
+  .homePage .home_cardsContainer .searchButtons {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .homePage .home_cardsContainer .searchButtons p {
+    margin: 0 10px;
+    font-size: 30px;
+    
+    
+  }
+
+  .homePage .home_cardsContainer .searchButtons button {
+    margin: 0 10px;
+    width: 30px;
+  }
+
+  .homePage .filterContainer {
+    margin: 10px 0;
+    padding: 10px;
+  }
+
+  .homePage .filterContainer h2 {
+    font-size: 16px;
+  }
+
+  .homePage .filterContainer h3 {
+    font-size: 14px;
+  }
+
+  .homePage .filterContainer .inputContainer_radio div {
+    margin: 5px;
+  }
+
+  .homePage .filterContainer .inputContainer_checkbox div {
+    margin: 5px;
+  }
+ 
+  
+}
+ 
