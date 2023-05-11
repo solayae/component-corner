@@ -17,16 +17,18 @@ import Profile from './components/Profile/Profile';
 import Cart from './views/Cart/Cart';
 import Favorites from './views/Favorites/Favorites';
 import axios from 'axios';
-axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/';
-
+//axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/';
 axios.defaults.baseURL = 'http://localhost:3001/';
-
 function App() {
   const [mounted, setMounted] = useState(false);
   const [filters, setFilters] = useLocalStorage('filter_cards-Home', []);
   const [page, setPage] = useLocalStorage('page', 0);
   const [cart, setCart] = useLocalStorage('cart', []);
   const products = useSelector((state) => state.products);
+  const [filterDisplay, setFilterDisplay] = useState({
+    display:'none'
+  })
+
   const dispatch = useDispatch();
   const getProducts = async () => {
     return dispatch(getAllProducts());
@@ -55,6 +57,8 @@ function App() {
         setPage={setPage}
         cart={cart}
         setCart={setCart}
+        filterDisplay={filterDisplay} 
+        setFilterDisplay={setFilterDisplay}
       />
       <Routes>
         <Route path='/user' element={<BoardUser />} />
@@ -75,6 +79,7 @@ function App() {
               setFilters={setFilters}
               page={page}
               setPage={setPage}
+              filterDisplay={filterDisplay} 
             />
           }
         />

@@ -39,8 +39,10 @@ module.exports = (sequelize) => {
     delete: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
-    }, 
-    
+    },
+    Comment: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+    }    
   }, {
     timestamps: false
   });

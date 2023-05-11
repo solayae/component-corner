@@ -1,17 +1,23 @@
-import Cards from '../../components/Cards/Cards';
-import {useSelector, useDispatch} from 'react-redux';
-import style from './Home.module.css';
-import FilterContainer from './FilterContainer';
-import {useEffect, useState} from 'react';
-import useLocalStorage from '../../components/useLocalStorage';
-import {getProductsByName} from '../../redux/actions';
-import PropTypes from 'prop-types';
+import Cards from "../../components/Cards/Cards";
+import { useSelector, useDispatch } from "react-redux";
+import style from "./Home.module.css";
+import FilterContainer from "./FilterContainer";
+import { useEffect, useState } from "react";
+import useLocalStorage from "../../components/useLocalStorage";
+import { getProductsByName } from "../../redux/actions";
+import PropTypes from "prop-types";
 // import userServices from  '../../services/userService';
 
-export default function Home({filters, setFilters, page, setPage}) {
+export default function Home({
+  filters,
+  setFilters,
+  page,
+  setPage,
+  filterDisplay,
+}) {
   const [products, setProducts] = useState([]);
-  const [sort, setSort] = useLocalStorage('sort_cards-Home', 'A-Z');
-  const [input, setInput] = useLocalStorage('input-Home', '');
+  const [sort, setSort] = useLocalStorage("sort_cards-Home", "A-Z");
+  const [input, setInput] = useLocalStorage("input-Home", "");
   const productState = useSelector((state) => state.products);
   const productsFiltered = useSelector((state) => state.filtered);
   const allProducts = [...productState];
@@ -26,8 +32,8 @@ export default function Home({filters, setFilters, page, setPage}) {
     setPage(0);
   };
   const handlePage = (value) => {
-    value === '+' && page < products.length / 12 - 1 && setPage(page + 1);
-    value === '-' && page > 0 && setPage(page - 1);
+    value === "+" && page < products.length / 12 - 1 && setPage(page + 1);
+    value === "-" && page > 0 && setPage(page - 1);
   };
   const handleFilters = (event) => {
     let newFilterArray;
@@ -49,14 +55,14 @@ export default function Home({filters, setFilters, page, setPage}) {
   };
 
   const sortList = {
-    'A-Z': [
+    "A-Z": [
       ...allProductsFiltered.sort((prev, next) => {
         if (prev.name > next.name) return 1;
         if (prev.name < next.name) return -1;
         return 0;
       }),
     ],
-    'Z-A': [
+    "Z-A": [
       ...allProductsFiltered.sort((prev, next) => {
         if (prev.name > next.name) return -1;
         if (prev.name < next.name) return 1;
@@ -94,24 +100,31 @@ export default function Home({filters, setFilters, page, setPage}) {
   return (
     //  content == 'Home' ?
     <div className={style.homePage}>
-      <FilterContainer
-        categories={categories}
-        handleSort={handleSort}
-        sort={sort}
-        handleFilters={handleFilters}
-        filters={filters}
-        input={input}
-        handleInput={handleInput}
-      />
+      <div style={filterDisplay}>
+        <FilterContainer
+          categories={categories}
+          handleSort={handleSort}
+          sort={sort}
+          handleFilters={handleFilters}
+          filters={filters}
+          input={input}
+          handleInput={handleInput}
+        />
+      </div>
       <div className={style.home_cardsContainer}>
         <Cards products={[...products.slice(page * 12, (page + 1) * 12)]} />
         {!products.length && <h1>No se encontró el producto que buscas</h1>}
         <div className={style.searchButtons}>
-          <button onClick={() => handlePage('-')}> - </button>
+         
+            <button onClick={() => handlePage("-")}> - </button>
+         
           <p>
-            {page + 1}/{products.length !== 0 ? Math.ceil(products.length / 12) : 1}
+            {page + 1}/
+            {products.length !== 0 ? Math.ceil(products.length / 12) : 1}
           </p>
-          <button onClick={() => handlePage('+')}> + </button>
+         
+            <button onClick={() => handlePage("+")}> + </button>
+          
         </div>
       </div>
     </div>

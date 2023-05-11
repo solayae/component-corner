@@ -94,15 +94,15 @@ function Detail({ cart, setCart }) {
 
           <p className={styles.extra_p}>Sin puntuación</p>
           <p className={styles.price}>US ${detailProduct.price}</p>
-          <div className={styles.quantity}>
-            <button onClick={handleDecrement} className={styles.bottone5}>
-              {' '}
-              -{' '}
-            </button>
-            <span>{quantity}</span>
+          <div className={styles.quantity}>            
             <button onClick={handleIncrement} className={styles.bottone5}>
               {' '}
               +{' '}
+            </button>
+            <span>{quantity}</span>
+            <button onClick={handleDecrement} className={styles.bottone5}>
+              {' '}
+              -{' '}
             </button>
           </div>
           <p className={styles.extra_p}>Stock disponible: {detailProduct.stock}</p>
