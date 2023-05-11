@@ -35,10 +35,10 @@ const validateEmail = (value) => {
 };
 
 const validateName = (value) => {
-  if (value.length < 3 || value.length > 12) {
+  if (value.length < 6 || value.length > 38) {
     return (
       <div style={{color:'red'}}>
-        El nombre debe ser entre 3 a 12 caracteres.
+        El nombre debe ser entre 6 a 38 caracteres.
       </div>
     );
   }
