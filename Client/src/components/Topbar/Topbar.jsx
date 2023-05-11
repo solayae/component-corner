@@ -231,10 +231,10 @@ const Topbar = ({ setFilters, filterDisplay, setFilterDisplay,cart, setPage, set
           </div>
         </div>
         <a href='#' className={styles.about}>
-          SOBRE COMPONENT CORNER
+          SOBRE NOSOTOS
         </a>
         <a href='#' className={styles.about}>
-          VER ESTADO DE PEDIDO
+          PEDIDO
         </a>
         <img
           src={imageFilter}
