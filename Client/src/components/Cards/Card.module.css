@@ -50,3 +50,9 @@
   justify-content: center;
   height: 250px;
 }
+
+ .disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  /* Otros estilos para mostrar como deshabilitado */
+}

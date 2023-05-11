@@ -316,3 +316,7 @@
     cursor: pointer;
   }
 }
+.activeOption {
+  background-color: #eee;
+  font-weight: bold;
+} 

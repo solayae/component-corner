@@ -69,12 +69,8 @@ export default function Home({
         return 0;
       }),
     ],
-    Ascendete: [
-      ...allProductsFiltered.sort((prev, next) => prev.price - next.price),
-    ],
-    Descendente: [
-      ...allProductsFiltered.sort((prev, next) => next.price - prev.price),
-    ],
+    Ascendente: [...allProductsFiltered.sort((prev, next) => prev.price - next.price)],
+    Descendente: [...allProductsFiltered.sort((prev, next) => next.price - prev.price)],
   };
 
   useEffect(() => {
@@ -132,7 +128,7 @@ export default function Home({
         </div>
       </div>
     </div>
-  );
+  )
   // :<div>
   //       {content}
   // </div>

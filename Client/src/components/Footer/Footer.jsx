@@ -1,10 +1,10 @@
-import React from "react";
-import styles from "./Footer.module.css";
+import styles from './Footer.module.css';
+import { BsTelephone } from "react-icons/bs";
 
 const Footer = () => {
   return (
-    <>
-      <footer className={`${styles.footer} ${styles.footerMobile}`}>
+    <div>
+      <footer className={styles.footer}>
         <div className={styles.column}>
           <h3>SOPORTE</h3>
           <ul>
@@ -46,7 +46,7 @@ const Footer = () => {
       <div className={styles.bottomBar}>
         <h3>© TODOS LOS DERECHOS RESERVADOS | COMPONENTCORNER.COM</h3>
       </div>
-    </>
+    </div>
   );
 };
 
