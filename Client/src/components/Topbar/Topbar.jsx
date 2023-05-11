@@ -1,6 +1,6 @@
 import styles from "./Topbar.module.css";
 import favorite from "./assets/favorite-icon.png";
-import cart from "./assets/cart-icon.png";
+import cartImg from "./assets/cart-icon.png";
 import login from "./assets/login-icon.png";
 import SignUp from "../SignUp/SignUp";
 import Login from "../Login/Login";
