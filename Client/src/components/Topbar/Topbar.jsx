@@ -5,8 +5,7 @@ import login from "./assets/login-icon.png";
 import SignUp from "../SignUp/SignUp";
 import Login from "../Login/Login";
 import {useState, useCallback} from 'react';
-import {Link, useLocation } from 'react-router-dom';
-import { AiOutlineForm } from "react-icons/ai";
+import { Link, useLocation } from 'react-router-dom';
 import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
 import {useSelector, useDispatch } from 'react-redux';
@@ -52,7 +51,7 @@ const Topbar = ({ setFilters, filterDisplay, setFilterDisplay,cart, setPage, set
 
   // muestra y oculta el filtro en modo responsive
   const viewFilters = () => {
-    filterDisplay.display==='none' ? setFilterDisplay({display:'flex'}) : setFilterDisplay({display:'none'})
+    filterDisplay.display === 'none' ? setFilterDisplay({ display: 'flex', alignItems: "center", justifyContent: "center" }) : setFilterDisplay({ display: 'none' })
   };
 
   // Obtén la longitud del array original
@@ -251,6 +250,8 @@ Topbar.propTypes = {
   setFilters: PropTypes.func,
   setPage: PropTypes.func,
   cart: PropTypes.array,
-  setCart: PropTypes.func
+  setCart: PropTypes.func,
+  filterDisplay: PropTypes.object,
+  setFilterDisplay: PropTypes.func
 };
 export default Topbar;
