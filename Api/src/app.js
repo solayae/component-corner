@@ -10,6 +10,7 @@ require("dotenv").config();
 require("./db.js");
 
 const server = express();
+server.use(cors());
 
 server.name = "API";
 
@@ -31,22 +32,25 @@ server.use((req, res, next) => {
 
 mercadopago.configure({ access_token: process.env.MERCADOPAGO_KEY });
 server.post("/payment", (req, res) => {
-  const prod = req.body;
+  const cart = req.body;
   let preference = {
     items: [
       {
-        id: prod.id,
-        title: prod.name,
+        // id: cart.id,
+        title: "Component Corner",
         currency_id: "ARS",
-        picture_url: prod.image,
-        description: prod.detail,
+        // picture_url: prod.image,
+        description: "Test",
         category_id: "art",
-        quantity: prod.quantity,
-        unit_price: prod.price,
+        quantity: 1,
+        unit_price: cart.reduce(
+          (totalPrice, item) => (totalPrice += item.quantity * item.price),
+          0
+        ),
       },
     ],
     back_urls: {
-      success: "https://component-corner.vercel.app", //"http://localhost:3001", //"http://localhost:3001", //cambiar url deploy
+      success: "http://localhost:3001", //"http://localhost:3001", //"http://localhost:3001", //cambiar url deploy
       failure: "",
       pending: "",
     },
