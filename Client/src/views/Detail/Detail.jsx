@@ -79,7 +79,6 @@ function Detail({ cart, setCart }) {
       setIsFavorite(!isFavorite);
       if (!isFavorite === true) {
         console.log('true perro');
-        const userId = user.id;
         const newFavorite = {
           email: detailUser.email,
           favorite: [...[], ...detailUser.favorite, detailProduct.id],

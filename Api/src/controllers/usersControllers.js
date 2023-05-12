@@ -4,7 +4,7 @@ async function findOrCreateUser(
   email,
   name,
   password,
-  favorite,
+  favorite = [],
   direction,
   cart
 ) {

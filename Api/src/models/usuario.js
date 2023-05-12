@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
+
 module.exports = (sequelize) => {
-  sequelize.define('Usuario', {
+  const Usuario = sequelize.define('Usuario', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -23,6 +24,7 @@ module.exports = (sequelize) => {
     },
     favorite: {
       type: DataTypes.ARRAY(DataTypes.STRING),
+      defaultValue: [],
     },
     direction: {
       type: DataTypes.TEXT,
@@ -32,4 +34,12 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
   });
+
+  Usuario.addHook('beforeCreate', (user, options) => {
+    if (!user.favorite) {
+      user.favorite = [];
+    }
+  });
+
+  return Usuario;
 };
