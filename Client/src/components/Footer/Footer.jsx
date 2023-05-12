@@ -1,8 +1,6 @@
 import styles from './Footer.module.css';
 import { BsTelephone } from "react-icons/bs";
 import { BsTools } from "react-icons/bs"
-import { FaHandshake } from "react-icons/fa"
-import { MdOutlineContactSupport } from "react-icons/md"
 import { RiCustomerService2Fill } from "react-icons/ri"
 import { Link } from 'react-router-dom';
 const Footer = () => {

@@ -20,6 +20,8 @@ import { MdAssessment } from 'react-icons/md'
 import { IoLogOutOutline } from 'react-icons/io5'
 import { GrUserAdmin } from 'react-icons/gr'
 import { clearMessage } from '../../redux/actions';
+import { Tooltip } from 'react-tooltip'
+
 
 const Topbar = ({ setFilters, filterDisplay, setFilterDisplay, cart, setPage, setCart }) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
@@ -95,6 +97,7 @@ const Topbar = ({ setFilters, filterDisplay, setFilterDisplay, cart, setPage, se
 
   return (
     <nav className={styles.topbar}>
+          <Tooltip id="my-tooltip" />
       <div className={styles.row2}>
         <Link to={"/"}>
           <div className={styles.logo}>
@@ -121,9 +124,9 @@ const Topbar = ({ setFilters, filterDisplay, setFilterDisplay, cart, setPage, se
         <div className={styles.icons}>
 
           {user && user.name ?
-            <div className={styles.favorite}>
+            <div className={styles.favorite} >
               <Link to='/favorites'>
-                <img src={favorite} alt='favorite-icon' />
+                <img src={favorite} data-tooltip-id="my-tooltip" data-tooltip-content="Favoritos"   alt='favorite-icon' />
               </Link>
               <div className={styles.badge}>0</div>
             </div> : ""
@@ -132,7 +135,7 @@ const Topbar = ({ setFilters, filterDisplay, setFilterDisplay, cart, setPage, se
           <div className={styles.cart}>
             <Link to="/cart">
               {' '}
-              <img src={cartImg} alt="cart-icon" />
+              <img src={cartImg}  data-tooltip-id="my-tooltip" data-tooltip-content="Carrito" alt="cart-icon" />
             </Link>
             <div className={styles.badge}>{cartQuantity > 9 ? '+9' : cartQuantity}</div>
           </div>
@@ -140,7 +143,7 @@ const Topbar = ({ setFilters, filterDisplay, setFilterDisplay, cart, setPage, se
           {user && (
             <div className={styles.login}>
               <Link to={"/profile"} className="nav-link">
-                <BsPersonCheck style={{ fontSize: '30px' }} />
+                <BsPersonCheck style={{ fontSize: '30px' }} data-tooltip-id="my-tooltip" data-tooltip-content="Perfil"/>
               </Link>
             </div>
           )}
@@ -148,14 +151,14 @@ const Topbar = ({ setFilters, filterDisplay, setFilterDisplay, cart, setPage, se
           {showUser && (
             <div className={styles.login}>
               <Link to={"/user"} className="nav-link">
-                <MdAssessment style={{ fontSize: '30px' }} />
+                <MdAssessment style={{ fontSize: '30px' }} data-tooltip-id="my-tooltip" data-tooltip-content="Panel de usuario" />
               </Link>
             </div>
           )}
           {showAdminBoard && (
             <div className={styles.login}>
               <Link to={"/admin"} className="nav-link">
-                <GrUserAdmin style={{ fontSize: '30px' }} />
+                <GrUserAdmin style={{ fontSize: '30px' }}  />
               </Link>
             </div>
           )}
@@ -172,6 +175,7 @@ const Topbar = ({ setFilters, filterDisplay, setFilterDisplay, cart, setPage, se
                   onClick={() => {
                     setTriggerPopUp(true);
                   }}
+                  data-tooltip-id="my-tooltip" data-tooltip-content="Iniciar sesión/Registrarse"
                   alt="login-icon"
                 />
               </div>
@@ -183,7 +187,7 @@ const Topbar = ({ setFilters, filterDisplay, setFilterDisplay, cart, setPage, se
             <>
               <div className={styles.login}>
                 <Link to={"/home"} className="nav-link">
-                  <IoLogOutOutline style={{ fontSize: '30px' }} onClick={logOut} />
+                  <IoLogOutOutline style={{ fontSize: '30px' }} data-tooltip-id="my-tooltip" data-tooltip-content="Cerrar sesión" onClick={logOut} />
                 </Link>
               </div>
             </>
