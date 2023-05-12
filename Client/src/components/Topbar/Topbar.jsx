@@ -4,11 +4,11 @@ import cartImg from "./assets/cart-icon.png";
 import login from "./assets/login-icon.png";
 import SignUp from "../SignUp/SignUp";
 import Login from "../Login/Login";
-import {useState, useCallback} from 'react';
+import { useState, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
-import {useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useEffect } from "react";
@@ -19,9 +19,9 @@ import { BsPersonCheck } from 'react-icons/bs'
 import { MdAssessment } from 'react-icons/md'
 import { IoLogOutOutline } from 'react-icons/io5'
 import { GrUserAdmin } from 'react-icons/gr'
-import {clearMessage} from '../../redux/actions';
+import { clearMessage } from '../../redux/actions';
 
-const Topbar = ({ setFilters, filterDisplay, setFilterDisplay,cart, setPage, setCart  }) => {
+const Topbar = ({ setFilters, filterDisplay, setFilterDisplay, cart, setPage, setCart }) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
   const [triggerPopUpSignUp, setTriggerPopUpSignUp] = useState(false);
   const [results, setResults] = useState([]);
@@ -119,63 +119,65 @@ const Topbar = ({ setFilters, filterDisplay, setFilterDisplay,cart, setPage, set
 
         </div>
         <div className={styles.icons}>
-          <Link to='/favorites'>
-          <div className={styles.favorite}>
-            <img src={favorite} alt='favorite-icon' />
-            <div className={styles.badge}>0</div>
-          </div>
-          </Link>
+
+          {user && user.name ?
+            <div className={styles.favorite}>
+              <Link to='/favorites'>
+                <img src={favorite} alt='favorite-icon' />
+              </Link>
+              <div className={styles.badge}>0</div>
+            </div> : ""
+          }
 
           <div className={styles.cart}>
-
             <Link to="/cart">
               {' '}
               <img src={cartImg} alt="cart-icon" />
             </Link>
             <div className={styles.badge}>{cartQuantity > 9 ? '+9' : cartQuantity}</div>
           </div>
-          
-       {user && (
-          <div className={styles.login}>
-              <Link to={"/profile"} className="nav-link">
-                    <BsPersonCheck style={{fontSize:'30px'}}/>
-              </Link>
-            </div>
-        )}
 
-        {showUser && (
-          <div className={styles.login}>
+          {user && (
+            <div className={styles.login}>
+              <Link to={"/profile"} className="nav-link">
+                <BsPersonCheck style={{ fontSize: '30px' }} />
+              </Link>
+            </div>
+          )}
+
+          {showUser && (
+            <div className={styles.login}>
               <Link to={"/user"} className="nav-link">
-                    <MdAssessment style={{fontSize:'30px'}}/>
+                <MdAssessment style={{ fontSize: '30px' }} />
               </Link>
             </div>
-        )}
-        {showAdminBoard && (
-          <div className={styles.login}>
+          )}
+          {showAdminBoard && (
+            <div className={styles.login}>
               <Link to={"/admin"} className="nav-link">
-                    <GrUserAdmin style={{fontSize:'30px'}}/>
+                <GrUserAdmin style={{ fontSize: '30px' }} />
               </Link>
             </div>
-        )}
+          )}
 
           {(!showUser && !showAdminBoard) && (
-          <>
-            <div className={styles.login}>
-            <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} setLoginTrigger={setTriggerPopUp} />
-          </div>
-            <div className={styles.login}>
-            <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} setTriggerSignUp={setTriggerPopUpSignUp} />
-            <img
-              src={login}
-              onClick={() => {
-                setTriggerPopUp(true);
-              }}
-              alt="login-icon"
-            />
-          </div>
+            <>
+              <div className={styles.login}>
+                <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} setLoginTrigger={setTriggerPopUp} />
+              </div>
+              <div className={styles.login}>
+                <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} setTriggerSignUp={setTriggerPopUpSignUp} />
+                <img
+                  src={login}
+                  onClick={() => {
+                    setTriggerPopUp(true);
+                  }}
+                  alt="login-icon"
+                />
+              </div>
             </>
           )
-        }
+          }
 
           {(showUser || showAdminBoard) && (
             <>
@@ -188,8 +190,8 @@ const Topbar = ({ setFilters, filterDisplay, setFilterDisplay,cart, setPage, set
           )
           }
 
-        
-          
+
+
         </div>
       </div>
       <div className={styles.row2}>
