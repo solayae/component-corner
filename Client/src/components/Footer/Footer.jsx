@@ -1,8 +1,6 @@
 import styles from './Footer.module.css';
 import { BsTelephone } from "react-icons/bs";
 import { BsTools } from "react-icons/bs"
-import { FaHandshake } from "react-icons/fa"
-import { MdOutlineContactSupport } from "react-icons/md"
 import { RiCustomerService2Fill } from "react-icons/ri"
 import { Link } from 'react-router-dom';
 const Footer = () => {
@@ -14,7 +12,7 @@ const Footer = () => {
           <Link to="#"><h2><RiCustomerService2Fill/> </h2></Link>
           <ul>
             <li>
-              <a href="#">Preguntas frecuentes</a>
+              <a href="/qa">Preguntas frecuentes</a>
             </li>
             <li>
               <a href="#">Política de cambios</a>

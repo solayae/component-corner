@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len:[6,38]
+        len:[5,38]
       }
     },
     password: {
@@ -36,6 +36,10 @@ module.exports = (sequelize) => {
     direction: {
       type: DataTypes.TEXT,
       
+    },
+    delete: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,      
     },
     cart: {
       type: DataTypes.TEXT,

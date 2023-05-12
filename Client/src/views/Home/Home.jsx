@@ -22,6 +22,7 @@ export default function Home({
   const productsFiltered = useSelector((state) => state.filtered);
   const allProducts = [...productState];
   const allProductsFiltered = [...productsFiltered];
+  const [width, setWidth] = useState(0)
   const dispatch = useDispatch();
   // const [content, setContent ] = useState('')
   let categories = allProducts.map((e) => e.category);
@@ -73,14 +74,17 @@ export default function Home({
     Descendente: [...allProductsFiltered.sort((prev, next) => next.price - prev.price)],
   };
 
+
   useEffect(() => {
     const sortedProducts = sortList[sort];
     const filteredProducts = filters.length
       ? [...sortedProducts.filter((e) => filters.includes(e.category))]
       : [...sortedProducts];
     setProducts(filteredProducts);
+    const handleResize = () => setWidth(window.innerWidth)
+    window.addEventListener("resize", handleResize)
     //eslint-disable-next-line
-  }, [productState, sort, filters, productsFiltered]);
+  }, [productState, sort, filters, productsFiltered, width]);
 
   // useEffect(()=>{
   //   userServices.getPublicContent().then(
@@ -100,7 +104,7 @@ export default function Home({
   return (
     //  content == 'Home' ?
     <div className={style.homePage}>
-      <div style={filterDisplay}>
+      <div style={width <= 480 ? filterDisplay : { display: "flex" }}>
         <FilterContainer
           categories={categories}
           handleSort={handleSort}
@@ -138,4 +142,5 @@ Home.propTypes = {
   setFilters: PropTypes.func,
   page: PropTypes.number,
   setPage: PropTypes.func,
+  filterDisplay: PropTypes.object
 };
