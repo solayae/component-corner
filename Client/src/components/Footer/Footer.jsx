@@ -12,7 +12,7 @@ const Footer = () => {
           <Link to="#"><h2><RiCustomerService2Fill/> </h2></Link>
           <ul>
             <li>
-              <a href="#">Preguntas frecuentes</a>
+              <a href="/qa">Preguntas frecuentes</a>
             </li>
             <li>
               <a href="#">Política de cambios</a>
