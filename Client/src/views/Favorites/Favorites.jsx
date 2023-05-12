@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Favorites.module.css';
 
-export default function Favorites() {
+export default function Favorites({favorites, setFavorites}) {
   return (
     <>
       <h1 className={styles.favorites_title}>Favoritos</h1>

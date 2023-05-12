@@ -1,18 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDetail, cleanDetail } from '../../redux/actions';
+import { getDetail, cleanDetail, getUserById } from '../../redux/actions';
 import { Link, useParams } from 'react-router-dom';
 import useLocalStorage from '../../components/useLocalStorage';
 import { Heart } from 'iconoir-react';
+import axios from 'axios';
 
 import styles from './Detail.module.css';
 import Rating from '@mui/material/Rating';
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types';
+import { Alert } from '@mui/material';
 
 function Detail({ cart, setCart }) {
   const { id } = useParams();
   const dispatch = useDispatch();
   const detailProduct = useSelector((state) => state.detail);
+  const detailUser = useSelector((state) => state.userInfo);
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
@@ -33,8 +36,8 @@ function Detail({ cart, setCart }) {
       image: detailProduct.image,
       price: detailProduct.price,
       stock: detailProduct.stock,
-      quantity: quantity
-    }
+      quantity: quantity,
+    };
 
     const newArray = [];
     let duplicated = false;
@@ -46,7 +49,7 @@ function Detail({ cart, setCart }) {
         newArray.push(e);
       }
     });
-    if (duplicated === true) setCart(newArray);
+    if (duplicated === true) newArray;
     else setCart([...cart, product]);
   };
 
@@ -60,9 +63,39 @@ function Detail({ cart, setCart }) {
     if (quantity < detailProduct.stock) setQuantity(quantity + 1);
   };
 
+  // FAVORITOS
+  const user = JSON.parse(localStorage.getItem('user'));
+  const userId = user?.id;
+
+  useEffect(() => {
+    dispatch(getUserById(userId));
+  }, []);
+
   const handleFavoriteClick = () => {
-    setIsFavorite(!isFavorite);
-    console.log('Button clicked. Is favorite:', !isFavorite);
+    if (!user) {
+      console.log('Logueate');
+    } else {
+      console.log('Logueado. El ID del user logueado es ' + userId);
+      setIsFavorite(!isFavorite);
+      if (!isFavorite === true) {
+        console.log('true perro');
+        const userId = user.id;
+        const newFavorite = {
+          email: detailUser.email,
+          favorite: [...[], ...detailUser.favorite, detailProduct.id],
+        };
+        axios
+          .put('/users/', newFavorite)
+          .then((respuesta) => {
+            console.log(respuesta);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        console.log('false gato');
+      }
+    }
   };
 
   return (
@@ -88,8 +121,6 @@ function Detail({ cart, setCart }) {
             >
               <Heart />
             </button>
-
-
           </div>
 
           <p className={styles.extra_p}>Sin puntuación</p>
@@ -105,9 +136,13 @@ function Detail({ cart, setCart }) {
               +{' '}
             </button>
           </div>
-          <p className={styles.extra_p}>Stock disponible: {detailProduct.stock}</p>
-          <button className={styles.addToCartBtn} onClick={handleAddToCart} >
-            <Link to='/cart' className={styles.addToCartBtn}>AGREGAR AL CARRITO</Link>
+          <p className={styles.extra_p}>
+            Stock disponible: {detailProduct.stock}
+          </p>
+          <button className={styles.addToCartBtn} onClick={handleAddToCart}>
+            <Link to='/cart' className={styles.addToCartBtn}>
+              AGREGAR AL CARRITO
+            </Link>
           </button>
         </div>
       </div>
@@ -144,7 +179,7 @@ function Detail({ cart, setCart }) {
 
 Detail.propTypes = {
   cart: PropTypes.array,
-  setCart: PropTypes.func
-}
+  setCart: PropTypes.func,
+};
 
 export default Detail;

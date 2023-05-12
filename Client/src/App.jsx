@@ -17,7 +17,7 @@ import Profile from './components/Profile/Profile';
 import Cart from './views/Cart/Cart';
 import Favorites from './views/Favorites/Favorites';
 import axios from 'axios';
-axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/';
+// axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/';
 
 axios.defaults.baseURL = 'http://localhost:3001/';
 
@@ -26,6 +26,7 @@ function App() {
   const [filters, setFilters] = useLocalStorage('filter_cards-Home', []);
   const [page, setPage] = useLocalStorage('page', 0);
   const [cart, setCart] = useLocalStorage('cart', []);
+  const [favorites, setFavorites] = useLocalStorage('favorites', []);
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const getProducts = async () => {
@@ -80,7 +81,7 @@ function App() {
         />
         <Route path='/publicar' element={<FormProduct />} />
         <Route path='/cart' element={<Cart cart={cart} setCart={setCart} />} />
-        <Route path='/favorites' element={<Favorites />} />
+        <Route path='/favorites' element={<Favorites  favorites={favorites} setFavorites={setFavorites}/>} />
       </Routes>
       <Footer />
     </div>
