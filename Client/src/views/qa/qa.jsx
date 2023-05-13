@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styles from './qa.module.css';
+import { FaArrowCircleUp } from "react-icons/fa"
+import { Tooltip } from 'react-tooltip'
 
 export default function Qa() {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -62,32 +64,9 @@ export default function Qa() {
 
   ];
 
-  const faq2 = [
-    {
-      seccion: "MERADO PAGO",
-      preguntas: [{
-        question: "Sobre mercado pago",
-        answer: "Tu dinero asdasdas",
-      }]
-    },
-    {
-      seccion: "cuenta",
-      preguntas: [{
-        question: "Sobre mercado pago",
-        answer: "Tu dinero asdasdas",
-      }]
-    },
-    {
-      seccion: "envio",
-      preguntas: [{
-        question: "Sobre mercado pago",
-        answer: "Tu dinero asdasdas",
-      }]
-    }
-  ]
-
   return (
     <div className={styles.container}>
+      <Tooltip id="my-tooltip" />
       <h1>PREGUNTAS FRECUENTES</h1>
     <div className={styles.container}>
       {faqData.map((faq, index) => (
@@ -113,6 +92,11 @@ export default function Qa() {
             </div>
         </div>
       ))}
+    </div>
+    <div className={styles.scrolltop}>
+        <a href="#">
+          <FaArrowCircleUp className={styles.scrollicon} data-tooltip-id="my-tooltip"  data-tooltip-content="Inicio"  place="bottom"/>
+        </a>
     </div>
     </div>
   );    
