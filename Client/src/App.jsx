@@ -17,12 +17,8 @@ import Profile from './components/Profile/Profile';
 import Cart from './views/Cart/Cart';
 import Favorites from './views/Favorites/Favorites';
 import axios from 'axios';
-<<<<<<< HEAD
-// axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/';
-=======
 import Qa from "./views/qa/qa"
 //axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/';
->>>>>>> fdb665ab3365f5fbc209eebd36dd1d35d3478f85
 axios.defaults.baseURL = 'http://localhost:3001/';
 function App() {
   const [mounted, setMounted] = useState(false);
