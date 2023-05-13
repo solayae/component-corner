@@ -79,7 +79,7 @@ const handleUpdateUser = async (req, res) => {
       email
     );
 
-    return updateUser[0] > 0
+    return updateUser
       ? res
           .status(200)
           .json({ message: 'Se actualizo el usuario correctamente!' })
