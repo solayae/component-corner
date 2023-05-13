@@ -32,12 +32,18 @@
   overflow: hidden;
   transition: max-height 0.3s ease-in-out;
   border-radius: 15px;
+  display: flex;
+  justify-content: center;
 }
 
 .answer__content {
   font-size: 16px;
   line-height: 1.5;
   color: #333;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  max-width: 560px;
 }
 
 .active {
@@ -47,6 +53,26 @@
 .expanded {
   max-height: 1000px;
 }
+
+.scrolltop {
+  cursor: pointer;
+  z-index: 9999;
+  padding-bottom: 14px;
+}
+
+.scrollicon {
+  font-size: 50px;
+  padding: 8px;
+  transition: 0.3s;
+  color: #252525;
+  text-decoration: none;
+  outline: none;
+}
+
+.scrollicon:hover {
+  font-size: 54px;
+}
+
 
 @media (max-width: 768px) {
   .container {
