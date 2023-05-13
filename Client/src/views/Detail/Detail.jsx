@@ -1,22 +1,67 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDetail, cleanDetail, getUserById } from '../../redux/actions';
+import { getDetail, cleanDetail } from '../../redux/actions';
 import { Link, useParams } from 'react-router-dom';
-import useLocalStorage from '../../components/useLocalStorage';
 import { Heart } from 'iconoir-react';
 import axios from 'axios';
 
 import styles from './Detail.module.css';
 import Rating from '@mui/material/Rating';
-import PropTypes, { element } from 'prop-types';
-import { Alert } from '@mui/material';
+import PropTypes from 'prop-types';
+// import { Alert } from '@mui/material';
 
 function Detail({ cart, setCart }) {
   const { id } = useParams();
   const dispatch = useDispatch();
   const detailProduct = useSelector((state) => state.detail);
-  const detailUser = useSelector((state) => state.userInfo);
+  // const detailUser = useSelector((state) => state.userInfo);
   const [isFavorite, setIsFavorite] = useState(false);
+
+  const user = JSON.parse(localStorage.getItem('user'));
+  const userId = user?.id;
+
+  const getUserDetails = async () => {
+    try {
+      const response = await axios.get(`/users/${userId}`);
+      const userDataFavorite = response.data.favorite;
+      for (let i = 0; i < userDataFavorite.length; i++) {
+        if (userDataFavorite[i] === id) setIsFavorite(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    // dispatch(getUserById(userId));
+    getUserDetails();
+  }, [isFavorite]);
+
+  // **** FAVORITOS ****
+
+  const handleClick = async () => {
+    try {
+      if (!user) return console.log('Logueate');
+      const response = await axios.get(`/users/${userId}`);
+      const backupUser = response.data;
+
+      if (isFavorite) {
+        const newFavorites = backupUser.favorite?.filter((e) => e != id)
+        const newUser = {...backupUser, favorite: newFavorites}
+        const responseEdit = await axios.put("/users/", newUser)
+        console.log(responseEdit);
+        return setIsFavorite(false)
+      }
+      
+      const newFavorites = [...backupUser.favorite, id]
+      const newUser = {...backupUser, favorite: newFavorites}
+      const responseEdit = await axios.put('/users/', newUser)
+      console.log(responseEdit);
+      return setIsFavorite(true)
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     // alert("Entré")
@@ -63,63 +108,6 @@ function Detail({ cart, setCart }) {
     if (quantity < detailProduct.stock) setQuantity(quantity + 1);
   };
 
-  // FAVORITOS
-
-  const user = JSON.parse(localStorage.getItem('user'));
-  const userId = user?.id;
-
-  useEffect(() => {
-    dispatch(getUserById(userId));
-  }, []);
-
-  const handleFavoriteClick = async () => {
-    if (!user) {
-      console.log('Logueate');
-    } else {
-      console.log('Logueado. El ID del user logueado es ' + userId);
-      // setIsFavorite(!isFavorite);
-      if (!isFavorite === true) {
-        console.log('true perro');
-        const newFavorite = {
-          email: detailUser.email,
-          favorite: [...detailUser.favorite, detailProduct.id],
-        };
-        try {
-          const respuesta = await axios.put('/users/', newFavorite);
-          console.log(respuesta);
-        } catch (error) {
-          console.log(error);
-        }
-
-      } else if (!isFavorite === false) {
-        console.log('false gato');
-
-        let elementoABuscar = detailProduct.id;
-        let index = detailUser.favorite?.indexOf(elementoABuscar);
-        if (index !== -1) {
-          console.log('si está');
-          const newFavorite = {
-            email: detailUser.email,
-            favorite: [
-              ...detailUser.favorite.slice(0, index),
-              ...detailUser.favorite.slice(index + 1),
-            ],
-          };
-          try {
-            const respuesta = await axios.put('/users/', newFavorite);
-            console.log(respuesta);
-          } catch (error) {
-            console.log(error);
-          }
-        } else {
-          console.log('no está');
-        }
-      }
-      console.log('creado', detailUser.favorite);
-
-    }
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.container_image_details}>
@@ -139,7 +127,7 @@ function Detail({ cart, setCart }) {
               className={`${styles.button_fav} ${
                 isFavorite ? styles.button_favorite : styles.button_nofavorite
               }`}
-              onClick={handleFavoriteClick}
+              onClick={handleClick}
             >
               <Heart />
             </button>
@@ -147,7 +135,7 @@ function Detail({ cart, setCart }) {
 
           <p className={styles.extra_p}>Sin puntuación</p>
           <p className={styles.price}>US ${detailProduct.price}</p>
-          <div className={styles.quantity}>            
+          <div className={styles.quantity}>
             <button onClick={handleDecrement} className={styles.bottone5}>
               {' '}
               -{' '}
