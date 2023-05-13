@@ -12,7 +12,7 @@ import LandingPage from './views/LandingPage/LandingPage';
 import FormProduct from './views/FormProduct/FormProduct';
 import useLocalStorage from './components/useLocalStorage';
 import BoardUser from './components/BoardUser/BoardUser';
-import BoardAdmi from './components/BoardAdmin/BoardAdmin';
+import BoardAdmi from './components/BoardAdmin/Board/BoardAdmin';
 import Profile from './components/Profile/Profile';
 import Cart from './views/Cart/Cart';
 import Favorites from './views/Favorites/Favorites';
