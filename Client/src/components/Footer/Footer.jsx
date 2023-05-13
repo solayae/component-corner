@@ -4,7 +4,7 @@ import { BsTools } from "react-icons/bs"
 import { RiCustomerService2Fill } from "react-icons/ri"
 import { Link } from 'react-router-dom';
 const Footer = () => {
-  return (
+  return ( 
     <div>
       <footer className={styles.footer}>
         <div className={styles.column}>
