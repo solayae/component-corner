@@ -22,7 +22,7 @@ export default function Home({
   const productsFiltered = useSelector((state) => state.filtered);
   const allProducts = [...productState];
   const allProductsFiltered = [...productsFiltered];
-  const [width, setWidth] = useState(0)
+  const [width, setWidth] = useState(window.innerWidth)
   const dispatch = useDispatch();
   // const [content, setContent ] = useState('')
   let categories = allProducts.map((e) => e.category);
