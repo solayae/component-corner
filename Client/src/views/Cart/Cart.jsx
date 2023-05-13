@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './Cart.module.css';
 import axios from 'axios';
-import styles from "./Cart.module.css";
 import PropTypes from "prop-types";
 
 function Cart({ cart, setCart }) {
