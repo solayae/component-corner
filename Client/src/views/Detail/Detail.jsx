@@ -8,7 +8,7 @@ import axios from 'axios';
 
 import styles from './Detail.module.css';
 import Rating from '@mui/material/Rating';
-import PropTypes from 'prop-types';
+import PropTypes, { element } from 'prop-types';
 import { Alert } from '@mui/material';
 
 function Detail({ cart, setCart }) {
@@ -64,6 +64,7 @@ function Detail({ cart, setCart }) {
   };
 
   // FAVORITOS
+
   const user = JSON.parse(localStorage.getItem('user'));
   const userId = user?.id;
 
@@ -71,29 +72,51 @@ function Detail({ cart, setCart }) {
     dispatch(getUserById(userId));
   }, []);
 
-  const handleFavoriteClick = () => {
+  const handleFavoriteClick = async () => {
     if (!user) {
       console.log('Logueate');
     } else {
       console.log('Logueado. El ID del user logueado es ' + userId);
-      setIsFavorite(!isFavorite);
+      // setIsFavorite(!isFavorite);
       if (!isFavorite === true) {
         console.log('true perro');
         const newFavorite = {
           email: detailUser.email,
-          favorite: [...[], ...detailUser.favorite, detailProduct.id],
+          favorite: [...detailUser.favorite, detailProduct.id],
         };
-        axios
-          .put('/users/', newFavorite)
-          .then((respuesta) => {
-            console.log(respuesta);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      } else {
+        try {
+          const respuesta = await axios.put('/users/', newFavorite);
+          console.log(respuesta);
+        } catch (error) {
+          console.log(error);
+        }
+
+      } else if (!isFavorite === false) {
         console.log('false gato');
+
+        let elementoABuscar = detailProduct.id;
+        let index = detailUser.favorite?.indexOf(elementoABuscar);
+        if (index !== -1) {
+          console.log('si está');
+          const newFavorite = {
+            email: detailUser.email,
+            favorite: [
+              ...detailUser.favorite.slice(0, index),
+              ...detailUser.favorite.slice(index + 1),
+            ],
+          };
+          try {
+            const respuesta = await axios.put('/users/', newFavorite);
+            console.log(respuesta);
+          } catch (error) {
+            console.log(error);
+          }
+        } else {
+          console.log('no está');
+        }
       }
+      console.log('creado', detailUser.favorite);
+
     }
   };
 
