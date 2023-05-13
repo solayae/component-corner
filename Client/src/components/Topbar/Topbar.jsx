@@ -1,25 +1,29 @@
-import styles from './Topbar.module.css';
-import favorite from './assets/favorite-icon.png';
-import cartImg from './assets/cart-icon.png';
-import login from './assets/login-icon.png';
-import SignUp from '../SignUp/SignUp';
-import Login from '../Login/Login';
-import {useState, useCallback} from 'react';
-import {Link, useLocation } from 'react-router-dom';
-import SearchBar from './SearchBar';
-import SearchResults from './SearchResults';
-import {useSelector, useDispatch } from 'react-redux';
-import {useNavigate} from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import styles from "./Topbar.module.css";
+import favorite from "./assets/favorite-icon.png";
+import cartImg from "./assets/cart-icon.png";
+import login from "./assets/login-icon.png";
+import SignUp from "../SignUp/SignUp";
+import Login from "../Login/Login";
+import { useState, useCallback } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import SearchBar from "./SearchBar";
+import SearchResults from "./SearchResults";
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+import { useEffect } from "react";
+import logoCC from "../../assets/image/logo.jpg";
+import imageFilter from "../../assets/image/filtrar.png";
 import EventBus from "../../common/EventBus";
 import { BsPersonCheck } from 'react-icons/bs'
 import { MdAssessment } from 'react-icons/md'
 import { IoLogOutOutline } from 'react-icons/io5'
 import { GrUserAdmin } from 'react-icons/gr'
-import {clearMessage} from '../../redux/actions';
+import { clearMessage } from '../../redux/actions';
+import { Tooltip } from 'react-tooltip'
 
-const Topbar = ({ setFilters, cart, setPage, setCart }) => {
+
+const Topbar = ({ setFilters, filterDisplay, setFilterDisplay, cart, setPage, setCart }) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
   const [triggerPopUpSignUp, setTriggerPopUpSignUp] = useState(false);
   const [results, setResults] = useState([]);
@@ -36,25 +40,28 @@ const Topbar = ({ setFilters, cart, setPage, setCart }) => {
 
   let categories = allProducts.map((e) => e.category);
   categories = [...new Set(categories)];
-
   const cartQuantity = cart.reduce((acc, el) => {
     return acc + el.quantity;
   }, 0);
 
   const dispatch = useDispatch()
-
   useEffect(() => {
     if (["/", "/home"].includes(location.pathname)) {
       dispatch(clearMessage()); // clear message when changing location
     }
   }, [dispatch, location]);
 
+  // muestra y oculta el filtro en modo responsive
+  const viewFilters = () => {
+    filterDisplay.display === 'none' ? setFilterDisplay({ display: 'flex', alignItems: "center", justifyContent: "center" }) : setFilterDisplay({ display: 'none' })
+  };
+
   // Obtén la longitud del array original
   let length = categories.length;
   const handleClick = (e) => {
     setFilters([e]);
     setPage(0);
-    navigate('/home');
+    navigate("/home");
   };
 
   const logOut = useCallback(() => {
@@ -90,9 +97,12 @@ const Topbar = ({ setFilters, cart, setPage, setCart }) => {
 
   return (
     <nav className={styles.topbar}>
+          <Tooltip id="my-tooltip" />
       <div className={styles.row2}>
-        <Link to={'/'}>
-          <div className={styles.logo}>COMPONENT CORNER</div>
+        <Link to={"/"}>
+          <div className={styles.logo}>
+            <img src={logoCC} alt="logo not found" />
+          </div>
         </Link>
         <div className={styles.searchContainer}>
           <SearchBar
@@ -112,77 +122,80 @@ const Topbar = ({ setFilters, cart, setPage, setCart }) => {
 
         </div>
         <div className={styles.icons}>
-          <Link to='/favorites'>
-          <div className={styles.favorite}>
-            <img src={favorite} alt='favorite-icon' />
-            <div className={styles.badge}>0</div>
-          </div>
-          </Link>
+
+          {user && user.name ?
+            <div className={styles.favorite} >
+              <Link to='/favorites'>
+                <img src={favorite} data-tooltip-id="my-tooltip" data-tooltip-content="Favoritos"   alt='favorite-icon' />
+              </Link>
+              <div className={styles.badge}>0</div>
+            </div> : ""
+          }
 
           <div className={styles.cart}>
-
             <Link to="/cart">
               {' '}
-              <img src={cartImg} alt="cart-icon" />
+              <img src={cartImg}  data-tooltip-id="my-tooltip" data-tooltip-content="Carrito" alt="cart-icon" />
             </Link>
             <div className={styles.badge}>{cartQuantity > 9 ? '+9' : cartQuantity}</div>
           </div>
-          
-       {user && (
-          <div className={styles.login}>
-              <Link to={"/profile"} className="nav-link">
-                    <BsPersonCheck style={{fontSize:'30px'}}/>
-              </Link>
-            </div>
-        )}
 
-        {showUser && (
-          <div className={styles.login}>
+          {user && (
+            <div className={styles.login}>
+              <Link to={"/profile"} className="nav-link">
+                <BsPersonCheck style={{ fontSize: '30px' }} data-tooltip-id="my-tooltip" data-tooltip-content="Perfil"/>
+              </Link>
+            </div>
+          )}
+
+          {showUser && (
+            <div className={styles.login}>
               <Link to={"/user"} className="nav-link">
-                    <MdAssessment style={{fontSize:'30px'}}/>
+                <MdAssessment style={{ fontSize: '30px' }} data-tooltip-id="my-tooltip" data-tooltip-content="Panel de usuario" />
               </Link>
             </div>
-        )}
-        {showAdminBoard && (
-          <div className={styles.login}>
+          )}
+          {showAdminBoard && (
+            <div className={styles.login}>
               <Link to={"/admin"} className="nav-link">
-                    <GrUserAdmin style={{fontSize:'30px'}}/>
+                <GrUserAdmin style={{ fontSize: '30px' }}  />
               </Link>
             </div>
-        )}
+          )}
 
           {(!showUser && !showAdminBoard) && (
-          <>
-            <div className={styles.login}>
-            <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} setLoginTrigger={setTriggerPopUp} />
-          </div>
-            <div className={styles.login}>
-            <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} setTriggerSignUp={setTriggerPopUpSignUp} />
-            <img
-              src={login}
-              onClick={() => {
-                setTriggerPopUp(true);
-              }}
-              alt="login-icon"
-            />
-          </div>
+            <>
+              <div className={styles.login}>
+                <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} setLoginTrigger={setTriggerPopUp} />
+              </div>
+              <div className={styles.login}>
+                <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} setTriggerSignUp={setTriggerPopUpSignUp} />
+                <img
+                  src={login}
+                  onClick={() => {
+                    setTriggerPopUp(true);
+                  }}
+                  data-tooltip-id="my-tooltip" data-tooltip-content="Iniciar sesión/Registrarse"
+                  alt="login-icon"
+                />
+              </div>
             </>
           )
-        }
+          }
 
           {(showUser || showAdminBoard) && (
             <>
               <div className={styles.login}>
                 <Link to={"/home"} className="nav-link">
-                  <IoLogOutOutline style={{ fontSize: '30px' }} onClick={logOut} />
+                  <IoLogOutOutline style={{ fontSize: '30px' }} data-tooltip-id="my-tooltip" data-tooltip-content="Cerrar sesión" onClick={logOut} />
                 </Link>
               </div>
             </>
           )
           }
 
-        
-          
+
+
         </div>
       </div>
       <div className={styles.row2}>
@@ -223,11 +236,17 @@ const Topbar = ({ setFilters, cart, setPage, setCart }) => {
           </div>
         </div>
         <a href='#' className={styles.about}>
-          SOBRE COMPONENT CORNER
+          SOBRE NOSOTROS
         </a>
         <a href='#' className={styles.about}>
-          VER ESTADO DE PEDIDO
+          PEDIDO
         </a>
+        <img
+          src={imageFilter}
+          className={styles.ocultarFiltros}
+          id="FILTER"
+          onClick={() => viewFilters()}
+        />
       </div>
     </nav>
   );
@@ -237,6 +256,8 @@ Topbar.propTypes = {
   setFilters: PropTypes.func,
   setPage: PropTypes.func,
   cart: PropTypes.array,
-  setCart: PropTypes.func
+  setCart: PropTypes.func,
+  filterDisplay: PropTypes.object,
+  setFilterDisplay: PropTypes.func
 };
 export default Topbar;

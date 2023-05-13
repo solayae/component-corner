@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import styles from './Cart.module.css';
 import axios from 'axios';
+import styles from "./Cart.module.css";
+import PropTypes from "prop-types";
 
 function Cart({ cart, setCart }) {
+  const user = JSON.parse(localStorage.getItem('user'));
   const totalPrice = cart.reduce((acc, el) => acc + el.quantity * el.price, 0);
 
   const cartQuantity = cart.reduce((acc, el) => {
@@ -106,7 +109,8 @@ function Cart({ cart, setCart }) {
             NRO DE ORDEN: PONER ORDER NUMBER{' '}
           </span>
 
-          <h2 className={styles.userName}>userName</h2>
+
+            <h2 className={styles.userName}>{user ? (user.name) : "Guest"}</h2>
 
           <p> Articulos: {cartQuantity}</p>
           {/* {cart.map((el) => {
@@ -147,4 +151,5 @@ function Cart({ cart, setCart }) {
     </div>
   );
 }
+Cart.propTypes = { cart: PropTypes.array, setCart: PropTypes.func }
 export default Cart;
