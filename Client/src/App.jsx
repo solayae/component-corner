@@ -30,7 +30,6 @@ function App() {
   const [filters, setFilters] = useLocalStorage('filter_cards-Home', []);
   const [page, setPage] = useLocalStorage('page', 0);
   const [cart, setCart] = useLocalStorage('cart', []);
-  const [favorites, setFavorites] = useLocalStorage('favorites', []);
   const products = useSelector((state) => state.products);
   const [filterDisplay, setFilterDisplay] = useState({
     display:'none'
@@ -92,7 +91,7 @@ function App() {
         />
         <Route path='/publicar' element={<FormProduct />} />
         <Route path='/cart' element={<Cart cart={cart} setCart={setCart} />} />
-        <Route path='/favorites' element={<Favorites  favorites={favorites} setFavorites={setFavorites}/>} />
+        <Route path='/favorites' element={<Favorites/>} />
         <Route path='/qa' element={<Qa />} />
       </Routes>
       <Footer />
