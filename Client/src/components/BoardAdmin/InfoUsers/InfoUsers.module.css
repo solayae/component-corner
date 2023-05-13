@@ -1,0 +1,17 @@
+div.info_container {
+  background-color: white;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  height: 400px;
+  align-items: center;
+  justify-content: center;
+}
+
+div.info_users {
+  display: flex;
+  min-height: 70%;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+}

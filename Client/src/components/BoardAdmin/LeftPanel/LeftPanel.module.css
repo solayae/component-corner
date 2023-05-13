@@ -1,0 +1,14 @@
+div.panelContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 100vh;
+}
+div.panelContainer button {
+  width: 200px;
+  height: 75px;
+  font-size: 20px;
+  border: none;
+  background-color: var(--four-color);
+}
