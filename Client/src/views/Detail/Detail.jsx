@@ -4,17 +4,14 @@ import { getDetail, cleanDetail } from '../../redux/actions';
 import { Link, useParams } from 'react-router-dom';
 import { Heart } from 'iconoir-react';
 import axios from 'axios';
-
 import styles from './Detail.module.css';
 import Rating from '@mui/material/Rating';
 import PropTypes from 'prop-types';
-// import { Alert } from '@mui/material';
 
 function Detail({ cart, setCart }) {
   const { id } = useParams();
   const dispatch = useDispatch();
   const detailProduct = useSelector((state) => state.detail);
-  // const detailUser = useSelector((state) => state.userInfo);
   const [isFavorite, setIsFavorite] = useState(false);
 
   const user = JSON.parse(localStorage.getItem('user'));
@@ -22,10 +19,12 @@ function Detail({ cart, setCart }) {
 
   const getUserDetails = async () => {
     try {
-      const response = await axios.get(`/users/${userId}`);
-      const userDataFavorite = response.data.favorite;
-      for (let i = 0; i < userDataFavorite.length; i++) {
-        if (userDataFavorite[i] === id) setIsFavorite(true);
+      if (user) {
+        const response = await axios.get(`/users/${userId}`);
+        const userDataFavorite = response.data.favorite;
+        for (let i = 0; i < userDataFavorite.length; i++) {
+          if (userDataFavorite[i] === id) setIsFavorite(true);
+        }
       }
     } catch (error) {
       console.log(error);
@@ -33,7 +32,6 @@ function Detail({ cart, setCart }) {
   };
 
   useEffect(() => {
-    // dispatch(getUserById(userId));
     getUserDetails();
   }, [isFavorite]);
 
@@ -109,6 +107,7 @@ function Detail({ cart, setCart }) {
   };
 
   return (
+    detailProduct.id ? (
     <div className={styles.container}>
       <div className={styles.container_image_details}>
         <div className={styles.container_image}>
@@ -184,6 +183,12 @@ function Detail({ cart, setCart }) {
         </div>
       </div>
     </div>
+    )
+      : (
+        <div className={styles.container} style={{ textAlign: "center" }}>
+          <h1 className={styles.title}>No se ha encontrado el producto que buscas.</h1>
+        </div>
+      )
   );
 }
 
