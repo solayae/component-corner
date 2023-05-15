@@ -58,17 +58,6 @@ export function getUserById(idUser) {
   };
 }
 
-export function updateUser(id, newData) {
-  return async function (dispatch) {
-    const response = await axios.put(`/users/${id}`, newData);
-    const updatedUser = response.data;
-    return dispatch({
-      type: UPDATE_USER,
-      payload: updatedUser,
-    });
-  };
-}
-
 export function getDetail(id) {
   return async function (dispatch) {
     const response = await axios.get(`/products/${id}`);

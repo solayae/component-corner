@@ -217,8 +217,6 @@ function Detail({ cart, setCart }) {
           <p>Excelente producto, llegó super rapido</p>
         </div>
         <span>-------------------</span>
-  
-
 
         <div className={styles.rating_stars}>
           <p>Valoración de tu compra :</p>
@@ -256,3 +254,4 @@ Detail.propTypes = {
 };
 
 export default Detail;
+
