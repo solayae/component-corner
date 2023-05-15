@@ -24,7 +24,7 @@ async function findOrCreateUser(
   return [newUser, created];
 }
 
-async function updateUsers(name, password, favorite, direction, cart, email) {
+async function updateUsers(name, password, favorite, direction, cart, email, banned) {
   const updateUser = await Usuario.update(
     {
       name,
@@ -32,6 +32,7 @@ async function updateUsers(name, password, favorite, direction, cart, email) {
       favorite,
       direction,
       cart,
+      banned
     },
     {
       where: { email: email },
