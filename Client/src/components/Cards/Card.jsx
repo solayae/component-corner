@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function Card(props) {
   const { product } = props;
-  const deshabilitado =  product.stock === 0 || product.delete === true
+  const deshabilitado =  product.stock === 0 || product.banned === true
   return (
     //   className={Styles.card__container }
     <div key={product.id} className={`${Styles.card__container} ${deshabilitado ? Styles.disabled : ''}`} >
