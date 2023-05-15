@@ -1,8 +1,6 @@
 const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
-  sequelize.define(
-    'Products',
-    {
+  const Products = sequelize.define('Products',{
       id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
@@ -35,6 +33,10 @@ module.exports = (sequelize) => {
       stock: {
         type: DataTypes.INTEGER,
       },
+      reviews: {
+        type: DataTypes.ARRAY(DataTypes.JSON),
+        defaultValue: [],
+      },
       delete: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
@@ -44,5 +46,11 @@ module.exports = (sequelize) => {
       timestamps: false,
     }
   );
-};
+  // Products.addHook('beforeCreate', (product, options) => {
+  //   if (!product.reviews) {
+  //     product.reviews = [];
+  //   }
+  // });
 
+  return Products
+};

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './Cart.module.css';
 import axios from 'axios';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 function Cart({ cart, setCart }) {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -48,6 +48,7 @@ function Cart({ cart, setCart }) {
       return currItem.filter((item) => item.id !== id);
     });
   };
+
   return cart.length < 1 ? (
     <div className={styles.cartVacio}>
       <h2>Tu carrito está vacio</h2>
@@ -108,8 +109,7 @@ function Cart({ cart, setCart }) {
             NRO DE ORDEN: PONER ORDER NUMBER{' '}
           </span>
 
-
-            <h2 className={styles.userName}>{user ? (user.name) : "Guest"}</h2>
+          <h2 className={styles.userName}>{user ? user.name : 'Guest'}</h2>
 
           <p> Articulos: {cartQuantity}</p>
           {/* {cart.map((el) => {
@@ -150,5 +150,5 @@ function Cart({ cart, setCart }) {
     </div>
   );
 }
-Cart.propTypes = { cart: PropTypes.array, setCart: PropTypes.func }
+Cart.propTypes = { cart: PropTypes.array, setCart: PropTypes.func };
 export default Cart;
