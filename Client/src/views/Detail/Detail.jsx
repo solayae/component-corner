@@ -16,9 +16,12 @@ function Detail({ cart, setCart }) {
   const detailProduct = useSelector((state) => state.detail);
   // const detailUser = useSelector((state) => state.userInfo);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [starsValue, setStarsValue] = useState(0);
+  const [reviewValue, setReviewValue] = useState('');
 
   const user = JSON.parse(localStorage.getItem('user'));
   const userId = user?.id;
+  console.log(user);
 
   const getUserDetails = async () => {
     try {
@@ -39,38 +42,39 @@ function Detail({ cart, setCart }) {
 
   // **** FAVORITOS ****
 
-  const handleClick = async () => {
+  const handleAddToFavorites = async () => {
     try {
       if (!user) return console.log('Logueate');
       const response = await axios.get(`/users/${userId}`);
       const backupUser = response.data;
+      console.log(backupUser);
 
       if (isFavorite) {
-        const newFavorites = backupUser.favorite?.filter((e) => e != id)
-        const newUser = {...backupUser, favorite: newFavorites}
-        const responseEdit = await axios.put("/users/", newUser)
+        const newFavorites = backupUser.favorite?.filter((e) => e != id);
+        const newUser = { ...backupUser, favorite: newFavorites };
+        const responseEdit = await axios.put('/users/', newUser);
         console.log(responseEdit);
-        return setIsFavorite(false)
+        return setIsFavorite(false);
       }
-      
-      const newFavorites = [...backupUser.favorite, id]
-      const newUser = {...backupUser, favorite: newFavorites}
-      const responseEdit = await axios.put('/users/', newUser)
+
+      const newFavorites = [...backupUser.favorite, id];
+      const newUser = { ...backupUser, favorite: newFavorites };
+      const responseEdit = await axios.put('/users/', newUser);
       console.log(responseEdit);
-      return setIsFavorite(true)
+      return setIsFavorite(true);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    // alert("Entré")
     dispatch(getDetail(id));
     return () => {
       dispatch(cleanDetail());
-      // alert("Salí")
     };
   }, [dispatch, id]);
+
+  // CARRITO
 
   const [quantity, setQuantity] = useState(1);
 
@@ -108,6 +112,39 @@ function Detail({ cart, setCart }) {
     if (quantity < detailProduct.stock) setQuantity(quantity + 1);
   };
 
+  // COMENTARIOS/REVIEWS
+
+  const handleAddReview = async () => {
+    try {
+      if (!user) return console.log('Logueate');
+      const review = {
+        user: user.name,
+        stars: starsValue,
+        comment: reviewValue,
+      };
+      console.log(review);
+      if (!review.stars || !review.comment) return console.log('Campos vacios');
+
+      const response = await axios.get(`/products/${id}`);
+      const bkProduct = response.data;
+      console.log(bkProduct);
+
+      const newReview = [...bkProduct.reviews, review];
+      // const productUpdate = {...bkProduct, reviews: newReview };
+      const responseEdit = await axios.put('/products/', {
+        id: id,
+        reviews: newReview,
+      });
+      console.log(responseEdit);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleInputChange = (event) => {
+    setReviewValue(event.target.value);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.container_image_details}>
@@ -127,7 +164,7 @@ function Detail({ cart, setCart }) {
               className={`${styles.button_fav} ${
                 isFavorite ? styles.button_favorite : styles.button_nofavorite
               }`}
-              onClick={handleClick}
+              onClick={handleAddToFavorites}
             >
               <Heart />
             </button>
@@ -156,31 +193,57 @@ function Detail({ cart, setCart }) {
           </button>
         </div>
       </div>
-
       <div className={styles.details}>
         <p>Caracteristicas:</p>
         {detailProduct.detail?.map((spec, index) => (
           <li key={index}>{spec}</li>
         ))}
       </div>
-
       <h3 className={styles.rating_comments}>Comentarios</h3>
       <span className={styles.line}></span>
+      🚀
       <div className={styles.rating_container}>
-        {/* <p>Cantidad de comentarios: 0</p> */}
+        <p>Cantidad de comentarios: 0</p>
+        <span>-------------------</span>
+        <div>
+          <p>Por solayae:</p>
+          <span>⭐⭐⭐⭐</span>
+          <p>Excelente producto, llegó super rapido</p>
+        </div>
+        <span>-------------------</span>
+        <div>
+          <p>Por solayae:</p>
+          <span>⭐⭐⭐⭐</span>
+          <p>Excelente producto, llegó super rapido</p>
+        </div>
+        <span>-------------------</span>
+  
+
+
         <div className={styles.rating_stars}>
           <p>Valoración de tu compra :</p>
-          <Rating name='no-value' value={null} size='' />
+          <Rating
+            name='simple-controlled'
+            value={starsValue}
+            onChange={(event, newValue) => {
+              setStarsValue(newValue);
+              console.log(newValue);
+            }}
+          />
         </div>
         <div className={styles.commentInput}>
           <textarea
             id='comment'
             name='comment'
             placeholder='Escribe aquí tu comentario'
+            value={reviewValue}
+            onChange={handleInputChange}
           ></textarea>
         </div>
         <div className={styles.container_button}>
-          <button className={styles.rating_button}>AGREGAR COMENTARIO</button>
+          <button className={styles.rating_button} onClick={handleAddReview}>
+            AGREGAR COMENTARIO
+          </button>
         </div>
       </div>
     </div>
