@@ -51,7 +51,6 @@ export default function Login(props) {
       tigger();
       navigate('/user');
       setLoading(false);
-      window.location.reload();
     } catch (error) {
       setLoading(false);
       MySwal.fire({

@@ -1,7 +1,16 @@
-import styles from "./Cart.module.css";
-import axios from "axios";
+import { Link } from 'react-router-dom';
+import styles from './Cart.module.css';
+import axios from 'axios';
+import PropTypes from "prop-types";
 
 function Cart({ cart, setCart }) {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const totalPrice = cart.reduce((acc, el) => acc + el.quantity * el.price, 0);
+
+  const cartQuantity = cart.reduce((acc, el) => {
+    return acc + el.quantity;
+  }, 0);
+
   const handleIncrement = (id) => {
     setCart((product) => {
       return product.map((item) => {
@@ -34,31 +43,91 @@ function Cart({ cart, setCart }) {
     });
   };
 
-  return cart?.map((product) => {
-    return (
-      <div className={styles.cartContent} key={product.id}>
-        <img src={product.image}></img>
+  const handleRemove = (id) => {
+    setCart((currItem) => {
+      return currItem.filter((item) => item.id !== id);
+    });
+  };
+  return cart.length < 1 ? (
+    <div className={styles.cartVacio}>
+      <h2>Tu carrito está vacio</h2>
+      <p>¿No sabés qué comprar? ¡Miles de productos te esperan!</p>
+      <button
+        onClick={() => (location.href = '/home')}
+        className={styles.offersBtn}
+      >
+        Descubrir ofertas
+      </button>
+    </div>
+  ) : (
+    <div className={styles.cartContainer}>
+      <div className={styles.cartProducts}>
+        {cart?.map((product) => {
+          return (
+            <div className={styles.cartContent} key={product.id}>
+              <img src={product.image}></img>
 
-        <div className={styles.productName}>Nombre: {product.name}</div>
+              <div className={styles.productName}>{product.name}</div>
 
-        <div className={styles.productStock}>Stock: {product.stock}</div>
+              <div className={styles.productStock}>Stock: {product.stock}</div>
 
-        <div className={styles.productPrice}>${product.price}</div>
+              <div className={styles.productPrice}>${product.price}</div>
 
-        <div className={styles.cartCounter}>
-          <button
-            className={styles.cartButton}
-            onClick={() => handleIncrement(product.id)}
-          >
-            +
-          </button>
-          <div className={styles.productQuantity}>{product.quantity}</div>
-          <button
-            className={styles.cartButton}
-            onClick={() => handleDecrement(product.id)}
-          >
-            -
-          </button>
+              <div className={styles.cartCounter}>
+                <button
+                  className={styles.cartButton}
+                  onClick={() => handleDecrement(product.id)}
+                >
+                  -
+                </button>
+                <div className={styles.productQuantity}>{product.quantity}</div>
+                <button
+                  className={styles.cartButton}
+                  onClick={() => handleIncrement(product.id)}
+                >
+                  +
+                </button>
+              </div>
+
+              <div>
+                <button
+                  className={styles.DelToCartBtn}
+                  onClick={() => handleRemove(product.id)}
+                >
+                  Quitar
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className={styles.cartTotal}>
+        <div>
+          <span className={styles.orderNumber}>
+            NRO DE ORDEN: PONER ORDER NUMBER{' '}
+          </span>
+
+
+            <h2 className={styles.userName}>{user ? (user.name) : "Guest"}</h2>
+
+          <p> Articulos: {cartQuantity}</p>
+          {/* {cart.map((el) => {
+              return (
+                <div key={el.id}>
+                  <div >
+                    {el.name.length > 32 ? el.name.slice(0, 32) + '...' + ` (${el.quantity})` : el.name + ` (${el.quantity})`}</div>
+                </div>
+              )
+            })
+            } */}
+          <p>
+            Envio: <span>Gratis!</span>
+          </p>
+        </div>
+
+        <div className={styles.totalPrice}>
+          <span>PRECIO TOTAL: ${totalPrice}</span>
         </div>
 
         <div>
@@ -66,19 +135,20 @@ function Cart({ cart, setCart }) {
             className={styles.cartPay}
             onClick={() =>
               axios
-                .post("/payment", product)
+                .post('/payment', cart)
                 .then(
                   (res) =>
                     (window.location.href = res.data.response.body.init_point)
                 )
             }
           >
-            Comprar
+            {' '}
+            COMPRAR{' '}
           </button>
         </div>
       </div>
-    );
-  });
+    </div>
+  );
 }
-
+Cart.propTypes = { cart: PropTypes.array, setCart: PropTypes.func }
 export default Cart;

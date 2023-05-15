@@ -10,6 +10,7 @@ require("dotenv").config();
 require("./db.js");
 
 const server = express();
+server.use(cors());
 
 server.name = "API";
 
@@ -17,9 +18,9 @@ server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
 server.use(morgan("dev"));
-server.use(cors({origin:[ 'https://component-corner.vercel.app' ]}));
+
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://component-corner.vercel.app"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
@@ -31,22 +32,25 @@ server.use((req, res, next) => {
 
 mercadopago.configure({ access_token: process.env.MERCADOPAGO_KEY });
 server.post("/payment", (req, res) => {
-  const prod = req.body;
+  const cart = req.body;
   let preference = {
     items: [
       {
-        id: prod.id,
-        title: prod.name,
+        // id: cart.id,
+        title: "Component Corner",
         currency_id: "ARS",
-        picture_url: prod.image,
-        description: prod.detail,
+        // picture_url: prod.image,
+        description: "Test",
         category_id: "art",
-        quantity: prod.quantity,
-        unit_price: prod.price,
+        quantity: 1,
+        unit_price: cart.reduce(
+          (totalPrice, item) => (totalPrice += item.quantity * item.price),
+          0
+        ),
       },
     ],
     back_urls: {
-      success: "https://component-corner.vercel.app", //cambiar url deploy
+      success: "https://component-corner.vercel.app", //"http://localhost:3001", //"http://localhost:3001", //cambiar url deploy
       failure: "",
       pending: "",
     },

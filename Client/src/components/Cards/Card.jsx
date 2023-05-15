@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 
 export default function Card(props) {
   const { product } = props;
+  const deshabilitado =  product.stock === 0 || product.banned === true
   return (
-    <div key={product.id} className={Styles.card__container}>
+    //   className={Styles.card__container }
+    <div key={product.id} className={`${Styles.card__container} ${deshabilitado ? Styles.disabled : ''}`} >
       <Link to={`/products/${product.id}`} className={Styles.card_link}>
         <div>
           <img src={product.image} alt={product.name} />
