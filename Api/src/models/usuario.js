@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
     direction: {
       type: DataTypes.TEXT,
     },
-    delete: {
+    banned: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,      
     },
