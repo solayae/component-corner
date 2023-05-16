@@ -1,30 +1,22 @@
 import { useEffect, useState } from 'react';
-
 import styles from './Favorites.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { getDetail, cleanDetail, getUserById } from '../../redux/actions';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function Favorites() {
-  const detailProduct = useSelector((state) => state.detail);
-  // const detailUser = useSelector((state) => state.userInfo);
   const [favoriteProducts, setFavoriteProducts] = useState([])
-  const [favoritesID, setFavoritesID] = useState([])
   const [mounted, setMounted] = useState(false)
   const productState = useSelector((state) => state.products);
   const allProducts = [...productState];
-  const dispatch = useDispatch();
 
   const user = JSON.parse(localStorage.getItem('user'));
   const userId = user?.id;
-
-
 
   const detailUser = async () => {
     try {
       const response = await axios.get(`/users/${userId}`);
       const userFavorites = response.data.favorite;
-      setFavoritesID(userFavorites)
       if (allProducts.length){
         const favoriteProducts = allProducts.filter((product) => userFavorites.includes(product.id))
         setFavoriteProducts([...favoriteProducts])
@@ -40,12 +32,6 @@ export default function Favorites() {
   //eslint-disable-next-line
   }, [mounted]);
 
-  // const userFavorites = detailUser.favorite;
-  // const favoriteProducts = allProducts.filter((product) =>
-  //   userFavorites.includes(String(product.id))
-  // );
-  // console.log(favoriteProducts);
-
   const handleClick = async (id) => {
     console.log(String(id))
     const response = await axios.get(`/users/${userId}`);
@@ -59,10 +45,12 @@ export default function Favorites() {
   };
 
   return (
-    <>
-      <h1 className={styles.favorites_title}>Favoritos</h1>
+    <div className={styles.container}>
+      <h1 className={styles.favorites_title}>Tus favoritos:</h1>
+      <div className={styles.favorites_container}>
       {favoriteProducts.map((product) => (
-        <section key={product.id}>
+        <Link to={`/products/${product.id}`} key={product.id} >
+          <div className={styles.favorite}>
           <figure>
             <img src={product.image} alt='imagen' width='300px' />
           </figure>
@@ -73,8 +61,10 @@ export default function Favorites() {
             <h4>Stock: {product.stock}</h4>
             <button onClick={()=>handleClick(product.id)}>Eliminar</button>
           </div>
-        </section>
+          </div>
+        </Link>
       ))}
-    </>
+      </div>
+    </div>
   );
 }
