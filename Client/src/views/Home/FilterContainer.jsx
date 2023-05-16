@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function FilterContainer({categories, handleSort, sort, handleFilters, filters, input, handleInput}) {
   const byName = ['A-Z', 'Z-A'];
-  const byPrice = ['Ascendente', 'Descendente'];
+  const byPrice = ['Menor a Mayor', 'Mayor a Menor'];
   const inputRadio = (arr) => {
     return arr.map((e) => (
       <div key={e}>
