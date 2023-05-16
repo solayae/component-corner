@@ -27,11 +27,9 @@ const handleProductsAll = async (req, res) => {
       const productsByBrandCategory = await getProductFiltered(category, brand);
       productsByBrandCategory.length
         ? res.status(200).json(productsByBrandCategory)
-        : res
-            .status(400)
-            .json({
-              message: `No se encontro ${category} de la marca ${brand}`,
-            });
+        : res.status(400).json({
+            message: `No se encontro ${category} de la marca ${brand}`,
+          });
     } else if (category) {
       const productsByCategory = await getProductFiltered(category);
       productsByCategory.length
@@ -102,19 +100,20 @@ const deleteHandler = async (req, res) => {
 
 //modifica el valor de las propiedades de un producto
 const updateProduct = async (req, res) => {
-  const { id, image, name, brand, detail, price, category, stock } = req.body;
+  const { id, image, name, brand, detail, price, category, stock, reviews } =
+    req.body;
   try {
     if (!id) return res.status(400).json({ message: 'Falta el ID' });
-
     const updateProduct = await updateProducts(
       image,
       name,
+      price,
       brand,
       detail,
-      price,
       category,
       stock,
-      id
+      id,
+      reviews
     );
 
     return updateProduct[0] > 0
