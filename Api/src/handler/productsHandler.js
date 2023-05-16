@@ -1,5 +1,4 @@
 //const { articulos } = require('../Utils/Productos')
-const { Comentario } = require("../db");
 const {
   getProductByName,
   getAllProducts,
