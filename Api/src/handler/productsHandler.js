@@ -10,7 +10,6 @@ const {
   createProduct,
   deleteProduct,
   updateProducts,
-  createComentary
 } = require('../controllers/productsControllers');
 const { Op } = require('sequelize');
 

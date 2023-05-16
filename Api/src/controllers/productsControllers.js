@@ -1,4 +1,4 @@
-const { Products, Comentario} = require("../db");
+const { Products} = require("../db");
 const { articulos } = require("../Utils/Productos");
 const { Op } = require("sequelize")
 
