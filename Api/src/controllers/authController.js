@@ -22,7 +22,7 @@ async function mailer(email) {
     to: email,
     subject: "Registro exitoso",
     text: "Bienvenido a Component Corner",
-    html: "<b>Bienvenido Component Corner, gracias por elegirnos!</b>",
+    html: "<b>Bienvenido a Component Corner, gracias por elegirnos!</b>",
   });
 
   console.log("Message sent: %s" + info.messageId);
