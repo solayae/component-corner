@@ -10,7 +10,6 @@ const cors = require('cors');
 const corsOptions = { origin: 'http://localhost:3001' };
 const bodyParser = require('body-parser');
 const router = Router();
-const comentaryRouter = require('./comentarysRouter')
 
 router.use(Express.json());
 //router.use(morgan('dev'))
