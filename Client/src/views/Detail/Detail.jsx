@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDetail, cleanDetail } from '../../redux/actions';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Heart } from 'iconoir-react';
 import axios from 'axios';
 import styles from './Detail.module.css';
 import Rating from '@mui/material/Rating';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 function Detail({ cart, setCart }) {
   const { id } = useParams();
@@ -16,6 +17,8 @@ function Detail({ cart, setCart }) {
 
   const user = JSON.parse(localStorage.getItem('user'));
   const userId = user?.id;
+
+  const navigate = useNavigate()
 
   const getUserDetails = async () => {
     try {
@@ -152,10 +155,8 @@ function Detail({ cart, setCart }) {
             </p>
 
             {detailProduct.stock === 0 || detailProduct.banned === true ? "" :
-              <button className={styles.addToCartBtn} onClick={handleAddToCart}>
-                <Link to='/cart' className={styles.addToCartBtn}>
-                  AGREGAR AL CARRITO
-                </Link>
+              <button className={styles.addToCartBtn} onClick={() => { handleAddToCart(); navigate("/cart") }}>
+                AGREGAR AL CARRITO
               </button>
             }
           </div>
