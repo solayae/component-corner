@@ -21,6 +21,5 @@ router.use('/api/auth', authRouter);
 //router.use('/api/auth', authRouter);
 router.use('/api', usersRedirectRouter);
 router.use('/:public_id', deleteImage);
-router.use('/comentario', comentaryRouter)
 
 module.exports = router;

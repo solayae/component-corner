@@ -53,28 +53,9 @@ const getProductByBrand = async (brand) => {
 
 
 const productById =  async (productId) => {
-  const product = await Products.findByPk(productId
-    ,{
-    include:[{
-      model: Comentario,
-      attributes: ["comentario"],
-
-    }]
-  }
-  )
+  const product = await Products.findByPk(productId)
 
   return product
-}
-
-const createComentary = async (comentario, productId, UsuarioId) => {
-  const comentary = {
-    comentario: comentario,
-    UsuarioId: UsuarioId,
-    ProductId: productId
-  }
-const nuevoComentario = await Comentario.create(comentary)
-
-return nuevoComentario
 }
 
 async function deleteLogicProduct(productsId) {
@@ -175,5 +156,4 @@ module.exports = {
   createProduct,
   getProductFiltered,
   getProductByBrand,
-  createComentary
 };
