@@ -17,12 +17,10 @@ import Profile from './components/Profile/Profile';
 import Cart from './views/Cart/Cart';
 import Favorites from './views/Favorites/Favorites';
 import axios from 'axios';
- HEAD
-// <<<<<<< HEAD
+ 
 // // axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/';
 // import Qa from "./views/qa/qa"
 // //axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/';
-// >>>>>>> fdb665ab3365f5fbc209eebd36dd1d35d3478f85
 axios.defaults.baseURL = 'http://localhost:3001/';
 import Qa from "./views/qa/qa"
 import About from "./views/About/About"
@@ -33,7 +31,7 @@ axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/';
 //LOCAL:
 // axios.defaults.baseURL = 'http://localhost:3001/';
 
-a8f128f2933993dea7340f453fd2c2990d8475b5
+
 function App() {
   const [mounted, setMounted] = useState(false);
   const [filters, setFilters] = useLocalStorage('filter_cards-Home', []);
