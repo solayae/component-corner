@@ -20,9 +20,9 @@ async function mailer(email) {
   let info = await transporter.sendMail({
     from: '"💻Component Corner💻" <componentcorner@gmail.com>',
     to: email,
-    subject: "Successfully Registered",
-    text: "Welcome to Component Corner",
-    html: "<b>Welcome to Component Corner, Thanks foy choosing us!</b>",
+    subject: "Registro exitoso",
+    text: "Bienvenido a Component Corner",
+    html: "<b>Bienvenido Component Corner, gracias por elegirnos!</b>",
   });
 
   console.log("Message sent: %s" + info.messageId);
