@@ -1,11 +1,17 @@
-import { Link } from 'react-router-dom';
 import styles from './Cart.module.css';
 import axios from 'axios';
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom"
+import SignUp from '../../components/SignUp/SignUp';
+import { useState } from 'react';
+import Login from '../../components/Login/Login';
 
 function Cart({ cart, setCart }) {
   const user = JSON.parse(localStorage.getItem('user'));
   const totalPrice = cart.reduce((acc, el) => acc + el.quantity * el.price, 0);
+  const navigate = useNavigate();
+  const [triggerPopUpSignUp, setTriggerPopUpSignUp] = useState(false);
+  const [triggerPopUp, setTriggerPopUp] = useState(false);
 
   const cartQuantity = cart.reduce((acc, el) => {
     return acc + el.quantity;
@@ -49,12 +55,20 @@ function Cart({ cart, setCart }) {
     });
   };
 
+  const buyFunction = async () => {
+    try {
+      const response = await axios.post('/payment', cart);
+      await setCart([])
+      window.location.href = response.data.response.body.init_point;
+    } catch (error) { console.log(error) }
+  }
+
   return cart.length < 1 ? (
     <div className={styles.cartVacio}>
       <h2>Tu carrito está vacio</h2>
       <p>¿No sabés qué comprar? ¡Miles de productos te esperan!</p>
       <button
-        onClick={() => (location.href = '/home')}
+        onClick={() => navigate("/home")}
         className={styles.offersBtn}
       >
         Descubrir ofertas
@@ -112,15 +126,6 @@ function Cart({ cart, setCart }) {
           <h2 className={styles.userName}>{user ? user.name : 'Guest'}</h2>
 
           <p> Articulos: {cartQuantity}</p>
-          {/* {cart.map((el) => {
-              return (
-                <div key={el.id}>
-                  <div >
-                    {el.name.length > 32 ? el.name.slice(0, 32) + '...' + ` (${el.quantity})` : el.name + ` (${el.quantity})`}</div>
-                </div>
-              )
-            })
-            } */}
           <p>
             Envio: <span>Gratis!</span>
           </p>
@@ -131,23 +136,21 @@ function Cart({ cart, setCart }) {
         </div>
 
         <div>
+          <div>
+            <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} setLoginTrigger={setTriggerPopUp} />
+          </div>
+          <div>
+            <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} setTriggerSignUp={setTriggerPopUpSignUp} />
+          </div>
           <button
-            className={styles.cartPay}
-            onClick={() =>
-              axios
-                .post('/payment', cart)
-                .then(
-                  (res) =>
-                    (window.location.href = res.data.response.body.init_point)
-                )
-            }
+            className={user?styles.cartPay : styles.cartPayRed}
+            onClick={user ? () => buyFunction() : () => setTriggerPopUp(true)}
           >
-            {' '}
-            COMPRAR{' '}
+            {user ? "COMPRAR" : "REGISTRATE!"}
           </button>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 Cart.propTypes = { cart: PropTypes.array, setCart: PropTypes.func };
