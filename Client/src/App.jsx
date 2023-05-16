@@ -18,6 +18,7 @@ import Cart from './views/Cart/Cart';
 import Favorites from './views/Favorites/Favorites';
 import axios from 'axios';
 import Qa from "./views/qa/qa"
+import About from "./views/About/About"
 
 // DEPLOY:
 // axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/'; 
@@ -93,6 +94,7 @@ function App() {
         <Route path='/cart' element={<Cart cart={cart} setCart={setCart} />} />
         <Route path='/favorites' element={<Favorites/>} />
         <Route path='/qa' element={<Qa />} />
+        <Route path='/about' element={<About />} />
       </Routes>
       <Footer />
     </div>
