@@ -115,6 +115,27 @@
   transform: scale(1.012);
 }
 
+.cartTotal .cartPayRed {
+  padding: 0.7rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--four-color);
+  color: #333;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  width: 100%;
+  text-decoration: none;
+  transition: 0.162s;
+}
+
+.cartTotal .cartPayRed:hover {
+  background-color: var(--five-color);
+  transform: scale(1.012);
+}
+
 .cartTotal .totalPrice {
   font-family: var(--font-heading);
   font-size: 23px;
