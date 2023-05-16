@@ -11,6 +11,7 @@ import {
   SET_MESSAGE,
   CLEAR_MESSAGE,
   LOGOUT,
+  GET_USER_BY_ID,
 } from './variables';
 
 export function getAllProducts() {
@@ -42,6 +43,21 @@ export function getProductsByName(name) {
   };
 }
 
+export function getUserById(idUser) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`/users/${idUser}`);
+      const userInfo = response.data;
+      return dispatch({
+        type: GET_USER_BY_ID,
+        payload: userInfo,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
 export function getDetail(id) {
   return async function (dispatch) {
     const response = await axios.get(`/products/${id}`);
@@ -61,19 +77,19 @@ export function cleanDetail() {
 
 export function orderBy(order) {
   return function (dispatch) {
-    dispatch({type: ORDER_BY, payload: order});
+    dispatch({ type: ORDER_BY, payload: order });
   };
 }
 
 export function filterByCategory(category) {
   return function (dispatch) {
-    dispatch({type: FILTER_BY_CATEGORY, payload: category});
+    dispatch({ type: FILTER_BY_CATEGORY, payload: category });
   };
 }
 
 export function filterByBrand(brand) {
   return function (dispatch) {
-    dispatch({type: FILTER_BY_BRAND, payload: brand});
+    dispatch({ type: FILTER_BY_BRAND, payload: brand });
   };
 }
 
@@ -89,7 +105,11 @@ export const clearMessage = () => ({
 export function register(name, email, password) {
   return async function () {
     try {
-      const response = await axios.post('/api/auth/signup', {name, email, password});
+      const response = await axios.post('/api/auth/signup', {
+        name,
+        email,
+        password,
+      });
       return response;
     } catch (error) {
       return error.response;
@@ -100,7 +120,10 @@ export function register(name, email, password) {
 export function login(email, password) {
   return async function () {
     try {
-      const response = await axios.post('/api/auth/signin', {email, password});
+      const response = await axios.post('/api/auth/signin', {
+        email,
+        password,
+      });
       localStorage.setItem('user', JSON.stringify(response.data));
       return response;
     } catch (error) {

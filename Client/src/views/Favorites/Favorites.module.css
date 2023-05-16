@@ -1,11 +1,27 @@
+.container{
+  margin: 3rem;
+  text-align: center;
+}
+.container a {
+  color: black;
+  text-decoration: none;
+  margin: none;
+}
+.container a:hover {
+  color: black;
+}
 .favorites_container {
-  padding: 2rem;
+  text-align: end;
 }
-
-.favorites_title {
-  margin: 3rem 0 0 3rem;
+.favorite {
+  display: flex;
+  background-color: white;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 20px;
 }
-
 section {
   display: flex;
 }

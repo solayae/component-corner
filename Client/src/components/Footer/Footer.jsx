@@ -4,15 +4,15 @@ import { BsTools } from "react-icons/bs"
 import { RiCustomerService2Fill } from "react-icons/ri"
 import { Link } from 'react-router-dom';
 const Footer = () => {
-  return (
+  return ( 
     <div>
       <footer className={styles.footer}>
         <div className={styles.column}>
           <h3>SOPORTE</h3>
-          <Link to="#"><h2><RiCustomerService2Fill/> </h2></Link>
+          <Link to="/qa"><h2><RiCustomerService2Fill /></h2></Link>
           <ul>
             <li>
-              <a href="/qa">Preguntas frecuentes</a>
+              <Link to="/qa">Preguntas frecuentes</Link>
             </li>
             <li>
               <a href="#">Política de cambios</a>
@@ -24,7 +24,7 @@ const Footer = () => {
         </div>
         <div className={styles.column}>
           <h3>SERVICIOS</h3>
-          <Link to="#"><h2><BsTools/></h2></Link>
+          <Link to="/qa"><h2><BsTools/></h2></Link>
           <ul>
             <li>Envío gratis</li>
             <li>Pago a través de Mercado Pago</li>
@@ -35,7 +35,7 @@ const Footer = () => {
         </div>
         <div className={styles.column}>
           <h3>CONTACTO</h3>
-          <Link to="#"><h2><BsTelephone/></h2></Link>
+          <Link to="/qa"><h2><BsTelephone/></h2></Link>
           <ul>
             <li>
               <a href="#">+54 123 456 789</a>
