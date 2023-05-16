@@ -21,10 +21,10 @@ import Qa from "./views/qa/qa"
 import About from "./views/About/About"
 
 // DEPLOY:
-// axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/'; 
+axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/'; 
 
 //LOCAL:
-axios.defaults.baseURL = 'http://localhost:3001/';
+// axios.defaults.baseURL = 'http://localhost:3001/';
 
 function App() {
   const [mounted, setMounted] = useState(false);

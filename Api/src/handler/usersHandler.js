@@ -66,7 +66,7 @@ const handleUserCreate = async (req, res) => {
 };
 
 const handleUpdateUser = async (req, res) => {
-  const { email, name, password, favorite, direction, cart } = req.body;
+  const { email, name, password, favorite, direction, cart , banned } = req.body;
   try {
     if (!email) return res.status(400).json({ error: 'falta el EMAIL' });
 
@@ -76,7 +76,8 @@ const handleUpdateUser = async (req, res) => {
       favorite,
       direction,
       cart,
-      email
+      email,
+      banned
     );
 
     return updateUser

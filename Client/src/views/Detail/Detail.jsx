@@ -238,6 +238,7 @@ function Detail({ cart, setCart }) {
         <p>{`Cantidad de comentarios: ${detailProduct.reviews?.length}`}</p>
         <span>-------------------</span>
 
+
         {detailProduct.reviews?.length ? (
           detailProduct.reviews.map((e) => (
             <div key={e.id}>
@@ -250,6 +251,7 @@ function Detail({ cart, setCart }) {
         ) : (
           <span>No hay comentarios aún</span>
         )}
+        
 
         <div className={styles.rating_stars}>
           <p>Valoración de tu compra :</p>
@@ -292,3 +294,4 @@ Detail.propTypes = {
 };
 
 export default Detail;
+
