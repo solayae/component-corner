@@ -285,9 +285,11 @@ const Topbar = ({
           SOBRE NOSOTROS
           </Link>
         </a>
-        <a href='#' className={styles.about}>
+      { user
+        ? <Link href='#' className={styles.about}>
           PEDIDO
-        </a>
+          </Link>
+        : ""}
         <img
           src={imageFilter}
           className={styles.ocultarFiltros}
