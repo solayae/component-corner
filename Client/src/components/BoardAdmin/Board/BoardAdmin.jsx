@@ -3,6 +3,7 @@ import LeftPanel from "../LeftPanel/LeftPanel";
 import { useEffect, useState } from "react";
 import InfoUsers from "../InfoUsers/InfoUsers";
 import { useNavigate } from "react-router-dom";
+import InfoProducts from "../infoProducts/InfoProducts";
 
 const BoardAdmin = () => {
   const [viewType, setType] = useState("user")
@@ -19,8 +20,10 @@ const BoardAdmin = () => {
   return (
     isAdmin &&
     (<div className={styles.boardAdmin_container}>
-      <LeftPanel setType={setType} />
-      {viewType === "user" ? <InfoUsers /> : ""}
+      {/* <LeftPanel setType={setType} />
+      {viewType !== "user" ?   <InfoUsers/> : '' } */}
+      <LeftPanel/>
+      <InfoProducts />
     </div>)
   );
 }
