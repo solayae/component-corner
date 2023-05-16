@@ -9,10 +9,10 @@ const Footer = () => {
       <footer className={styles.footer}>
         <div className={styles.column}>
           <h3>SOPORTE</h3>
-          <Link to="/qa"><h2><RiCustomerService2Fill/> </h2></Link>
+          <Link to="/qa"><h2><RiCustomerService2Fill /></h2></Link>
           <ul>
             <li>
-              <a href="/qa">Preguntas frecuentes</a>
+              <Link to="/qa">Preguntas frecuentes</Link>
             </li>
             <li>
               <a href="#">Política de cambios</a>
