@@ -1,4 +1,5 @@
 //const { articulos } = require('../Utils/Productos')
+const { Comentario } = require("../db");
 const {
   getProductByName,
   getAllProducts,
@@ -9,6 +10,7 @@ const {
   createProduct,
   deleteProduct,
   updateProducts,
+  createComentary
 } = require('../controllers/productsControllers');
 const { Op } = require('sequelize');
 
@@ -164,6 +166,30 @@ const createProductHandler = async (req, res) => {
   }
 };
 
+const postComentary = async (req, res) => {
+  //const {productsId} = req.params
+  console.log('get comentario')
+  // const {comentario, UsuarioId, ProductsId} = req.body
+  // try {
+   
+  //     const comentarioCreado = await createComentary(comentario, ProductsId, UsuarioId)
+
+  //     comentarioCreado
+  //     ? res.status(200).json(comentarioCreado) 
+  //     :  res.status(400).json({ message: 'No se pudo crear el comentario' });
+    
+  //      res.status(200).json(comentarioCreado)
+    
+  // } catch (error) {
+  //   res.status(400).json({ error: error.message });
+  // }
+}
+
+const getComentaryHandler = async (req, res) => {
+  console.log("get comentario")
+ res.status(200).send("qloq")
+}
+
 module.exports = {
   handleProductsAll,
   handleProductById,
@@ -171,4 +197,6 @@ module.exports = {
   handleDeleteLogicById,
   updateProduct,
   createProductHandler,
+  postComentary,
+  getComentaryHandler
 };

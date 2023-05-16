@@ -1,4 +1,4 @@
-const { Products } = require("../db");
+const { Products, Comentario} = require("../db");
 const { articulos } = require("../Utils/Productos");
 const { Op } = require("sequelize")
 
@@ -51,10 +51,29 @@ const getProductByBrand = async (brand) => {
 }
 
 
-const productById =  async (productsId) => {
-  const product = await Products.findByPk(productsId)
+const productById =  async (productId) => {
+  const product = await Products.findByPk(productId
+    ,{
+    include:[{
+      model: Comentario,
+      attributes: ["comentario"],
+
+    }]
+  }
+  )
 
   return product
+}
+
+const createComentary = async (comentario, productId, UsuarioId) => {
+  const comentary = {
+    comentario: comentario,
+    UsuarioId: UsuarioId,
+    ProductId: productId
+  }
+const nuevoComentario = await Comentario.create(comentary)
+
+return nuevoComentario
 }
 
 async function deleteLogicProduct(productsId) {
@@ -132,5 +151,6 @@ module.exports = {
   deleteProduct,
   createProduct,
   getProductFiltered,
-  getProductByBrand
+  getProductByBrand,
+  createComentary
 };
