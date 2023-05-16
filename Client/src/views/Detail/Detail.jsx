@@ -8,7 +8,7 @@ import axios from 'axios';
 import styles from './Detail.module.css';
 import Rating from '@mui/material/Rating';
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 // import { Alert } from '@mui/material';
 
 function Detail({ cart, setCart }) {
