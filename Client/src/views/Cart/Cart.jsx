@@ -118,7 +118,7 @@ function Cart({ cart, setCart }) {
             NRO DE ORDEN: PONER ORDER NUMBER{' '}
           </span>
 
-            <h2 className={styles.userName}>{user ? (user.name) : "Guest"}</h2>
+          <h2 className={styles.userName}>{user ? user.name : 'Guest'}</h2>
 
             <p> Articulos: {cartQuantity}</p>
           <p>
@@ -151,5 +151,5 @@ function Cart({ cart, setCart }) {
     </div>
   );
 }
-Cart.propTypes = { cart: PropTypes.array, setCart: PropTypes.func }
+Cart.propTypes = { cart: PropTypes.array, setCart: PropTypes.func };
 export default Cart;
