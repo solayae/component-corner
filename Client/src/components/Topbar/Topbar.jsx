@@ -18,7 +18,6 @@ import EventBus from '../../common/EventBus';
 import { BsPersonCheck, BsPersonGear } from 'react-icons/bs';
 import { MdAssessment } from 'react-icons/md';
 import { IoLogOutOutline } from 'react-icons/io5';
-import { GrUserAdmin } from 'react-icons/gr';
 import { clearMessage, getUserById } from '../../redux/actions';
 import { Tooltip } from 'react-tooltip';
 
