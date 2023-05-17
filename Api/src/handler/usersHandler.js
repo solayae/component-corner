@@ -90,8 +90,6 @@ const handleUpdateUser = async (req, res) => {
   }
 };
 
-<<<<<<< HEAD
-=======
 
 const handleUpdateProfile = async (req, res) => {
   const { email, name, direction } = req.body;
@@ -132,7 +130,6 @@ const handleUpdateImagen = async (req, res) => {
 
 
 
->>>>>>> profile
 const handleDeleteUser = async (req, res) => {
   const { UsersId } = req.params;
   try {
