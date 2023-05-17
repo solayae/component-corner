@@ -57,8 +57,8 @@
   
 }
 .imageButton{
-  width: 110px;
-  border-radius: 20px;
+  width: 130px;
+  border-radius: 10px;
   background-color:var(--four-color);
 }
 .descriptionProduct{
@@ -68,6 +68,11 @@
   align-items:flex-end;
   justify-content:space-evenly;
   
+}
+
+.descriptionProduct input {
+  border: 1px solid rgba(105, 100, 100, 0.781);
+  margin: 10px;
 }
 
 .subDetail{
@@ -80,6 +85,7 @@
     height: 3vh;
     width: 33vw;
 }
-.textarea {
-  border-radius: 20px;
+.divDetailProduct textarea {
+  border-radius: 10px;
+  border: 1px solid rgba(105, 100, 100, 0.781);
 }
