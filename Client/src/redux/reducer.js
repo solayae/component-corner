@@ -12,13 +12,15 @@ import {
   LOGIN_SUCCESS,
   CLEAR_MESSAGE,
   REGISTER_SUCCESS,
-  REGISTER_FAIL
+  REGISTER_FAIL,
+  GET_IMAGEN,
+  UPDATE_PROFILE,
 
 
 
 } from './variables';
 
-const user = localStorage.getItem('user');
+const user = JSON.parse(localStorage.getItem('user'));
 
 const initialState = {
   products: [],
@@ -146,9 +148,20 @@ const rootReducer = (state = initialState, action) => {
                 
               
             }
-        
-    default:
-      return state;
+        case GET_IMAGEN:
+          return {
+            ...state,
+            user:  {isLoggedIn: true, user: action.payload}
+          }
+
+        case UPDATE_PROFILE:
+          return {
+            ...state, 
+              user:  {isLoggedIn: true, user: action.payload}
+          }
+
+        default:
+          return state;
   }
 };
 

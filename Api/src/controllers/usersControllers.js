@@ -27,11 +27,42 @@ async function updateUsers(name, password, favorite, direction, cart, email) {
           cart,
         },
         {
-          where: { email: email },
+          where: { email: email }
         }
     );
     return updateUser
 }
+
+
+async function updateProfile(email, name, direction) {
+  const updateProfile = await Usuario.update(
+      {
+        name,        
+        direction
+       
+      },
+      {
+        where: { email: email },
+      }
+  );
+  return updateProfile
+}
+
+async function updateImagen(imagen, email) {
+  const updateImage = await Usuario.update(
+      {
+        imagen        
+       
+      },
+      {
+        where: { email: email },
+      }
+  );
+  return updateImage
+}
+
+
+
 
 async function deleteUser(UsersId) {
     await Usuario.destroy({
@@ -51,5 +82,8 @@ module.exports = {
     findOrCreateUser,
     updateUsers,
     deleteUser,
-    searchUsersByName
+    searchUsersByName,
+    updateProfile,
+    updateImagen,
+
 }

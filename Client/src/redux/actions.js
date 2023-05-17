@@ -11,6 +11,9 @@ import {
   SET_MESSAGE,
   CLEAR_MESSAGE,
   LOGOUT,
+  GET_IMAGEN,
+  UPDATE_PROFILE
+  
 } from './variables';
 
 export function getAllProducts() {
@@ -108,6 +111,43 @@ export function login(email, password) {
     }
   };
 }
+
+
+export function updateImagen(email, imagen) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.put('/users/imagen', {imagen, email});
+      const img =  response.data;
+      console.log(img)
+
+      return dispatch({
+        type: GET_IMAGEN,
+      payload: img
+      })
+
+    } catch (error) {
+      return error;
+    }
+  };
+}
+
+export function updateProfile(email, name, direction) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.put('/users/profile', {email, name, direction});
+      
+      return dispatch({
+        type: UPDATE_PROFILE,
+        payload:response.data
+      })
+
+    } catch (error) {
+      return error;
+    }
+  };
+}
+
+
 
 export const logout = () => (dispatch) => {
   authService.logout();

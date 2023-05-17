@@ -37,6 +37,10 @@ module.exports = (sequelize) => {
     cart: {
       type: DataTypes.TEXT,
       allowNull:true
+    },
+    imagen: {
+      type: DataTypes.TEXT,
+      allowNull:true
     }
 
 
