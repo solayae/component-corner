@@ -8,7 +8,6 @@ import { getAllProducts } from './redux/actions';
 import { useEffect, useState } from 'react';
 import Home from './views/Home/Home';
 import LandingPage from './views/LandingPage/LandingPage';
-import FormProduct from './views/FormProduct/FormProduct';
 import useLocalStorage from './components/useLocalStorage';
 import BoardUser from './components/BoardUser/BoardUser';
 import BoardAdmi from './components/BoardAdmin/Board/BoardAdmin';
@@ -90,7 +89,6 @@ function App() {
             />
           }
         />
-        <Route path='/publicar' element={<FormProduct />} />
         <Route path='/cart' element={<Cart cart={cart} setCart={setCart} />} />
         <Route path='/favorites' element={<Favorites/>} />
         <Route path='/qa' element={<Qa />} />
