@@ -38,19 +38,14 @@ module.exports = (sequelize) => {
     },
     cart: {
       type: DataTypes.TEXT,
-<<<<<<< HEAD
       allowNull: true,
     },
-  });
-=======
-      allowNull:true
-    },
+   
     imagen: {
       type: DataTypes.TEXT,
       allowNull:true
     }
-
->>>>>>> profile
+  });
 
   Usuario.addHook('beforeCreate', (user, options) => {
     if (!user.favorite) {

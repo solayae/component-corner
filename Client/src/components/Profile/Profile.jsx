@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { updateProfile } from "../../redux/actions";
 import { Navigate } from "react-router-dom";
 import { RxUpload } from "react-icons/rx";
 import { ToastContainer, toast } from "react-toastify";
@@ -16,13 +15,7 @@ const Profile = () => {
   
   const [imgeUpdate, setImgeUpdate] = useState(user.imagen);
 
-  // setImages((img = "https://bootdey.com/img/Content/avatar/avatar7.png")=>{
-  //   return {url:img}
-  // })
-
-  // useEffect(()=>{
-  //   setImgeUpdate(user.imagen)
-  // }, [user.imagen])
+  
 
   const [formPerfil, setFormPerfil] = useState({
     name: "",
@@ -66,7 +59,7 @@ const Profile = () => {
     }
 
     try {
-      // const response = await axios.post('/products/', {...product, detail: [product.detail]});
+    
       if (imageToRemove) {
         const response = await axios.put("/users/imagen", {
           imagen: img,
@@ -102,11 +95,14 @@ const Profile = () => {
     if (changeInput) {
       handleSaveImagen(images);
       const { email, name, direction } = formPerfil;
+      console.log(formPerfil)
       const response = await axios.put("/users/profile", {
         email: email,
         name: name,
         direction: direction,
       });
+
+      
 
       user.email = email;
       user.name = name;
