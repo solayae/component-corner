@@ -344,3 +344,7 @@
   background-color: #eee;
   font-weight: bold;
 } 
+
+.about {
+  font-family: var(--font-heading);
+}
