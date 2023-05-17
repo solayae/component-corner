@@ -130,11 +130,8 @@ const handleUpdateImagen = async (req, res) => {
 
 
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 0efd9c9d13e43eaaeb202f010e96dfaa7801c9a9
 const handleDeleteUser = async (req, res) => {
   const { UsersId } = req.params;
   try {
