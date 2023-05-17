@@ -65,6 +65,20 @@ server.post("/payment", (req, res) => {
 
 server.use("/", routes);
 
+server.get("/payment/history", async (req, res) => {
+  try {
+    // Hacer modelo para almacenar pagos en la DB
+    const paymentHistory = await Payment.find({ userId: req.user.id });
+
+    res.json({ paymentHistory });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while fetching payment history" });
+  }
+});
+
 // Error catching endware.
 server.use((err, req, res, next) => {
   // eslint-disable-line no-unused-vars

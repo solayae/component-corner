@@ -10,15 +10,15 @@ import {
   CLEAR_MESSAGE,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-
+<<<<<<< HEAD
   GET_USER_BY_ID,
-
+=======
   GET_IMAGEN,
   UPDATE_PROFILE,
+  GET_USER_BY_ID
 
 
-
-
+>>>>>>> profile
 } from './variables';
 
 const user = JSON.parse(localStorage.getItem('user'));
@@ -104,8 +104,17 @@ const rootReducer = (state = initialState, action) => {
         user: { isLoggedIn: false, user: null },
       };
 
-   
-        
+<<<<<<< HEAD
+    default:
+      return state;
+=======
+        case LOGOUT: 
+            return{
+                ...state, 
+                user : { isLoggedIn: false,   user: null}
+                
+              
+            }
         case GET_IMAGEN:
           return {
             ...state,
@@ -120,7 +129,7 @@ const rootReducer = (state = initialState, action) => {
 
         default:
           return state;
-
+>>>>>>> profile
   }
 };
 

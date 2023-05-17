@@ -126,7 +126,7 @@ export default function Login(props) {
                 tigger();
                 props.setTriggerSignUp(true);
               }}>
-              ¡Resgistrate!
+              ¡Registrate!
             </button>
           </div>
         </Form>

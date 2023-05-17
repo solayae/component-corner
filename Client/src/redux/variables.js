@@ -13,6 +13,7 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
 export const LOGOUT = 'LOGOUT'
+<<<<<<< HEAD
 
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const UPDATE_USER = 'UPDATE_USER'
@@ -20,3 +21,8 @@ export const UPDATE_USER = 'UPDATE_USER'
 export const GET_IMAGEN = 'GET_IMAGEN'
 export const UPDATE_PROFILE = 'UPDATE_PROFILE'
 
+=======
+export const GET_IMAGEN = 'GET_IMAGEN'
+export const UPDATE_PROFILE = 'UPDATE_PROFILE'
+export const GET_USER_BY_ID = 'GET_USER_BY_ID'
+>>>>>>> 0efd9c9d13e43eaaeb202f010e96dfaa7801c9a9
