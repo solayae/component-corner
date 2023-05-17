@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {useState} from 'react';
+import { useState } from 'react';
 import style from './FormProduct.module.css';
 
 export default function FormProduct() {
@@ -22,10 +22,10 @@ export default function FormProduct() {
 
   const handleChange = (e, type) => {
     const value = e.target.value;
-    if (type !== 'price' && type !== 'stock') return setProduct({...product, [type]: value});
-    if (value > 9999) return setProduct({...product, [type]: 9999});
-    if (value < 0) return setProduct({...product, [type]: 0});
-    return setProduct({...product, [type]: value});
+    if (type !== 'price' && type !== 'stock') return setProduct({ ...product, [type]: value });
+    if (value > 9999) return setProduct({ ...product, [type]: 9999 });
+    if (value < 0) return setProduct({ ...product, [type]: 0 });
+    return setProduct({ ...product, [type]: value });
   };
   const validate = (p) => {
     const errors = {};
@@ -81,7 +81,7 @@ export default function FormProduct() {
       (error, result) => {
         if (!error && result && result.event === 'success') {
           setImages(() => {
-            return {url: result.info.url, public_id: result.info.public_id};
+            return { url: result.info.url, public_id: result.info.public_id };
           });
         }
       }
@@ -98,13 +98,13 @@ export default function FormProduct() {
         }}>
         <div className={style.containerImageDetail}>
           <div className={style.divImageProduct}>
-            <img
+            {images.url ? <img
               src={images.url}
               alt="image not found"
               className={style.imageProduct}
               type="url"
               value={product.image}
-            />
+            /> : <div style={{ display: 'flex', alignItems: "center", justifyContent: "center", height: "200px", textAlign: "center" }}><h1>Agregue una imagen</h1></div>}
             <div className={style.divButton}>
               <button className={style.imageButton} id="upload-widget" onClick={(e) => handleOpenWidget(e)}>
                 Imagen
@@ -114,34 +114,34 @@ export default function FormProduct() {
                 Eliminar
               </button>
             </div>
+            <p>{errorList.image}</p>
           </div>
-          {errorList.image && <p>{errorList.image}</p>}
           <div className={style.descriptionProduct}>
             <div>
               <label htmlFor="name">Nombre del producto:</label>
               <input type="text" value={product.name} onChange={(e) => handleChange(e, 'name')} />
+              <p>{errorList.name}</p>
             </div>
-            {errorList.name && <p>{errorList.name}</p>}
             <div>
               <label htmlFor="brand">Marca del Producto:</label>
               <input type="text" value={product.brand} onChange={(e) => handleChange(e, 'brand')} />
+              <p>{errorList.brand}</p>
             </div>
-            {errorList.brand && <p>{errorList.brand}</p>}
             <div>
               <label htmlFor="price">Precio del producto:</label>
               <input type="number" value={product.price} onChange={(e) => handleChange(e, 'price')} />
+              <p>{errorList.price}</p>
             </div>
-            {errorList.price && <p>{errorList.price}</p>}
             <div>
               <label htmlFor="category">Categoria del producto:</label>
               <input type="text" value={product.category} onChange={(e) => handleChange(e, 'category')} />
+              <p>{errorList.category}</p>
             </div>
-            {errorList.category && <p>{errorList.category}</p>}
             <div>
               <label htmlFor="stock">Stock del producto:</label>
               <input type="number" value={product.stock} onChange={(e) => handleChange(e, 'stock')} />
+              <p>{errorList.stock}</p>
             </div>
-            {errorList.stock && <p>{errorList.stock}</p>}
           </div>
         </div>
 
@@ -149,21 +149,22 @@ export default function FormProduct() {
           <div className={style.divDetailProduct}>
             <label htmlFor="detail">Detalles del producto:</label>
             <textarea
+              style={{ maxHeight: "200px" }}
               type="text"
               value={product.detail}
               onChange={(e) => handleChange(e, 'detail')}
               cols="72"
               rows="10"
             />
+            {errorList.detail && <p>{errorList.detail}</p>}
           </div>
-          {errorList.detail && <p>{errorList.detail}</p>}
         </div>
         <button className={style.imageButton} type="submit">
           Subir producto
         </button>
         <h1>{serverResponse && serverResponse}</h1>
-      </form>
-    </div>
+      </form >
+    </div >
   );
 }
 

@@ -39,7 +39,7 @@ const InfoUsers = () => {
       <h1 className="text-center">Información de los usuarios:</h1>
       <input type="text" onChange={(ev) => { filterUsers(ev.target.value) }} placeholder="Buscar por nombre" />
       <div className={styles.info_container}>
-        <div className={styles.row}>
+        <div className={styles.row} style={{ backgroundColor: "#f9c139", width: "100%" }}>
           <p>Id</p>
           <p>Nombre</p>
           <p>Email</p>
