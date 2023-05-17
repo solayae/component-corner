@@ -1,6 +1,6 @@
-const { Products } = require('../db');
-const { articulos } = require('../Utils/Productos');
-const { Op } = require('sequelize');
+const { Products} = require("../db");
+const { articulos } = require("../Utils/Productos");
+const { Op } = require("sequelize")
 
 async function addProduct() {
   const existingProducts = await Products.findAll();
@@ -44,18 +44,19 @@ const getProductFiltered = async (category, brand) => {
 };
 
 const getProductByBrand = async (brand) => {
-  const productByBrand = await Products.findAll({
-    where: { brand: brand },
-  });
+    const productByBrand = await Products.findAll({
+      where: {brand: brand}
+    })
 
-  return productByBrand;
-};
+    return productByBrand
+}
 
-const productById = async (productsId) => {
-  const product = await Products.findByPk(productsId);
 
-  return product;
-};
+const productById =  async (productId) => {
+  const product = await Products.findByPk(productId)
+
+  return product
+}
 
 async function deleteLogicProduct(productsId) {
   const product = await Products.findByPk(productsId);

@@ -41,6 +41,37 @@ async function updateUsers(name, password, favorite, direction, cart, email, ban
   return updateUser;
 }
 
+
+async function updateProfile(email, name, direction) {
+  const updateProfile = await Usuario.update(
+      {
+        name,        
+        direction
+       
+      },
+      {
+        where: { email: email },
+      }
+  );
+  return updateProfile
+}
+
+async function updateImagen(imagen, email) {
+  const updateImage = await Usuario.update(
+      {
+        imagen        
+       
+      },
+      {
+        where: { email: email },
+      }
+  );
+  return updateImage
+}
+
+
+
+
 async function deleteUser(UsersId) {
   await Usuario.destroy({
     where: { email: UsersId },
@@ -60,4 +91,7 @@ module.exports = {
   updateUsers,
   deleteUser,
   searchUsersByName,
+    updateProfile,
+    updateImagen,
+
 };

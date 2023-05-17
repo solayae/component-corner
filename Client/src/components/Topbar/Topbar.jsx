@@ -15,10 +15,9 @@ import { useEffect } from 'react';
 import logoCC from '../../assets/image/logo.jpg';
 import imageFilter from '../../assets/image/filtrar.png';
 import EventBus from '../../common/EventBus';
-import { BsPersonCheck } from 'react-icons/bs';
+import { BsPersonCheck, BsPersonGear } from 'react-icons/bs';
 import { MdAssessment } from 'react-icons/md';
 import { IoLogOutOutline } from 'react-icons/io5';
-import { GrUserAdmin } from 'react-icons/gr';
 import { clearMessage, getUserById } from '../../redux/actions';
 import { Tooltip } from 'react-tooltip';
 
@@ -137,7 +136,6 @@ const Topbar = ({
         </div>
         <div className={styles.icons}>
           {user && user.name ? (
-            
             <div className={styles.favorite}>
               <Link to='/favorites'>
                 <img
@@ -194,7 +192,7 @@ const Topbar = ({
           {showAdminBoard && (
             <div className={styles.login}>
               <Link to={'/admin'} className='nav-link'>
-                <GrUserAdmin style={{ fontSize: '30px' }} />
+                <BsPersonGear style={{ fontSize: '30px' }} />
               </Link>
             </div>
           )}
@@ -280,14 +278,16 @@ const Topbar = ({
             </div>
           </div>
         </div>
-        <a href='#' className={styles.about}>
-          <Link to={'/about'}>
-          SOBRE NOSOTROS
+        <Link to={'/about'}>
+          <p className={styles.about}>SOBRE NOSOTROS</p>
+        </Link>
+        {user ? (
+          <Link href='#' className={styles.about}>
+            PEDIDO
           </Link>
-        </a>
-        <a href='#' className={styles.about}>
-          PEDIDO
-        </a>
+        ) : (
+          ''
+        )}
         <img
           src={imageFilter}
           className={styles.ocultarFiltros}

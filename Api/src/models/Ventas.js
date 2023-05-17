@@ -11,11 +11,8 @@ module.exports = (sequelize) => {
       autoIncrement:true
     },
     fecha: {
-      type: DataTypes.DATEONLY,
-      allowNull: false,
-        validate: {
-         isDate:true
-      }
+      type: DataTypes.STRING,
+      allowNull: false
     },
     nroPedido: {
       type: DataTypes.INTEGER,
