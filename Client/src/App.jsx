@@ -18,6 +18,7 @@ import Favorites from './views/Favorites/Favorites';
 import axios from 'axios';
 import Qa from "./views/qa/qa"
 import About from "./views/About/About"
+import PaymentHistory from './views/PaymentHistory/PaymentHistory';
 
 // DEPLOY:
 // axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/';
@@ -94,6 +95,7 @@ function App() {
         <Route path='/favorites' element={<Favorites/>} />
         <Route path='/qa' element={<Qa />} />
         <Route path='/about' element={<About />} />
+        <Route path='/payment/history' element={<PaymentHistory/>}/>
       </Routes>
       <Footer />
     </div>
