@@ -1,5 +1,5 @@
 const {Venta, DetalleVenta} = require('../db')
-const ventas = require('../Utils/backup_ventas.json');
+const ventas = require('../Utils/Ventas_registradas.json');
 const detalleVenta = require('../Utils/Detalle_ventas_registradas.json');
 
 const bulkVentas = async () => {
