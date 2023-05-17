@@ -136,7 +136,6 @@ const Topbar = ({
         </div>
         <div className={styles.icons}>
           {user && user.name ? (
-            
             <div className={styles.favorite}>
               <Link to='/favorites'>
                 <img
@@ -279,16 +278,16 @@ const Topbar = ({
             </div>
           </div>
         </div>
-        <a href='#' className={styles.about}>
-          <Link to={'/about'}>
-          SOBRE NOSOTROS
+        <Link to={'/about'}>
+          <p className={styles.about}>SOBRE NOSOTROS</p>
+        </Link>
+        {user ? (
+          <Link href='#' className={styles.about}>
+            PEDIDO
           </Link>
-        </a>
-      { user
-        ? <Link href='#' className={styles.about}>
-          PEDIDO
-          </Link>
-        : ""}
+        ) : (
+          ''
+        )}
         <img
           src={imageFilter}
           className={styles.ocultarFiltros}

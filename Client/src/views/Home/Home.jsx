@@ -119,16 +119,16 @@ export default function Home({
         <Cards products={[...products.slice(page * 12, (page + 1) * 12)]} />
         {!products.length && <h1>No se encontró el producto que buscas</h1>}
         <div className={style.searchButtons}>
-         
-            <button onClick={() => handlePage("-")}> - </button>
-         
+
+          <button onClick={() => handlePage("-")}> - </button>
+
           <p>
             {page + 1}/
             {products.length !== 0 ? Math.ceil(products.length / 12) : 1}
           </p>
-         
-            <button onClick={() => handlePage("+")}> + </button>
-          
+
+          <button onClick={() => handlePage("+")}> + </button>
+
         </div>
       </div>
     </div>

@@ -90,6 +90,46 @@ const handleUpdateUser = async (req, res) => {
   }
 };
 
+
+const handleUpdateProfile = async (req, res) => {
+  const { email, name, direction } = req.body;
+  try {
+    if (!email) return res.status(400).json({ error: "falta el EMAIL" });
+    
+    const profileUpdate = await updateProfile(email, name, direction)
+
+    return profileUpdate[0] > 0
+      ? res
+          .status(200)
+          .json({ message: "Se actualizo el usuario correctamente!" })
+      : res.status(400).json({ message: "No se actualizo ningun usuario" });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const handleUpdateImagen = async (req, res) => {
+  const { email, imagen } = req.body;
+  try {
+    if (!email) return res.status(400).json({ error: "falta el EMAIL" });
+    
+    const imagenUpdate = await updateImagen(imagen, email)
+    
+
+    return imagenUpdate[0] > 0
+      ? res
+          .status(200)
+          .json({ message: "Se actualizo el usuario correctamente!" })
+      : res.status(400).json({ message: "No se actualizo ningun usuario" });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
+
+
+
 const handleDeleteUser = async (req, res) => {
   const { UsersId } = req.params;
   try {
@@ -106,4 +146,6 @@ module.exports = {
   handleUserCreate,
   handleUpdateUser,
   handleDeleteUser,
+  handleUpdateImagen,
+  handleUpdateProfile
 };

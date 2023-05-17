@@ -3,20 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getDetail, cleanDetail } from '../../redux/actions';
 import { useParams } from 'react-router-dom';
 import { Heart } from 'iconoir-react';
-import Modal from './Modal';
 import axios from 'axios';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './Detail.module.css';
 import Rating from '@mui/material/Rating';
 import PropTypes from 'prop-types';
-
-// import { start } from '@popperjs/core';
-
 import { useNavigate, Link } from 'react-router-dom';
-// import { Alert } from '@mui/material';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 
 function Detail({ cart, setCart }) {
   const { id } = useParams();
@@ -26,13 +19,13 @@ function Detail({ cart, setCart }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [starsValue, setStarsValue] = useState(0);
   const [reviewValue, setReviewValue] = useState('');
-  const [showAlert, setShowAlert] = useState(false);
+  const [textValue, setTextValue] = useState('');
 
   const user = JSON.parse(localStorage.getItem('user'));
   const userId = user?.id;
   // console.log(user);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const getUserDetails = async () => {
     try {
@@ -55,16 +48,7 @@ function Detail({ cart, setCart }) {
 
   const handleAddToFavorites = async () => {
     try {
-      if (!user) return toast.info('Inicia sesión para agregar este producto a favoritos!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        });
+      if (!user) return toast.error('Por favor, logueate primero');
       const response = await axios.get(`/users/${userId}`);
       const backupUser = response.data;
       console.log(backupUser);
@@ -74,16 +58,7 @@ function Detail({ cart, setCart }) {
         const newUser = { ...backupUser, favorite: newFavorites };
         const responseEdit = await axios.put('/users/', newUser);
         console.log(responseEdit);
-        toast.success(`Se quito ${detailProduct.name} de favoritos!`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          });
+        toast.info('Se quitó de los favoritos');
         return setIsFavorite(false);
       }
 
@@ -91,16 +66,7 @@ function Detail({ cart, setCart }) {
       const newUser = { ...backupUser, favorite: newFavorites };
       const responseEdit = await axios.put('/users/', newUser);
       console.log(responseEdit);
-      toast.success(`Se agrego ${detailProduct.name} a favoritos!`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        });
+      toast.success('Se agregó a los favoritos');
       return setIsFavorite(true);
     } catch (error) {
       console.log(error);
@@ -156,23 +122,15 @@ function Detail({ cart, setCart }) {
 
   const handleAddReview = async () => {
     try {
-      if (!user) return toast.info('Inicia sesión para dejar tu reseña!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        });
+      if (!user) return toast.error('Logueate para dejar una reseña');
       const review = {
         user: user.name,
         stars: starsValue,
         comment: reviewValue,
       };
       console.log(review);
-      if (!review.stars || !review.comment) return console.log('Campos vacios');
+      if (!review.stars || !review.comment)
+        return toast('Por favor completa todos los campos');
 
       const response = await axios.get(`/products/${id}`);
       const bkProduct = response.data;
@@ -184,20 +142,19 @@ function Detail({ cart, setCart }) {
         id: id,
         reviews: newReview,
       });
+      setReviewValue('');
+      setTextValue('');
+      setStarsValue(0);
       console.log(responseEdit);
-      setShowAlert(true);
+      toast.success('Genial! Gracias por tu reseña.');
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleAlertClose = () => {
-    alert('Creado');
-    window.location.reload();
-  };
-
   const handleInputChange = (event) => {
     setReviewValue(event.target.value);
+    setTextValue(event.target.value);
   };
 
   function starAverage() {
@@ -278,25 +235,27 @@ function Detail({ cart, setCart }) {
       </div>
       <h3 className={styles.rating_comments}>Comentarios</h3>
       <span className={styles.line}></span>
-      🚀
       <div className={styles.rating_container}>
-        <p>{`Cantidad de comentarios: ${detailProduct.reviews?.length}`}</p>
-        <span>-------------------</span>
-
+        <p
+          className={styles.notReviews}
+        >{`Cantidad de comentarios: ${detailProduct.reviews?.length}`}</p>
+        <span className={styles.lineReviews}></span>
 
         {detailProduct.reviews?.length ? (
           detailProduct.reviews.map((e) => (
-            <div key={e.id}>
+            <div key={e.id} className={styles.userReview}>
               {/* <p>{e.user}</p> */}
               <Rating name='read-only' value={e.stars} readOnly />
               <p>{e.comment}</p>
-              <span>------------------------</span>
+              <span className={styles.lineReviews}></span>
             </div>
           ))
         ) : (
-          <span>No hay comentarios aún</span>
+          <div className={styles.notReviewsContainer}>
+            <p>No hay comentarios aún</p>
+            <span className={styles.lineReviews}></span>
+          </div>
         )}
-        
 
         <div className={styles.rating_stars}>
           <p>Valoración de tu compra :</p>
@@ -322,13 +281,20 @@ function Detail({ cart, setCart }) {
           <button className={styles.rating_button} onClick={handleAddReview}>
             AGREGAR COMENTARIO
           </button>
-
-          {showAlert && (
-            // <Modal/>
-            <div>{handleAlertClose()}</div>
-          )}
         </div>
       </div>
+      <ToastContainer
+        position='top-center'
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='colored'
+      />
     </div>
   );
 }
@@ -339,4 +305,3 @@ Detail.propTypes = {
 };
 
 export default Detail;
-
