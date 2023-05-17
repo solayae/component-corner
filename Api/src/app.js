@@ -67,7 +67,7 @@ server.use("/", routes);
 
 server.get("/payment/history", async (req, res) => {
   try {
-    // Assuming you have a "Payment" model/schema defined for your database
+    // Hacer modelo para almacenar pagos en la DB
     const paymentHistory = await Payment.find({ userId: req.user.id });
 
     res.json({ paymentHistory });

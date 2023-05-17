@@ -140,8 +140,8 @@ export function updateImagen(email, imagen) {
     try {
       const response = await axios.put('/users/imagen', {imagen, email});
       const img =  response.data;
-      console.log(img)
-
+      
+      
       return dispatch({
         type: GET_IMAGEN,
       payload: img

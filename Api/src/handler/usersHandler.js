@@ -3,6 +3,8 @@ const {
   updateUsers,
   deleteUser,
   searchUsersByName,
+  updateProfile,
+    updateImagen,
 } = require('../controllers/usersControllers');
 const { Usuario } = require('../db');
 

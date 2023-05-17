@@ -10,9 +10,10 @@ import {
   CLEAR_MESSAGE,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  GET_USER_BY_ID,
   GET_IMAGEN,
   UPDATE_PROFILE,
-  GET_USER_BY_ID
+  
 
 
 } from './variables';
@@ -100,13 +101,8 @@ const rootReducer = (state = initialState, action) => {
         user: { isLoggedIn: false, user: null },
       };
 
-        case LOGOUT: 
-            return{
-                ...state, 
-                user : { isLoggedIn: false,   user: null}
-                
-              
-            }
+   
+        
         case GET_IMAGEN:
           return {
             ...state,
