@@ -347,4 +347,5 @@
 
 .about {
   font-family: var(--font-heading);
+  margin: 0;
 }
