@@ -279,11 +279,9 @@ const Topbar = ({
             </div>
           </div>
         </div>
-        <a href='#' className={styles.about}>
-          <Link to={'/about'}>
+        <Link to={'/about'}>
           SOBRE NOSOTROS
-          </Link>
-        </a>
+        </Link>
       { user
         ? <Link href='#' className={styles.about}>
           PEDIDO
