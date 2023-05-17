@@ -1,10 +1,11 @@
 import styles from "./InfoProducts.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import FormProduct from "./Form/FormProduct";
 
 export default function InfoProducts() {
   const [products, setProducts] = useState([]);
-  const [filterProducts, setFilterProducts] = useState([]);
+  const [filteredProducts, setFilterProducts] = useState([]);
 
   const getProducts = async () => {
     try {
@@ -15,7 +16,7 @@ export default function InfoProducts() {
       console.log("error: en getProducts: ", error);
     }
   };
-  const filterProduct = (value) => {
+  const filterProducts = (value) => {
     if (!value) return setFilterProducts(products);
     let oldList = [...products];
     const newList = oldList.filter((o) => o.name.toLowerCase().includes(value));
@@ -36,39 +37,37 @@ export default function InfoProducts() {
 
   useEffect(() => {
     !products.length && getProducts();
-  }, [products, filterProducts]);
+  }, [products, filteredProducts]);
 
   return (
     <div className={styles.container}>
-      <input
+      <div className={styles.container_products}>
+        <input
         type="text"
         onChange={(ev) => {
           filterProducts(ev.target.value);
         }}
         placeholder="Buscar por producto"
-      />
-      <div className={styles.container_products}>
+        />
         <div className={styles.containerProducts}>
           <h2 className={styles.titulo}>Productos</h2>
-          <div className={styles.products}>
-            <div className="row">
-              <div className="col text-center">Imagen</div>
-              <div className="col text-center">Descripcion</div>
-              <div className="col text-center">Stock</div>
-              <div className="col text-center">Bloquear</div>
-            </div>
+          <div className={styles.row} style={{ backgroundColor: "#f9c139", width: "100%" }}>
+            <p>Imagen</p>
+            <p>Nombre del artículo</p>
+            <p>Stock</p>
+            <p>Bloquear</p>
           </div>
           <div className={styles.detalle_products}>
-            {filterProducts.map((e) => (
-              <div className="row">
+            {filteredProducts.map((e) => (
+              <div className={styles.row} key={e.id}>
                 <img
                   src={e.image}
-                  style={{ "max-height": "60px", "max-width": "60px" }}
+                  style={{ "maxHeight": "60px", "maxWidth": "60px" }}
                   className="col text-right"
                 />
-                <div className="col text-center">{e.name}</div>
-                <div className="col text-center">{e.stock}</div>
-                <div className="col text-center">
+                <div >{e.name}</div>
+                <div >{e.stock}</div>
+                <div >
                   <input
                     type="checkbox"
                     onChange={() => deleteProduct(e)}
@@ -79,8 +78,8 @@ export default function InfoProducts() {
             ))}
           </div>
         </div>
-        <div className={styles.containerDetailProducts}>hola</div>
       </div>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}><FormProduct /></div>
     </div>
   );
 }

@@ -33,6 +33,8 @@ exports.signup = (req, res) => {
     name: req.body.name,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 12),
+    imagen:'https://res.cloudinary.com/dezvujzed/image/upload/v1684256560/avatar7_ku0xuz.png'
+    
   })
     .then((usuario) => {
       if (req.body.roles) {
@@ -94,6 +96,9 @@ exports.signin = (req, res) => {
           name: usuario.name,
           roles: authorities,
           accessToken: token,
+          email:usuario.email,
+          imagen:usuario?.imagen,
+          direction:usuario?.direction
         });
       });
     })

@@ -6,19 +6,23 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 
-function SearchBar({setResults, results, setSelect, input, setInput}) {
+function SearchBar({ setResults, results, setSelect, input, setInput }) {
   const navigate = useNavigate()
- // const [input, setInput] = useState(''); 
+  // const [input, setInput] = useState(''); 
   const [activeIndex, setActiveIndex] = useState(-1);
 
+  let [placeholderText, setplaceholderText] = useState('Buscar producto')
+
   const handleKeyDown = (e) => {
-    console.log(e)
+
+    setplaceholderText(input === '' && e.key === 'Enter' ? "Escribe algo" : "Buscar producto")
+
     const resultsLength = results.length;
     if (e.key === 'ArrowUp') {
       setActiveIndex(activeIndex === 0 ? resultsLength - 1 : activeIndex - 1);
     } else if (e.key === 'ArrowDown') {
       setActiveIndex(activeIndex === resultsLength - 1 ? 0 : activeIndex + 1);
-    } else if (e.key === 'Enter') {
+    } else if (e.key === 'Enter' && e.target.value !== '') {
       navigate(`/products/${results[activeIndex].id}`);
       setResults([])
       setInput("")
@@ -26,9 +30,9 @@ function SearchBar({setResults, results, setSelect, input, setInput}) {
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     setSelect(activeIndex)
- },[activeIndex])
+  }, [activeIndex])
 
 
   const getData = async (value) => {
@@ -49,15 +53,14 @@ function SearchBar({setResults, results, setSelect, input, setInput}) {
     getData(value);
     setActiveIndex(-1)
   };
-  
- 
+
   return (
     <div className={styles.search}>
-      <input type="search" placeholder="Buscar productos"  
-      value={input} 
-      onChange={(e) => handleChange(e.target.value)} 
-      onKeyDown={handleKeyDown}
-       />
+      <input type="search" placeholder={placeholderText}
+        value={input}
+        onChange={(e) => handleChange(e.target.value)}
+        onKeyDown={handleKeyDown}
+      />
       <img src={search} alt="search-icon" />
     </div>
   );
@@ -68,4 +71,6 @@ SearchBar.propTypes = {
   setResults: PropType.func,
   input: PropType.string,
   setInput: PropType.func,
+  setSelect: PropType.func,
+  results: PropType.array
 };
