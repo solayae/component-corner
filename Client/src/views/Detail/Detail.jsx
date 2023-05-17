@@ -48,7 +48,17 @@ function Detail({ cart, setCart }) {
 
   const handleAddToFavorites = async () => {
     try {
-      if (!user) return toast.error('Por favor, logueate primero');
+      if (!user) return toast.info(`Inicia sesión para agregar a favoritos!`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+
       const response = await axios.get(`/users/${userId}`);
       const backupUser = response.data;
       console.log(backupUser);
@@ -58,7 +68,16 @@ function Detail({ cart, setCart }) {
         const newUser = { ...backupUser, favorite: newFavorites };
         const responseEdit = await axios.put('/users/', newUser);
         console.log(responseEdit);
-        toast.info('Se quitó de los favoritos');
+        toast.info(`Se quito ${detailProduct.name} de favoritos!`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
         return setIsFavorite(false);
       }
 
@@ -66,7 +85,16 @@ function Detail({ cart, setCart }) {
       const newUser = { ...backupUser, favorite: newFavorites };
       const responseEdit = await axios.put('/users/', newUser);
       console.log(responseEdit);
-      toast.success('Se agregó a los favoritos');
+      toast.success(`Se agregó ${detailProduct.name} a favoritos`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
       return setIsFavorite(true);
     } catch (error) {
       console.log(error);
@@ -122,7 +150,16 @@ function Detail({ cart, setCart }) {
 
   const handleAddReview = async () => {
     try {
-      if (!user) return toast.error('Logueate para dejar una reseña');
+      if (!user) return toast.info(`Inicia sesión para dejar una reseña`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
       const review = {
         user: user.name,
         stars: starsValue,
@@ -130,7 +167,16 @@ function Detail({ cart, setCart }) {
       };
       console.log(review);
       if (!review.stars || !review.comment)
-        return toast('Por favor completa todos los campos');
+        return toast.info(`Faltan completar campos ${faltantes}`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
 
       const response = await axios.get(`/products/${id}`);
       const bkProduct = response.data;
@@ -146,7 +192,16 @@ function Detail({ cart, setCart }) {
       setTextValue('');
       setStarsValue(0);
       console.log(responseEdit);
-      toast.success('Genial! Gracias por tu reseña.');
+      toast.success(`Genial! se agrego tu reseña!`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
     } catch (error) {
       console.log(error);
     }
@@ -192,6 +247,7 @@ function Detail({ cart, setCart }) {
               <Heart />
             </button>
             <ToastContainer />
+            
           </div>
 
           {detailProduct.reviews?.length ? (
@@ -283,18 +339,6 @@ function Detail({ cart, setCart }) {
           </button>
         </div>
       </div>
-      <ToastContainer
-        position='top-center'
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme='colored'
-      />
     </div>
   );
 }

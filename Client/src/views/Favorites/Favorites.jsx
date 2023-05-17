@@ -55,18 +55,7 @@ export default function Favorites() {
     const newUser = { ...backupUser, favorite: newFavorites };
     const responseEdit = await axios.put('/users/', newUser);
     console.log(responseEdit.data);
-    setMounted(!mounted);
-     toast.success(`Se quito producto de favoritos!`, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      });
-    
+    setMounted(!mounted);    
   };
 
   return favoriteProducts.length < 1 ? (
