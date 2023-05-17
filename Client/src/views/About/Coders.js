@@ -45,8 +45,8 @@ const coders = {
     {
       id: 7,
       name: 'Billy Andrys',
-      img: './assets/perrito.png',
-      linkedin: 'https://www.linkedin.com/in//',
+      img: './assets/billy.png',
+      linkedin: 'https://www.linkedin.com/in/billy-andrys-67786718b/',
       github: 'https://github.com/billyandrys',
     },
     {
