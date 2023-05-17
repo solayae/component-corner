@@ -47,35 +47,39 @@ export default function InfoProducts() {
         }}
         placeholder="Buscar por producto"
       />
-      <h2>Productos</h2>
-      <div className={styles.products}>
-        <div className="row">
-          <div className="col text-center">Imagen</div>
-          <div className="col text-center">Descripcion</div>
-          <div className="col text-center">Stock</div>
-          <div className="col text-center">Bloquear</div>
-        </div>
-      </div>
-      <div className={styles.detalle_products}>
-        {filterProducts.map((e) => (
-          <div className="row">
-            <img
-              src={e.image}
-              width={20}
-              height={50}
-              className="col text-center"
-            />
-            <div className="col text-center">{e.name}</div>
-            <div className="col text-center">{e.stock}</div>
-            <div className="col text-center">
-              <input
-                type="checkbox"
-                onChange={() => deleteProduct(e)}
-                checked={e.banned}
-              />
+      <div className={styles.container_products}>
+        <div className={styles.containerProducts}>
+          <h2 className={styles.titulo}>Productos</h2>
+          <div className={styles.products}>
+            <div className="row">
+              <div className="col text-center">Imagen</div>
+              <div className="col text-center">Descripcion</div>
+              <div className="col text-center">Stock</div>
+              <div className="col text-center">Bloquear</div>
             </div>
           </div>
-        ))}
+          <div className={styles.detalle_products}>
+            {filterProducts.map((e) => (
+              <div className="row">
+                <img
+                  src={e.image}
+                  style={{ "max-height": "60px", "max-width": "60px" }}
+                  className="col text-right"
+                />
+                <div className="col text-center">{e.name}</div>
+                <div className="col text-center">{e.stock}</div>
+                <div className="col text-center">
+                  <input
+                    type="checkbox"
+                    onChange={() => deleteProduct(e)}
+                    checked={e.banned}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className={styles.containerDetailProducts}>hola</div>
       </div>
     </div>
   );
