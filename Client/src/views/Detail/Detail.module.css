@@ -58,7 +58,6 @@
   flex-direction: column;
   justify-content: center;
   padding: 1rem 2rem 0 2rem;
-  margin-left: 5rem;
   background-color: white;
 }
 
@@ -200,13 +199,15 @@
 }
 
 .rating_stars {
+  margin-top: 2rem;
+  margin-left: 1.5rem;
   display: flex;
-  align-items: center;
   gap: 5px;
+  height: 1.5rem;
+  font-family: var(--font-heading);
 }
 
 .rating_container p {
-  margin-bottom: 0;
   font-size: 1rem;
 }
 
@@ -236,6 +237,7 @@
   min-height: 250px;
   max-height: 450px;
   margin: 20px;
+  margin-top: 0;
 }
 
 .commentInput textarea {
@@ -247,7 +249,36 @@
   border: none;
   font-size: 16px;
   min-height: 250px;
+  max-height: 250px;
 }
+
+.lineReviews {
+  width: 100%;
+  height: 0.15rem;
+  background-color: gray;
+}
+
+.notReviews {
+  margin-bottom: 1rem;
+  font-family: var(--font-heading);
+}
+
+.notReviewsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.notReviewsContainer p {
+  padding: 2rem;
+}
+
+.userReview {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
 
 /*     RESPONSIVE     */
 /*  / / / / / / / / / */
