@@ -219,11 +219,11 @@ function Detail({ cart, setCart }) {
           <p className={styles.extra_p}>
             Stock disponible: {detailProduct.stock}
           </p>
+            <Link to='/cart'>
           <button className={styles.addToCartBtn} onClick={handleAddToCart}>
-            <Link to='/cart' className={styles.addToCartBtn}>
               AGREGAR AL CARRITO
-            </Link>
           </button>
+            </Link>
         </div>
       </div>
       <div className={styles.details}>
