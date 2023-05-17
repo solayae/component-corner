@@ -10,10 +10,18 @@ import {
   CLEAR_MESSAGE,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+<<<<<<< HEAD
   GET_USER_BY_ID,
+=======
+  GET_IMAGEN,
+  UPDATE_PROFILE,
+
+
+
+>>>>>>> profile
 } from './variables';
 
-const user = localStorage.getItem('user');
+const user = JSON.parse(localStorage.getItem('user'));
 
 const initialState = {
   products: [],
@@ -96,8 +104,32 @@ const rootReducer = (state = initialState, action) => {
         user: { isLoggedIn: false, user: null },
       };
 
+<<<<<<< HEAD
     default:
       return state;
+=======
+        case LOGOUT: 
+            return{
+                ...state, 
+                user : { isLoggedIn: false,   user: null}
+                
+              
+            }
+        case GET_IMAGEN:
+          return {
+            ...state,
+            user:  {isLoggedIn: true, user: action.payload}
+          }
+
+        case UPDATE_PROFILE:
+          return {
+            ...state, 
+              user:  {isLoggedIn: true, user: action.payload}
+          }
+
+        default:
+          return state;
+>>>>>>> profile
   }
 };
 
