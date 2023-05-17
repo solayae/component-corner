@@ -39,33 +39,19 @@ const InfoUsers = () => {
       <h1 className="text-center">Información de los usuarios:</h1>
       <input type="text" onChange={(ev) => { filterUsers(ev.target.value) }} placeholder="Buscar por nombre" />
       <div className={styles.info_container}>
-        <div className="row">
-          <div className="col text-center">
-            Id
-          </div>
-          <div className="col text-center">
-            Nombre
-          </div>
-          <div className="col text-center">
-            Email
-          </div>
-          <div className="col text-center">
-            Bloquear
-          </div>
+        <div className={styles.row}>
+          <p>Id</p>
+          <p>Nombre</p>
+          <p>Email</p>
+          <p>Bloquear</p>
         </div>
         <div className={styles.info_users}>
-          {filteredUsers.map((e) => (
-            <div className="row" key={e.id}>
-              <div className="col text-center">
-                {e.id}
-              </div>
-              <div className="col text-center">
-                {e.name}
-              </div>
-              <div className="col text-center">
-                {e.email}
-              </div>
-              <div className="col text-center">
+          {filteredUsers.sort((a, b) => a.id - b.id).map((e) => (
+            <div className={styles.row} key={e.id}>
+              <p>{e.id}</p>
+              <p>{e.name}</p>
+              <p>{e.email}</p>
+              <div>
                 <input type="checkbox" onChange={() => banUser(e)} checked={e.banned} />
               </div>
             </div>

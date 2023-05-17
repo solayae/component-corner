@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer/Footer.jsx';
 import Topbar from './components/Topbar/Topbar.jsx';
 import Detail from './views/Detail/Detail';
-//import SignInPage from './views/SignInPage/SignInPage';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from './redux/actions';
 import { useEffect, useState } from 'react';
@@ -18,12 +17,14 @@ import Cart from './views/Cart/Cart';
 import Favorites from './views/Favorites/Favorites';
 import axios from 'axios';
 import Qa from "./views/qa/qa"
+import About from "./views/About/About"
+import PaymentHistory from './views/PaymentHistory/PaymentHistory';
 
 // DEPLOY:
-axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/'; 
+// axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/';
 
 //LOCAL:
-// axios.defaults.baseURL = 'http://localhost:3001/';
+axios.defaults.baseURL = 'http://localhost:3001/';
 
 function App() {
   const [mounted, setMounted] = useState(false);
@@ -93,6 +94,8 @@ function App() {
         <Route path='/cart' element={<Cart cart={cart} setCart={setCart} />} />
         <Route path='/favorites' element={<Favorites/>} />
         <Route path='/qa' element={<Qa />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/payment/history' element={<PaymentHistory/>}/>
       </Routes>
       <Footer />
     </div>

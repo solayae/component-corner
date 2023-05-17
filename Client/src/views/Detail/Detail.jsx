@@ -3,13 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getDetail, cleanDetail } from '../../redux/actions';
 import { useParams } from 'react-router-dom';
 import { Heart } from 'iconoir-react';
+import Modal from './Modal';
 import axios from 'axios';
 
 import styles from './Detail.module.css';
 import Rating from '@mui/material/Rating';
 import PropTypes from 'prop-types';
+
+// import { start } from '@popperjs/core';
+
 import { useNavigate, Link } from 'react-router-dom';
 // import { Alert } from '@mui/material';
+
 
 function Detail({ cart, setCart }) {
   const { id } = useParams();
@@ -19,10 +24,11 @@ function Detail({ cart, setCart }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [starsValue, setStarsValue] = useState(0);
   const [reviewValue, setReviewValue] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
 
   const user = JSON.parse(localStorage.getItem('user'));
   const userId = user?.id;
-  console.log(user);
+  // console.log(user);
 
   const navigate = useNavigate()
 
@@ -47,7 +53,7 @@ function Detail({ cart, setCart }) {
 
   const handleAddToFavorites = async () => {
     try {
-      if (!user) return console.log('Logueate');
+      if (!user) return alert('Logueate para agregar este producto a tu lista de deseos');
       const response = await axios.get(`/users/${userId}`);
       const backupUser = response.data;
       console.log(backupUser);
@@ -57,6 +63,7 @@ function Detail({ cart, setCart }) {
         const newUser = { ...backupUser, favorite: newFavorites };
         const responseEdit = await axios.put('/users/', newUser);
         console.log(responseEdit);
+        alert('Se quitó de los favoritos');
         return setIsFavorite(false);
       }
 
@@ -64,6 +71,7 @@ function Detail({ cart, setCart }) {
       const newUser = { ...backupUser, favorite: newFavorites };
       const responseEdit = await axios.put('/users/', newUser);
       console.log(responseEdit);
+      alert('Se agregó a los favoritos');
       return setIsFavorite(true);
     } catch (error) {
       console.log(error);
@@ -119,7 +127,7 @@ function Detail({ cart, setCart }) {
 
   const handleAddReview = async () => {
     try {
-      if (!user) return console.log('Logueate');
+      if (!user) return alert('Logueate para dejar una reseña');
       const review = {
         user: user.name,
         stars: starsValue,
@@ -139,14 +147,31 @@ function Detail({ cart, setCart }) {
         reviews: newReview,
       });
       console.log(responseEdit);
+      setShowAlert(true);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const handleAlertClose = () => {
+    alert('Creado');
+    window.location.reload();
+  };
+
   const handleInputChange = (event) => {
     setReviewValue(event.target.value);
   };
+
+  function starAverage() {
+    const suma = detailProduct.reviews?.reduce(
+      (total, objeto) => total + objeto.stars,
+      0
+    );
+    const promedio = suma / detailProduct.reviews?.length;
+    return Number(promedio.toFixed(1));
+  }
+
+  const productRating = starAverage();
 
   return (
     <div className={styles.container}>
@@ -173,7 +198,17 @@ function Detail({ cart, setCart }) {
             </button>
           </div>
 
-          <p className={styles.extra_p}>Sin puntuación</p>
+          {detailProduct.reviews?.length ? (
+            <Rating
+              name='half-rating-read'
+              defaultValue={productRating}
+              precision={0.5}
+              readOnly
+            />
+          ) : (
+            <p className={styles.extra_p}>Sin puntuación</p>
+          )}
+
           <p className={styles.price}>US ${detailProduct.price}</p>
           <div className={styles.quantity}>
             <button onClick={handleDecrement} className={styles.bottone5}>
@@ -206,20 +241,23 @@ function Detail({ cart, setCart }) {
       <span className={styles.line}></span>
       🚀
       <div className={styles.rating_container}>
-        <p>Cantidad de comentarios: 0</p>
+        <p>{`Cantidad de comentarios: ${detailProduct.reviews?.length}`}</p>
         <span>-------------------</span>
-        <div>
-          <p>Por solayae:</p>
-          <span>⭐⭐⭐⭐</span>
-          <p>Excelente producto, llegó super rapido</p>
-        </div>
-        <span>-------------------</span>
-        <div>
-          <p>Por solayae:</p>
-          <span>⭐⭐⭐⭐</span>
-          <p>Excelente producto, llegó super rapido</p>
-        </div>
-        <span>-------------------</span>
+
+
+        {detailProduct.reviews?.length ? (
+          detailProduct.reviews.map((e) => (
+            <div key={e.id}>
+              {/* <p>{e.user}</p> */}
+              <Rating name='read-only' value={e.stars} readOnly />
+              <p>{e.comment}</p>
+              <span>------------------------</span>
+            </div>
+          ))
+        ) : (
+          <span>No hay comentarios aún</span>
+        )}
+        
 
         <div className={styles.rating_stars}>
           <p>Valoración de tu compra :</p>
@@ -245,6 +283,11 @@ function Detail({ cart, setCart }) {
           <button className={styles.rating_button} onClick={handleAddReview}>
             AGREGAR COMENTARIO
           </button>
+
+          {showAlert && (
+            // <Modal/>
+            <div>{handleAlertClose()}</div>
+          )}
         </div>
       </div>
     </div>

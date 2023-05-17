@@ -70,8 +70,8 @@ export default function Home({
         return 0;
       }),
     ],
-    "Menor a Mayor": [...allProductsFiltered.sort((prev, next) => prev.price - next.price)],
-    "Mayor a Menor": [...allProductsFiltered.sort((prev, next) => next.price - prev.price)],
+    "Menor a mayor": [...allProductsFiltered.sort((prev, next) => prev.price - next.price)],
+    "Mayor a menor": [...allProductsFiltered.sort((prev, next) => next.price - prev.price)],
   };
 
 
