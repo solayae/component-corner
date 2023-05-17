@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len:[5,38]
+        len: [5, 38]
       }
     },
     password: {
@@ -34,23 +34,17 @@ module.exports = (sequelize) => {
     },
     banned: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false,      
+      defaultValue: false,
     },
     cart: {
       type: DataTypes.TEXT,
-<<<<<<< HEAD
-      allowNull: true,
-    },
-  });
-=======
-      allowNull:true
+      allowNull: true
     },
     imagen: {
       type: DataTypes.TEXT,
-      allowNull:true
+      allowNull: true
     }
-
->>>>>>> profile
+  });
 
   Usuario.addHook('beforeCreate', (user, options) => {
     if (!user.favorite) {
