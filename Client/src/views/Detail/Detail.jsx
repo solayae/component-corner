@@ -14,6 +14,8 @@ import PropTypes from 'prop-types';
 
 import { useNavigate, Link } from 'react-router-dom';
 // import { Alert } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Detail({ cart, setCart }) {
@@ -53,17 +55,35 @@ function Detail({ cart, setCart }) {
 
   const handleAddToFavorites = async () => {
     try {
-      if (!user) return alert('Logueate para agregar este producto a tu lista de deseos');
+      if (!user) return toast.info('Inicia sesión para agregar este producto a favoritos!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
       const response = await axios.get(`/users/${userId}`);
       const backupUser = response.data;
       console.log(backupUser);
-
+      
       if (isFavorite) {
         const newFavorites = backupUser.favorite?.filter((e) => e != id);
         const newUser = { ...backupUser, favorite: newFavorites };
         const responseEdit = await axios.put('/users/', newUser);
         console.log(responseEdit);
-        alert('Se quitó de los favoritos');
+        toast.success(`Se quito ${detailProduct.name} de favoritos!`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
         return setIsFavorite(false);
       }
 
@@ -71,7 +91,16 @@ function Detail({ cart, setCart }) {
       const newUser = { ...backupUser, favorite: newFavorites };
       const responseEdit = await axios.put('/users/', newUser);
       console.log(responseEdit);
-      alert('Se agregó a los favoritos');
+      toast.success(`Se agrego ${detailProduct.name} a favoritos!`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
       return setIsFavorite(true);
     } catch (error) {
       console.log(error);
@@ -127,7 +156,16 @@ function Detail({ cart, setCart }) {
 
   const handleAddReview = async () => {
     try {
-      if (!user) return alert('Logueate para dejar una reseña');
+      if (!user) return toast.info('Inicia sesión para dejar tu reseña!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
       const review = {
         user: user.name,
         stars: starsValue,
@@ -196,6 +234,7 @@ function Detail({ cart, setCart }) {
             >
               <Heart />
             </button>
+            <ToastContainer />
           </div>
 
           {detailProduct.reviews?.length ? (

@@ -4,6 +4,9 @@ import styles from './Favorites.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDetail, cleanDetail, getUserById } from '../../redux/actions';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Favorites() {
   const detailProduct = useSelector((state) => state.detail);
@@ -56,6 +59,17 @@ export default function Favorites() {
     const responseEdit = await axios.put('/users/', newUser);
     console.log(responseEdit.data);
     setMounted(!mounted);
+     toast.success(`Se quito producto de favoritos!`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      });
+    
   };
 
   return favoriteProducts.length ? (
@@ -77,6 +91,7 @@ export default function Favorites() {
             <h4>Stock: {product.stock}</h4>
             <button onClick={() => handleClick(product.id)}>Eliminar</button>
           </div>
+          <ToastContainer />
         </section>
       ))}
     </>  
