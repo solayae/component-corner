@@ -3,7 +3,7 @@ import usuarios from '../../../assets/image/user.png';
 import productos from '../../../assets/image/productos.jpeg';
 import ventas from '../../../assets/image/ventas.png';
 
-const LeftPanel = () => {
+const LeftPanel = ({ setType }) => {
   return (
     <div className={styles.panelContainer}>
       <div className={styles.menu}>

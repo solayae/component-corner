@@ -20,10 +20,10 @@ const BoardAdmin = () => {
   return (
     isAdmin &&
     (<div className={styles.boardAdmin_container}>
-      {/* <LeftPanel setType={setType} />
-      {viewType !== "user" ?   <InfoUsers/> : '' } */}
-      <LeftPanel/>
-      <InfoProducts />
+      <LeftPanel setType={setType} />
+      {viewType === "user" && <InfoUsers />}
+      {viewType === "products" && <InfoProducts />}
+      {viewType === "sells"}
     </div>)
   );
 }

@@ -15,10 +15,9 @@ import { useEffect } from 'react';
 import logoCC from '../../assets/image/logo.jpg';
 import imageFilter from '../../assets/image/filtrar.png';
 import EventBus from '../../common/EventBus';
-import { BsPersonCheck } from 'react-icons/bs';
+import { BsPersonCheck, BsPersonGear } from 'react-icons/bs';
 import { MdAssessment } from 'react-icons/md';
 import { IoLogOutOutline } from 'react-icons/io5';
-import { GrUserAdmin } from 'react-icons/gr';
 import { clearMessage, getUserById } from '../../redux/actions';
 import { Tooltip } from 'react-tooltip';
 
@@ -194,7 +193,7 @@ const Topbar = ({
           {showAdminBoard && (
             <div className={styles.login}>
               <Link to={'/admin'} className='nav-link'>
-                <GrUserAdmin style={{ fontSize: '30px' }} />
+                <BsPersonGear style={{ fontSize: '30px' }} />
               </Link>
             </div>
           )}
@@ -285,9 +284,11 @@ const Topbar = ({
           SOBRE NOSOTROS
           </Link>
         </a>
-        <a href='#' className={styles.about}>
+      { user
+        ? <Link href='#' className={styles.about}>
           PEDIDO
-        </a>
+          </Link>
+        : ""}
         <img
           src={imageFilter}
           className={styles.ocultarFiltros}
