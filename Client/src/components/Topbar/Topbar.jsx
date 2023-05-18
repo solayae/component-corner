@@ -281,13 +281,13 @@ const Topbar = ({
         <Link to={'/about'}>
           <p className={styles.about}>SOBRE NOSOTROS</p>
         </Link>
-        {user ? (
+        {/* {user ? (
           <Link href='#' className={styles.about}>
             PEDIDO
           </Link>
         ) : (
           ''
-        )}
+        )} */}
         <img
           src={imageFilter}
           className={styles.ocultarFiltros}
