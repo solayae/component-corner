@@ -30,7 +30,8 @@ const Topbar = ({
   setPage,
   setCart,
   favoriteChanges,
-  hasLogged
+  hasLogged,
+  sethasLogged
 }) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
   const [triggerPopUpSignUp, setTriggerPopUpSignUp] = useState(false);
@@ -223,6 +224,8 @@ const Topbar = ({
                   trigger={triggerPopUp}
                   setTrigger={setTriggerPopUp}
                   setTriggerSignUp={setTriggerPopUpSignUp}
+                  sethasLogged={sethasLogged}
+                  hasLogged={hasLogged}
                 />
                 <img
                   src={login}
