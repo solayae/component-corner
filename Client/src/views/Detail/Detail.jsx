@@ -4,12 +4,12 @@ import { getDetail, cleanDetail } from '../../redux/actions';
 import { useParams } from 'react-router-dom';
 import { Heart } from 'iconoir-react';
 import axios from 'axios';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './Detail.module.css';
 import Rating from '@mui/material/Rating';
 import PropTypes from 'prop-types';
 import { useNavigate, Link } from 'react-router-dom';
-// import { Alert } from '@mui/material';
 
 function Detail({ cart, setCart }) {
   const { id } = useParams();
@@ -19,12 +19,13 @@ function Detail({ cart, setCart }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [starsValue, setStarsValue] = useState(0);
   const [reviewValue, setReviewValue] = useState('');
+  const [textValue, setTextValue] = useState('');
 
   const user = JSON.parse(localStorage.getItem('user'));
   const userId = user?.id;
-  console.log(user);
+  // console.log(user);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const getUserDetails = async () => {
     try {
@@ -47,16 +48,36 @@ function Detail({ cart, setCart }) {
 
   const handleAddToFavorites = async () => {
     try {
-      if (!user) return console.log('Logueate');
+      if (!user) return toast.info(`Inicia sesión para agregar a favoritos!`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+
       const response = await axios.get(`/users/${userId}`);
       const backupUser = response.data;
       console.log(backupUser);
-
+      
       if (isFavorite) {
         const newFavorites = backupUser.favorite?.filter((e) => e != id);
         const newUser = { ...backupUser, favorite: newFavorites };
         const responseEdit = await axios.put('/users/', newUser);
         console.log(responseEdit);
+        toast.info(`Se quito ${detailProduct.name} de favoritos!`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
         return setIsFavorite(false);
       }
 
@@ -64,6 +85,16 @@ function Detail({ cart, setCart }) {
       const newUser = { ...backupUser, favorite: newFavorites };
       const responseEdit = await axios.put('/users/', newUser);
       console.log(responseEdit);
+      toast.success(`Se agregó ${detailProduct.name} a favoritos`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
       return setIsFavorite(true);
     } catch (error) {
       console.log(error);
@@ -119,14 +150,33 @@ function Detail({ cart, setCart }) {
 
   const handleAddReview = async () => {
     try {
-      if (!user) return console.log('Logueate');
+      if (!user) return toast.info(`Inicia sesión para dejar una reseña`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
       const review = {
         user: user.name,
         stars: starsValue,
         comment: reviewValue,
       };
       console.log(review);
-      if (!review.stars || !review.comment) return console.log('Campos vacios');
+      if (!review.stars || !review.comment)
+        return toast.info(`Faltan completar campos ${faltantes}`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
 
       const response = await axios.get(`/products/${id}`);
       const bkProduct = response.data;
@@ -138,7 +188,20 @@ function Detail({ cart, setCart }) {
         id: id,
         reviews: newReview,
       });
+      setReviewValue('');
+      setTextValue('');
+      setStarsValue(0);
       console.log(responseEdit);
+      toast.success(`Genial! se agrego tu reseña!`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
     } catch (error) {
       console.log(error);
     }
@@ -146,7 +209,19 @@ function Detail({ cart, setCart }) {
 
   const handleInputChange = (event) => {
     setReviewValue(event.target.value);
+    setTextValue(event.target.value);
   };
+
+  function starAverage() {
+    const suma = detailProduct.reviews?.reduce(
+      (total, objeto) => total + objeto.stars,
+      0
+    );
+    const promedio = suma / detailProduct.reviews?.length;
+    return Number(promedio.toFixed(1));
+  }
+
+  const productRating = starAverage();
 
   return (
     <div className={styles.container}>
@@ -171,9 +246,21 @@ function Detail({ cart, setCart }) {
             >
               <Heart />
             </button>
+            <ToastContainer />
+            
           </div>
 
-          <p className={styles.extra_p}>Sin puntuación</p>
+          {detailProduct.reviews?.length ? (
+            <Rating
+              name='half-rating-read'
+              defaultValue={productRating}
+              precision={0.5}
+              readOnly
+            />
+          ) : (
+            <p className={styles.extra_p}>Sin puntuación</p>
+          )}
+
           <p className={styles.price}>US ${detailProduct.price}</p>
           <div className={styles.quantity}>
             <button onClick={handleDecrement} className={styles.bottone5}>
@@ -189,11 +276,11 @@ function Detail({ cart, setCart }) {
           <p className={styles.extra_p}>
             Stock disponible: {detailProduct.stock}
           </p>
+            <Link to='/cart'>
           <button className={styles.addToCartBtn} onClick={handleAddToCart}>
-            <Link to='/cart' className={styles.addToCartBtn}>
               AGREGAR AL CARRITO
-            </Link>
           </button>
+            </Link>
         </div>
       </div>
       <div className={styles.details}>
@@ -204,22 +291,27 @@ function Detail({ cart, setCart }) {
       </div>
       <h3 className={styles.rating_comments}>Comentarios</h3>
       <span className={styles.line}></span>
-      🚀
       <div className={styles.rating_container}>
-        <p>Cantidad de comentarios: 0</p>
-        <span>-------------------</span>
-        <div>
-          <p>Por solayae:</p>
-          <span>⭐⭐⭐⭐</span>
-          <p>Excelente producto, llegó super rapido</p>
-        </div>
-        <span>-------------------</span>
-        <div>
-          <p>Por solayae:</p>
-          <span>⭐⭐⭐⭐</span>
-          <p>Excelente producto, llegó super rapido</p>
-        </div>
-        <span>-------------------</span>
+        <p
+          className={styles.notReviews}
+        >{`Cantidad de comentarios: ${detailProduct.reviews?.length}`}</p>
+        <span className={styles.lineReviews}></span>
+
+        {detailProduct.reviews?.length ? (
+          detailProduct.reviews.map((e) => (
+            <div key={e.id} className={styles.userReview}>
+              {/* <p>{e.user}</p> */}
+              <Rating name='read-only' value={e.stars} readOnly />
+              <p>{e.comment}</p>
+              <span className={styles.lineReviews}></span>
+            </div>
+          ))
+        ) : (
+          <div className={styles.notReviewsContainer}>
+            <p>No hay comentarios aún</p>
+            <span className={styles.lineReviews}></span>
+          </div>
+        )}
 
         <div className={styles.rating_stars}>
           <p>Valoración de tu compra :</p>
@@ -257,4 +349,3 @@ Detail.propTypes = {
 };
 
 export default Detail;
-

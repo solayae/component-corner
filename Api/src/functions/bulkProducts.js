@@ -8,6 +8,7 @@ const roleAdmin = async ()=>{
     name: 'admin',
     email: 'corner@component.com',
     password: bcrypt.hashSync('123456789', 12),
+    imagen: 'http://res.cloudinary.com/dezvujzed/image/upload/v1684382685/b5rhmlzujmcmcc09npqj.png'
   })
   .then((admin)=>{
     admin.setRoles([2]).then(() => {

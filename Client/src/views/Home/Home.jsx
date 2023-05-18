@@ -70,8 +70,8 @@ export default function Home({
         return 0;
       }),
     ],
-    Ascendente: [...allProductsFiltered.sort((prev, next) => prev.price - next.price)],
-    Descendente: [...allProductsFiltered.sort((prev, next) => next.price - prev.price)],
+    "Menor a mayor": [...allProductsFiltered.sort((prev, next) => prev.price - next.price)],
+    "Mayor a menor": [...allProductsFiltered.sort((prev, next) => next.price - prev.price)],
   };
 
 
@@ -119,16 +119,16 @@ export default function Home({
         <Cards products={[...products.slice(page * 12, (page + 1) * 12)]} />
         {!products.length && <h1>No se encontró el producto que buscas</h1>}
         <div className={style.searchButtons}>
-         
-            <button onClick={() => handlePage("-")}> - </button>
-         
+
+          <button onClick={() => handlePage("-")}> - </button>
+
           <p>
             {page + 1}/
             {products.length !== 0 ? Math.ceil(products.length / 12) : 1}
           </p>
-         
-            <button onClick={() => handlePage("+")}> + </button>
-          
+
+          <button onClick={() => handlePage("+")}> + </button>
+
         </div>
       </div>
     </div>

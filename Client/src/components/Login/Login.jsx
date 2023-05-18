@@ -1,7 +1,6 @@
 import styles from './PopUp.module.css';
 import {useState, useRef} from 'react';
-import {useDispatch} from 'react-redux';
-import {Link, useNavigate} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
@@ -32,7 +31,6 @@ const validateEmail = (value) => {
 };
 
 export default function Login(props) {
-  let navigate = useNavigate();
 
   const form = useRef();
   const checkBtn = useRef();
@@ -49,7 +47,6 @@ export default function Login(props) {
       const response = await dispatch(login(email, password));
       if (response.status !== 200) throw Error('No se encontró el usuario');
       tigger();
-      navigate('/user');
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -129,12 +126,8 @@ export default function Login(props) {
                 tigger();
                 props.setTriggerSignUp(true);
               }}>
-              ¡Resgistrate!
+              ¡Registrate!
             </button>
-
-            <Link to={'#'}>
-              <p>¿Olvidaste tú contraseña?</p>
-            </Link>
           </div>
         </Form>
       </div>
