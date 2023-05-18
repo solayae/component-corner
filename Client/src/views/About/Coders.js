@@ -38,7 +38,7 @@ const coders = {
     {
       id: 6,
       name: 'Daniel Diaz',
-      img: 'https://cdn.memegenerator.es/imagenes/memes/full/33/7/33076979.jpg',
+      img: 'https://res.cloudinary.com/dezvujzed/image/upload/v1684430975/daniel_dabyjf.png',
       linkedin: 'https://www.linkedin.com/in//',
       github: 'https://github.com/DielanZH',
     },
