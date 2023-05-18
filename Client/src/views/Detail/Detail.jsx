@@ -39,6 +39,7 @@ function Detail({ cart, setCart, setFavoriteChanges, favoriteChanges }) {
   useEffect(() => {
     // dispatch(getUserById(userId));
     getUserDetails();
+    //eslint-disable-next-line
   }, [isFavorite]);
 
   // **** FAVORITOS ****
@@ -166,7 +167,7 @@ function Detail({ cart, setCart, setFavoriteChanges, favoriteChanges }) {
       };
       console.log(review);
       if (!review.stars || !review.comment)
-        return toast.info(`Faltan completar campos ${faltantes}`, {
+        return toast.info(`Faltan completar campos.`, {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -200,6 +201,7 @@ function Detail({ cart, setCart, setFavoriteChanges, favoriteChanges }) {
         progress: undefined,
         theme: "dark",
         });
+      dispatch(getDetail(id));
     } catch (error) {
       console.log(error);
     }
@@ -343,6 +345,8 @@ function Detail({ cart, setCart, setFavoriteChanges, favoriteChanges }) {
 Detail.propTypes = {
   cart: PropTypes.array,
   setCart: PropTypes.func,
+  setFavoriteChanges: PropTypes.func,
+  favoriteChanges: PropTypes.bool
 };
 
 export default Detail;

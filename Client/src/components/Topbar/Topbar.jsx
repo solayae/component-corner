@@ -29,7 +29,8 @@ const Topbar = ({
   cart,
   setPage,
   setCart,
-  favoriteChanges
+  favoriteChanges,
+  hasLogged
 }) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
   const [triggerPopUpSignUp, setTriggerPopUpSignUp] = useState(false);
@@ -57,7 +58,7 @@ const Topbar = ({
   useEffect(() => {
     getUserFavorites()
     dispatch(getUserById(user?.id));
-  }, [user?.id, showFavorites, favoriteChanges]);
+  }, [user?.id, showFavorites, favoriteChanges, hasLogged]);
 
   let categories = allProducts.map((e) => e.category);
   categories = [...new Set(categories)];
