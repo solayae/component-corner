@@ -38,7 +38,7 @@ const coders = {
     {
       id: 6,
       name: 'Daniel Diaz',
-      img: 'https://animal.mx/wp-content/uploads/2021/11/que-es-la-ansiedad-como-se-presenta.png',
+      img: 'https://cdn.memegenerator.es/imagenes/memes/full/33/7/33076979.jpg',
       linkedin: 'https://www.linkedin.com/in//',
       github: 'https://github.com/DielanZH',
     },
@@ -52,7 +52,7 @@ const coders = {
     {
       id: 8,
       name: 'Alejandro Medina',
-      img: 'https://animal.mx/wp-content/uploads/2021/11/que-es-la-ansiedad-como-se-presenta.png',
+      img: 'https://cdn.memegenerator.es/imagenes/memes/full/33/7/33076979.jpg',
       linkedin: 'https://www.linkedin.com/in/alejandro-medina-b4558419b/',
       github: 'https://github.com/httpsAlejandroM',
     },
