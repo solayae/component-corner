@@ -32,7 +32,8 @@ function App() {
   const [filters, setFilters] = useLocalStorage('filter_cards-Home', []);
   const [page, setPage] = useLocalStorage('page', 0);
   const [cart, setCart] = useLocalStorage('cart', []);
-  const [favoriteChanges, setFavoriteChanges] = useState(false)
+  const [favoriteChanges, setFavoriteChanges] = useState(false);
+  const [hasLogged, sethasLogged] = useState(false);
   const products = useSelector((state) => state.products);
   const [filterDisplay, setFilterDisplay] = useState({
     display: 'none',
@@ -65,6 +66,7 @@ function App() {
         filterDisplay={filterDisplay}
         setFilterDisplay={setFilterDisplay}
         favoriteChanges={favoriteChanges}
+        hasLogged={hasLogged}
       />
       <Suspense fallback={<CustomLoader />}>
         <Routes>
@@ -90,9 +92,9 @@ function App() {
           />
           <Route
             path='/cart'
-            element={<Cart cart={cart} setCart={setCart} />}
+            element={<Cart cart={cart} setCart={setCart} sethasLogged={sethasLogged} hasLogged={hasLogged} />}
           />
-          <Route path='/favorites' element={<Favorites setFavoriteChanges={setFavoriteChanges} favoriteChanges={favoriteChanges}/>} />
+          <Route path='/favorites' element={<Favorites setFavoriteChanges={setFavoriteChanges} favoriteChanges={favoriteChanges} />} />
           <Route path='/qa' element={<Qa />} />
           <Route path='/about' element={<About />} />
           <Route path='/payment/history' element={<PaymentHistory />} />
