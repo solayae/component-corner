@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export default function Favorites() {
+export default function Favorites({setFavoriteChanges, favoriteChanges}) {
   const [favoriteProducts, setFavoriteProducts] = useState([]);
   const [favoritesID, setFavoritesID] = useState([]);
   const [mounted, setMounted] = useState(false);
@@ -55,6 +55,7 @@ export default function Favorites() {
     const newUser = { ...backupUser, favorite: newFavorites };
     const responseEdit = await axios.put('/users/', newUser);
     console.log(responseEdit.data);
+    setFavoriteChanges(!favoriteChanges)
     setMounted(!mounted);    
   };
 

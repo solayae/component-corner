@@ -20,6 +20,7 @@ import { MdAssessment } from 'react-icons/md';
 import { IoLogOutOutline } from 'react-icons/io5';
 import { clearMessage, getUserById } from '../../redux/actions';
 import { Tooltip } from 'react-tooltip';
+import axios from 'axios';
 
 const Topbar = ({
   setFilters,
@@ -28,6 +29,7 @@ const Topbar = ({
   cart,
   setPage,
   setCart,
+  favoriteChanges
 }) => {
   const [triggerPopUp, setTriggerPopUp] = useState(false);
   const [triggerPopUpSignUp, setTriggerPopUpSignUp] = useState(false);
@@ -43,10 +45,19 @@ const Topbar = ({
   const allProducts = [...productState];
   const [showUser, setshowUserBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
+  const [showFavorites, setshowFavorites] = useState(0);
+
+  const getUserFavorites = async () => {
+    if (!user) return setshowFavorites(0)
+    const response = await axios.get(`/users/${user.id}`)
+    const favorites = response.data.favorite
+    setshowFavorites(favorites.length)
+  }
 
   useEffect(() => {
+    getUserFavorites()
     dispatch(getUserById(user?.id));
-  }, [user?.id]);
+  }, [user?.id, showFavorites, favoriteChanges]);
 
   let categories = allProducts.map((e) => e.category);
   categories = [...new Set(categories)];
@@ -65,10 +76,10 @@ const Topbar = ({
   const viewFilters = () => {
     filterDisplay.display === 'none'
       ? setFilterDisplay({
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        })
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      })
       : setFilterDisplay({ display: 'none' });
   };
 
@@ -145,7 +156,7 @@ const Topbar = ({
                   alt='favorite-icon'
                 />
               </Link>
-              <div className={styles.badge}>{userDetail.favorite?.length}</div>
+              <div className={styles.badge}>{showFavorites}</div>
             </div>
           ) : (
             ''
@@ -178,7 +189,7 @@ const Topbar = ({
             </div>
           )}
 
-          {/* {showUser && (
+          {showUser && (
             <div className={styles.login}>
               <Link to={'/user'} className='nav-link'>
                 <MdAssessment
@@ -188,7 +199,7 @@ const Topbar = ({
                 />
               </Link>
             </div>
-          )} */}
+          )}
           {showAdminBoard && (
             <div className={styles.login}>
               <Link to={'/admin'} className='nav-link'>
@@ -281,13 +292,13 @@ const Topbar = ({
         <Link to={'/about'}>
           <p className={styles.about}>SOBRE NOSOTROS</p>
         </Link>
-        {/* {user ? (
+        {user ? (
           <Link href='#' className={styles.about}>
             PEDIDO
           </Link>
         ) : (
           ''
-        )} */}
+        )}
         <img
           src={imageFilter}
           className={styles.ocultarFiltros}
