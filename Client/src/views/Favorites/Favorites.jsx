@@ -3,6 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from './Favorites.module.css';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Favorites() {
   const [favoriteProducts, setFavoriteProducts] = useState([]);
@@ -52,7 +55,7 @@ export default function Favorites() {
     const newUser = { ...backupUser, favorite: newFavorites };
     const responseEdit = await axios.put('/users/', newUser);
     console.log(responseEdit.data);
-    setMounted(!mounted);
+    setMounted(!mounted);    
   };
 
   return favoriteProducts.length < 1 ? (
