@@ -37,10 +37,18 @@
   display: flex;
   gap: 0.5rem;
 }
+.containerImg{
+overflow: hidden;
+}
 
 .containerImg img {
   border-radius: 50%;
-  width: 14rem
+  width: 14rem;
+  transition: transform 0.3s ease;
+}
+
+.containerImg img:hover{
+  transform: scale(1.1);
 }
 
 
