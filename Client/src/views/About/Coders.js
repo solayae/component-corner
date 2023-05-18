@@ -10,7 +10,7 @@ const coders = {
     {
       id: 2,
       name: 'Franco Inca',
-      img: 'https://res.cloudinary.com/dezvujzed/image/upload/v1684427487/franco_gzy4fx.png',
+      img: "https://res.cloudinary.com/dezvujzed/image/upload/v1684427487/franco_gzy4fx.png",
       linkedin: 'https://www.linkedin.com/in/franco-jes%C3%BAs-inca-donayre-7906b2262/',
       github: 'https://github.com/FrancoInca',
     },
