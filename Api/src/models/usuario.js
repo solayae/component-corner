@@ -43,6 +43,10 @@ module.exports = (sequelize) => {
        imagen: {
       type: DataTypes.TEXT,
       allowNull: true
+    },
+    resetLink : {
+      type: DataTypes.TEXT,
+      allowNull:true
     }
   });
 
