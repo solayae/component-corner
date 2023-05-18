@@ -9,9 +9,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import styles from './Detail.module.css';
 import Rating from '@mui/material/Rating';
 import PropTypes from 'prop-types';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-function Detail({ cart, setCart }) {
+function Detail({ cart, setCart, setFavoriteChanges, favoriteChanges }) {
   const { id } = useParams();
   const dispatch = useDispatch();
   const detailProduct = useSelector((state) => state.detail);
@@ -19,13 +19,10 @@ function Detail({ cart, setCart }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [starsValue, setStarsValue] = useState(0);
   const [reviewValue, setReviewValue] = useState('');
-  const [textValue, setTextValue] = useState('');
 
   const user = JSON.parse(localStorage.getItem('user'));
   const userId = user?.id;
   // console.log(user);
-
-  const navigate = useNavigate();
 
   const getUserDetails = async () => {
     try {
@@ -78,6 +75,7 @@ function Detail({ cart, setCart }) {
           progress: undefined,
           theme: "dark",
           });
+        setFavoriteChanges(!favoriteChanges)
         return setIsFavorite(false);
       }
 
@@ -95,6 +93,7 @@ function Detail({ cart, setCart }) {
         progress: undefined,
         theme: "dark",
         });
+      setFavoriteChanges(!favoriteChanges)
       return setIsFavorite(true);
     } catch (error) {
       console.log(error);
@@ -189,7 +188,6 @@ function Detail({ cart, setCart }) {
         reviews: newReview,
       });
       setReviewValue('');
-      setTextValue('');
       setStarsValue(0);
       console.log(responseEdit);
       toast.success(`Genial! se agrego tu reseña!`, {
@@ -209,7 +207,6 @@ function Detail({ cart, setCart }) {
 
   const handleInputChange = (event) => {
     setReviewValue(event.target.value);
-    setTextValue(event.target.value);
   };
 
   function starAverage() {

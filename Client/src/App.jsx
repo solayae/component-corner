@@ -32,6 +32,7 @@ function App() {
   const [filters, setFilters] = useLocalStorage('filter_cards-Home', []);
   const [page, setPage] = useLocalStorage('page', 0);
   const [cart, setCart] = useLocalStorage('cart', []);
+  const [favoriteChanges, setFavoriteChanges] = useState(false)
   const products = useSelector((state) => state.products);
   const [filterDisplay, setFilterDisplay] = useState({
     display: 'none',
@@ -63,6 +64,7 @@ function App() {
         setCart={setCart}
         filterDisplay={filterDisplay}
         setFilterDisplay={setFilterDisplay}
+        favoriteChanges={favoriteChanges}
       />
       <Suspense fallback={<CustomLoader />}>
         <Routes>
@@ -70,7 +72,7 @@ function App() {
           <Route exact path='/' element={<LandingPage />} />
           <Route
             path='/products/:id'
-            element={<Detail cart={cart} setCart={setCart} />}
+            element={<Detail cart={cart} setCart={setCart} favoriteChanges={favoriteChanges} setFavoriteChanges={setFavoriteChanges} />}
           />
           <Route path='/profile' element={<Profile />} />
           <Route path='/admin' element={<BoardAdmi />} />
@@ -90,7 +92,7 @@ function App() {
             path='/cart'
             element={<Cart cart={cart} setCart={setCart} />}
           />
-          <Route path='/favorites' element={<Favorites />} />
+          <Route path='/favorites' element={<Favorites setFavoriteChanges={setFavoriteChanges} favoriteChanges={favoriteChanges}/>} />
           <Route path='/qa' element={<Qa />} />
           <Route path='/about' element={<About />} />
           <Route path='/payment/history' element={<PaymentHistory />} />
