@@ -6,7 +6,7 @@ import SignUp from '../../components/SignUp/SignUp';
 import { useState } from 'react';
 import Login from '../../components/Login/Login';
 
-function Cart({ cart, setCart }) {
+function Cart({ cart, setCart, sethasLogged, hasLogged }) {
   const user = JSON.parse(localStorage.getItem('user'));
   const totalPrice = cart.reduce((acc, el) => acc + el.quantity * el.price, 0);
   const navigate = useNavigate();
@@ -140,10 +140,10 @@ function Cart({ cart, setCart }) {
             <SignUp trigger={triggerPopUpSignUp} setTrigger={setTriggerPopUpSignUp} setLoginTrigger={setTriggerPopUp} />
           </div>
           <div>
-            <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} setTriggerSignUp={setTriggerPopUpSignUp} />
+            <Login trigger={triggerPopUp} setTrigger={setTriggerPopUp} setTriggerSignUp={setTriggerPopUpSignUp} sethasLogged={sethasLogged} hasLogged={hasLogged}/>
           </div>
           <button
-            className={user?styles.cartPay : styles.cartPayRed}
+            className={user ? styles.cartPay : styles.cartPayRed}
             onClick={user ? () => buyFunction() : () => setTriggerPopUp(true)}
           >
             {user ? "COMPRAR" : "REGISTRATE!"}

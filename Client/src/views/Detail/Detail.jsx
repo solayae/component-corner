@@ -343,6 +343,8 @@ function Detail({ cart, setCart, setFavoriteChanges, favoriteChanges }) {
 Detail.propTypes = {
   cart: PropTypes.array,
   setCart: PropTypes.func,
+  setFavoriteChanges: PropTypes.func,
+  favoriteChanges: PropTypes.func
 };
 
 export default Detail;
