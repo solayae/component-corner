@@ -9,6 +9,7 @@ const deleteImage = require('../handler/imageHandler');
 const cors = require('cors');
 const corsOptions = { origin: 'http://localhost:3001' };
 const bodyParser = require('body-parser');
+const routerReset = require('../controllers/forgotPassword');
 const router = Router();
 
 router.use(Express.json());
@@ -20,6 +21,7 @@ router.use('/api/auth', authRouter);
 //router.use('/api/auth', authRouter);
 router.use('/api', usersRedirectRouter);
 router.use('/:public_id', deleteImage);
+
 
 
 
