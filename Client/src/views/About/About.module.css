@@ -37,9 +37,6 @@
   display: flex;
   gap: 0.5rem;
 }
-.containerImg{
-overflow: hidden;
-}
 
 .containerImg img {
   border-radius: 50%;

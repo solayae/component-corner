@@ -22,10 +22,10 @@ const About = lazy(() => import('./views/About/About'));
 import PaymentHistory from './views/PaymentHistory/PaymentHistory';
 
 // DEPLOY:
-// axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/';
+axios.defaults.baseURL = 'https://component-corner-production.up.railway.app/';
 
 //LOCAL:
-axios.defaults.baseURL = 'http://localhost:3001/';
+// axios.defaults.baseURL = 'http://localhost:3001/';
 
 function App() {
   const [mounted, setMounted] = useState(false);
