@@ -42,3 +42,23 @@
   border-radius: 50%;
   width: 14rem
 }
+
+
+@media (min-width: 1184px) {
+  .section {
+    margin: 2rem 10rem 2rem 10rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .section {
+    margin: 2rem 30rem 2rem 30rem;
+  }
+}
+
+
+@media (min-width: 1455px) {
+  .section {
+    margin: 2rem 20rem 2rem 20rem;
+  }
+}
