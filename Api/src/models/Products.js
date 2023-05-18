@@ -37,7 +37,7 @@ module.exports = (sequelize) => {
         type: DataTypes.ARRAY(DataTypes.JSON),
         defaultValue: [],
       },
-      delete: {
+      banned: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
@@ -46,11 +46,5 @@ module.exports = (sequelize) => {
       timestamps: false,
     }
   );
-  // Products.addHook('beforeCreate', (product, options) => {
-  //   if (!product.reviews) {
-  //     product.reviews = [];
-  //   }
-  // });
-
   return Products
 };

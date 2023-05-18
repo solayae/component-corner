@@ -178,7 +178,7 @@ const Topbar = ({
             </div>
           )}
 
-          {showUser && (
+          {/* {showUser && (
             <div className={styles.login}>
               <Link to={'/user'} className='nav-link'>
                 <MdAssessment
@@ -188,7 +188,7 @@ const Topbar = ({
                 />
               </Link>
             </div>
-          )}
+          )} */}
           {showAdminBoard && (
             <div className={styles.login}>
               <Link to={'/admin'} className='nav-link'>
@@ -281,13 +281,13 @@ const Topbar = ({
         <Link to={'/about'}>
           <p className={styles.about}>SOBRE NOSOTROS</p>
         </Link>
-        {user ? (
+        {/* {user ? (
           <Link href='#' className={styles.about}>
             PEDIDO
           </Link>
         ) : (
           ''
-        )}
+        )} */}
         <img
           src={imageFilter}
           className={styles.ocultarFiltros}

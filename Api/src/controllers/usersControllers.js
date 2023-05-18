@@ -1,4 +1,4 @@
-const { Usuario } = require('../db');
+const { Usuario } = require("../db");
 
 async function findOrCreateUser(
   email,
@@ -24,7 +24,15 @@ async function findOrCreateUser(
   return [newUser, created];
 }
 
-async function updateUsers(name, password, favorite, direction, cart, email, banned) {
+async function updateUsers(
+  name,
+  password,
+  favorite,
+  direction,
+  cart,
+  email,
+  banned
+) {
   const updateUser = await Usuario.update(
     {
       name,
@@ -32,7 +40,7 @@ async function updateUsers(name, password, favorite, direction, cart, email, ban
       favorite,
       direction,
       cart,
-      banned
+      banned,
     },
     {
       where: { email: email },
@@ -41,42 +49,41 @@ async function updateUsers(name, password, favorite, direction, cart, email, ban
   return updateUser;
 }
 
-
 async function updateProfile(email, name, direction) {
   const updateProfile = await Usuario.update(
-      {
-        name,        
-        direction
-       
-      },
-      {
-        where: { email: email },
-      }
+    {
+      name,
+      direction,
+    },
+    {
+      where: { email: email },
+    }
   );
-  return updateProfile
+  return updateProfile;
 }
 
 async function updateImagen(imagen, email) {
   const updateImage = await Usuario.update(
-      {
-        imagen        
-       
-      },
-      {
-        where: { email: email },
-      }
+    {
+      imagen,
+    },
+    {
+      where: { email: email },
+    }
   );
-  return updateImage
+  return updateImage;
 }
 
-
-
-
 async function deleteUser(UsersId) {
-  await Usuario.destroy({
-    where: { email: UsersId },
-  });
-  return 'Usuario eliminado';
+  await Usuario.update(
+    { banned: !banned },
+    {
+      where: {
+        email: UsersId,
+      },
+    }
+  );
+  return "Usuario eliminado";
 }
 async function searchUsersByName(name) {
   const allUsers = await Usuario.findAll({
@@ -91,7 +98,6 @@ module.exports = {
   updateUsers,
   deleteUser,
   searchUsersByName,
-    updateProfile,
-    updateImagen,
-
+  updateProfile,
+  updateImagen,
 };

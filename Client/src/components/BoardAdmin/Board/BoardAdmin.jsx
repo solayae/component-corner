@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import InfoUsers from "../InfoUsers/InfoUsers";
 import { useNavigate } from "react-router-dom";
 import InfoProducts from "../infoProducts/InfoProducts";
+import InfoVentas from "../infoVentas/InfoVentas";
 
 const BoardAdmin = () => {
   const [viewType, setType] = useState("user")
@@ -23,7 +24,7 @@ const BoardAdmin = () => {
       <LeftPanel setType={setType} />
       {viewType === "user" && <InfoUsers />}
       {viewType === "products" && <InfoProducts />}
-      {viewType === "sells"}
+      {viewType === "sells" && <InfoVentas/>}
     </div>)
   );
 }
