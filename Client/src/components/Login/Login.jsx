@@ -1,32 +1,32 @@
 import styles from './PopUp.module.css';
-import {useState, useRef} from 'react';
+import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import CheckButton from 'react-validation/build/button';
-import {login, clearMessage} from '../../redux/actions';
-import {isEmail} from 'validator';
+import { login, clearMessage } from '../../redux/actions';
+import { isEmail } from 'validator';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 const MySwal = withReactContent(Swal);
-import {GoogleLogin} from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from 'jwt-decode';
 
 const required = (value) => {
   if (!value) {
-    return <div style={{color: 'red'}}>Este campo es obligatorio!</div>;
+    return <div style={{ color: 'red' }}>Este campo es obligatorio!</div>;
   }
 };
 const validatePassword = (value) => {
   if (value.length < 8 || value.length > 40) {
-    return <div style={{color: 'red'}}>El password entre 8 y 40 characteres.</div>;
+    return <div style={{ color: 'red' }}>El password entre 8 y 40 characteres.</div>;
   }
 };
 
 const validateEmail = (value) => {
   if (!isEmail(value)) {
-    return <div style={{color: 'red'}}>Este email no es valido</div>;
+    return <div style={{ color: 'red' }}>Este email no es valido</div>;
   }
 };
 
@@ -35,12 +35,12 @@ export default function Login(props) {
   const form = useRef();
   const checkBtn = useRef();
 
-  const [user, setUser] = useState({email: '', password: ''});
+  const [user, setUser] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
 
-  const onChangeUser = (e, type) => setUser({...user, [type]: e.target.value});
+  const onChangeUser = (e, type) => setUser({ ...user, [type]: e.target.value });
 
   const loginFunc = async (email, password) => {
     try {
@@ -48,6 +48,8 @@ export default function Login(props) {
       if (response.status !== 200) throw Error('No se encontró el usuario');
       tigger();
       setLoading(false);
+      props.sethasLogged(!props.hasLogged)
+
     } catch (error) {
       setLoading(false);
       MySwal.fire({
@@ -68,7 +70,7 @@ export default function Login(props) {
   const tigger = () => {
     props.setTrigger(false);
     dispatch(clearMessage());
-    setUser({email: '', password: ''});
+    setUser({ email: '', password: '' });
   };
   return props.trigger ? (
     <div className={styles.popUp}>
@@ -115,7 +117,7 @@ export default function Login(props) {
               }}
             />
           </div>
-          <CheckButton style={{display: 'none'}} ref={checkBtn} />
+          <CheckButton style={{ display: 'none' }} ref={checkBtn} />
 
           <div className={styles.formElement}>
             <p>¿No tienes una cuenta?</p>
