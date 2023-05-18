@@ -52,7 +52,7 @@ const coders = {
     {
       id: 8,
       name: 'Alejandro Medina',
-      img: 'https://cdn.memegenerator.es/imagenes/memes/full/33/7/33076979.jpg',
+      img: 'https://res.cloudinary.com/dezvujzed/image/upload/v1684433518/alejandro_mifqr5.png',
       linkedin: 'https://www.linkedin.com/in/alejandro-medina-b4558419b/',
       github: 'https://github.com/httpsAlejandroM',
     },
