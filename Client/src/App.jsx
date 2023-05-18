@@ -67,6 +67,7 @@ function App() {
         setFilterDisplay={setFilterDisplay}
         favoriteChanges={favoriteChanges}
         hasLogged={hasLogged}
+        sethasLogged={sethasLogged}
       />
       <Suspense fallback={<CustomLoader />}>
         <Routes>
